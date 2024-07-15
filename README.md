@@ -3,8 +3,8 @@
 ## Table of Contents
 
 - [Summary](#summary)
-- [Project scope](#project-scope)
 - [Overview](#overview)
+- [Project scope](#project-scope)
 - [What's included?](#whats-included)
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
@@ -16,6 +16,9 @@
   - [Local test deployment](#local-test-deployment)
   - [Traditional web hosting](#traditional-web-hosting)
   - [Cloud hosting platforms](#cloud-hosting-platforms)
+     - [Netlify](#netlify)
+     - [Vercel](#vercel)
+     - [GitHub Pages](#github-pages)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
@@ -106,8 +109,8 @@ Before you begin, ensure you have the following installed:
 
 1. Generate a React component using Claude on the Artifacts environment.
 2. Copy the generated component code.
-3. Paste the code into `src/artifact-component.tsx`.
-4. The page should refresh automatically to display the new component.
+3. Paste the code into `src/artifact-component.tsx`, completely replacing the file contents.
+4. If you have `npm run dev` running, the page should refresh automatically to display the new component.
 
 ## Customization
 
@@ -116,17 +119,17 @@ Before you begin, ensure you have the following installed:
 - Modify `tailwind.config.js` to customize the Tailwind CSS theme.
 - Update `App.tsx` to change the overall layout or add new features.
 - Add or modify components in the `src/components/` directory.
-  > **Note:** Shadcn components installed via `npx` are automatically placed in `src/components`. All components come pre-installed by default, but if you remove some and later want to reinstall any, you may simply run `npx shadcn-ui@latest add <your-component>`.
+  > **Note:** Shadcn UI components installed via `npx` are automatically placed in `src/components`. All components come pre-installed by default, but if you remove some and later want to reinstall any, you may simply run `npx shadcn-ui@latest add <your-component>`.
   
 ### Removing unneeded components / libraries
 
-The **Recharts** library and ALL **Shadcn** components come pre-installed, so that all code that Claude may generate will run *out-of-the-box*.
+The **Recharts** library and ALL **Shadcn UI** components come pre-installed, so that all code that Claude may generate will run *out-of-the-box*.
 
 If you just want to run the artifact locally, you may leave things as they are, but if you want to deploy the application or use it as a base for a larger project, you may want to optimize the application's bundle size.
 
 To do that, you may remove the pre-installed components or libraries that are not required by your application.
 
-#### Unneeded Shadcn components:
+#### Unneeded Shadcn UI components:
   Just delete the component's folder from `src/components`.
 
 #### Unneeded packages (ex: Recharts):
