@@ -19,6 +19,7 @@
      - [Netlify](#netlify)
      - [Vercel](#vercel)
      - [GitHub Pages](#github-pages)
+     - [Cloudflare Pages](#cloudflare-pages)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
@@ -187,6 +188,8 @@ export default {
 
 Here are some popular free cloud hosting platforms and how to deploy your app to them:
 
+> Remember to run `npm run build` before deploying to ensure you're uploading the latest version of your app.
+
 #### Netlify
 
 1. Install the Netlify CLI:
@@ -243,6 +246,43 @@ Here are some popular free cloud hosting platforms and how to deploy your app to
    ```
 
 5. Set up GitHub Pages in your repository settings to use the `gh-pages` branch.
+
+#### Cloudflare Pages
+
+You can deploy to Cloudflare Pages either through the Cloudflare dashboard or using the `wrangler` CLI tool. Here's how to do it using `wrangler`, which is often the most straightforward method:
+
+1. **Install Wrangler:**
+   ```
+   npm install -g wrangler
+   ```
+
+2. **Login to Cloudflare:**
+   ```
+   wrangler login
+   ```
+
+3. **Deploy your project:**
+   ```
+   wrangler pages deploy dist
+   ```
+
+   This command will prompt you to create a new project if one doesn't exist, and then deploy your `dist` folder to Cloudflare Pages.
+
+4. **Configure your project (optional):**
+   If you need more control over your deployment, you can create a `wrangler.toml` file in your project root:
+
+   ```toml
+   name = "my-react-app"
+   compatibility_date = "2024-07-16" # Replace with the current date
+
+   [site]
+   bucket = "./dist"
+   ```
+
+   Note: The `account_id` and `workers_dev` fields are typically not needed for Cloudflare Pages deployments.
+
+5. **Custom domain and production settings:**
+   To use a custom domain or configure production settings, you can use the Cloudflare Pages dashboard. There, you can set up your domain, configure environment variables, and manage other deployment settings.
 
 ## Troubleshooting
 
