@@ -3,6 +3,7 @@ import { GamesProvider } from './providers/GamesProvider';
 import { useGames } from './providers/GamesProvider';
 import CaricatureGame from './artifact-component';
 import FadeoutGame from './components/FadeoutGame';
+import { GameData } from './types/game';
 
 function GameWrapper() {
   const { currentGame, previousGame, markGameCompleted } = useGames();
@@ -10,7 +11,7 @@ function GameWrapper() {
   const renderGame = (game: GameData) => {
     switch (game.type) {
       case 'caricature':
-        return <CaricatureGame onComplete={() => markGameCompleted(game.id)} />;
+        return <CaricatureGame />;
       case 'fadeout':
         return <FadeoutGame onComplete={() => markGameCompleted(game.id)} />;
       default:

@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
-const CaricatureGame = () => {
+interface CaricatureGameProps {
+  onComplete?: () => void;
+}
+
+const CaricatureGame = ({ onComplete }: CaricatureGameProps = {}) => {
   const [revealed, setRevealed] = useState({
     hair: false,
     face: false,
@@ -16,9 +20,13 @@ const CaricatureGame = () => {
   const [clicks, setClicks] = useState(0);
 
   const handleClick = (area: string) => {
-
-      setRevealed(prev => ({ ...prev, [area]: true }));
-      setClicks(prev => prev + 1);
+    setRevealed(prev => ({ ...prev, [area]: true }));
+    setClicks(prev => prev + 1);
+    
+    const updatedRevealed = { ...revealed, [area]: true };
+    if (Object.values(updatedRevealed).every(v => v) && onComplete) {
+      onComplete();
+    }
   }
 
   return (
