@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const CaricatureGame = () => {
@@ -15,12 +15,11 @@ const CaricatureGame = () => {
 
   const [clicks, setClicks] = useState(0);
 
-  const handleClick = (area) => {
-    if (!revealed[area]) {
+  const handleClick = (area: string) => {
+
       setRevealed(prev => ({ ...prev, [area]: true }));
       setClicks(prev => prev + 1);
-    }
-  };
+  }
 
   return (
     <Card className="w-full max-w-lg">
