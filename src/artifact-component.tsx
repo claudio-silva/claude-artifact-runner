@@ -1,120 +1,212 @@
 import React, { useState } from 'react';
-import { AlertCircle, Mail, Lock, User, Github, Facebook, Twitter } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [website, setWebsite] = useState('');
-  const [error, setError] = useState('');
+const CaricatureGame = () => {
+  const [revealed, setRevealed] = useState({
+    hair: false,
+    face: false,
+    eyes: false,
+    eyebrows: false,
+    nose: false,
+    mouth: false,
+    suit: false,
+    tie: false
+  });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (!email || !password || !website) {
-      setError('Please fill in all fields');
-    } else {
-      setError('');
-      console.log('Login attempted:', { email, password, website });
-      // Here you would typically handle the login logic
-      alert(`Login attempted: ${email}, ${password}, ${website}`);
+  const [clicks, setClicks] = useState(0);
+
+  const handleClick = (area) => {
+    if (!revealed[area]) {
+      setRevealed(prev => ({ ...prev, [area]: true }));
+      setClicks(prev => prev + 1);
     }
   };
 
-  const handleSocialLogin = (platform) => {
-    console.log(`${platform} login attempted`);
-    // Here you would typically handle the social login logic
-    alert(`${platform} login attempted`);
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Demo Component</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                icon={<Mail className="h-4 w-4 text-gray-500" />}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                icon={<Lock className="h-4 w-4 text-gray-500" />}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="website">Target Website</Label>
-              <Select onValueChange={setWebsite}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a website" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="website1">Website 1</SelectItem>
-                  <SelectItem value="website2">Website 2</SelectItem>
-                  <SelectItem value="website3">Website 3</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <Button type="submit" className="w-full">Log In</Button>
-          </form>
+    <Card className="w-full max-w-lg">
+      <CardContent className="p-6">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold mb-2">Click to Reveal the Caricature!</h2>
+          <p className="text-gray-600">Parts Revealed: {Object.values(revealed).filter(v => v).length} / 8</p>
+        </div>
+        
+        <div className="relative w-full h-96 bg-gray-100 rounded-lg cursor-pointer">
+          <svg 
+            viewBox="0 0 100 160" 
+            className="w-full h-full"
+          >
+            {/* Hair */}
+            <g onClick={() => handleClick('hair')} style={{cursor: 'pointer'}}>
+              {revealed.hair && (
+                <path
+                  d="M 20 20 
+                     L 80 20 
+                     L 80 45
+                     L 20 45
+                     Z
+                     M 45 10
+                     L 55 20
+                     L 65 10"
+                  fill="#FFB700"
+                />
+              )}
+              {!revealed.hair && (
+                <rect x="20" y="10" width="60" height="35" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
 
-          {error && (
-            <Alert variant="destructive" className="mt-4">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
+            {/* Face */}
+            <g onClick={() => handleClick('face')} style={{cursor: 'pointer'}}>
+              {revealed.face && (
+                <rect
+                  x="20"
+                  y="45"
+                  width="60"
+                  height="55"
+                  fill="#FFA07A"
+                />
+              )}
+              {!revealed.face && (
+                <rect
+                  x="20"
+                  y="45"
+                  width="60"
+                  height="55"
+                  fill="transparent"
+                  stroke="#ddd"
+                  strokeDasharray="5,5"
+                  className="animate-pulse"
+                />
+              )}
+            </g>
+
+            {/* Eyebrows */}
+            <g onClick={() => handleClick('eyebrows')} style={{cursor: 'pointer'}}>
+              {revealed.eyebrows && (
+                <>
+                  <rect x="30" y="55" width="15" height="3" fill="#FFB700" />
+                  <rect x="55" y="55" width="15" height="3" fill="#FFB700" />
+                </>
+              )}
+              {!revealed.eyebrows && (
+                <rect x="30" y="55" width="40" height="3" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+
+            {/* Eyes */}
+            <g onClick={() => handleClick('eyes')} style={{cursor: 'pointer'}}>
+              {revealed.eyes && (
+                <>
+                  <circle cx="37" cy="65" r="5" fill="#1E90FF" />
+                  <circle cx="63" cy="65" r="5" fill="#1E90FF" />
+                </>
+              )}
+              {!revealed.eyes && (
+                <rect x="32" y="60" width="36" height="10" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+
+            {/* Nose */}
+            <g onClick={() => handleClick('nose')} style={{cursor: 'pointer'}}>
+              {revealed.nose && (
+                <rect x="47" y="75" width="6" height="2" fill="#DEB887" />
+              )}
+              {!revealed.nose && (
+                <rect x="47" y="75" width="6" height="2" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+
+            {/* Mouth */}
+            <g onClick={() => handleClick('mouth')} style={{cursor: 'pointer'}}>
+              {revealed.mouth && (
+                <circle cx="50" cy="85" r="5" fill="#CD5C5C" />
+              )}
+              {!revealed.mouth && (
+                <circle cx="50" cy="85" r="5"
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+
+            {/* Suit */}
+            <g onClick={() => handleClick('suit')} style={{cursor: 'pointer'}}>
+              {revealed.suit && (
+                <>
+                  <rect
+                    x="20"
+                    y="100"
+                    width="60"
+                    height="60"
+                    fill="#001F5C"
+                  />
+                  <path
+                    d="M 20 110 L 50 105 L 80 110"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                </>
+              )}
+              {!revealed.suit && (
+                <rect x="20" y="100" width="60" height="60" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+
+            {/* Tie */}
+            <g onClick={() => handleClick('tie')} style={{cursor: 'pointer'}}>
+              {revealed.tie && (
+                <path
+                  d="M 45 100 
+                     L 55 100 
+                     L 60 150 
+                     L 50 160 
+                     L 40 150 Z"
+                  fill="#E63946"
+                />
+              )}
+              {!revealed.tie && (
+                <rect x="40" y="100" width="20" height="60" 
+                      fill="transparent" 
+                      stroke="#ddd" 
+                      strokeDasharray="5,5"
+                      className="animate-pulse"/>
+              )}
+            </g>
+          </svg>
+        </div>
+
+        <div className="mt-4 text-center">
+          {Object.values(revealed).every(v => v) ? (
+            <p className="text-green-600 font-bold">Complete! It took you {clicks} clicks.</p>
+          ) : (
+            <p className="text-gray-600">Keep clicking the dashed areas to reveal more!</p>
           )}
-
-          <div className="relative mt-6">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-            </div>
-          </div>
-
-          <div className="flex space-x-4 mt-6">
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Github')}>
-              <Github className="mr-2 h-4 w-4" /> Github
-            </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Facebook')}>
-              <Facebook className="mr-2 h-4 w-4" /> Facebook
-            </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Twitter')}>
-              <Twitter className="mr-2 h-4 w-4" /> Twitter
-            </Button>
-          </div>
-
-          <div className="text-center text-sm mt-6">
-            Don't have an account?{' '}
-            <Button variant="link" className="p-0">
-              Sign up
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
-export default LoginForm;
+export default CaricatureGame;

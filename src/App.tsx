@@ -1,10 +1,10 @@
 import './App.css'
-import Artifact from './artifact-component'
+import CaricatureGame from './artifact-component'
 
 function App() {
   return (
     <>
-      <Artifact />
+      <CaricatureGame />
     </>
   )
 }
