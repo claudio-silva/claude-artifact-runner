@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import BitcoinGame from '../games/BitcoinGame';
+import BitcoinGame from '../games/BitcoinGame.tsx';
 
 interface Game {
   date: string;
