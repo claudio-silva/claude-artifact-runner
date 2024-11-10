@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, MouseEvent } from 'react';
 import { Bitcoin } from 'lucide-react';
 
 const BitcoinGame = () => {
@@ -13,8 +13,8 @@ const BitcoinGame = () => {
   const [isActive, setIsActive] = useState(false);
   const [clickEffect, setClickEffect] = useState(false);
   const [explosionSize, setExplosionSize] = useState(1);
-  const requestRef = useRef();
-  const containerRef = useRef();
+  const animationFrameRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const lastUpdateTime = useRef(Date.now());
 
   const TARGET_PRICE = 80000;
@@ -23,9 +23,10 @@ const BitcoinGame = () => {
   const BOUNCE_DAMPENING = 0.8;
 
   useEffect(() => {
-    const handleSpaceBar = (e) => {
+    const handleSpaceBar = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
-        handleClick(e);
+        e.preventDefault();
+        jump();
       }
     };
     window.addEventListener('keydown', handleSpaceBar);
@@ -45,7 +46,6 @@ const BitcoinGame = () => {
         y: prev.y + (GRAVITY * deltaTime)
       }));
 
-      // Wiggle price size
       setPriceScale(1 + Math.sin(currentTime / 200) * 0.1);
 
       setPosition(prev => {
@@ -73,7 +73,6 @@ const BitcoinGame = () => {
 
         if (newPrice >= TARGET_PRICE && !showCelebration) {
           setShowCelebration(true);
-          // Start explosion animation
           let size = 1;
           const explode = setInterval(() => {
             size += 0.2;
@@ -88,11 +87,15 @@ const BitcoinGame = () => {
         return { ...prev, y: newY };
       });
 
-      requestRef.current = requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
+    animationFrameRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [isActive, velocity, showCelebration]);
 
   const resetGame = () => {
@@ -106,8 +109,7 @@ const BitcoinGame = () => {
     setExplosionSize(1);
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const jump = () => {
     if (!isActive) {
       setIsActive(true);
       lastUpdateTime.current = Date.now();
@@ -119,6 +121,11 @@ const BitcoinGame = () => {
       setScale(1);
       setClickEffect(false);
     }, 150);
+  };
+
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    jump();
   };
 
   const bitcoinRotation = Math.min(30, Math.max(-30, velocity.y * 2));
@@ -216,4 +223,4 @@ const BitcoinGame = () => {
   );
 };
 
-export default BitcoinGame; 
+export default BitcoinGame;

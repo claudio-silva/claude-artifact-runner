@@ -1,4 +1,13 @@
+import { ComponentType } from 'react';
 import BitcoinGame from '../games/BitcoinGame';
+
+interface Game {
+  date: string;
+  title: string;
+  description: string;
+  component: ComponentType;
+  background: string;
+}
 
 export const games: Game[] = [
   {
