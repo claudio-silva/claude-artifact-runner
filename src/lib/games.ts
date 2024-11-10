@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
-import BitcoinGame from '../games/BitcoinGame.tsx';
-import MemoryGame from '../games/MemoryGame.tsx';
-import SnakeGame from '../games/SnakeGame.tsx';
+import BitcoinGame from '../games/BitcoinGame';
+import MemoryGame from '../games/MemoryGame';
+import SnakeGame from '../games/SnakeGame';
 
 interface Game {
   date: string;
