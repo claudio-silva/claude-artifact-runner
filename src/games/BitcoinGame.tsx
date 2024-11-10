@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, MouseEvent } from 'react';
 import { Bitcoin } from 'lucide-react';
 
 const BitcoinGame = () => {
-  // Center position based on screen width
-  const centerX = window.innerWidth / 2;
-  const [position, setPosition] = useState({ x: centerX, y: 400 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [centerX, setCenterX] = useState(300);
+  const [position, setPosition] = useState({ x: 300, y: 400 });
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const [scale, setScale] = useState(1);
   const [priceScale, setPriceScale] = useState(1);
@@ -14,8 +14,15 @@ const BitcoinGame = () => {
   const [clickEffect, setClickEffect] = useState(false);
   const [explosionSize, setExplosionSize] = useState(1);
   const animationFrameRef = useRef<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const lastUpdateTime = useRef(Date.now());
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const newCenterX = containerRef.current.clientWidth / 2;
+      setCenterX(newCenterX);
+      setPosition(prev => ({ ...prev, x: newCenterX }));
+    }
+  }, []);
 
   const TARGET_PRICE = 80000;
   const GRAVITY = 0.35;
