@@ -1,5 +1,10 @@
 # Claude Artifact Runner
 
+> **Warning:** currently the project is compatible with Node.js up to v22.  
+> **It breaks under the latest Node.js v23.**  
+> This issue will be fixed.  
+> For the time being, I recommend that you use Node.js v22.11 with npm 10.9.
+
 ## Table of Contents
 
 - [Summary](#summary)
