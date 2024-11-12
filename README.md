@@ -80,7 +80,7 @@ These are the libraries and frameworks this project provides, identical to those
    ```
    git clone https://github.com/claudio-silva/claude-artifact-runner.git
    cd claude-artifact-runner
-   docker run --rm -ti -p 5173:5173 -u `id -u` -v `pwd`:/app node:22 bash -c "cd /app; npm install; npm run dev -- --host"
+   docker run --rm -ti -p 5173:5173 -u `id -u` -v `pwd`:/app -v /app/node_modules node:22 bash -c "cd /app; npm install; npm run dev -- --host"
    ```
    Running it in docker like this still allows you to edit the files as per usual, as a bind mount is utilised. 
 
