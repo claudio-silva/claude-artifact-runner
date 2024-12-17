@@ -1,12 +1,24 @@
+import { useRoutes } from 'react-router-dom';
+import routes from 'virtual:generated-pages-react';
+import Layout from './components/layout'; // Create a Layout component
 import './App.css'
-import Artifact from './artifact-component'
 
 function App() {
-  return (
-    <>
-      <Artifact />
-    </>
-  )
+  // Add the default route explicitly
+  const customRoutes = [
+    { path: '/', element: <Layout><DefaultPage /></Layout> }, // Default route
+    ...routes.map((route) => ({
+      ...route,
+      element: <Layout>{route.element}</Layout>,
+    })),
+  ];
+
+  // Generate routes
+  const element = useRoutes(customRoutes);
+  return element;
 }
 
-export default App
+// Import the DefaultPage component explicitly
+import DefaultPage from './artifacts/default';
+
+export default App;
