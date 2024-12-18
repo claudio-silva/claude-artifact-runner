@@ -1,5 +1,5 @@
 // src/artifact-component.tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactNode } from 'react';
 import { 
   Globe, 
   CheckCircle, 
@@ -9,9 +9,15 @@ import {
   ChevronRight 
 } from 'lucide-react';
 
-const ParallaxSection = ({ children, className = '', parallaxSpeed = 0.3 }) => {
+interface ParallaxSectionProps {
+  children: ReactNode; // Define children as ReactNode
+  className?: string; // className is optional and of type string
+  parallaxSpeed?: number; // parallaxSpeed is optional and of type number
+}
+
+  const ParallaxSection: React.FC<ParallaxSectionProps> = ({ children, className = '', parallaxSpeed = 0.3 }) => {
   const [offsetY, setOffsetY] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = () => {
     if (ref.current) {
@@ -42,7 +48,7 @@ const ParallaxSection = ({ children, className = '', parallaxSpeed = 0.3 }) => {
 
 const LandingPage = () => {
   const [email, setEmail] = useState('');
-  const [activeFeature, setActiveFeature] = useState(null);
+  const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
   const features = [
     {
@@ -64,8 +70,7 @@ const LandingPage = () => {
       gradient: "from-indigo-500 to-sapphire-600"
     }
   ];
-
-  const handleEmailSubmit = async (e) => {
+  const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => { // Explicitly define the event type => {
     e.preventDefault();
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
