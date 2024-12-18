@@ -8,6 +8,8 @@ import {
   ArrowRight,
   ChevronRight 
 } from 'lucide-react';
+import CookieConsent from 'react-cookie-consent'; // Import cookie consent library
+
 
 interface ParallaxSectionProps {
   children: ReactNode; // Define children as ReactNode
@@ -50,6 +52,19 @@ const LandingPage = () => {
   const [email, setEmail] = useState('');
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
+    // Google Ads script
+    useEffect(() => {
+      const script = document.createElement('script');
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185927994614530";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+      
+      // Cleanup function to remove the script when the component unmounts
+      return () => {
+        document.body.removeChild(script);
+      };
+    }, []);
   const features = [
     {
       icon: <Globe className="w-12 h-12 text-emerald-400" />,
@@ -111,6 +126,7 @@ const LandingPage = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-100 to-sapphire-100 text-gray-900">
       {/* Soft Gradient Background with Blurred Shapes */}
+      
       <div className="absolute inset-0 overflow-hidden opacity-50 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-gradient-to-r from-emerald-200/30 via-teal-300/20 to-sapphire-300/30 rounded-full blur-3xl animate-slow-spin"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[100%] h-[100%] bg-gradient-to-l from-emerald-200/20 via-teal-300/10 to-sapphire-300/20 rounded-full blur-3xl animate-slow-spin-reverse"></div>
@@ -124,7 +140,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <span className="text-2xl font-bold text-emerald-700">
-              ImmigrationAI
+              VisaNav
             </span>
           </div>
           <div className="flex items-center space-x-6">
@@ -309,7 +325,7 @@ const LandingPage = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold text-emerald-800 mb-4">
-                ImmigrationAI
+                VisaNav
               </h3>
               <p className="text-teal-700">
                 Transforming global mobility through intelligent AI-driven solutions
@@ -325,12 +341,12 @@ const LandingPage = () => {
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-emerald-800">Contact</h4>
-              <p className="text-teal-700">support@immigrationai.com</p>
+              <p className="text-teal-700">support@VisaNav.com</p>
             </div>
           </div>
           <div className="mt-8 border-t border-emerald-100 pt-8 text-center">
             <p className="text-teal-700">
-              © 2024 ImmigrationAI. All rights reserved.
+              © 2024 VisaNav. All rights reserved.
             </p>
           </div>
         </div>
