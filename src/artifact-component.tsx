@@ -74,22 +74,34 @@ const LandingPage = () => {
       return;
     }
 
-    // Send email to Google Sheets
-    const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
+    // Send email to Google Sheets via Google Apps Script
+    const proxyUrl = 'https://localhost:5000'; // Replace with your Google Apps Script URL
+    try {
+      const response = await fetch(proxyUrl, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }), // Send email as JSON
+      });
 
-    if (response.ok) {
-      alert(`Thank you! We'll contact you at ${email} soon.`);
-      setEmail('');
-    } else {
-      alert('There was an error submitting your email. Please try again later.');
-    }
-  };
+      if (response.ok) {
+          const result = await response.json();
+          if (result.result === "Success") {
+              alert(`Thank you! We'll contact you at ${email} soon.`);
+              setEmail('');
+          } else {
+              alert('There was an error submitting your email. Please try again later.');
+          }
+      } else {
+          alert('There was an error submitting your email. Please try again later.');
+      }
+  } catch (error) {
+      console.error('Error during email submission:', error);
+      alert('An unexpected error occurred. Please try again later.');
+  }
+};
+
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-100 to-sapphire-100 text-gray-900">
