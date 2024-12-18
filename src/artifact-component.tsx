@@ -126,7 +126,24 @@ const LandingPage = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-100 to-sapphire-100 text-gray-900">
       {/* Soft Gradient Background with Blurred Shapes */}
-      
+            {/* Cookie Consent Banner */}
+            <CookieConsent
+        location="bottom"
+        buttonText="Accept"
+        declineButtonText="Decline"
+        onAccept={() => {
+          console.log("Cookies accepted");
+        }}
+        onDecline={() => {
+          console.log("Cookies declined");
+        }}
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        declineButtonStyle={{ color: "#fff", fontSize: "13px" }}
+      >
+        This website uses cookies to enhance the user experience. 
+        <span style={{ fontSize: "10px" }}> You can opt-out if you wish.</span>
+      </CookieConsent>
       <div className="absolute inset-0 overflow-hidden opacity-50 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-gradient-to-r from-emerald-200/30 via-teal-300/20 to-sapphire-300/30 rounded-full blur-3xl animate-slow-spin"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[100%] h-[100%] bg-gradient-to-l from-emerald-200/20 via-teal-300/10 to-sapphire-300/20 rounded-full blur-3xl animate-slow-spin-reverse"></div>
