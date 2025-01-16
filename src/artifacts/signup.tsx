@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from "react-router-dom";
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
@@ -94,7 +95,7 @@ const SignupForm = () => {
 
           <div className="flex space-x-4 mt-6">
             <Button variant="outline" className="w-full" onClick={() => handleSocialSignup('Github')}>
-              <Github className="mr-2 h-4 w-4" /> Githubx
+              <Github className="mr-2 h-4 w-4" /> Github
             </Button>
             <Button variant="outline" className="w-full" onClick={() => handleSocialSignup('Facebook')}>
               <Facebook className="mr-2 h-4 w-4" /> Facebook
@@ -106,9 +107,9 @@ const SignupForm = () => {
 
           <div className="text-center text-sm mt-6">
             Already have an account?{' '}
-            <a href="/" className="text-primary hover:underline">
+            <Link to="/" className="text-primary hover:underline">
               Log in
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>
