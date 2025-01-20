@@ -1,24 +1,45 @@
 import { useRoutes } from 'react-router-dom';
-import routes from 'virtual:generated-pages-react';
-import Layout from './components/layout'; // Create a Layout component
+import type { RouteObject } from 'react-router-dom';
+import Layout from './components/layout';
+import Directory from './artifacts/directory';
 import './App.css'
 
+// 自动导入所有页面组件
+const pages = import.meta.glob('./artifacts/*.tsx', { eager: true }) as Record<string, { default: React.ComponentType }>;
+
 function App() {
-  // Add the default route explicitly
-  const customRoutes = [
-    { path: '/', element: <Layout><DefaultPage /></Layout> }, // Default route
-    ...routes.map((route) => ({
-      ...route,
-      element: <Layout>{route.element}</Layout>,
-    })),
+  // 自动生成路由配置
+  const customRoutes: RouteObject[] = [
+    { 
+      path: '/', 
+      element: <Layout><Directory /></Layout> 
+    },
+    // 遍历所有页面组件生成路由
+    ...Object.entries(pages).map(([path, module]): RouteObject => {
+      // 从文件路径中提取路由路径
+      const routePath = path
+        .replace('./artifacts/', '/')
+        .replace('.tsx', '')
+        .toLowerCase();
+      
+      // 跳过目录页面本身
+      if (routePath === '/directory') {
+        return {
+          path: '*',
+          element: <Layout><Directory /></Layout>
+        };
+      }
+      
+      const Component = module.default;
+      return {
+        path: routePath,
+        element: <Layout><Component /></Layout>
+      };
+    })
   ];
 
-  // Generate routes
   const element = useRoutes(customRoutes);
   return element;
 }
-
-// Import the DefaultPage component explicitly
-import DefaultPage from './artifacts/default';
 
 export default App;

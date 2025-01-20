@@ -1,0 +1,60 @@
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="1000" height="600" fill="#f8f9fa"/>
+    
+    <!-- 顶部标题 -->
+    <text x="350" y="50" font-size="24" font-weight="bold" fill="#333">省应急指挥中心运营服务架构</text>
+
+    <!-- 基础设施服务 -->
+    <g transform="translate(100,100)">
+        <rect width="180" height="160" rx="10" fill="#4a90e2" opacity="0.9"/>
+        <text x="40" y="40" fill="white" font-size="16" font-weight="bold">基础设施服务</text>
+        <text x="20" y="80" fill="white" font-size="14">• 通信链路租赁</text>
+        <text x="20" y="110" fill="white" font-size="14">• 云租户增值安全租赁</text>
+    </g>
+
+    <!-- 软件开发服务 -->
+    <g transform="translate(300,100)">
+        <rect width="180" height="160" rx="10" fill="#50b83c" opacity="0.9"/>
+        <text x="40" y="40" fill="white" font-size="16" font-weight="bold">软件开发服务</text>
+        <text x="20" y="80" fill="white" font-size="14">• 智能网关租赁</text>
+    </g>
+
+    <!-- 运行维护服务 -->
+    <g transform="translate(500,100)">
+        <rect width="180" height="160" rx="10" fill="#f5a623" opacity="0.9"/>
+        <text x="40" y="40" fill="white" font-size="16" font-weight="bold">运行维护服务</text>
+        <text x="20" y="80" fill="white" font-size="14">• 硬件维护</text>
+        <text x="20" y="110" fill="white" font-size="14">• 软件维护</text>
+    </g>
+
+    <!-- 系统业务运营服务 -->
+    <g transform="translate(100,300)">
+        <rect width="580" height="200" rx="10" fill="#d0021b" opacity="0.9"/>
+        <text x="200" y="40" fill="white" font-size="16" font-weight="bold">系统业务运营服务</text>
+        <text x="20" y="80" fill="white" font-size="14">• 会务会商及应急指挥保障服务</text>
+        <text x="20" y="110" fill="white" font-size="14">• 云桌面系统运营服务</text>
+        <text x="20" y="140" fill="white" font-size="14">• 网络策略管理运营服务</text>
+        <text x="20" y="170" fill="white" font-size="14">• 数字政府展厅运营服务</text>
+        <text x="300" y="80" fill="white" font-size="14">• 安全运营中心运营服务</text>
+        <text x="300" y="110" fill="white" font-size="14">• 网络安全事件响应服务</text>
+        <text x="300" y="140" fill="white" font-size="14">• 安全态势感知运营服务</text>
+        <text x="300" y="170" fill="white" font-size="14">• 重点时期网络安全保障服务</text>
+    </g>
+
+    <!-- 箭头指向 -->
+    <g stroke="#666" stroke-width="2">
+        <path d="M190,260 L190,300" marker-end="url(#arrow)"/>
+        <path d="M390,260 L390,300" marker-end="url(#arrow)"/>
+        <path d="M590,260 L590,300" marker-end="url(#arrow)"/>
+    </g>
+
+    <!-- 箭头标记定义 -->
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#666"/>
+        </marker>
+    </defs>
+</svg>
