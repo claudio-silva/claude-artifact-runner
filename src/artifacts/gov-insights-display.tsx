@@ -1,6 +1,16 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Calendar, Book, Lightbulb, Target, FileText, Search, ChevronRight } from 'lucide-react';
+import { 
+  Calendar, 
+  Book, 
+  Lightbulb, 
+  Target, 
+  FileText, 
+  Search, 
+  ChevronRight,
+  Sparkles
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const InsightsDisplay = () => {
   const [activeTab, setActiveTab] = useState('全部');
@@ -52,11 +62,25 @@ const InsightsDisplay = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-white p-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="mb-8 bg-white rounded-lg shadow-sm p-6">
-          <h1 className="text-2xl font-bold mb-6">数字政府行业资讯</h1>
+        <div className="mb-10 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-blue-100">
+          <div className="relative mb-8">
+            <motion.div
+              className="absolute -top-4 -left-4 w-10 h-10 text-blue-500"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <Sparkles className="w-full h-full" />
+            </motion.div>
+            <h1 className="text-3xl font-bold mb-2">
+              <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                数字政府行业资讯
+              </span>
+            </h1>
+            <p className="text-gray-600 text-lg">及时掌握最新政策动态与行业趋势</p>
+          </div>
           
           <div className="relative mb-6">
             <input
@@ -64,69 +88,88 @@ const InsightsDisplay = () => {
               placeholder="搜索资讯..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-12 pr-4 py-3 border border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/50 backdrop-blur-sm transition-all duration-300"
             />
-            <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+            <Search className="absolute left-4 top-3.5 text-blue-400" size={20} />
           </div>
 
           <div className="flex space-x-4">
             {tabs.map(tab => (
-              <button
+              <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center px-6 py-3 rounded-xl transition-all duration-300 ${
                   activeTab === tab.id 
-                    ? 'bg-blue-50 text-blue-600' 
-                    : 'text-gray-600 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white shadow-lg' 
+                    : 'text-gray-600 hover:bg-blue-50'
                 }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <tab.icon size={18} className="mr-2" />
+                <tab.icon size={20} className="mr-2" />
                 {tab.id}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
 
         {/* Content Section */}
         <div className="space-y-4">
-          {filteredInsights.map(insight => (
-            <Card key={insight.id} className="hover:shadow-md transition-all cursor-pointer">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 text-sm text-gray-500 mb-2">
-                      <span className="px-2 py-1 bg-blue-50 text-blue-600 rounded-md">
-                        {insight.type}
-                      </span>
-                      <span>|</span>
-                      <div className="flex items-center">
-                        <Calendar size={16} className="mr-1" />
-                        {insight.date}
+          <AnimatePresence mode="wait">
+            {filteredInsights.map((insight, index) => (
+              <motion.div
+                key={insight.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-blue-100">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 text-sm mb-3">
+                          <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium">
+                            {insight.type}
+                          </span>
+                          <span className="text-gray-300">|</span>
+                          <div className="flex items-center text-gray-500">
+                            <Calendar size={16} className="mr-1 text-blue-400" />
+                            {insight.date}
+                          </div>
+                          <span className="text-gray-300">|</span>
+                          <span className="text-gray-500">{insight.department}</span>
+                        </div>
+                        
+                        <h2 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-blue-600 transition-colors">
+                          {insight.title}
+                        </h2>
+                        
+                        <p className="text-gray-600 mb-4 line-clamp-2">{insight.content}</p>
+                        
+                        <div className="flex items-center space-x-2">
+                          {insight.tags.map(tag => (
+                            <span 
+                              key={tag} 
+                              className="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium group-hover:bg-blue-100 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <span>|</span>
-                      <span>{insight.department}</span>
+                      
+                      <div className="ml-6 transform transition-transform group-hover:translate-x-2">
+                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                          <ChevronRight className="w-5 h-5 text-blue-500" />
+                        </div>
+                      </div>
                     </div>
-                    
-                    <h2 className="text-lg font-semibold mb-2 text-gray-900">
-                      {insight.title}
-                    </h2>
-                    
-                    <p className="text-gray-600 mb-4">{insight.content}</p>
-                    
-                    <div className="flex items-center space-x-2">
-                      {insight.tags.map(tag => (
-                        <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <ChevronRight className="text-gray-400" />
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>

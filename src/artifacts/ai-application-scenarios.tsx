@@ -6,66 +6,158 @@ import {
   ScrollText, 
   Building, 
   ChevronRight,
-  Check
+  Check,
+  LucideIcon,
+  Sparkles
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const ScenarioTab = ({ icon: Icon, title, isActive, onClick }) => (
-  <button
+interface ScenarioTabProps {
+  icon: LucideIcon;
+  title: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+interface Scenario {
+  id: number;
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  features: string[];
+  workflow: string[];
+}
+
+interface ScenarioDetailProps {
+  title: string;
+  subtitle: string;
+  features: string[];
+  workflow: string[];
+}
+
+const ScenarioTab: React.FC<ScenarioTabProps> = ({ icon: Icon, title, isActive, onClick }) => (
+  <motion.button
     onClick={onClick}
-    className={`flex items-center p-4 w-full text-left transition-colors ${
+    className={`flex items-center p-6 w-full text-left transition-all duration-300 ease-in-out relative overflow-hidden ${
       isActive 
-        ? 'bg-blue-600 text-white' 
+        ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white shadow-lg' 
         : 'bg-white text-gray-700 hover:bg-blue-50'
     }`}
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
   >
-    <Icon className={`w-5 h-5 mr-3 ${isActive ? 'text-white' : 'text-blue-600'}`} />
-    <span className="font-medium">{title}</span>
-    <ChevronRight className={`w-5 h-5 ml-auto ${isActive ? 'text-white' : 'text-gray-400'}`} />
-  </button>
+    {isActive && (
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"
+        initial={{ x: '-100%' }}
+        animate={{ x: '100%' }}
+        transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
+      />
+    )}
+    <div className="relative z-10 flex items-center w-full">
+      <div className={`p-2 rounded-lg ${isActive ? 'bg-white/10' : 'bg-blue-50'}`}>
+        <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-blue-600'}`} />
+      </div>
+      <span className="font-medium ml-4 text-lg">{title}</span>
+      <ChevronRight 
+        className={`w-5 h-5 ml-auto transform transition-transform duration-300 ${
+          isActive ? 'text-white rotate-90' : 'text-gray-400'
+        }`} 
+      />
+    </div>
+  </motion.button>
 );
 
-const ScenarioDetail = ({ title, subtitle, features, workflow }) => (
-  <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
-    <div>
-      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-      <p className="text-gray-600 mt-2">{subtitle}</p>
+const ScenarioDetail: React.FC<ScenarioDetailProps> = ({ title, subtitle, features, workflow }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.3 }}
+    className="bg-gradient-to-br from-white to-blue-50/30 p-8 rounded-2xl shadow-xl space-y-10 border border-blue-100"
+  >
+    <div className="relative">
+      <motion.div
+        className="absolute -top-4 -left-4 w-8 h-8 text-blue-500"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      >
+        <Sparkles className="w-full h-full" />
+      </motion.div>
+      <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+        {title}
+      </h3>
+      <p className="text-gray-600 mt-3 text-lg">{subtitle}</p>
     </div>
     
-    {/* 核心功能 */}
     <div>
-      <h4 className="text-lg font-medium text-gray-800 mb-3">核心功能</h4>
+      <h4 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+        <span className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full mr-3"></span>
+        核心功能
+      </h4>
       <div className="grid grid-cols-2 gap-4">
         {features.map((feature, index) => (
-          <div key={index} className="flex items-start p-3 bg-blue-50 rounded-lg">
-            <Check className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-            <span className="text-gray-700">{feature}</span>
-          </div>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="group flex items-start p-5 bg-gradient-to-br from-white to-blue-50 rounded-xl border border-blue-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
+          >
+            <div className="p-2 rounded-lg bg-blue-500 group-hover:bg-blue-600 transition-colors">
+              <Check className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-gray-700 font-medium ml-3 group-hover:text-blue-600 transition-colors">
+              {feature}
+            </span>
+          </motion.div>
         ))}
       </div>
     </div>
     
-    {/* 业务流程 */}
     <div>
-      <h4 className="text-lg font-medium text-gray-800 mb-3">业务流程</h4>
-      <div className="flex items-center justify-between">
+      <h4 className="text-xl font-semibold text-gray-800 mb-8 flex items-center">
+        <span className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full mr-3"></span>
+        业务流程
+      </h4>
+      <div className="flex items-center justify-between px-6">
         {workflow.map((step, index) => (
           <React.Fragment key={index}>
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium">
+            <motion.div 
+              className="flex flex-col items-center group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                 {index + 1}
               </div>
-              <span className="text-sm text-gray-600 mt-2 text-center max-w-[100px]">
+              <span className="text-sm font-medium text-gray-600 mt-4 text-center max-w-[120px] group-hover:text-blue-600 transition-colors">
                 {step}
               </span>
-            </div>
+            </motion.div>
             {index < workflow.length - 1 && (
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.2 + 0.1 }}
+                className="flex-1 mx-4"
+              >
+                <div className="h-0.5 bg-gradient-to-r from-blue-600/20 via-blue-400/40 to-blue-600/20 relative">
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '100%' }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 0 }}
+                  />
+                </div>
+              </motion.div>
             )}
           </React.Fragment>
         ))}
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const scenarios = [
@@ -135,20 +227,26 @@ const Slide = () => {
   const [activeScenario, setActiveScenario] = useState(scenarios[0]);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
-        {/* 标题区域 */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2 pb-2 border-b-2 border-blue-600">
-            AI在医疗领域的具体应用场景
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-white p-8">
+      <div className="max-w-7xl mx-auto bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-10 border border-blue-100">
+        <div className="mb-12 relative">
+          <motion.div
+            className="absolute -top-6 -left-6 w-12 h-12 text-blue-500"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          >
+            <Sparkles className="w-full h-full" />
+          </motion.div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+              AI在医疗领域的具体应用场景
+            </span>
           </h1>
-          <p className="text-gray-600">深度分析AI技术在医疗各环节的具体应用</p>
+          <p className="text-xl text-gray-600">深度分析AI技术在医疗各环节的具体应用</p>
         </div>
 
-        {/* 内容区域 */}
-        <div className="grid grid-cols-3 gap-6">
-          {/* 左侧场景选择 */}
-          <div className="space-y-2 border rounded-lg overflow-hidden">
+        <div className="grid grid-cols-3 gap-10">
+          <div className="space-y-3 border rounded-2xl overflow-hidden shadow-lg bg-white/50 backdrop-blur-sm">
             {scenarios.map((scenario) => (
               <ScenarioTab
                 key={scenario.id}
@@ -160,9 +258,10 @@ const Slide = () => {
             ))}
           </div>
 
-          {/* 右侧场景详情 */}
           <div className="col-span-2">
-            <ScenarioDetail {...activeScenario} />
+            <AnimatePresence mode="wait">
+              <ScenarioDetail key={activeScenario.id} {...activeScenario} />
+            </AnimatePresence>
           </div>
         </div>
       </div>

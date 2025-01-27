@@ -1,214 +1,171 @@
-import React, { useState, ReactNode } from 'react';
-import { Star, Award, Book, Briefcase, Code, Users, ChevronRight } from 'lucide-react';
-
-interface SlideProps {
-  children: ReactNode;
-  className?: string;
-}
-
-const Slide: React.FC<SlideProps> = ({ children, className = '' }) => (
-  <div className={`w-full h-full flex items-center justify-center p-4 md:p-8 bg-white rounded-lg shadow-lg ${className}`}>
-    <div className="w-full max-w-7xl">
-      {children}
-    </div>
-  </div>
-);
+import React, { useState, useEffect } from 'react';
+import { Star, Award, Book, Briefcase, Code, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SpeakerIntro = () => {
-  const [currentSlide] = useState(0);
-  
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        nextSlide();
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        prevSlide();
+      } else if (event.key === 'Escape') {
+        navigate('/presentation-0');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [navigate]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => {
+      const next = prev + 1;
+      if (next >= slides.length) {
+        navigate('/presentation-0');
+        return prev;
+      }
+      return next;
+    });
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => {
+      if (prev === 0) {
+        navigate('/presentation-0');
+        return prev;
+      }
+      return prev - 1;
+    });
+  };
+
   const slides = [
-    <Slide key="intro">
-      <div className="space-y-6">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-600">讲师介绍</h1>
-          <div className="text-xl text-gray-600 mt-2">洪浩东</div>
-          <div className="text-lg text-blue-500 mt-1">三级专家 | 系统架构师</div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* 左侧个人信息 */}
-          <div className="space-y-4">
-            <div className="bg-blue-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Star className="text-blue-500" />
-                <h3 className="font-bold text-lg">标杆项目</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-blue-500 rounded-full"></div>
-                  <span>南方联合产权智慧投行服务平台</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-blue-500 rounded-full"></div>
-                  <span>广州市文旅局公共文化云信创改造</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-green-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Book className="text-green-500" />
-                <h3 className="font-bold text-lg">专业认证</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-green-500 rounded-full"></div>
-                  <span>软考中级（软件设计师）</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-green-500 rounded-full"></div>
-                  <span>人工智能（高级）</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-green-500 rounded-full"></div>
-                  <span>注册信息安全工程师（CISP）</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-purple-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Award className="text-purple-500" />
-                <h3 className="font-bold text-lg">荣誉成就</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-purple-500 rounded-full"></div>
-                  <span>2023年度优秀科技新星称号</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-purple-500 rounded-full"></div>
-                  <span>2022-2023年度优秀员工</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-purple-500 rounded-full"></div>
-                  <span>苹果开发者大会奖学金获得者</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* 右侧技术与经验 */}
-          <div className="space-y-4">
-            <div className="bg-orange-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Code className="text-orange-500" />
-                <h3 className="font-bold text-lg">技术创新</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-orange-500 rounded-full"></div>
-                  <span>主导开发智能检索及AI问答系统</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-orange-500 rounded-full"></div>
-                  <span>开发智能表格数据处理工具</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-orange-500 rounded-full"></div>
-                  <span>设计微服务架构管理平台</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-orange-500 rounded-full"></div>
-                  <span>主导智能投行服务平台建设</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-red-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Briefcase className="text-red-500" />
-                <h3 className="font-bold text-lg">专业背景</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-red-500 rounded-full"></div>
-                  <span>华南农业大学毕业</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-red-500 rounded-full"></div>
-                  <span>从事专业工作5年</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-red-500 rounded-full"></div>
-                  <span>擅长人工智能应用开发</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-red-500 rounded-full"></div>
-                  <span>系统架构设计经验丰富</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-cyan-50 p-4 rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-3">
-                <Users className="text-cyan-500" />
-                <h3 className="font-bold text-lg">内部赋能</h3>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-cyan-500 rounded-full"></div>
-                  <span>组织AI技术内部培训</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-cyan-500 rounded-full"></div>
-                  <span>推广AI技术在设计中的应用</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-cyan-500 rounded-full"></div>
-                  <span>参与数字化转型调研</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 mt-2 bg-cyan-500 rounded-full"></div>
-                  <span>推动技术创新突破</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Slide>
+    {
+      type: 'intro',
+      content: {
+        title: '介绍',
+        name: '洪浩东',
+        role: '三级技术专家 | 系统架构师',
+        sections: [
+          {
+            title: '标杆项目',
+            icon: <Star className="w-8 h-8 text-blue-600" />,
+            items: [
+              '南方联合产权智慧投行服务平台',
+              '广州市文旅局公共文化云信创改造'
+            ],
+            bgColor: 'bg-blue-50'
+          },
+          {
+            title: '专业认证',
+            icon: <Book className="w-8 h-8 text-green-600" />,
+            items: [
+              '软考中级（软件设计师）',
+              '人工智能（高级）',
+              '注册信息安全工程师（CISP）'
+            ],
+            bgColor: 'bg-green-50'
+          },
+          {
+            title: '荣誉成就',
+            icon: <Award className="w-8 h-8 text-purple-600" />,
+            items: [
+              '2023年度优秀科技新星称号',
+              '2022-2023年度优秀员工',
+              '苹果开发者大会奖学金获得者'
+            ],
+            bgColor: 'bg-purple-50'
+          },
+          {
+            title: '技术创新',
+            icon: <Code className="w-8 h-8 text-orange-600" />,
+            items: [
+              '主导开发智能检索及AI问答系统',
+              '开发智能表格数据处理工具',
+              '设计微服务架构管理平台',
+              '主导智能投行服务平台建设'
+            ],
+            bgColor: 'bg-orange-50'
+          },
+          {
+            title: '专业背景',
+            icon: <Briefcase className="w-8 h-8 text-red-600" />,
+            items: [
+              '华南农业大学毕业',
+              '从事专业工作5年',
+              '擅长人工智能应用开发',
+              '系统架构设计经验丰富'
+            ],
+            bgColor: 'bg-red-50'
+          },
+          {
+            title: '内部赋能',
+            icon: <Users className="w-8 h-8 text-cyan-600" />,
+            items: [
+              '组织AI技术内部培训',
+              '推广AI技术在设计中的应用',
+              '参与数字化转型调研',
+              '推动技术创新突破'
+            ],
+            bgColor: 'bg-cyan-50'
+          }
+        ]
+      }
+    }
   ];
 
-  const goToNextChapter = () => {
-    window.location.href = '/slides-1';
+  const renderSlide = (slide) => {
+    switch (slide.type) {
+      case 'intro':
+        return (
+          <div className="p-12">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold text-gray-900">{slide.content.title}</h1>
+              <div className="text-2xl text-gray-700 mt-4">{slide.content.name}</div>
+              <div className="text-xl text-gray-600 mt-2">{slide.content.role}</div>
+            </div>
+            <div className="grid grid-cols-2 gap-8">
+              {slide.content.sections.map((section, index) => (
+                <div 
+                  key={index} 
+                  className={`${section.bgColor} shadow-sm rounded-lg p-6`}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    {section.icon}
+                    <h3 className="text-xl font-semibold text-gray-800">{section.title}</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {section.items.map((item, idx) => (
+                      <li key={idx} className="text-gray-600 flex items-start gap-2">
+                        <div className="w-2 h-2 mt-2 bg-current rounded-full"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col relative bg-gray-100">
-      {/* 主要内容区域 */}
-      <div className="flex-grow flex items-center justify-center p-4 md:p-8">
-        <div className="w-full h-full">
-          {slides[currentSlide]}
-        </div>
-      </div>
-      
-      {/* 导航控制区域 - 固定在底部 */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          {/* 占位 */}
-          <div className="w-[100px]"></div>
-          
-          {/* 幻灯片信息 */}
-          <div className="flex items-center gap-8">
-            <span className="text-gray-600 font-medium">
-              讲师介绍
-            </span>
+    <div className="bg-white text-gray-800 min-h-screen">
+      <div className="container mx-auto">
+        <div className="relative h-screen flex items-center justify-center">
+          <div className="w-full max-w-6xl">
+            {renderSlide(slides[currentSlide])}
           </div>
-
-          {/* 下一章节按钮 */}
-          <button
-            onClick={goToNextChapter}
-            className="w-[100px] h-10 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-1"
-          >
-            下一章
-            <ChevronRight size={16} />
-          </button>
         </div>
       </div>
-      {/* 底部空白占位，防止内容被固定导航栏遮挡 */}
-      <div className="h-16"></div>
     </div>
   );
 };
