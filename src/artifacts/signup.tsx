@@ -27,7 +27,7 @@ const SignupForm = () => {
     }
   };
 
-  const handleSocialSignup = (platform:string) => {
+  const handleSocialLogin = (platform: string) => {
     console.log(`${platform} signup attempted`);
     // Here you would typically handle the social signup logic
     alert(`${platform} signup attempted`);
@@ -37,42 +37,51 @@ const SignupForm = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Create an Account</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSignup} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                icon={<Mail className="h-4 w-4 text-gray-500" />}
-              />
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                icon={<Lock className="h-4 w-4 text-gray-500" />}
-              />
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                icon={<Lock className="h-4 w-4 text-gray-500" />}
-              />
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
             <Button type="submit" className="w-full">Sign Up</Button>
           </form>
@@ -93,21 +102,24 @@ const SignupForm = () => {
             </div>
           </div>
 
-          <div className="flex space-x-4 mt-6">
-            <Button variant="outline" className="w-full" onClick={() => handleSocialSignup('Github')}>
-              <Github className="mr-2 h-4 w-4" /> Github
+          <div className="grid grid-cols-3 gap-3 mt-6">
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Github')}>
+              <Github className="h-5 w-5" />
+              GitHub
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialSignup('Facebook')}>
-              <Facebook className="mr-2 h-4 w-4" /> Facebook
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Facebook')}>
+              <Facebook className="h-5 w-5" />
+              Facebook
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialSignup('Twitter')}>
-              <Twitter className="mr-2 h-4 w-4" /> Twitter
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Twitter')}>
+              <Twitter className="h-5 w-5" />
+              Twitter
             </Button>
           </div>
 
           <div className="text-center text-sm mt-6">
             Already have an account?{' '}
-            <Link to="/" className="text-primary hover:underline">
+            <Link to="/" className="text-primary hover:underline font-bold">
               Log in
             </Link>
           </div>

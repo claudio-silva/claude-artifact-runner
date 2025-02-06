@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import routes from 'virtual:generated-pages-react';
 import Layout from './components/layout';
-import DefaultPage from './artifacts/default';
 import './index.css';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout><DefaultPage /></Layout>,
-  },
-  ...routes.map((route) => ({
+const router = createBrowserRouter(
+  routes.map((route) => ({
     ...route,
     element: <Layout>{route.element}</Layout>,
-  }))
-], {
+  })), {
   future: {
     v7_relativeSplatPath: true,
     v7_fetcherPersist: true,
