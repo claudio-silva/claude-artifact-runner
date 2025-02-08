@@ -150,7 +150,7 @@ If you just want to run a single Artifact, you can follow these simple steps:
 1. Follow the "Getting started" steps. Leave the browser open at the initial page.
 2. Delete the files in the `src/artifacts/` directory.
 3. Download your Artifact from Claude.ai
-4. Move the file to the `src/artifacts/` directory and rename it to `default.tsx`.
+4. Move the file to the `src/artifacts/` directory and rename it to `index.tsx`.
 5. You'll immediately see your Artifact running on the open browser tab.
 
 Note that you'll be viewing the app in development mode. To generate the final app, ready for production, you'll need to build it first. See the instructions further below.
