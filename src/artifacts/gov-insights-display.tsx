@@ -62,35 +62,86 @@ const InsightsDisplay = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-white p-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-white to-blue-50 p-8 relative overflow-hidden">
+      {/* 添加动态背景元素 */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full mix-blend-multiply filter blur-xl opacity-30"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              width: `${200 + i * 100}px`,
+              height: `${200 + i * 100}px`,
+              background: `hsl(${210 + i * 30}, 70%, 70%)`,
+              left: `${20 + i * 30}%`,
+              top: `${20 + i * 20}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="mb-10 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-blue-100">
+        <div className="mb-10 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-blue-100/50 relative overflow-hidden">
+          <motion.div
+            className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          
           <div className="relative mb-8">
             <motion.div
-              className="absolute -top-4 -left-4 w-10 h-10 text-blue-500"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-4 -left-4 w-12 h-12 text-blue-500"
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ 
+                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
             >
               <Sparkles className="w-full h-full" />
             </motion.div>
-            <h1 className="text-3xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold mb-3">
+              <span className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent">
                 数字政府行业资讯
               </span>
             </h1>
-            <p className="text-gray-600 text-lg">及时掌握最新政策动态与行业趋势</p>
+            <p className="text-gray-600 text-lg font-medium">及时掌握最新政策动态与行业趋势</p>
           </div>
           
-          <div className="relative mb-6">
-            <input
-              type="text"
-              placeholder="搜索资讯..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/50 backdrop-blur-sm transition-all duration-300"
-            />
-            <Search className="absolute left-4 top-3.5 text-blue-400" size={20} />
+          <div className="relative mb-8">
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              className="relative"
+            >
+              <input
+                type="text"
+                placeholder="搜索资讯..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 border border-blue-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/80 backdrop-blur-sm transition-all duration-300 shadow-sm"
+              />
+              <Search className="absolute left-4 top-4 text-blue-400" size={20} />
+            </motion.div>
           </div>
 
           <div className="flex space-x-4">
@@ -100,10 +151,10 @@ const InsightsDisplay = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center px-6 py-3 rounded-xl transition-all duration-300 ${
                   activeTab === tab.id 
-                    ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white shadow-lg' 
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-lg' 
                     : 'text-gray-600 hover:bg-blue-50'
                 }`}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <tab.icon size={20} className="mr-2" />
@@ -114,7 +165,7 @@ const InsightsDisplay = () => {
         </div>
 
         {/* Content Section */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           <AnimatePresence mode="wait">
             {filteredInsights.map((insight, index) => (
               <motion.div
@@ -122,14 +173,27 @@ const InsightsDisplay = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-blue-100">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
+                <Card className="group hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white/90 backdrop-blur-xl border-blue-100/50 overflow-hidden">
+                  <CardContent className="p-8">
+                    <div className="flex items-start justify-between relative">
+                      <motion.div 
+                        className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.5, 0.3],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                      
                       <div className="flex-1">
-                        <div className="flex items-center space-x-3 text-sm mb-3">
-                          <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium">
+                        <div className="flex items-center space-x-3 text-sm mb-4">
+                          <span className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium shadow-sm">
                             {insight.type}
                           </span>
                           <span className="text-gray-300">|</span>
@@ -141,29 +205,33 @@ const InsightsDisplay = () => {
                           <span className="text-gray-500">{insight.department}</span>
                         </div>
                         
-                        <h2 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-blue-600 transition-colors">
+                        <h2 className="text-2xl font-semibold mb-4 text-gray-800 group-hover:text-blue-600 transition-colors">
                           {insight.title}
                         </h2>
                         
-                        <p className="text-gray-600 mb-4 line-clamp-2">{insight.content}</p>
+                        <p className="text-gray-600 mb-5 line-clamp-2 leading-relaxed">{insight.content}</p>
                         
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-3">
                           {insight.tags.map(tag => (
-                            <span 
+                            <motion.span 
                               key={tag} 
-                              className="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium group-hover:bg-blue-100 transition-colors"
+                              className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium group-hover:bg-blue-100 transition-colors"
+                              whileHover={{ scale: 1.05 }}
                             >
                               {tag}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       </div>
                       
-                      <div className="ml-6 transform transition-transform group-hover:translate-x-2">
-                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                          <ChevronRight className="w-5 h-5 text-blue-500" />
+                      <motion.div 
+                        className="ml-6"
+                        whileHover={{ scale: 1.1, x: 5 }}
+                      >
+                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors shadow-sm">
+                          <ChevronRight className="w-6 h-6 text-blue-500" />
                         </div>
-                      </div>
+                      </motion.div>
                     </div>
                   </CardContent>
                 </Card>

@@ -24,7 +24,7 @@ const LoginForm = () => {
     }
   };
 
-  const handleSocialLogin = (platform:string) => {
+  const handleSocialLogin = (platform: string) => {
     console.log(`${platform} login attempted`);
     // Here you would typically handle the social login logic
     alert(`${platform} login attempted`);
@@ -40,25 +40,31 @@ const LoginForm = () => {
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                icon={<Mail className="h-4 w-4 text-gray-500" />}
-              />
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                icon={<Lock className="h-4 w-4 text-gray-500" />}
-              />
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
             <Button type="submit" className="w-full">Log In</Button>
           </form>
@@ -79,21 +85,24 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <div className="flex space-x-4 mt-6">
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Github')}>
-              <Github className="mr-2 h-4 w-4" /> Github
+          <div className="grid grid-cols-3 gap-3 mt-6">
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Github')}>
+              <Github className="h-5 w-5" />
+              GitHub
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Facebook')}>
-              <Facebook className="mr-2 h-4 w-4" /> Facebook
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Facebook')}>
+              <Facebook className="h-5 w-5" />
+              Facebook
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => handleSocialLogin('Twitter')}>
-              <Twitter className="mr-2 h-4 w-4" /> Twitter
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => handleSocialLogin('Twitter')}>
+              <Twitter className="h-5 w-5" />
+              Twitter
             </Button>
           </div>
 
           <div className="text-center text-sm mt-6">
             Don't have an account?{' '}
-            <Link to="signup" className="text-primary hover:underline">
+            <Link to="signup" className="text-primary hover:underline font-bold">
               Sign up
             </Link>
           </div>
