@@ -647,7 +647,12 @@ const DeepseekSolutionPage = () => {
                 { id: 'government', label: '政务服务' },
                 { id: 'transportation', label: '交通与物流' },
                 { id: 'park', label: '园区管理' },
-                { id: 'datacenter', label: '数据中心' }
+                { id: 'datacenter', label: '数据中心' },
+                { id: 'healthcare', label: '智慧医疗' },
+                { id: 'legal', label: '智慧司法' },
+                { id: 'education', label: '智慧校园' },
+                { id: 'energy', label: '能源电网' },
+                { id: 'finance', label: '智慧金融' }
               ].map(tab => (
                 <button
                   key={tab.id}
@@ -1102,6 +1107,562 @@ const DeepseekSolutionPage = () => {
                           <li>调整UPS负载分布，建议将服务#23-27迁移至UPS-04</li>
                           <li>下周二凌晨2:00-4:00执行计划维护，同时更换风扇#3</li>
                         </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {activeTab === 'healthcare' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-green-600">智慧医疗领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对医疗诊断、病历管理、患者服务、医院运营等核心场景，我们提供全方位的智慧医疗解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>基于 DeepSeek 构建智能诊疗辅助系统</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>打造AI病历质控与管理平台</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>实现医技报告智能解读与分析</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>建立智慧医院服务体系</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">45%</div>
+                          <div className="text-gray-700">诊疗效率提升</div>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">85%</div>
+                          <div className="text-gray-700">病历质控准确率</div>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-indigo-600 mb-1">60%</div>
+                          <div className="text-gray-700">患者满意度提升</div>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-purple-600 mb-1">30%</div>
+                          <div className="text-gray-700">运营成本降低</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">AI辅助诊疗系统</h4>
+                          <p className="text-gray-600 text-sm">实时智能分析与决策支持</p>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 bg-blue-50 rounded-lg mb-6">
+                        <div className="text-center mb-3">
+                          <div className="text-lg font-bold text-blue-700">医学影像AI分析</div>
+                          <div className="text-sm text-gray-600">CT影像智能诊断报告</div>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div className="bg-white p-3 rounded-lg border border-blue-100">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600">病灶检测</span>
+                              <span className="text-green-600 font-bold">已完成</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full w-full"></div>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white p-3 rounded-lg border border-blue-100">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600">特征分析</span>
+                              <span className="text-green-600 font-bold">已完成</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full w-full"></div>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white p-3 rounded-lg border border-blue-100">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600">报告生成</span>
+                              <span className="text-blue-600 font-bold">处理中</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-blue-500 h-2 rounded-full w-3/4 animate-pulse"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-sm text-gray-600">
+                        <div className="font-semibold mb-1">AI诊断建议:</div>
+                        <p className="mb-2">基于影像分析结果，发现以下关键信息：</p>
+                        <ol className="list-decimal pl-5 space-y-1">
+                          <li>右肺上叶可见约2.3cm结节影</li>
+                          <li>边缘规则，密度均匀</li>
+                          <li>建议进行PET-CT进一步检查</li>
+                          <li>建议3个月后复查随访</li>
+                        </ol>
+                        <div className="mt-4 p-2 bg-yellow-50 rounded border border-yellow-200">
+                          <div className="flex items-center text-yellow-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs font-medium">本建议仅供参考，具体诊疗方案请遵医嘱</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'legal' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-indigo-600">智慧司法领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对司法审判、案件管理、法律咨询、文书处理等核心场景，我们提供全方位的智慧司法解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-indigo-500 mr-2">✓</span>
+                          <span>智能法律文书生成与校对系统</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-indigo-500 mr-2">✓</span>
+                          <span>案件智能分析与类案推送</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-indigo-500 mr-2">✓</span>
+                          <span>智能法律咨询与辅助办案</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-indigo-500 mr-2">✓</span>
+                          <span>庭审记录智能生成与质检</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-indigo-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-indigo-600 mb-1">50%</div>
+                          <div className="text-gray-700">文书处理效率提升</div>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">90%</div>
+                          <div className="text-gray-700">类案匹配准确率</div>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-purple-600 mb-1">40%</div>
+                          <div className="text-gray-700">办案时间缩短</div>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">95%</div>
+                          <div className="text-gray-700">文书质量达标率</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">智能法律助手</h4>
+                          <p className="text-gray-600 text-sm">实时案件分析与建议</p>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-indigo-50 p-4 rounded-lg mb-4">
+                        <div className="text-sm font-semibold mb-2">案件智能分析报告</div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span>案件类型匹配</span>
+                            <span className="text-indigo-600">已完成</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>关键要素提取</span>
+                            <span className="text-indigo-600">已完成</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>法条推荐</span>
+                            <span className="text-blue-600">处理中</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="bg-white p-3 rounded-lg border border-gray-200">
+                          <div className="text-sm font-semibold mb-2">推荐法条</div>
+                          <div className="text-sm text-gray-600">
+                            《民法典》第1164条、第1165条
+                            《最高人民法院关于审理建设工程施工合同纠纷案件适用法律问题的解释》第二条
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-3 rounded-lg border border-gray-200">
+                          <div className="text-sm font-semibold mb-2">类案推送</div>
+                          <div className="text-sm text-gray-600">
+                            已找到5个相似案例，相似度最高达92%
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'education' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-blue-600">智慧校园领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对教学管理、学生服务、校园运营、科研管理等核心场景，我们提供全方位的智慧校园解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>智能教学助手与个性化学习</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>科研项目管理与成果转化</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>智能图书馆与知识服务</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>校园综合管理与服务平台</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">35%</div>
+                          <div className="text-gray-700">教学效率提升</div>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">50%</div>
+                          <div className="text-gray-700">科研效率提升</div>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-purple-600 mb-1">80%</div>
+                          <div className="text-gray-700">师生满意度</div>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-indigo-600 mb-1">40%</div>
+                          <div className="text-gray-700">管理成本降低</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">智能教学助手</h4>
+                          <p className="text-gray-600 text-sm">个性化学习分析与指导</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">学习进度分析</div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm text-gray-600">高等数学</span>
+                            <span className="text-sm text-blue-600">85%</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="bg-blue-500 h-2 rounded-full" style={{width: '85%'}}></div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                          <div className="text-sm font-semibold mb-2">学习建议</div>
+                          <ul className="text-sm text-gray-600 space-y-2">
+                            <li>• 建议加强"多元函数微分"章节练习</li>
+                            <li>• 复习"定积分"相关知识点</li>
+                            <li>• 可以提前预习"级数"章节</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">最近学习成果</div>
+                          <div className="text-sm text-gray-600">
+                            <p>近期测验平均分：92分</p>
+                            <p>较上月提升：8.5%</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'energy' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-yellow-600">能源电网领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对电网调度、设备运维、能源管理、安全生产等核心场景，我们提供全方位的智慧能源解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-yellow-500 mr-2">✓</span>
+                          <span>智能电网调度与负荷预测</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-yellow-500 mr-2">✓</span>
+                          <span>设备预测性维护与故障诊断</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-yellow-500 mr-2">✓</span>
+                          <span>能源消耗优化与调控</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-yellow-500 mr-2">✓</span>
+                          <span>安全生产监控与预警</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-yellow-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-yellow-600 mb-1">95%</div>
+                          <div className="text-gray-700">负荷预测准确率</div>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">25%</div>
+                          <div className="text-gray-700">能源损耗降低</div>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">60%</div>
+                          <div className="text-gray-700">故障处理提速</div>
+                        </div>
+                        <div className="bg-red-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-red-600 mb-1">85%</div>
+                          <div className="text-gray-700">安全事故预防率</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-red-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">智能电网调度中心</h4>
+                          <p className="text-gray-600 text-sm">实时监控与智能调度</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="bg-yellow-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">负荷预测</div>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm text-gray-600">今日最高负荷</span>
+                            <span className="text-sm font-bold text-yellow-600">4.82GW</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="bg-yellow-500 h-2 rounded-full" style={{width: '75%'}}></div>
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="bg-white p-3 rounded-lg border border-gray-200">
+                            <div className="text-sm font-semibold mb-1">供电可靠性</div>
+                            <div className="text-xl font-bold text-green-600">99.99%</div>
+                            <div className="text-xs text-gray-500">同比提升0.02%</div>
+                          </div>
+                          <div className="bg-white p-3 rounded-lg border border-gray-200">
+                            <div className="text-sm font-semibold mb-1">线损率</div>
+                            <div className="text-xl font-bold text-blue-600">4.2%</div>
+                            <div className="text-xs text-gray-500">低于行业均值</div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-red-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold text-red-600 mb-2">预警信息</div>
+                          <div className="text-sm text-gray-600">
+                            <p>• 3号变电站设备温度异常</p>
+                            <p>• B区域负荷接近预警值</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'finance' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-blue-600">智慧金融领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对风险控制、智能投顾、运营管理、客户服务等核心场景，我们提供全方位的智慧金融解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>智能风控与反欺诈系统</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>智能投资顾问平台</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>智能客服与营销推荐</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-blue-500 mr-2">✓</span>
+                          <span>合规审查与风险预警</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">92%</div>
+                          <div className="text-gray-700">风控准确率</div>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">45%</div>
+                          <div className="text-gray-700">运营效率提升</div>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-indigo-600 mb-1">75%</div>
+                          <div className="text-gray-700">客户转化率</div>
+                        </div>
+                        <div className="bg-red-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-red-600 mb-1">85%</div>
+                          <div className="text-gray-700">风险预警准确率</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-green-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">智能风控中心</h4>
+                          <p className="text-gray-600 text-sm">实时风险监控与预警</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">实时风险评估</div>
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">信用风险指数</span>
+                              <span className="text-sm text-green-600 font-bold">低风险</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full" style={{width: '30%'}}></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                          <div className="text-sm font-semibold mb-2">异常交易预警</div>
+                          <div className="space-y-2 text-sm text-gray-600">
+                            <div className="flex items-center">
+                              <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                              <span>检测到3笔可疑交易</span>
+                            </div>
+                            <div className="flex items-center">
+                              <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                              <span>5个账户需要复核</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">AI投资建议</div>
+                          <ul className="text-sm text-gray-600 space-y-1">
+                            <li>• 建议增持科技板块</li>
+                            <li>• 关注新能源产业机会</li>
+                            <li>• 调整固定收益类配置</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
