@@ -6,6 +6,7 @@ const DeepseekSolutionPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [comparisonView, setComparisonView] = useState('table');
+  const [showContactModal, setShowContactModal] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,30 @@ const DeepseekSolutionPage = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  useEffect(() => {
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes modalFade {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .modal-animation {
+        animation: modalFade 0.3s ease-out;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
   
   const scrollToTop = () => {
@@ -35,8 +60,8 @@ const DeepseekSolutionPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <span className="text-2xl mr-2 text-blue-600">🔷</span>
-              <span className="font-bold text-xl text-blue-800">中通南方</span>
+              <img src="/logo.jpg" alt="中通信息-南方设计" className="h-8 mr-2" />
+              <span className={`font-medium transition-colors duration-300 ${scrollY > 50 ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'}`}>中通信息-南方设计</span>
             </div>
             <div className="hidden md:flex space-x-6">
               {[
@@ -58,7 +83,9 @@ const DeepseekSolutionPage = () => {
                 scrollY > 50 
                   ? 'bg-blue-600 text-white hover:bg-blue-700' 
                   : 'bg-white text-blue-700 hover:bg-blue-50'
-              }`}>
+              }`}
+              onClick={() => setShowContactModal(true)}
+              >
                 联系我们
               </button>
             </div>
@@ -80,15 +107,17 @@ const DeepseekSolutionPage = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="md:pr-12">
               <span className="inline-block py-1 px-3 bg-blue-800 bg-opacity-50 rounded-full text-blue-200 text-sm font-medium mb-4">引领企业智能化转型</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                DeepSeek大模型<br />
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">DeepSeek大模型<br />
                 <span className="text-blue-300">本地化部署解决方案</span>
-              </h1>
+              </h2>
               <p className="text-xl mb-8 text-blue-100 max-w-lg">
-                以大横琴集团成功实践为范本，中通南方打造全方位DeepSeek大模型落地服务体系，开启企业智能服务新时代。
+                基于多家企业的成功实践，中通南方打造全方位DeepSeek大模型落地服务体系，开启企业智能服务新时代。
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg">
+                <button 
+                  className="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg"
+                  onClick={() => setShowContactModal(true)}
+                >
                   预约免费评估
                 </button>
                 <button className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
@@ -268,7 +297,7 @@ const DeepseekSolutionPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-blue-600 font-semibold">为什么选择</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">本地化部署的五大优势</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">本地化部署的六大优势</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
               尽管公开网络上已有免费的DeepSeek API服务，但越来越多的企业仍坚持选择本地化部署，源于以下关键优势：
             </p>
@@ -369,38 +398,22 @@ const DeepseekSolutionPage = () => {
             ].map(item => (
               <div 
                 key={item.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer"
-                onClick={() => toggleAccordion(item.id)}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
               >
                 <div className="p-6">
                   <div className="text-blue-600 mb-4">{item.icon}</div>
                   <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
+                  <p className="text-gray-600 mb-4">{item.desc}</p>
                   
-                  <div className={`mt-4 overflow-hidden transition-all duration-300 ${activeAccordion === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="pt-2 border-t border-gray-200">
-                      <ul className="space-y-2">
-                        {item.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <span className="text-green-500 mr-2">✓</span>
-                            <span className="text-gray-700">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 text-blue-600 text-sm flex items-center">
-                    <span>{activeAccordion === item.id ? '收起详情' : '查看详情'}</span>
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      className={`h-4 w-4 ml-1 transition-transform duration-300 ${activeAccordion === item.id ? 'transform rotate-180' : ''}`} 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                  <div className="pt-4 border-t border-gray-200">
+                    <ul className="space-y-2">
+                      {item.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span className="text-gray-700">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -463,13 +476,13 @@ const DeepseekSolutionPage = () => {
                     <tr>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">大型企业/机构</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DeepSeek R1-671B</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">A100/H100 GPU集群</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">A800/H800 GPU集群</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">全场景AI应用，复杂推理与决策</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">中型企业</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DeepSeek R1-32B</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4-8张 A10/RTX4090</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DeepSeek R1-70B</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4-8张 摩尔线程MTTS4000/<br></br>昇腾910</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">多场景业务应用，中等复杂度推理</td>
                     </tr>
                     <tr>
@@ -499,7 +512,7 @@ const DeepseekSolutionPage = () => {
             <span className="text-blue-600 font-semibold">场景化应用</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">六大应用框架</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              基于大横琴集团的成功实践，我们打造了六大场景化应用框架，可根据企业需求进行快速配置与定制：
+              基于多家企业的成功实践，我们打造了六大场景化应用框架，可根据企业需求进行快速配置与定制：
             </p>
           </div>
           
@@ -1104,9 +1117,9 @@ const DeepseekSolutionPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-blue-600 font-semibold">成功案例</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">大横琴集团 DeepSeek 落地实践</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">某大型企业集团 DeepSeek 落地实践</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              珠海大横琴集团有限公司下属企业珠海大横琴科技发展有限公司已在横琴粤澳深度合作区率先完成DeepSeek R1-32B版本的本地化部署。
+              该企业集团已在其核心业务部门率先完成DeepSeek R1-32B版本的本地化部署。
             </p>
           </div>
           
@@ -1115,7 +1128,7 @@ const DeepseekSolutionPage = () => {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-3 text-blue-600">项目概述</h3>
                 <p className="text-gray-600">
-                  大横琴集团已成功完成 DeepSeek R1-32B 版本的本地化部署，并将 AI 能力融入多个业务场景，实现了从传统服务到"深度智能"的重要跨越。此次合作不仅为口岸通关、智慧交通等核心业务插上AI翅膀，更将重塑智慧政务、园区管理等场景的服务范式，开启"秒级响应"的数字化服务新时代。
+                  该企业集团已成功完成 DeepSeek R1-32B 版本的本地化部署，并将 AI 能力融入多个业务场景，实现了从传统服务到"深度智能"的重要跨越。此次合作不仅为企业核心业务插上AI翅膀，更将重塑智慧政务、园区管理等场景的服务范式，开启"秒级响应"的数字化服务新时代。
                 </p>
               </div>
               
@@ -1203,7 +1216,7 @@ const DeepseekSolutionPage = () => {
                 </div>
                 
                 <p className="text-gray-600 mb-4">
-                  大横琴集团将持续深化DeepSeek应用，推动大模型能力全面融入公司各工作平台，加速推进AI技术与工具在跨境交通、口岸通关、数据中心运维、政务信息系统等领域的深度结合，实现业务流程的自动化升级，从而进一步提升服务效率与质量，为客户打造更具价值的服务体验。
+                  该企业集团将持续深化DeepSeek应用，推动大模型能力全面融入公司各工作平台，加速推进AI技术与工具在跨境交通、口岸通关、数据中心运维、政务信息系统等领域的深度结合，实现业务流程的自动化升级，从而进一步提升服务效率与质量，为客户打造更具价值的服务体验。
                 </p>
                 
                 <div className="text-sm text-blue-600 font-medium flex items-center">
@@ -1635,7 +1648,7 @@ const DeepseekSolutionPage = () => {
             <span className="text-blue-600 font-semibold">投资回报</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">DeepSeek投资价值</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              根据大横琴集团的实践经验，投资DeepSeek大模型解决方案可实现显著的业务价值提升。
+              根据多家企业的实践经验，投资DeepSeek大模型解决方案可实现显著的业务价值提升。
             </p>
           </div>
           
@@ -2009,8 +2022,8 @@ const DeepseekSolutionPage = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <span className="text-2xl mr-2 text-blue-400">🔷</span>
-                <span className="font-bold text-xl">中通南方</span>
+              <img src="/logo.jpg" alt="中通信息-南方设计" className="h-8 mr-2" />
+                <span className="font-bold text-xl">中通信息-南方设计</span>
               </div>
               <p className="text-gray-400 mb-4">DeepSeek大模型专业服务提供商</p>
               <div className="flex space-x-4">
@@ -2061,27 +2074,27 @@ const DeepseekSolutionPage = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="text-gray-400">400-XXX-XXXX</span>
+                  <span className="text-gray-400">13602801537</span>
                 </li>
                 <li className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-gray-400">info@example.com</span>
+                  <span className="text-gray-400">honghaodong.spdi.gd@chinaccs.cn</span>
                 </li>
                 <li className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-gray-400">中国 · 您的城市 · 您的地址</span>
+                  <span className="text-gray-400">中国 · 广东省 · 深圳市南山区深圳科技生态园11栋A座33楼</span>
                 </li>
               </ul>
             </div>
           </div>
           
           <div className="pt-8 mt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-500 text-sm">© 2025 中通南方咨询设计院. 版权所有</p>
+            <p className="text-gray-500 text-sm">© 2025 中通信息-南方设计. 版权所有</p>
           </div>
         </div>
       </footer>
@@ -2096,6 +2109,60 @@ const DeepseekSolutionPage = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
+      )}
+      
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={() => setShowContactModal(false)}
+          style={{
+            animation: 'modalFade 0.2s ease-out'
+          }}
+        >
+          <div 
+            className="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative modal-animation"
+            onClick={e => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              onClick={() => setShowContactModal(false)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="text-center">
+              <h3 className="text-xl font-bold mb-4">联系我们</h3>
+              <p className="text-gray-600 mb-6">请添加以下微信号进行咨询：</p>
+              <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <p className="text-2xl font-bold text-blue-600 select-all">scauos</p>
+              </div>
+              <div className="space-y-4 text-left">
+                <div className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span className="text-gray-600">13602801537</span>
+                </div>
+                <div className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-gray-600">honghaodong.spdi.gd@chinaccs.cn</span>
+                </div>
+                <div className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="text-gray-600">中国 · 广东省 · 深圳市南山区深圳科技生态园11栋A座33楼</span>
+                </div>
+              </div>
+              <p className="mt-6 text-sm text-gray-500">添加微信时请注明来意，我们将尽快与您联系</p>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
