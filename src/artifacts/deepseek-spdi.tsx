@@ -60,7 +60,7 @@ const DeepseekSolutionPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <img src="/logo.jpg" alt="中通信息-南方设计" className="h-8 mr-2" />
+              <img src="/logo.png" alt="中通信息-南方设计" className="h-8 mr-2" />
               <span className={`font-medium transition-colors duration-300 ${scrollY > 50 ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'}`}>中通信息-南方设计</span>
             </div>
             <div className="hidden md:flex space-x-6">
@@ -209,7 +209,7 @@ const DeepseekSolutionPage = () => {
                 <div className="border-b border-gray-200 py-3">
                   <div className="flex justify-between">
                     <span className="font-semibold">总参数数量</span>
-                    <span>671亿</span>
+                    <span>6710亿</span>
                   </div>
                 </div>
                 <div className="border-b border-gray-200 py-3">
@@ -652,7 +652,8 @@ const DeepseekSolutionPage = () => {
                 { id: 'legal', label: '智慧司法' },
                 { id: 'education', label: '智慧校园' },
                 { id: 'energy', label: '能源电网' },
-                { id: 'finance', label: '智慧金融' }
+                { id: 'finance', label: '智慧金融' },
+                { id: 'tourism', label: '智慧文旅' }
               ].map(tab => (
                 <button
                   key={tab.id}
@@ -1668,6 +1669,137 @@ const DeepseekSolutionPage = () => {
                   </div>
                 </div>
               )}
+
+              {activeTab === 'tourism' && (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-purple-600">智慧文旅领域</h3>
+                    <p className="text-gray-600 mb-6">
+                      针对景区管理、游客服务、文化传播、旅游营销等核心场景，我们提供全方位的智慧文旅解决方案。
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-bold text-lg mb-2">解决方案:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-purple-500 mr-2">✓</span>
+                          <span>智能导游与文化讲解系统</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-purple-500 mr-2">✓</span>
+                          <span>景区客流预测与管控</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-purple-500 mr-2">✓</span>
+                          <span>智能营销推荐与路线规划</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-purple-500 mr-2">✓</span>
+                          <span>文化遗产数字化保护</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">预期效果:</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-purple-600 mb-1">55%</div>
+                          <div className="text-gray-700">游客体验提升</div>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">40%</div>
+                          <div className="text-gray-700">运营成本降低</div>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-green-600 mb-1">95%</div>
+                          <div className="text-gray-700">客流预测准确率</div>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-lg">
+                          <div className="text-2xl font-bold text-indigo-600 mb-1">3倍</div>
+                          <div className="text-gray-700">文化传播效率</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 opacity-10 rounded-2xl"></div>
+                    <div className="relative bg-white bg-opacity-90 p-6 rounded-xl shadow-xl max-w-md border border-gray-200">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold">智慧景区管理中心</h4>
+                          <p className="text-gray-600 text-sm">实时监控与智能服务</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">实时客流监控</div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-sm text-gray-600">当前客流量</div>
+                              <div className="text-xl font-bold text-purple-600">12,367</div>
+                              <div className="text-xs text-green-600">较昨日 +15%</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-600">舒适度指数</div>
+                              <div className="text-xl font-bold text-green-600">良好</div>
+                              <div className="text-xs text-gray-500">负载率65%</div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                          <div className="text-sm font-semibold mb-2">热点区域分析</div>
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">天坛祈年殿</span>
+                              <span className="text-sm text-red-600">拥挤</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-red-500 h-2 rounded-full" style={{width: '85%'}}></div>
+                            </div>
+                            
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">长廊</span>
+                              <span className="text-sm text-green-600">舒适</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full" style={{width: '45%'}}></div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold mb-2">智能导览推荐</div>
+                          <div className="text-sm text-gray-600">
+                            <p className="mb-2">根据当前客流情况，建议游览路线：</p>
+                            <ol className="list-decimal pl-4 space-y-1">
+                              <li>东门入口 → 斋宫</li>
+                              <li>回廊 → 皇穹宇</li>
+                              <li>祈年殿（建议延后1小时）</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-yellow-50 p-4 rounded-lg">
+                          <div className="text-sm font-semibold text-yellow-700 mb-2">特别提醒</div>
+                          <div className="text-sm text-gray-600">
+                            <p>• 15:30有传统文化表演</p>
+                            <p>• 建议避开14:00-16:00高峰期</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -2406,6 +2538,166 @@ const DeepseekSolutionPage = () => {
         </div>
       </section>
       
+      {/* Core Advantages */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-blue-600 font-semibold">核心优势</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">中通南方落地DeepSeek项目三大核心优势</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              传统咨询设计优势 + 现代AI技术赋能 = 高效DeepSeek落地实施
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* 优势1 */}
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="text-blue-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-4">深厚的行业咨询设计底蕴</h3>
+              <p className="text-gray-600 mb-4">累积多年行业经验，深耕各个垂直领域，提供专业化咨询设计服务</p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>深耕医疗、教育、政务、交通、新能源等7大行业赛道</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>三大行业中心组成的专家团队，提供端到端咨询顾问服务</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>累计完成众多中大型行业数字化咨询设计项目</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>拥有科学的行业AI成熟度评估与转型规划方法论</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 优势2 */}
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="text-indigo-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-4">强大的技术研发能力</h3>
+              <p className="text-gray-600 mb-4">结合传统数据技术与前沿AI能力，实现DeepSeek快速适配与场景化创新</p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>专业数据团队具备数据治理、数据集成与数据中台建设经验</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>结合Cursor、Trae等AI编程工具，研发效率提升300%以上</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>拥有DeepSeek模型适配优化专家团队，保障部署稳定性</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>20+预制行业场景化解决方案，支持快速原型验证与迭代</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 优势3 */}
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="text-green-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-4">高效的应用开发与运维保障</h3>
+              <p className="text-gray-600 mb-4">AI驱动的敏捷开发与全生命周期运维服务，大幅缩短项目周期与运营成本</p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>借助智能编程工具，开发效率提升400%，项目周期缩短60%</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>建立标准化DeepSeek部署与运维流程，保障系统稳定性</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>提供7×24小时技术支持与定期优化服务</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>一站式技术服务，从需求分析到实施交付全流程把控</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 服务模式对比 */}
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-center mb-8">DeepSeek落地价值对比</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-xl shadow-lg p-6">
+                <h4 className="text-xl font-bold mb-4 text-gray-700">传统技术服务商模式</h4>
+                <ul className="space-y-3">
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-2">✗</span>
+                    <span className="text-gray-600">大量人力投入，研发周期长</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-2">✗</span>
+                    <span className="text-gray-600">缺乏行业深度理解，方案标准化</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-2">✗</span>
+                    <span className="text-gray-600">技术与业务割裂，价值实现困难</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-2">✗</span>
+                    <span className="text-gray-600">成本高昂，投入产出比低</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-2">✗</span>
+                    <span className="text-gray-600">交付周期通常6-12个月</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 rounded-xl shadow-lg p-6">
+                <h4 className="text-xl font-bold mb-4 text-blue-700">中通南方模式：AI驱动的高效服务模式</h4>
+                <ul className="space-y-3">
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-600">AI赋能研发，效率提升400%</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-600">深度行业经验，精准需求匹配</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-600">咨询+技术+服务一体化闭环</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-600">高性价比，ROI显著提升</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-600">快速交付，周期缩短至2-4个月</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Service Offerings */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -2583,7 +2875,7 @@ const DeepseekSolutionPage = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-              <img src="/logo.jpg" alt="中通信息-南方设计" className="h-8 mr-2" />
+              <img src="/logo.png" alt="中通信息-南方设计" className="h-8 mr-2" />
                 <span className="font-bold text-xl">中通信息-南方设计</span>
               </div>
               <p className="text-gray-400 mb-4">DeepSeek大模型专业服务提供商</p>
