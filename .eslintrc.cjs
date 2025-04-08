@@ -14,5 +14,17 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/no-unused-vars': ['error', { 
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+    }],
   },
+  overrides: [
+    {
+      files: ['**/components/ui/**/*.tsx'],
+      rules: {
+        'react-refresh/only-export-components': 'off'
+      }
+    }
+  ]
 }
