@@ -28,7 +28,9 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "allowJs": true,
+    "esModuleInterop": true,
   },
   "include": ["src/**/*"]
 }
