@@ -4,8 +4,8 @@ import {
   BarChart, BarChart2, PieChart, TrendingUp, 
   Users, Zap, 
   Check, FileText, Compass, Lightbulb, Target, 
-  Network, Phone, Mail, MapPin, Brain, TrendingDown, Activity, Shield, Eye, Copy, Database,
-  Building, Calendar, Briefcase
+  Network, Phone, Mail, MapPin, Brain, TrendingDown, Activity, Shield, Database,
+  Building, Calendar, Briefcase, GitBranch, Globe, Cpu, Layers, Wrench
 } from 'lucide-react';
 
 const SouthernPropertyPlatform = () => {
@@ -59,7 +59,7 @@ const SouthernPropertyPlatform = () => {
     { id: 'implementation', label: '实施路径' },
     { id: 'value', label: '价值创造' },
     { id: 'ai-planning', label: 'AI规划咨询' },
-    { id: 'case-study', label: 'AI咨询规划方案' },
+    { id: 'case-study', label: '深燃AI咨询规划方案' },
   ];
 
 
@@ -141,7 +141,7 @@ const SouthernPropertyPlatform = () => {
               <div className="relative z-10">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                   <div>
-                    <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">南方产权数智型交易平台</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">某产权数智型交易平台</h1>
                     <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-500 dark:text-gray-300">成熟度评估与建设路径咨询项目</h2>
                   </div>
                   <div className={`hidden md:block ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
@@ -162,7 +162,7 @@ const SouthernPropertyPlatform = () => {
                         <Building size={16} className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
                         <div>
                           <span className="font-medium">客户:</span>
-                          <span className="ml-2">南方联合产权交易中心有限责任公司</span>
+                          <span className="ml-2">某产权交易中心有限责任公司</span>
                         </div>
                       </li>
                       <li className="flex items-start">
@@ -194,6 +194,7 @@ const SouthernPropertyPlatform = () => {
                       <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-purple-900 bg-opacity-50 text-purple-300' : 'bg-purple-100 text-purple-800'}`}>数据治理</span>
                       <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-orange-900 bg-opacity-50 text-orange-300' : 'bg-orange-100 text-orange-800'}`}>IT架构</span>
                       <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-red-900 bg-opacity-50 text-red-300' : 'bg-red-100 text-red-800'}`}>业务创新</span>
+                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-indigo-900 bg-opacity-50 text-indigo-300' : 'bg-indigo-100 text-indigo-800'}`}>AI战略</span>
                     </div>
                   </div>
                 </div>
@@ -201,7 +202,7 @@ const SouthernPropertyPlatform = () => {
             </div>
             
             <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p className="text-xl leading-relaxed">本项目旨在帮助南方联合产权交易中心构建数智型交易平台，提升数字化成熟度，加速业务转型升级。通过系统性评估与规划，我们为客户提供了全面的数字化转型解决方案，助力其在数字经济时代保持竞争优势。</p>
+              <p className="text-xl leading-relaxed">本项目旨在帮助某产权交易中心构建数智型交易平台，提升数字化成熟度，加速业务转型升级。通过系统性评估与规划，我们为客户提供了全面的数字化转型解决方案，助力其在数字经济时代保持竞争优势。</p>
               
               <div className="flex flex-wrap gap-4 mt-6">
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-blue-900 bg-opacity-30 text-blue-300' : 'bg-blue-100 text-blue-800'}`}>
@@ -216,6 +217,9 @@ const SouthernPropertyPlatform = () => {
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-orange-900 bg-opacity-30 text-orange-300' : 'bg-orange-100 text-orange-800'}`}>
                   <Database size={16} className="mr-1" /> 数据治理
                 </span>
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900 bg-opacity-30 text-indigo-300' : 'bg-indigo-100 text-indigo-800'}`}>
+                  <Wrench size={16} className="mr-1" /> AI规划咨询
+                </span>
               </div>
             </div>
           </div>
@@ -227,7 +231,7 @@ const SouthernPropertyPlatform = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">项目背景与挑战</h2>
             
             <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
-              <p>南方联合产权交易中心作为广东省属国有资本市场的重要平台，肩负着以阳光交易、发现价格、发现价值的方式促进国有资本存量流动、优化配置的重要使命。面临数字经济发展新形势下的多重挑战：</p>
+              <p>某产权交易中心作为广东省属国有资本市场的重要平台，肩负着以阳光交易、发现价格、发现价值的方式促进国有资本存量流动、优化配置的重要使命。面临数字经济发展新形势下的多重挑战：</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -407,7 +411,7 @@ const SouthernPropertyPlatform = () => {
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <span className="font-semibold mr-2">战略定位:</span>
-                      <span>结合评估结果与行业趋势，明确南方产权数智化发展的战略定位</span>
+                      <span>结合评估结果与行业趋势，明确产权数智化发展的战略定位</span>
                     </li>
                     <li className="flex items-start">
                       <span className="font-semibold mr-2">路径设计:</span>
@@ -692,7 +696,7 @@ const SouthernPropertyPlatform = () => {
               <h3 className="text-xl font-semibold mb-4">战略定位与愿景</h3>
               
               <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-blue-50'} mb-6`}>
-                <h4 className="text-lg font-medium mb-4 text-center">基于评估结果，我们提出南方产权数智型交易平台的战略定位：</h4>
+                <h4 className="text-lg font-medium mb-4 text-center">基于评估结果，我们提出产权数智型交易平台的战略定位：</h4>
                 <blockquote className={`p-4 border-l-4 ${darkMode ? 'border-blue-400 bg-gray-700' : 'border-blue-600 bg-white'} rounded-r-lg`}>
                   <p className="text-lg font-medium">打造集约高效、智能精准的现代化综合性产权交易平台，构建开放共享、协同创新的服务生态，成为面向粤港澳大湾区乃至全国的产业赋能、生态引领的重要枢纽。</p>
                 </blockquote>
@@ -911,7 +915,7 @@ const SouthernPropertyPlatform = () => {
             </div>
             
             <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p>在此背景下，南方产权亟需开展系统性评估，找准定位，明晰路径，加快构建数智型交易平台，实现高质量发展。</p>
+              <p>在此背景下，产权亟需开展系统性评估，找准定位，明晰路径，加快构建数智型交易平台，实现高质量发展。</p>
             </div>
           </div>
         </section>
@@ -1241,7 +1245,7 @@ const SouthernPropertyPlatform = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">实施成效与价值创造</h2>
             
             <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
-              <p>通过系统化咨询服务，项目为南方产权数智化转型带来了显著价值：</p>
+              <p>通过系统化咨询服务，项目为产权数智化转型带来了显著价值：</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -1329,11 +1333,11 @@ const SouthernPropertyPlatform = () => {
                     </li>
                     <li className="flex items-start">
                       <FileText size={20} className={`${darkMode ? 'text-green-400' : 'text-green-600'} mr-2 mt-1 flex-shrink-0`} />
-                      <span>《南方联合产权交易中心数智型交易平台成熟度评估诊断报告》</span>
+                      <span>《某产权交易中心数智型交易平台成熟度评估诊断报告》</span>
                     </li>
                     <li className="flex items-start">
                       <FileText size={20} className={`${darkMode ? 'text-green-400' : 'text-green-600'} mr-2 mt-1 flex-shrink-0`} />
-                      <span>《南方联合产权交易中心数智型交易平台建设路径研究报告》</span>
+                      <span>《某产权交易中心数智型交易平台建设路径研究报告》</span>
                     </li>
                     <li className="flex items-start">
                       <FileText size={20} className={`${darkMode ? 'text-green-400' : 'text-green-600'} mr-2 mt-1 flex-shrink-0`} />
@@ -1473,7 +1477,7 @@ const SouthernPropertyPlatform = () => {
                 <h3 className="text-xl font-semibold">我们的AI规划咨询方法论</h3>
               </div>
               <div className="p-6">
-                <p className="mb-6">基于南方产权等多个成功案例，我们构建了针对国央企的"AI-POWER"咨询方法论：</p>
+                <p className="mb-6">基于产权等多个成功案例，我们构建了针对国央企的"AI-POWER"咨询方法论：</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} flex items-start`}>
@@ -1549,7 +1553,7 @@ const SouthernPropertyPlatform = () => {
                   </div>
                   <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
                     <h4 className="font-medium mb-2">同业标杆案例解析</h4>
-                    <p className="text-sm">华润燃气、港华燃气、中国燃气等AI应用成熟度对标，提炼最佳实践</p>
+                    <p className="text-sm">华润燃气、港华燃气、中国燃气等AI实践对标，提炼最佳实践</p>
                   </div>
                 </div>
                 
@@ -1572,37 +1576,258 @@ const SouthernPropertyPlatform = () => {
                 <h3 className="text-xl font-semibold">二、集团AI现状诊断</h3>
               </div>
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Activity size={20} className={darkMode ? 'text-green-200' : 'text-green-600'} />
+                {/* AI成熟度评估框架介绍 */}
+                <div className={`mb-6 p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>AI成熟度评估框架介绍</h4>
+                  <p className="mb-4">为了科学评估深圳燃气集团的AI发展现状，我们引入国际通用的AI成熟度评估框架，通过系统化的方法对企业当前AI能力进行全面诊断。这一框架不仅能帮助识别现有差距，更能为后续AI战略规划提供数据支撑和方向指引。</p>
+                  
+                  {/* 评估维度设计 */}
+                  <div className="mb-4">
+                    <h5 className={`font-medium mb-2 ${darkMode ? 'text-blue-200' : 'text-blue-600'}`}>评估维度设计</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {[
+                        {icon: <BarChart2 size={18} />, title: "战略与治理", desc: "企业AI战略清晰度、与业务战略的一致性以及AI治理机制"},
+                        {icon: <Users size={18} />, title: "组织与人才", desc: "企业AI组织架构、人才储备及培养机制"},
+                        {icon: <Database size={18} />, title: "数据基础", desc: "企业数据资产质量、数据治理能力及数据价值挖掘水平"},
+                        {icon: <Cpu size={18} />, title: "技术能力", desc: "企业AI技术平台、基础设施及研发能力"},
+                        {icon: <Layers size={18} />, title: "应用场景", desc: "企业AI应用的广度、深度及价值实现程度"},
+                        {icon: <GitBranch size={18} />, title: "流程与标准", desc: "企业AI项目管理流程、质量标准及最佳实践"},
+                        {icon: <Globe size={18} />, title: "生态合作", desc: "企业与外部AI生态的合作广度与深度"}
+                      ].map((item, index) => (
+                        <div key={index} className={`p-3 rounded-md flex items-start ${darkMode ? 'bg-gray-600' : 'bg-white'} border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-300' : 'text-blue-500'}`}>{item.icon}</div>
+                          <div>
+                            <div className="font-medium text-sm">{index+1}. {item.title}</div>
+                            <div className="text-xs mt-1 opacity-80">{item.desc}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <h5 className="font-medium mb-2">数字化基础设施评估</h5>
-                    <p className="text-sm">SCADA系统、GIS系统、营销系统等现有平台能力评估，识别关键优势与短板</p>
                   </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-orange-900' : 'bg-orange-100'} flex items-center justify-center mb-3`}>
-                      <Database size={20} className={darkMode ? 'text-orange-200' : 'text-orange-600'} />
+                  
+                  {/* 成熟度等级划分 */}
+                  <div>
+                    <h5 className={`font-medium mb-3 ${darkMode ? 'text-blue-200' : 'text-blue-600'}`}>成熟度等级划分</h5>
+                    <div className={`relative h-14 rounded-lg overflow-hidden ${darkMode ? 'bg-gray-600' : 'bg-gray-100'} mb-3`}>
+                      <div className="absolute inset-0 flex">
+                        <div className={`flex-1 ${darkMode ? 'bg-red-900/70' : 'bg-red-500/30'} border-r border-white/20 flex items-center justify-center`}>
+                          <span className="text-xs font-medium">初始阶段</span>
+                        </div>
+                        <div className={`flex-1 ${darkMode ? 'bg-orange-800/70' : 'bg-orange-400/30'} border-r border-white/20 flex items-center justify-center`}>
+                          <span className="text-xs font-medium">可重复阶段</span>
+                        </div>
+                        <div className={`flex-1 ${darkMode ? 'bg-yellow-700/70' : 'bg-yellow-300/40'} border-r border-white/20 flex items-center justify-center`}>
+                          <span className="text-xs font-medium">已定义阶段</span>
+                        </div>
+                        <div className={`flex-1 ${darkMode ? 'bg-green-800/70' : 'bg-green-400/30'} border-r border-white/20 flex items-center justify-center`}>
+                          <span className="text-xs font-medium">可管理阶段</span>
+                        </div>
+                        <div className={`flex-1 ${darkMode ? 'bg-blue-800/70' : 'bg-blue-400/30'} flex items-center justify-center`}>
+                          <span className="text-xs font-medium">优化阶段</span>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 w-full flex text-center">
+                        <div className="flex-1 text-[10px] opacity-70">第1级</div>
+                        <div className="flex-1 text-[10px] opacity-70">第2级</div>
+                        <div className="flex-1 text-[10px] opacity-70">第3级</div>
+                        <div className="flex-1 text-[10px] opacity-70">第4级</div>
+                        <div className="flex-1 text-[10px] opacity-70">第5级</div>
+                      </div>
                     </div>
-                    <h5 className="font-medium mb-2">数据资源盘点与质量评估</h5>
-                    <p className="text-sm">管网数据、运行数据、客户数据、安全数据等资源盘点，全面评估数据质量与价值</p>
+                    <div className="grid grid-cols-1 md:grid-cols-5 gap-2 text-xs">
+                      <div>零散应用，缺乏系统性</div>
+                      <div>初步形成应用模式，但缺乏标准化</div>
+                      <div>建立标准流程，形成规范化应用</div>
+                      <div>形成量化管理，持续优化改进</div>
+                      <div>实现创新引领，形成行业最佳实践</div>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-purple-900' : 'bg-purple-100'} flex items-center justify-center mb-3`}>
-                      <TrendingUp size={20} className={darkMode ? 'text-purple-200' : 'text-purple-600'} />
+                {/* 诊断方法与工具 */}
+                <div className={`mb-6 p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border ${darkMode ? 'border-gray-600' : 'border-purple-200'}`}>
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>诊断方法与工具</h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                      <div className={`w-9 h-9 rounded-full ${darkMode ? 'bg-purple-900' : 'bg-purple-100'} flex items-center justify-center mb-3`}>
+                        <FileText size={18} className={darkMode ? 'text-purple-200' : 'text-purple-600'} />
+                      </div>
+                      <h5 className="font-medium mb-2 text-sm">数据收集方法</h5>
+                      <ul className="text-xs space-y-1 list-disc pl-4">
+                        <li>文档审阅：战略规划、架构等文档</li>
+                        <li>问卷调研：针对不同层级人员设计差异化问卷</li>
+                        <li>深度访谈：与关键人员进行一对一访谈</li>
+                        <li>现场调研：实地考察IT基础设施等</li>
+                        <li>标杆对比：行业领先企业AI应用案例对标</li>
+                      </ul>
                     </div>
-                    <h5 className="font-medium mb-2">AI应用成熟度评估</h5>
-                    <p className="text-sm">基于国际成熟度模型(AIMMM)的能力等级评估，明确当前位置与目标差距</p>
+                    
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                      <div className={`w-9 h-9 rounded-full ${darkMode ? 'bg-indigo-900' : 'bg-indigo-100'} flex items-center justify-center mb-3`}>
+                        <Wrench size={18} className={darkMode ? 'text-indigo-200' : 'text-indigo-600'} />
+                      </div>
+                      <h5 className="font-medium mb-2 text-sm">评估工具包</h5>
+                      <ul className="text-xs space-y-1 list-disc pl-4">
+                        <li>AI战略评估模型：战略与业务匹配度</li>
+                        <li>数据成熟度评估工具：质量、完整性评估</li>
+                        <li>技术能力评估矩阵：技术栈完整性分析</li>
+                        <li>应用场景价值评估模型：业务价值分析</li>
+                        <li>人才能力评估框架：队伍规模结构评估</li>
+                      </ul>
+                    </div>
+                    
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                      <div className={`w-9 h-9 rounded-full ${darkMode ? 'bg-teal-900' : 'bg-teal-100'} flex items-center justify-center mb-3`}>
+                        <PieChart size={18} className={darkMode ? 'text-teal-200' : 'text-teal-600'} />
+                      </div>
+                      <h5 className="font-medium mb-2 text-sm">分析方法</h5>
+                      <ul className="text-xs space-y-1 list-disc pl-4">
+                        <li>差距分析：与行业最佳实践对比</li>
+                        <li>SWOT分析：优势、劣势、机会和威胁</li>
+                        <li>价值链分析：AI在企业价值链各环节应用</li>
+                        <li>投资回报分析：AI投资回报和优先级</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-blue-900' : 'bg-blue-100'} flex items-center justify-center mb-3`}>
-                      <Users size={20} className={darkMode ? 'text-blue-200' : 'text-blue-600'} />
+                </div>
+                
+                {/* 诊断实施路径 */}
+                <div className={`mb-6 p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'} border ${darkMode ? 'border-gray-600' : 'border-green-200'}`}>
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>诊断实施路径</h4>
+                  
+                  <div className="relative">
+                    {/* 竖线 */}
+                    <div className={`absolute h-full w-0.5 ${darkMode ? 'bg-green-800' : 'bg-green-200'} left-3 top-0 md:left-1/2`}></div>
+                    
+                    <div className="space-y-6">
+                      {/* 第一阶段 */}
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-1/2 relative pl-10 md:pl-0 md:pr-10 pb-6 md:pb-0">
+                          <div className={`absolute left-0 md:right-0 md:left-auto w-6 h-6 rounded-full ${darkMode ? 'bg-green-800' : 'bg-green-500'} z-10 flex items-center justify-center`}>
+                            <span className="text-white text-xs">1</span>
+                          </div>
+                          <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                            <h5 className={`font-medium mb-2 ${darkMode ? 'text-green-300' : 'text-green-600'}`}>第一阶段：准备与规划（1-2周）</h5>
+                            <ul className="text-xs space-y-1 list-disc pl-4">
+                              <li>确定诊断范围和目标</li>
+                              <li>组建诊断团队，明确分工</li>
+                              <li>制定详细的诊断计划</li>
+                              <li>准备诊断工具和模板</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="md:w-1/2"></div>
+                      </div>
+                      
+                      {/* 第二阶段 */}
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-1/2"></div>
+                        <div className="md:w-1/2 relative pl-10 md:pl-10 pb-6 md:pb-0">
+                          <div className={`absolute left-0 w-6 h-6 rounded-full ${darkMode ? 'bg-green-800' : 'bg-green-500'} z-10 flex items-center justify-center`}>
+                            <span className="text-white text-xs">2</span>
+                          </div>
+                          <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                            <h5 className={`font-medium mb-2 ${darkMode ? 'text-green-300' : 'text-green-600'}`}>第二阶段：数据收集（2-3周）</h5>
+                            <ul className="text-xs space-y-1 list-disc pl-4">
+                              <li>发放并回收问卷</li>
+                              <li>开展深度访谈</li>
+                              <li>收集相关文档</li>
+                              <li>进行现场调研</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* 第三阶段 */}
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-1/2 relative pl-10 md:pl-0 md:pr-10 pb-6 md:pb-0">
+                          <div className={`absolute left-0 md:right-0 md:left-auto w-6 h-6 rounded-full ${darkMode ? 'bg-green-800' : 'bg-green-500'} z-10 flex items-center justify-center`}>
+                            <span className="text-white text-xs">3</span>
+                          </div>
+                          <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                            <h5 className={`font-medium mb-2 ${darkMode ? 'text-green-300' : 'text-green-600'}`}>第三阶段：分析与评估（2-3周）</h5>
+                            <ul className="text-xs space-y-1 list-disc pl-4">
+                              <li>整理和分析收集的数据</li>
+                              <li>应用评估模型进行打分</li>
+                              <li>识别关键差距和机会</li>
+                              <li>形成初步诊断结论</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="md:w-1/2"></div>
+                      </div>
+                      
+                      {/* 第四阶段 */}
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-1/2"></div>
+                        <div className="md:w-1/2 relative pl-10 md:pl-10">
+                          <div className={`absolute left-0 w-6 h-6 rounded-full ${darkMode ? 'bg-green-800' : 'bg-green-500'} z-10 flex items-center justify-center`}>
+                            <span className="text-white text-xs">4</span>
+                          </div>
+                          <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                            <h5 className={`font-medium mb-2 ${darkMode ? 'text-green-300' : 'text-green-600'}`}>第四阶段：报告与建议（1-2周）</h5>
+                            <ul className="text-xs space-y-1 list-disc pl-4">
+                              <li>编制详细的诊断报告</li>
+                              <li>提出针对性改进建议</li>
+                              <li>制定AI发展路线图</li>
+                              <li>召开诊断结果研讨会</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <h5 className="font-medium mb-2">人才与组织就绪度分析</h5>
-                    <p className="text-sm">跨部门AI认知水平与技能差距分析，为人才培养提供基础</p>
+                  </div>
+                </div>
+                
+                {/* 诊断重点关注方向 */}
+                <div className={`mb-6 p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-amber-50'} border ${darkMode ? 'border-gray-600' : 'border-amber-200'}`}>
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-amber-300' : 'text-amber-700'}`}>诊断重点关注方向</h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      {
+                        icon: <Shield size={20} />, 
+                        title: "安全生产智能化",
+                        items: ["管网泄漏智能预测与预警能力", "设备智能巡检与预测性维护水平", "应急处置智能决策支持能力"]
+                      },
+                      {
+                        icon: <Zap size={20} />, 
+                        title: "运营效率智能化",
+                        items: ["燃气调度智能优化能力", "能源需求预测准确性", "资源配置智能化水平"]
+                      },
+                      {
+                        icon: <Users size={20} />, 
+                        title: "客户服务智能化",
+                        items: ["智能客服应用深度", "用户画像精准度", "服务流程智能化程度"]
+                      },
+                      {
+                        icon: <BarChart size={20} />, 
+                        title: "决策支持智能化",
+                        items: ["数据分析与可视化能力", "智能决策支持系统应用情况", "风险预警与管控能力"]
+                      },
+                      {
+                        icon: <Compass size={20} />, 
+                        title: "新业务拓展智能化",
+                        items: ["综合能源服务智能化水平", "低碳转型AI支撑能力", "创新业务模式AI赋能程度"]
+                      }
+                    ].map((item, index) => (
+                      <div key={index} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm border ${darkMode ? 'border-gray-500' : 'border-gray-200'}`}>
+                        <div className="flex items-center mb-3">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-amber-900' : 'bg-amber-100'} flex items-center justify-center mr-3`}>
+                            <div className={darkMode ? 'text-amber-200' : 'text-amber-600'}>
+                              {item.icon}
+                            </div>
+                          </div>
+                          <h5 className="font-medium">{item.title}</h5>
+                        </div>
+                        <ul className="text-xs space-y-2 list-disc pl-4">
+                          {item.items.map((subItem, subIndex) => (
+                            <li key={subIndex}>{subItem}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -1614,329 +1839,398 @@ const SouthernPropertyPlatform = () => {
                 <h3 className="text-xl font-semibold">三、AI战略与顶层设计</h3>
               </div>
               <div className="p-6">
-                <h4 className="text-lg font-medium mb-4">战略定位与愿景</h4>
-                <div className={`p-4 mb-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                  <p>"智慧燃气"发展战略：AI战略与集团"十四五"规划协同设计，助力公司成为"国内一流的清洁能源综合运营商、低碳智慧城市服务商"</p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                    <h4 className="font-medium mb-2">AI应用蓝图</h4>
-                    <p className="text-sm">分阶段、分领域实施规划，构建完整AI应用体系</p>
+                {/* 战略定位与愿景 */}
+                <div className="mb-8">
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>战略定位与愿景</h4>
+                  <div className={`p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'} mb-4`}>
+                    <p className="text-center font-medium mb-2">
+                      <span className={`inline-block px-3 py-1 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} mb-1`}>
+                        以AI驱动智慧能源转型，打造国内领先的智慧燃气与综合能源服务商
+                      </span>
+                    </p>
                   </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                    <h4 className="font-medium mb-2">投入产出评估</h4>
-                    <p className="text-sm">基于行业经验的ROI预测与评估体系，保障投资效益</p>
-                  </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                    <h4 className="font-medium mb-2">战略实施保障</h4>
-                    <p className="text-sm">高层推动与资源保障机制设计，确保战略落地</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* 燃气行业AI应用场景规划 */}
-            <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'} mb-8`}>
-              <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                <h3 className="text-xl font-semibold">四、燃气行业AI应用场景规划</h3>
-              </div>
-              <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-red-900' : 'bg-red-100'} flex items-center justify-center mb-3`}>
-                      <Shield size={20} className={darkMode ? 'text-red-200' : 'text-red-600'} />
-                    </div>
-                    <h5 className="font-medium mb-2">安全生产AI应用</h5>
-                    <ul className="text-sm space-y-1">
-                      <li>• 智能巡检与设备预测性维护</li>
-                      <li>• 管网泄漏智能检测与定位</li>
-                      <li>• 安全风险预警与应急指挥</li>
-                    </ul>
-                  </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Activity size={20} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-2">运营效率AI应用</h5>
-                    <ul className="text-sm space-y-1">
-                      <li>• 燃气负荷智能预测与调度优化</li>
-                      <li>• 智能管网压力优化</li>
-                      <li>• 工程施工智能管理</li>
-                    </ul>
-                  </div>
-                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-blue-900' : 'bg-blue-100'} flex items-center justify-center mb-3`}>
-                      <Users size={20} className={darkMode ? 'text-blue-200' : 'text-blue-600'} />
-                    </div>
-                    <h5 className="font-medium mb-2">客户服务AI应用</h5>
-                    <ul className="text-sm space-y-1">
-                      <li>• 智能客服与个性化服务</li>
-                      <li>• 用气行为分析与异常识别</li>
-                      <li>• 营销策略智能优化</li>
-                    </ul>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {[
+                      {
+                        icon: <Activity size={20} />,
+                        title: "全面智能化运营体系",
+                        desc: "建立全面智能化的燃气运营体系，提升安全性和效率"
+                      },
+                      {
+                        icon: <BarChart size={20} />,
+                        title: "数据驱动决策支持",
+                        desc: "构建数据驱动的决策支持系统，增强经营管理能力"
+                      },
+                      {
+                        icon: <Globe size={20} />,
+                        title: "智慧能源生态平台",
+                        desc: "打造智慧能源生态平台，推动多能互补和综合能源服务发展"
+                      }
+                    ].map((item, idx) => (
+                      <div key={idx} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700/50' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                        <div className="flex items-center mb-2">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mr-3`}>
+                            <div className={darkMode ? 'text-blue-300' : 'text-blue-600'}>
+                              {item.icon}
+                            </div>
+                          </div>
+                          <h5 className="font-medium">{item.title}</h5>
+                        </div>
+                        <p className="text-sm">{item.desc}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 
-                <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-md border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                  <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-blue-900' : 'bg-blue-100'} flex items-center justify-center mb-3`}>
-                    <Zap size={20} className={darkMode ? 'text-blue-200' : 'text-blue-600'} />
-                  </div>
-                  <h5 className="font-medium mb-2">智慧能源整合</h5>
-                  <ul className="text-sm space-y-1">
-                    <li>• AI驱动的多能互补系统</li>
-                    <li>• 清洁能源智能调配</li>
-                    <li>• 数字孪生能源网络</li>
-                    <li>• 综合能源管理平台</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            {/* 分栏显示后续六个部分 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* 数据治理与平台建设 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">五、数据治理与平台建设</h3>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>燃气行业数据标准体系：行业知识图谱与数据标准设计</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>数据资产管理体系：数据质量管控与资产价值评估</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>燃气数据中台规划：跨系统数据融合与服务能力</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>数据安全与合规框架：关键基础设施数据安全保障</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              {/* AI技术架构与平台设计 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">六、AI技术架构与平台设计</h3>
-                </div>
-                <div className="p-6">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className={`p-3 rounded-lg text-center ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <Brain size={24} className={`mx-auto mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                      <p className="text-sm">燃气企业AI基础设施规划</p>
-                    </div>
-                    <div className={`p-3 rounded-lg text-center ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <Eye size={24} className={`mx-auto mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                      <p className="text-sm">AI平台功能架构</p>
-                    </div>
-                    <div className={`p-3 rounded-lg text-center ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <Copy size={24} className={`mx-auto mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                      <p className="text-sm">燃气行业专用模型库</p>
-                    </div>
-                    <div className={`p-3 rounded-lg text-center ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <Database size={24} className={`mx-auto mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                      <p className="text-sm">安全生产与AI融合架构</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* 组织与能力建设 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">七、组织与能力建设</h3>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>AI组织架构设计：中心化vs分布式能力中心</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>燃气专业人才培养计划：分层级AI技能培养体系</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>知识产权与创新机制：AI创新激励与成果保护</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>产学研合作生态：燃气行业AI联合实验室建设</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              {/* 实施路径与保障 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">八、实施路径与保障</h3>
-                </div>
-                <div className="p-6">
-                <h4 className="text-lg font-medium mb-4">实施路线图</h4>
-                  <div className="relative mb-6">
-                    <div className="absolute h-full w-1 bg-blue-200 dark:bg-blue-900 left-2"></div>
-                    
-                    <div className="relative z-10 mb-4 ml-8">
-                      <div className="absolute -left-6 top-1">
-                        <div className={`w-5 h-5 rounded-full ${darkMode ? 'bg-blue-700 border-blue-900' : 'bg-blue-600 border-blue-100'} border-4`}></div>
+                {/* 战略目标 */}
+                <div className="mb-8">
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>战略目标</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-green-900/60' : 'bg-green-100'} flex items-center justify-center mb-3 mx-auto`}>
+                        <span className={`font-bold ${darkMode ? 'text-green-300' : 'text-green-600'}`}>1-2</span>
                       </div>
-                      <div>
-                        <h5 className="font-medium mb-1">第一阶段：试点项目遴选与快速见效</h5>
-                        <p className="text-sm">基于"价值-可行性"矩阵的项目优先级评估</p>
-                      </div>
+                      <h5 className="font-medium text-center mb-3">近期目标（1-2年）</h5>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-green-400' : 'text-green-500'}`}><Check size={14} /></div>
+                          <span>建立AI治理框架和数据基础设施</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-green-400' : 'text-green-500'}`}><Check size={14} /></div>
+                          <span>实施2-3个高价值AI试点项目</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-green-400' : 'text-green-500'}`}><Check size={14} /></div>
+                          <span>组建AI核心团队，培养关键人才</span>
+                        </li>
+                      </ul>
                     </div>
                     
-                    <div className="relative z-10 mb-4 ml-8">
-                      <div className="absolute -left-6 top-1">
-                        <div className={`w-5 h-5 rounded-full ${darkMode ? 'bg-blue-700 border-blue-900' : 'bg-blue-600 border-blue-100'} border-4`}></div>
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mb-3 mx-auto`}>
+                        <span className={`font-bold ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>3-4</span>
                       </div>
-                      <div>
-                        <h5 className="font-medium mb-1">第二阶段：大规模推广策略</h5>
-                        <p className="text-sm">从试点到规模化的方法论与路径</p>
-                      </div>
+                      <h5 className="font-medium text-center mb-3">中期目标（3-4年）</h5>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>AI应用覆盖核心业务流程，实现安全事故率降低30%</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>运营成本降低15%，客户满意度提升20%</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>建立企业级AI平台，支持业务创新</span>
+                        </li>
+                      </ul>
                     </div>
                     
-                    <div className="relative z-10 ml-8">
-                      <div className="absolute -left-6 top-1">
-                        <div className={`w-5 h-5 rounded-full ${darkMode ? 'bg-blue-700 border-blue-900' : 'bg-blue-600 border-blue-100'} border-4`}></div>
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-purple-900/60' : 'bg-purple-100'} flex items-center justify-center mb-3 mx-auto`}>
+                        <span className={`font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>5+</span>
                       </div>
-                      <div>
-                        <h5 className="font-medium mb-1">第三阶段：变革管理与优化</h5>
-                        <p className="text-sm">员工参与与认同建设，持续优化提升</p>
-                      </div>
+                      <h5 className="font-medium text-center mb-3">长期目标（5年及以上）</h5>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>形成行业领先的AI创新能力</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>新业务收入占比提升至30%</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>成为能源行业AI应用的标杆企业</span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* 价值评估与持续优化 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">九、价值评估与持续优化</h3>
-                </div>
-                <div className="p-6">
-                  <div className="grid grid-cols-1 gap-4 mb-4">
-                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'} text-center`}>
-                      <h5 className="font-medium mb-2">预期价值</h5>
-                      <div className="grid grid-cols-3 gap-2">
-                        <div>
-                          <p className="text-2xl font-bold mb-1">↑35%</p>
-                          <p className="text-xs">运营效率</p>
-                        </div>
-                        <div>
-                          <p className="text-2xl font-bold mb-1">↓40%</p>
-                          <p className="text-xs">安全事故</p>
-                        </div>
-                        <div>
-                          <p className="text-2xl font-bold mb-1">↑25%</p>
-                          <p className="text-xs">服务满意度</p>
-                        </div>
+                
+                {/* 战略框架：1-3-5-N */}
+                <div className="mb-8">
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>战略框架："1-3-5-N"</h4>
+                  
+                  {/* 1个核心 */}
+                  <div className={`mb-5 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-amber-50'} border ${darkMode ? 'border-gray-600' : 'border-amber-200'}`}>
+                    <h5 className={`font-medium mb-2 text-center ${darkMode ? 'text-amber-300' : 'text-amber-700'}`}>
+                      <span className="inline-block px-3 py-1 rounded-full bg-amber-600 text-white mb-1">1个核心</span>
+                    </h5>
+                    <div className="flex justify-center">
+                      <div className={`w-32 h-32 rounded-full ${darkMode ? 'bg-amber-900/60' : 'bg-amber-100'} flex flex-col items-center justify-center p-4 text-center`}>
+                        <Database size={28} className={darkMode ? 'text-amber-300' : 'text-amber-600'} />
+                        <span className="font-medium mt-1">数据价值</span>
+                        <span className="text-xs mt-1">构建企业数据资产，驱动业务创新</span>
                       </div>
                     </div>
                   </div>
                   
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>多维度价值评估体系：安全、效率、服务、成本等维度</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>AI系统效果监测机制：模型性能与业务价值监测</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>持续迭代优化机制：基于业务反馈的AI应用进化</span>
-                    </li>
-                  </ul>
+                  {/* 3大支柱 */}
+                  <div className={`mb-5 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
+                    <h5 className={`font-medium mb-3 text-center ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+                      <span className="inline-block px-3 py-1 rounded-full bg-blue-600 text-white mb-1">3大支柱</span>
+                    </h5>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {[
+                        {
+                          icon: <Shield size={24} />,
+                          title: "安全生产智能化",
+                          desc: "利用AI提升管网安全和运营效率"
+                        },
+                        {
+                          icon: <Users size={24} />,
+                          title: "客户服务智能化",
+                          desc: "通过AI优化客户体验和服务质量"
+                        },
+                        {
+                          icon: <BarChart2 size={24} />,
+                          title: "经营决策智能化",
+                          desc: "基于AI实现数据驱动的科学决策"
+                        }
+                      ].map((item, idx) => (
+                        <div key={idx} className={`p-3 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} border ${darkMode ? 'border-gray-500' : 'border-gray-200'} text-center`}>
+                          <div className="flex flex-col items-center">
+                            <div className={`w-12 h-12 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mb-2`}>
+                              <div className={darkMode ? 'text-blue-300' : 'text-blue-600'}>
+                                {item.icon}
+                              </div>
+                            </div>
+                            <h5 className="font-medium text-sm mb-1">{item.title}</h5>
+                            <p className="text-xs">{item.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* 5大能力 */}
+                  <div className={`mb-5 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'} border ${darkMode ? 'border-gray-600' : 'border-green-200'}`}>
+                    <h5 className={`font-medium mb-3 text-center ${darkMode ? 'text-green-300' : 'text-green-700'}`}>
+                      <span className="inline-block px-3 py-1 rounded-full bg-green-600 text-white mb-1">5大能力</span>
+                    </h5>
+                    <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                      {[
+                        { icon: <Cpu size={20} />, title: "AI基础设施能力", desc: "构建支撑AI应用的技术平台" },
+                        { icon: <Database size={20} />, title: "数据治理能力", desc: "建立全面的数据管理和价值挖掘体系" },
+                        { icon: <Layers size={20} />, title: "AI应用开发能力", desc: "形成快速响应业务需求的AI解决方案能力" },
+                        { icon: <Users size={20} />, title: "AI人才培养能力", desc: "建立多层次的AI人才发展体系" },
+                        { icon: <GitBranch size={20} />, title: "AI生态合作能力", desc: "构建开放共赢的AI创新生态" }
+                      ].map((item, idx) => (
+                        <div key={idx} className={`p-3 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'} border ${darkMode ? 'border-gray-500' : 'border-gray-200'} text-center`}>
+                          <div className="flex flex-col items-center">
+                            <div className={`w-10 h-10 rounded-full ${darkMode ? 'bg-green-900/60' : 'bg-green-100'} flex items-center justify-center mb-2`}>
+                              <div className={darkMode ? 'text-green-300' : 'text-green-600'}>
+                                {item.icon}
+                              </div>
+                            </div>
+                            <h5 className="font-medium text-xs mb-1">{item.title}</h5>
+                            <p className="text-[10px] leading-tight">{item.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* N个场景 */}
+                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border ${darkMode ? 'border-gray-600' : 'border-purple-200'}`}>
+                    <h5 className={`font-medium mb-3 text-center ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>
+                      <span className="inline-block px-3 py-1 rounded-full bg-purple-600 text-white mb-1">N个场景</span>
+                    </h5>
+                    <p className="text-sm mb-3 text-center">根据业务需求，持续拓展AI应用场景：</p>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {[
+                        "管网泄漏智能预测与预警",
+                        "设备预测性维护",
+                        "智能调度优化",
+                        "能源需求预测",
+                        "智能客服",
+                        "用户画像与精准营销",
+                        "综合能源管理"
+                      ].map((item, idx) => (
+                        <span 
+                          key={idx} 
+                          className={`inline-block px-3 py-1.5 rounded-full text-xs ${
+                            darkMode 
+                              ? 'bg-purple-900/40 text-purple-300 border border-purple-700' 
+                              : 'bg-purple-100 text-purple-700'
+                          }`}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              {/* 风险管控与伦理合规 */}
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">十、风险管控与伦理合规</h3>
+                
+                {/* 组织保障 */}
+                <div className="mb-8">
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>组织保障</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* AI治理架构 */}
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
+                      <h5 className={`font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>AI治理架构</h5>
+                      <ul className="space-y-3">
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <span className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>1</span>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">AI战略委员会</p>
+                            <p className="text-xs mt-0.5">由高层领导牵头，负责AI战略决策</p>
+                          </div>
+                        </li>
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <span className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>2</span>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">AI创新中心</p>
+                            <p className="text-xs mt-0.5">统筹AI项目实施和技术研发</p>
+                          </div>
+                        </li>
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-blue-900/60' : 'bg-blue-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <span className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>3</span>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">业务-IT-AI融合团队</p>
+                            <p className="text-xs mt-0.5">推动AI在各业务领域的应用</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    {/* 人才发展计划 */}
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'} border ${darkMode ? 'border-gray-600' : 'border-green-200'}`}>
+                      <h5 className={`font-medium mb-3 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>人才发展计划</h5>
+                      <ul className="space-y-3">
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-green-900/60' : 'bg-green-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <Users size={16} className={darkMode ? 'text-green-300' : 'text-green-600'} />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">高端人才引进</p>
+                            <p className="text-xs mt-0.5">引进AI领域高端人才，建立核心技术团队</p>
+                          </div>
+                        </li>
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-green-900/60' : 'bg-green-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <Lightbulb size={16} className={darkMode ? 'text-green-300' : 'text-green-600'} />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">全员AI素养培训</p>
+                            <p className="text-xs mt-0.5">开展全员AI素养培训，提升数字化意识</p>
+                          </div>
+                        </li>
+                        <li className="flex">
+                          <div className={`w-8 h-8 rounded-full ${darkMode ? 'bg-green-900/60' : 'bg-green-100'} flex items-center justify-center mr-3 shrink-0`}>
+                            <Network size={16} className={darkMode ? 'text-green-300' : 'text-green-600'} />
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">产学研合作</p>
+                            <p className="text-xs mt-0.5">与高校、研究机构合作，建立人才培养基地</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>关键基础设施AI安全风险管控：针对燃气行业特点的风险识别</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>算法透明度与可解释性：安全生产相关AI决策的可解释机制</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>应急响应与人机协作：AI异常情况下的人机备份机制</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></div>
-                      <span>国家燃气行业数字化政策解读：符合监管要求的合规框架</span>
-                    </li>
-                  </ul>
+                
+                {/* 实施路径 */}
+                <div>
+                  <h4 className={`text-lg font-medium mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>实施路径</h4>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    {/* 第一阶段 */}
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'} relative overflow-hidden`}>
+                      <div className="absolute top-0 right-0 w-20 h-20 -translate-x-1/2 translate-y-1/2 bg-blue-500 opacity-10 rounded-full blur-xl"></div>
+                      <h5 className={`font-medium mb-2 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>第一阶段：基础构建（2025-2026）</h5>
+                      <ul className="space-y-2">
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>完成AI战略规划和组织架构调整</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>建设数据基础设施和AI开发平台</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>启动关键业务领域AI试点项目</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`}><Check size={14} /></div>
+                          <span>开展AI人才培养和技术储备</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    {/* 第二阶段 */}
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-indigo-50'} border ${darkMode ? 'border-gray-600' : 'border-indigo-200'} relative overflow-hidden`}>
+                      <div className="absolute top-0 right-0 w-20 h-20 -translate-x-1/2 translate-y-1/2 bg-indigo-500 opacity-10 rounded-full blur-xl"></div>
+                      <h5 className={`font-medium mb-2 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>第二阶段：全面推进（2027-2028）</h5>
+                      <ul className="space-y-2">
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-500'}`}><Check size={14} /></div>
+                          <span>扩大AI应用范围，覆盖主要业务流程</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-500'}`}><Check size={14} /></div>
+                          <span>建立AI应用评估和持续优化机制</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-500'}`}><Check size={14} /></div>
+                          <span>形成AI应用标准和最佳实践</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-500'}`}><Check size={14} /></div>
+                          <span>深化AI生态合作，推动创新发展</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    {/* 第三阶段 */}
+                    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border ${darkMode ? 'border-gray-600' : 'border-purple-200'} relative overflow-hidden`}>
+                      <div className="absolute top-0 right-0 w-20 h-20 -translate-x-1/2 translate-y-1/2 bg-purple-500 opacity-10 rounded-full blur-xl"></div>
+                      <h5 className={`font-medium mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>第三阶段：创新引领（2029-2030）</h5>
+                      <ul className="space-y-2">
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>实现AI与业务的深度融合</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>形成行业领先的AI创新能力</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>打造智慧能源生态平台</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className={`mt-1 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`}><Check size={14} /></div>
+                          <span>向行业输出AI解决方案和经验</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className={`mt-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700/50' : 'bg-gray-50'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                    <p className="text-center text-sm italic">
+                      通过系统性的AI战略与顶层设计，深圳燃气集团将实现从传统燃气企业向智慧能源服务商的转型，在能源行业数字化变革中占据领先地位。
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            {/* 合作流程 */}
-            <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'} mb-8`}>
-              <div className={`p-4 ${darkMode ? 'bg-green-900' : 'bg-green-600'} text-white`}>
-                <h3 className="text-xl font-semibold">我们的合作流程</h3>
-              </div>
-              <div className="p-6">
-                <div className="flex flex-wrap justify-between">
-                  <div className="w-full md:w-1/5 text-center mb-6">
-                    <div className={`w-16 h-16 rounded-full mx-auto ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <FileText size={28} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-1">需求调研</h5>
-                    <p className="text-xs">深入理解业务需求与痛点</p>
-                  </div>
-                  <div className="w-full md:w-1/5 text-center mb-6">
-                    <div className={`w-16 h-16 rounded-full mx-auto ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Compass size={28} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-1">方案设计</h5>
-                    <p className="text-xs">定制AI规划咨询方案</p>
-                  </div>
-                  <div className="w-full md:w-1/5 text-center mb-6">
-                    <div className={`w-16 h-16 rounded-full mx-auto ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Activity size={28} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-1">实施咨询</h5>
-                    <p className="text-xs">专家团队驻场服务</p>
-                  </div>
-                  <div className="w-full md:w-1/5 text-center mb-6">
-                    <div className={`w-16 h-16 rounded-full mx-auto ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Zap size={28} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-1">价值交付</h5>
-                    <p className="text-xs">完整解决方案与实施建议</p>
-                  </div>
-                  <div className="w-full md:w-1/5 text-center mb-6">
-                    <div className={`w-16 h-16 rounded-full mx-auto ${darkMode ? 'bg-green-900' : 'bg-green-100'} flex items-center justify-center mb-3`}>
-                      <Users size={28} className={darkMode ? 'text-green-200' : 'text-green-600'} />
-                    </div>
-                    <h5 className="font-medium mb-1">长期支持</h5>
-                    <p className="text-xs">持续优化与技术支持</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </section>
+
+
         
         {/* 联系我们 */}
         <section id="contact" className="mb-12">
