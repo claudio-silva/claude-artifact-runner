@@ -1,0 +1,64 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Artifact开发指南
+
+本项目设计用于运行Claude AI生成的Artifacts，也支持手动创建新的Artifact。以下是开发新Artifact的指南：
+
+## 创建新Artifact
+
+1. 在`src/artifacts/`目录中创建新的`.tsx`文件
+2. 使用React和TypeScript编写组件
+3. 确保导出默认组件：`export default YourComponent`
+4. 文件将自动成为可访问的路由
+
+## 支持的库与组件
+
+项目预装了多种库和组件，可在Artifact中直接使用：
+
+- **UI组件库**：[Shadcn UI](mdc:src/components/ui)
+- **数据可视化**：Recharts
+- **图标**：Lucide React
+- **样式**：Tailwind CSS
+- **路由**：React Router
+
+## 导航与链接
+
+在Artifact之间创建链接：
+
+```tsx
+import { useNavigate } from 'react-router-dom';
+
+// 使用Hook导航
+const navigate = useNavigate();
+navigate('/other-artifact');
+
+// 或使用链接
+<a href="/other-artifact">跳转到其他Artifact</a>
+```
+
+## 添加元数据
+
+可以为Artifact添加元数据以便在目录中更好地展示：
+
+```tsx
+export const meta = {
+  title: "我的Artifact",
+  description: "这是一个示例Artifact",
+  isHidden: false, // 设为true可在目录中隐藏
+  category: "演示",
+  order: 1 // 控制在目录中的显示顺序
+};
+
+const MyComponent = () => {
+  // 组件代码
+};
+
+export default MyComponent;
+```
+
+## 示例
+
+参考[src/artifacts/examples](mdc:src/artifacts/examples)目录中的示例，了解如何创建不同类型的Artifacts。

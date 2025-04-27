@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 项目概述
+
+这是Claude Artifact Runner，一个用于运行和展示Claude AI生成的Artifacts的React应用。
+
+## 项目特点
+- 基于React 18和TypeScript构建
+- 使用Vite作为构建工具
+- 整合了Tailwind CSS和Shadcn UI组件库
+- 支持文件路由系统
+- 支持数据可视化(Recharts)
+- 提供Lucide React图标库
+
+## 主要文件结构
+- `src/artifacts/` - 存放Claude生成的Artifacts，每个文件自动成为一个路由页面
+- `src/components/` - 包含UI组件，特别是Shadcn UI组件
+- `src/lib/` - 工具函数和辅助方法
+- `src/main.tsx` - 应用入口点，处理路由配置
+- `dist/` - 编译输出目录
+- `public/` - 静态资源目录
+
+## 核心功能
+- 自动为每个Artifact文件创建路由
+- 提供目录浏览界面
+- 支持嵌套目录结构
+- 轻松部署到各种托管平台

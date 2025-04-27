@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
+// 添加页面元数据
+export const meta = {
+  title: "初始页面",
+  isHidden: false,
+  category: "示例",
+  order: 1
+};
+
 const InitialPage = () => {
   const [count, setCount] = useState(0);
 

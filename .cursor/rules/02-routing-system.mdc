@@ -1,0 +1,48 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 路由系统
+
+本项目使用基于文件的路由系统，将`src/artifacts/`目录中的每个`.tsx`文件自动转换为一个可访问的页面。
+
+## 路由规则
+
+- `src/artifacts/index.tsx` → 默认页面 (`/`)
+- `src/artifacts/example.tsx` → `/example` 路由
+- `src/artifacts/folder/example.tsx` → `/folder/example` 路由
+
+## 关键文件
+
+在[src/main.tsx](mdc:src/main.tsx)中，所有Artifact文件都通过`import.meta.glob`导入并生成路由配置。路由处理包括：
+
+1. 提取文件路径和组件
+2. 将文件路径转换为URL路径
+3. 为每个路由添加Layout包装器
+4. 自动创建目录浏览页面
+
+## 目录浏览
+
+[src/artifacts/directory.tsx](mdc:src/artifacts/directory.tsx)提供了目录浏览功能，显示当前目录下的所有文件和子目录。目录页面支持：
+
+- 显示文件和文件夹的层次结构
+- 点击导航到子目录或文件页面
+- 支持返回上一级目录
+- 按类型和名称排序显示内容
+
+## Meta数据支持
+
+Artifact文件可以导出meta对象来提供额外信息：
+
+```tsx
+export const meta = {
+  title: "页面标题",
+  description: "页面描述",
+  isHidden: false,
+  category: "分类",
+  order: 1
+};
+```
+
+这些信息会在目录页面中显示，并可用于控制页面在目录中的显示顺序。

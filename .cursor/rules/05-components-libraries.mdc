@@ -1,0 +1,138 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 可用组件和库
+
+本项目预安装了多种组件库和工具库，便于开发丰富的交互式Artifacts。
+
+## UI组件库 - Shadcn UI
+
+项目使用[Shadcn UI](mdc:https:/ui.shadcn.com)组件库，这是一套基于Radix UI的可定制组件集合。所有组件都预先安装在`src/components/ui/`目录中：
+
+- **布局组件**：Card, AspectRatio, Separator, ScrollArea
+- **导航组件**：Tabs, NavigationMenu, Menubar, Dropdown
+- **表单组件**：Button, Input, Checkbox, RadioGroup, Select, Switch, Slider
+- **反馈组件**：Toast, Dialog, AlertDialog, Tooltip
+- **数据展示**：Table, Avatar, Badge, Progress
+
+使用示例：
+```tsx
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+const MyComponent = () => (
+  <Card>
+    <CardHeader>
+      <CardTitle>标题</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <Button>点击我</Button>
+    </CardContent>
+  </Card>
+);
+```
+
+## 数据可视化 - Recharts
+
+[Recharts](mdc:https:/recharts.org)是一个基于React的图表库，用于创建响应式数据可视化：
+
+```tsx
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
+const data = [
+  { name: '第一季度', 销量: 4000 },
+  { name: '第二季度', 销量: 3000 },
+  // ...
+];
+
+const Chart = () => (
+  <BarChart width={600} height={300} data={data}>
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="name" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Bar dataKey="销量" fill="#8884d8" />
+  </BarChart>
+);
+```
+
+## 图标库 - Lucide React
+
+[Lucide React](mdc:https:/lucide.dev)提供了300多个精美的开源图标：
+
+```tsx
+import { Home, Settings, User, ChevronRight } from 'lucide-react';
+
+const IconDemo = () => (
+  <div className="flex gap-4">
+    <Home size={24} />
+    <Settings size={24} />
+    <User size={24} />
+    <ChevronRight size={24} />
+  </div>
+);
+```
+
+## 样式 - Tailwind CSS
+
+[Tailwind CSS](mdc:https:/tailwindcss.com)用于快速设计UI：
+
+```tsx
+<div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+  <h3 className="text-lg font-semibold text-gray-800">卡片标题</h3>
+  <p className="text-sm text-gray-500">详细内容</p>
+</div>
+```
+
+## 表单处理 - React Hook Form
+
+用于创建和验证表单：
+
+```tsx
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const formSchema = z.object({
+  username: z.string().min(2),
+  email: z.string().email(),
+});
+
+function Form() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: { username: "", email: "" },
+  });
+  
+  function onSubmit(values) {
+    console.log(values);
+  }
+  
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      {/* 表单字段 */}
+    </form>
+  );
+}
+```
+
+## 动画效果 - Framer Motion
+
+[Framer Motion](mdc:https:/www.framer.com/motion)提供了简单而强大的动画能力：
+
+```tsx
+import { motion } from "framer-motion";
+
+const AnimatedComponent = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+  >
+    内容将淡入显示
+  </motion.div>
+);
+```
