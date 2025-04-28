@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, 
   AreaChart, Area, Tooltip, Legend, ResponsiveContainer,
@@ -14,121 +14,193 @@ const GitVisualization = () => {
 
   const commitData = [
     {
-      message: "更新可研方案内容，修改政策依据文件，调整总体设计章节",
-      hash: "5f0d81f9",
+      message: "更新可研方案内容，修改政策依据文件，调整总体设计章节，增强安全性和可扩展性，删除无效文档，优化信息资源共享分析和效益评价指标，确保项目符合最新要求。",
+      hash: "5f0d81f9b4b16475717e91ec3837bf86baaa2b58",
       added: 16403,
       deleted: 7888,
-      date: "2025-04-20",
-      time: "09:15",
+      date: "2025-04-24",
+      time: "19:36:14",
       files: 12
     },
     {
-      message: "更新可研方案中的总体设计章节，替换架构图链接",
-      hash: "95d14800",
+      message: "更新可研方案中的总体设计章节，替换架构图链接，增加技术路线与选型部分，详细描述技术架构设计及实施策略，确保平台的安全性、可扩展性和高效性。",
+      hash: "95d148002a294071027c24cac99e1297f80cf67d",
       added: 16537,
       deleted: 229,
-      date: "2025-04-21",
-      time: "10:30",
+      date: "2025-04-24",
+      time: "20:20:06",
       files: 5
     },
     {
-      message: "更新可研方案总体设计章节，新增数据要素价值驱动原则",
-      hash: "70ee389b",
+      message: "更新可研方案总体设计章节，新增数据要素价值驱动原则及实现策略，强调数据在经济发展中的核心作用，完善平台架构描述，确保与国家政策的对接及数据流通机制的高效性。",
+      hash: "70ee389b414ff1cf59f0deede36098339e359d4d",
       added: 1211,
       deleted: 389,
-      date: "2025-04-21",
-      time: "14:45",
+      date: "2025-04-24",
+      time: "20:34:35",
       files: 3
     },
     {
-      message: "更新可研方案总体设计章节，新增隐私计算和数据治理",
-      hash: "59036f88",
+      message: "更新可研方案总体设计章节，新增隐私计算和数据治理的详细措施，强调数据主权和安全流通保障，完善数据安全监管机制，确保平台在数据安全和隐私保护方面的有效性与合规性。",
+      hash: "59036f88337f4f748dd04ccb8c446a0de2ad25d8",
       added: 1292,
       deleted: 515,
-      date: "2025-04-21",
-      time: "16:20",
+      date: "2025-04-24",
+      time: "20:55:38",
       files: 2
     },
     {
-      message: "重新设计可研方案中多个章节，包括项目概况",
-      hash: "ff0f67c3",
+      message: "重新设计可研方案中多个章节，包括项目概况、建设单位概况、现状分析、需求分析及项目必要性等，精简文档内容，确保信息的集中与高效，提升可研方案的整体可读性与实用性。",
+      hash: "ff0f67c3b8bf56f7ee171b2c68ada4ea2d2376d6",
       added: 67775,
       deleted: 516499,
-      date: "2025-04-22",
-      time: "11:05",
+      date: "2025-04-25",
+      time: "12:11:17",
       files: 18
     },
     {
-      message: "更新可研方案第3章和第5章，调整需求分析",
-      hash: "e3696361",
+      message: "更新可研方案第3章和第5章，调整需求分析与项目建设方案的内容，优化章节标题格式，确保信息的清晰性与一致性，提升文档的可读性和实用性。",
+      hash: "e3696361377ce33a56532f5c67653ccfd7dd067c",
       added: 269052,
       deleted: 32999,
-      date: "2025-04-23",
-      time: "09:30",
+      date: "2025-04-25",
+      time: "12:15:25",
       files: 8
     },
     {
-      message: "调整可研方案第5章：本期项目建设方案",
-      hash: "f2256572",
+      message: "调整可研方案第5章：本期项目建设方案，按章二级标题分隔出不同的文件",
+      hash: "f225657263a618b887cdf244cba2a2abf883f2af",
       added: 259437,
       deleted: 269074,
-      date: "2025-04-23",
-      time: "14:15",
+      date: "2025-04-25",
+      time: "12:23:41",
       files: 15
     },
     {
-      message: "删除多张不再使用的媒体文件，优化项目资源管理",
-      hash: "fb2788a8",
+      message: "删除多张不再使用的媒体文件，优化项目资源管理。",
+      hash: "fb2788a83bff97a0351dce1bba164866b9baf76a",
       added: 0,
       deleted: 0,
-      date: "2025-04-24",
-      time: "10:10",
+      date: "2025-04-25",
+      time: "12:53:42",
       files: 23
     },
     {
-      message: "更新合同要求、可研报告编制指南及相关章节",
-      hash: "acb22cff",
+      message: "更新合同要求、可研报告编制指南及相关章节，调整内容结构，增强逻辑性与可读性，明确项目目标与政策依据，删除不再使用的图像资源和招投标文档，确保文档信息的准确性与一致性。",
+      hash: "acb22cff3c354ec7f496d7fe6d76e80b78120a2a",
       added: 8076,
       deleted: 3887,
-      date: "2025-04-24",
-      time: "15:45",
+      date: "2025-04-25",
+      time: "12:53:51",
       files: 6
     },
     {
-      message: "更新可研方案第1章和第3章，调整政策依据",
-      hash: "4f1abaf3",
+      message: "更新可研方案第1章和第3章，调整政策依据和系统功能分析内容，优化章节结构，增强逻辑性与可读性，确保信息的准确性与一致性，提升数据资源管理和服务功能的描述，支持自治区数字政府建设的整体目标。",
+      hash: "4f1abaf36bbc8d6c9ecc17ca9a256e11034e657b",
       added: 35166,
       deleted: 10608,
       date: "2025-04-25",
-      time: "11:20",
+      time: "21:36:15",
       files: 9
     },
     {
-      message: "更新自治区一体化数据资源体系相关文件",
-      hash: "edb31440",
+      message: "更新自治区一体化数据资源体系相关文件，新增建设方案、数据治理、政策依据等内容，优化章节结构与逻辑性，确保信息准确性与一致性，支持数字政府建设目标的实现。",
+      hash: "edb31440be70409185b2bc17cf18756e49bb49ec",
       added: 422020,
       deleted: 27102,
-      date: "2025-04-25",
-      time: "16:30",
+      date: "2025-04-27",
+      time: "20:16:28",
       files: 27
     },
     {
-      message: "更新可研方案第3章，优化数据治理需求",
-      hash: "24e7ff1c",
+      message: "更新可研方案第3章，优化数据治理需求、数据共享开放需求及数据运营需求分析，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "24e7ff1c16be9c16f5d285c5bc8150d79d14a076",
       added: 22031,
       deleted: 8394,
-      date: "2025-04-26",
-      time: "09:50",
+      date: "2025-04-27",
+      time: "20:17:29",
       files: 4
     },
     {
-      message: "更新可研方案第3章，优化数据汇聚、数据治理及数据共享",
-      hash: "2d043d37",
+      message: "更新可研方案第3章，优化数据汇聚、数据治理及数据共享开放需求的描述，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "2d043d371f3979d406f17da4055bfd7ee64eeba8",
       added: 8438,
       deleted: 6447,
-      date: "2025-04-26",
-      time: "14:25",
+      date: "2025-04-27",
+      time: "21:03:28",
       files: 5
+    },
+    {
+      message: "更新可研方案第3章，进一步优化数据资源管理、数据共享开放及数据开发应用的描述，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "901eb2e193e9a7d596e438735ad764a681ed0ddf",
+      added: 1542,
+      deleted: 4402,
+      date: "2025-04-28",
+      time: "00:19:51",
+      files: 3
+    },
+    {
+      message: "更新可研方案第3章，调整数据共享与开放需求、数据资源登记与交易需求及数据产权保护需求的描述，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "b9b1755cb0b2d37ecd39ad794e7d19dc15852525",
+      added: 2384,
+      deleted: 2832,
+      date: "2025-04-28",
+      time: "14:24:53",
+      files: 4
+    },
+    {
+      message: "更新可研方案第1章、第2章、第7章、第8章、第9章、第10章、第11章、第13章、第14章及第5章，调整项目建设单位、项目实施机构、招标方案、环保与安全、节能分析、组织与培训、实施进度、效益与评价指标、风险管理等内容，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "7b11e01bab7c548eaa4ddfa6fef16b8d80061532",
+      added: 114531,
+      deleted: 18062,
+      date: "2025-04-28",
+      time: "15:06:25",
+      files: 10
+    },
+    {
+      message: "第4章【初稿】，优化分级分类安全管理、建设思路及平台建设内容，增强逻辑性与可读性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "45d13767b3ccf31dab592e286b6df93a8e0bb432",
+      added: 1409,
+      deleted: 686,
+      date: "2025-04-28",
+      time: "15:06:53",
+      files: 2
+    },
+    {
+      message: "更新可研方案，新增数据资源现状分析、灾备系统建设方案及密码应用建设方案，优化章节结构与逻辑性，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "24add6cb0951e7ecd772961a96dcc598b8baaf7c",
+      added: 413483,
+      deleted: 277614,
+      date: "2025-04-28",
+      time: "22:31:46",
+      files: 15
+    },
+    {
+      message: "更新可研方案第5章，调整项目目标、规模与内容、系统业务运营服务方案的章节结构，优化内容逻辑，删除不再使用的容灾备份系统建设方案、第三方服务方案及相关说明，确保信息的准确性与一致性，支持自治区数字政府建设目标的实现。",
+      hash: "bfe13a1d133b87a9fe2ad8e508f2286743e507f7",
+      added: 1145,
+      deleted: 5266,
+      date: "2025-04-28",
+      time: "22:47:08",
+      files: 3
+    },
+    {
+      message: "更新可研方案，调整多个章节中对地市的表述，统一为'地（州、市）'，确保信息的一致性与准确性，支持自治区数字政府建设目标的实现。",
+      hash: "b6fbdd5f53939399c83c841282ad6167e1026ef2",
+      added: 21656,
+      deleted: 16648,
+      date: "2025-04-29",
+      time: "00:15:10",
+      files: 8
+    },
+    {
+      message: "更新log.sh脚本，修改获取提交信息的格式，新增提交时间的输出，增强信息的完整性与可读性。",
+      hash: "cf7ee65d0162cb22b4903617c0cfa965458c31c9",
+      added: 159,
+      deleted: 22,
+      date: "2025-04-29",
+      time: "00:26:11",
+      files: 1
     }
   ];
 
@@ -136,7 +208,7 @@ const GitVisualization = () => {
   const chronologicalData = [...commitData].sort((a, b) => {
     const dateA = new Date(`${a.date} ${a.time}`);
     const dateB = new Date(`${b.date} ${b.time}`);
-    return dateA - dateB;
+    return dateA.getTime() - dateB.getTime();
   });
 
   // 计算总计
@@ -152,29 +224,28 @@ const GitVisualization = () => {
   // 根据类型分类提交（按主要修改内容）
   const commitTypeData = [
     { name: '架构设计', value: 35443 },
-    { name: '数据治理', value: 38412 },
-    { name: '文档重构', value: 596274 },
+    { name: '数据治理', value: 68881 },
+    { name: '文档重构', value: 797723 },
     { name: '需求分析', value: 334829 },
-    { name: '功能优化', value: 122480 }
+    { name: '功能优化', value: 446712 }
   ];
 
   // 章节修改分布
   const chapterData = [
-    { name: '第1章：项目概述', value: 24580 },
-    { name: '第2章：现状分析', value: 67775 },
-    { name: '第3章：需求分析', value: 88869 },
-    { name: '第4章：设计方案', value: 35443 },
-    { name: '第5章：建设方案', value: 528489 },
-    { name: '第6章：投资估算', value: 8076 },
-    { name: '其他章节', value: 374206 }
+    { name: '第1章：项目概述', value: 73402 },
+    { name: '第2章：现状分析', value: 481258 },
+    { name: '第3章：需求分析', value: 338632 },
+    { name: '第4章：设计方案', value: 36685 },
+    { name: '第5章：建设方案', value: 383358 },
+    { name: '其他章节', value: 370253 }
   ];
 
   // 计算文件变更强度
   const fileIntensityData = [
-    { name: '1-5个文件', count: 6 },
-    { name: '6-10个文件', count: 3 },
-    { name: '11-20个文件', count: 3 },
-    { name: '21+个文件', count: 1 }
+    { name: '1-5个文件', count: 8 },
+    { name: '6-10个文件', count: 6 },
+    { name: '11-20个文件', count: 4 },
+    { name: '21+个文件', count: 2 }
   ];
 
   // 数据过滤
@@ -281,7 +352,12 @@ const GitVisualization = () => {
   };
 
   // 自定义提示框
-  const CustomTooltip = ({ active, payload, label, valuePrefix }) => {
+  const CustomTooltip = ({ active, payload, label, valuePrefix }: {
+    active?: boolean;
+    payload?: any[];
+    label?: string;
+    valuePrefix?: string;
+  }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-200 rounded shadow-lg">
@@ -298,10 +374,10 @@ const GitVisualization = () => {
   };
 
   // 简化提交哈希
-  const shortenHash = (hash) => hash.substring(0, 8);
+  const shortenHash = (hash) => hash.substring(0, 7);
 
   // 生成时间线数据
-  const timelineData = chronologicalData.map((commit, index) => {
+  const timelineData = chronologicalData.map((commit) => {
     return {
       name: shortenHash(commit.hash),
       added: commit.added,
@@ -316,7 +392,7 @@ const GitVisualization = () => {
   let cumulativeAdded = 0;
   let cumulativeDeleted = 0;
 
-  chronologicalData.forEach((commit, index) => {
+  chronologicalData.forEach((commit) => {
     cumulativeAdded += commit.added;
     cumulativeDeleted += commit.deleted;
     
@@ -743,7 +819,7 @@ const GitVisualization = () => {
               <h2 className="text-lg font-semibold mb-4">添加/删除比例走势</h2>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={chronologicalData.map((commit, index) => ({
+                  <AreaChart data={chronologicalData.map((commit) => ({
                     name: shortenHash(commit.hash),
                     ratio: commit.deleted === 0 ? (commit.added === 0 ? 0 : 100) : Math.min(100, Math.round(commit.added / commit.deleted * 100))
                   }))}>
@@ -847,7 +923,7 @@ const GitVisualization = () => {
                   
                   {sortedCommits.length === 0 && (
                     <tr>
-                      <td colSpan="6" className="px-6 py-4 text-center text-sm text-gray-500">
+                      <td colSpan={6} className="px-6 py-4 text-center text-sm text-gray-500">
                         未找到匹配的提交记录
                       </td>
                     </tr>
@@ -862,7 +938,7 @@ const GitVisualization = () => {
           <p>Git提交统计可视化 &copy; 2025 | 共分析 {commitData.length} 次提交</p>
           <div className="flex justify-center mt-2 space-x-3">
             <GitBranch className="w-4 h-4" />
-            <span>基于 React 和 Recharts 构建</span>
+            <span>总添加: {formatNumber(totalStats.added)} | 总删除: {formatNumber(totalStats.deleted)} | 净变更: {formatNumber(netChange)}</span>
           </div>
         </footer>
       </div>
