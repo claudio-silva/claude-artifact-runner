@@ -5,8 +5,22 @@ import {
   Users, Zap, 
   Check, FileText, Compass, Lightbulb, Target, 
   Network, Phone, Mail, MapPin, Brain, TrendingDown, Activity, Shield, Database,
-  Building, Calendar, Briefcase, GitBranch, Globe, Cpu, Layers, Wrench
+  Building, Calendar, Briefcase, GitBranch, Globe, Cpu, Layers, Wrench,
+  ChevronRight, ArrowUpRight, Star, Award, Grid, LayoutDashboard, Sparkles
 } from 'lucide-react';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SouthernPropertyPlatform = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -66,61 +80,86 @@ const SouthernPropertyPlatform = () => {
   return (
     <div className={`${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-800'} min-h-screen transition-colors duration-300`}>
       {/* 顶部导航栏 */}
-      <header className={`fixed top-0 left-0 right-0 z-50 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'} border-b shadow-sm`}>
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className={`fixed top-0 left-0 right-0 z-50 ${darkMode ? 'bg-gray-900/95 backdrop-blur-sm border-gray-800' : 'bg-white/95 backdrop-blur-sm border-gray-200'} border-b shadow-md`}>
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold md:text-2xl">AI咨询规划 | 数智化转型解决方案</h1>
+            <div className={`mr-3 rounded-full p-2 ${darkMode ? 'bg-blue-500/20' : 'bg-blue-500/10'}`}>
+              <LayoutDashboard size={22} className={`${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            </div>
+            <h1 className="text-xl font-bold md:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+              AI咨询规划 | 数智化转型解决方案
+            </h1>
           </div>
           
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             {/* 主题切换按钮 */}
-            <button 
-              onClick={toggleDarkMode} 
-              className={`p-2 rounded-full ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-800'} mr-4`}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleDarkMode}
+              className={`rounded-full ${darkMode ? 'text-yellow-400 hover:text-yellow-300 hover:bg-gray-800' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}
               aria-label="切换深色/浅色模式"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            </Button>
             
             {/* 桌面导航菜单 */}
-            <nav className="hidden md:flex">
-              <ul className="flex space-x-6">
+            <nav className="hidden md:flex ml-2">
+              <ul className="flex space-x-1">
                 {navItems.map(item => (
                   <li key={item.id}>
-                    <button
+                    <Button
+                      variant="ghost"
                       onClick={() => scrollToSection(item.id)}
-                      className={`${activeSection === item.id ? (darkMode ? 'text-blue-400' : 'text-blue-600') : ''} hover:opacity-80 transition-opacity`}
+                      className={cn(
+                        "rounded-full px-3 py-2 text-sm font-medium transition-all",
+                        activeSection === item.id 
+                          ? (darkMode 
+                              ? "bg-blue-950/70 text-blue-300" 
+                              : "bg-blue-100 text-blue-700")
+                          : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                      )}
                     >
                       {item.label}
-                    </button>
+                    </Button>
                   </li>
                 ))}
               </ul>
             </nav>
             
             {/* 移动端菜单按钮 */}
-            <button 
+            <Button 
+              variant="ghost"
+              size="icon"
               onClick={toggleMenu} 
-              className="md:hidden p-2"
+              className="md:hidden"
               aria-label="菜单"
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </Button>
           </div>
         </div>
         
         {/* 移动端下拉菜单 */}
         {menuOpen && (
-          <div className={`md:hidden ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'} border-t`}>
-            <ul className="py-2">
+          <div className={`md:hidden ${darkMode ? 'bg-gray-900/95 backdrop-blur-sm border-gray-800' : 'bg-white/95 backdrop-blur-sm border-gray-200'} border-t`}>
+            <ul className="py-2 px-2 grid grid-cols-2 gap-1">
               {navItems.map(item => (
-                <li key={item.id} className="px-4 py-2">
-                  <button
+                <li key={item.id}>
+                  <Button
+                    variant={activeSection === item.id ? "default" : "ghost"}
                     onClick={() => scrollToSection(item.id)}
-                    className={`${activeSection === item.id ? (darkMode ? 'text-blue-400' : 'text-blue-600') : ''} w-full text-left`}
+                    className={cn(
+                      "w-full justify-start text-left",
+                      activeSection === item.id 
+                        ? (darkMode 
+                            ? "bg-blue-600/70 hover:bg-blue-600/80" 
+                            : "bg-blue-600 hover:bg-blue-600/90")
+                        : ""
+                    )}
                   >
                     {item.label}
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
@@ -133,93 +172,139 @@ const SouthernPropertyPlatform = () => {
         {/* 项目概览 */}
         <section id="overview" className="mb-24">
           <div className="max-w-5xl mx-auto">
-            <div className={`${darkMode ? 'bg-gradient-to-br from-gray-800 to-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-100'} p-6 md:p-10 rounded-xl shadow-lg mb-8 relative overflow-hidden`}>
+            <Card className={`${darkMode ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' : 'bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-100'} mb-8 relative overflow-hidden shadow-lg`}>
               {/* 装饰元素 */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-blue-500 opacity-10 blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-500 opacity-10 blur-3xl"></div>
+              <div className="absolute bottom-10 left-10 w-40 h-40 rounded-full bg-purple-500 opacity-10 blur-2xl animate-pulse"></div>
+              <div className="absolute top-1/2 right-1/3 w-24 h-24 rounded-full bg-indigo-500 opacity-5 blur-xl"></div>
               
-              <div className="relative z-10">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                  <div>
-                    <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">某产权数智型交易平台</h1>
-                    <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-500 dark:text-gray-300">成熟度评估与建设路径咨询项目</h2>
+              <CardContent className="relative z-10 p-6 md:p-8 lg:p-10">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+                  <div className="max-w-3xl">
+                    <div className="flex items-center mb-2">
+                      <Badge variant="outline" className={`${darkMode ? 'border-blue-700 bg-blue-950/50 text-blue-300' : 'border-blue-200 bg-blue-50 text-blue-700'} rounded-full px-3 py-1 text-xs font-medium`}>
+                        <Sparkles size={12} className="mr-1" /> 咨询项目案例
+                      </Badge>
+                    </div>
+                    <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                      某产权数智型交易平台
+                    </h1>
+                    <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-600 dark:text-gray-300">
+                      成熟度评估与建设路径咨询项目
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                      本项目旨在帮助某产权交易中心构建数智型交易平台，提升数字化成熟度，加速业务转型升级。通过系统性评估与规划，为客户提供全面的数字化转型解决方案。
+                    </p>
                   </div>
-                  <div className={`hidden md:block ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                    <Database size={48} className="opacity-80" />
+                  
+                  <div className={`${darkMode ? 'bg-blue-900/20' : 'bg-blue-100/50'} backdrop-blur-sm p-4 rounded-2xl hidden lg:flex flex-col items-center justify-center min-w-40`}>
+                    <Database size={52} className={`${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-3 opacity-90`} />
+                    <Badge variant="secondary" className="font-semibold mb-1">数智化转型</Badge>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">2024年项目</span>
                   </div>
                 </div>
                 
-                <div 
-                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                >
-                  <div className={`p-5 rounded-lg ${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-70'} backdrop-blur-sm shadow-md`}>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                      <FileText size={18} className="mr-2 text-blue-500" />
-                      项目信息
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <Building size={16} className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                        <div>
-                          <span className="font-medium">客户:</span>
-                          <span className="ml-2">某产权交易中心有限责任公司</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className={`border-0 ${darkMode ? 'bg-gray-800/60' : 'bg-white/80'} backdrop-blur-sm shadow-md`}>
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center">
+                        <div className={`p-2 rounded-full mr-3 ${darkMode ? 'bg-blue-900/30' : 'bg-blue-100'}`}>
+                          <FileText size={20} className="text-blue-500" />
                         </div>
-                      </li>
-                      <li className="flex items-start">
-                        <Calendar size={16} className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                        <div>
-                          <span className="font-medium">项目周期:</span>
-                          <span className="ml-2">2024年</span>
-                        </div>
-                      </li>
-                      <li className="flex items-start">
-                        <Briefcase size={16} className={`mt-1 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                        <div>
-                          <span className="font-medium">服务类型:</span>
-                          <span className="ml-2">数字化成熟度评估与转型规划咨询</span>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                        <CardTitle className="text-lg">项目信息</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-3">
+                        <li className="flex items-start">
+                          <Building size={16} className={`mt-1 mr-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                          <div>
+                            <span className="font-medium">客户:</span>
+                            <span className="ml-2">某产权交易中心有限责任公司</span>
+                          </div>
+                        </li>
+                        <li className="flex items-start">
+                          <Calendar size={16} className={`mt-1 mr-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                          <div>
+                            <span className="font-medium">项目周期:</span>
+                            <span className="ml-2">2024年</span>
+                          </div>
+                        </li>
+                        <li className="flex items-start">
+                          <Briefcase size={16} className={`mt-1 mr-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                          <div>
+                            <span className="font-medium">服务类型:</span>
+                            <span className="ml-2">数字化成熟度评估与转型规划咨询</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                   
-                  <div className={`p-5 rounded-lg ${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-70'} backdrop-blur-sm shadow-md`}>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                      <Users size={18} className="mr-2 text-blue-500" />
-                      咨询团队
-                    </h3>
-                    <p className="mb-3">由7位专家组成，涵盖多个专业领域：</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-blue-900 bg-opacity-50 text-blue-300' : 'bg-blue-100 text-blue-800'}`}>数字化转型</span>
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-green-900 bg-opacity-50 text-green-300' : 'bg-green-100 text-green-800'}`}>产权交易</span>
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-purple-900 bg-opacity-50 text-purple-300' : 'bg-purple-100 text-purple-800'}`}>数据治理</span>
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-orange-900 bg-opacity-50 text-orange-300' : 'bg-orange-100 text-orange-800'}`}>IT架构</span>
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-red-900 bg-opacity-50 text-red-300' : 'bg-red-100 text-red-800'}`}>业务创新</span>
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium ${darkMode ? 'bg-indigo-900 bg-opacity-50 text-indigo-300' : 'bg-indigo-100 text-indigo-800'}`}>AI战略</span>
-                    </div>
-                  </div>
+                  <Card className={`border-0 ${darkMode ? 'bg-gray-800/60' : 'bg-white/80'} backdrop-blur-sm shadow-md`}>
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center">
+                        <div className={`p-2 rounded-full mr-3 ${darkMode ? 'bg-blue-900/30' : 'bg-blue-100'}`}>
+                          <Users size={20} className="text-blue-500" />
+                        </div>
+                        <CardTitle className="text-lg">咨询团队</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="mb-3">由7位专家组成，涵盖多个专业领域：</p>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-blue-900/50 hover:bg-blue-900/70 text-blue-300' : 'bg-blue-100 hover:bg-blue-200 text-blue-800'}`}>
+                          数字化转型
+                        </Badge>
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-green-900/50 hover:bg-green-900/70 text-green-300' : 'bg-green-100 hover:bg-green-200 text-green-800'}`}>
+                          产权交易
+                        </Badge>
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-purple-900/50 hover:bg-purple-900/70 text-purple-300' : 'bg-purple-100 hover:bg-purple-200 text-purple-800'}`}>
+                          数据治理
+                        </Badge>
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-orange-900/50 hover:bg-orange-900/70 text-orange-300' : 'bg-orange-100 hover:bg-orange-200 text-orange-800'}`}>
+                          IT架构
+                        </Badge>
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-red-900/50 hover:bg-red-900/70 text-red-300' : 'bg-red-100 hover:bg-red-200 text-red-800'}`}>
+                          业务创新
+                        </Badge>
+                        <Badge variant="secondary" className={`${darkMode ? 'bg-indigo-900/50 hover:bg-indigo-900/70 text-indigo-300' : 'bg-indigo-100 hover:bg-indigo-200 text-indigo-800'}`}>
+                          AI战略
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
             
-            <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p className="text-xl leading-relaxed">本项目旨在帮助某产权交易中心构建数智型交易平台，提升数字化成熟度，加速业务转型升级。通过系统性评估与规划，我们为客户提供了全面的数字化转型解决方案，助力其在数字经济时代保持竞争优势。</p>
+            <div className="prose prose-lg max-w-none dark:prose-invert mt-8">              
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Badge className="gap-1 px-3 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800">
+                  <Zap size={16} /> 数字化转型
+                </Badge>
+                <Badge className="gap-1 px-3 py-1.5 text-sm bg-emerald-600 hover:bg-emerald-700 text-white dark:bg-emerald-700 dark:hover:bg-emerald-800">
+                  <BarChart2 size={16} /> 成熟度评估
+                </Badge>
+                <Badge className="gap-1 px-3 py-1.5 text-sm bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-700 dark:hover:bg-purple-800">
+                  <MapPin size={16} /> 路径规划
+                </Badge>
+                <Badge className="gap-1 px-3 py-1.5 text-sm bg-amber-600 hover:bg-amber-700 text-white dark:bg-amber-700 dark:hover:bg-amber-800">
+                  <Database size={16} /> 数据治理
+                </Badge>
+                <Badge className="gap-1 px-3 py-1.5 text-sm bg-indigo-600 hover:bg-indigo-700 text-white dark:bg-indigo-700 dark:hover:bg-indigo-800">
+                  <Wrench size={16} /> AI规划咨询
+                </Badge>
+              </div>
               
-              <div className="flex flex-wrap gap-4 mt-6">
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-blue-900 bg-opacity-30 text-blue-300' : 'bg-blue-100 text-blue-800'}`}>
-                  <Zap size={16} className="mr-1" /> 数字化转型
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-green-900 bg-opacity-30 text-green-300' : 'bg-green-100 text-green-800'}`}>
-                  <BarChart2 size={16} className="mr-1" /> 成熟度评估
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-purple-900 bg-opacity-30 text-purple-300' : 'bg-purple-100 text-purple-800'}`}>
-                  <MapPin size={16} className="mr-1" /> 路径规划
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-orange-900 bg-opacity-30 text-orange-300' : 'bg-orange-100 text-orange-800'}`}>
-                  <Database size={16} className="mr-1" /> 数据治理
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900 bg-opacity-30 text-indigo-300' : 'bg-indigo-100 text-indigo-800'}`}>
-                  <Wrench size={16} className="mr-1" /> AI规划咨询
-                </span>
+              <div className={`p-6 rounded-xl border ${darkMode ? 'border-gray-800 bg-gray-800/30' : 'border-gray-200 bg-gray-50'}`}>
+                <h3 className="text-xl font-medium mb-3 flex items-center">
+                  <Award size={20} className={`mr-2 ${darkMode ? 'text-amber-400' : 'text-amber-500'}`} />
+                  项目价值
+                </h3>
+                <p className="text-lg leading-relaxed mb-0">
+                  通过本项目的实施，帮助产权交易中心在数字经济时代保持竞争优势，提升业务效率，创新服务模式，打造数智化转型标杆。
+                </p>
               </div>
             </div>
           </div>
@@ -228,208 +313,380 @@ const SouthernPropertyPlatform = () => {
         {/* 项目背景与挑战 */}
         <section id="background" className="mb-24">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">项目背景与挑战</h2>
-            
-            <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
-              <p>某产权交易中心作为广东省属国有资本市场的重要平台，肩负着以阳光交易、发现价格、发现价值的方式促进国有资本存量流动、优化配置的重要使命。面临数字经济发展新形势下的多重挑战：</p>
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${darkMode ? 'bg-red-900/30' : 'bg-red-100'}`}>
+                <TrendingDown size={20} className={darkMode ? 'text-red-400' : 'text-red-600'} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">项目背景与挑战</h2>
             </div>
+            <Separator className={`mb-8 ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`} />
+            
+            <Card className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-blue-50/50 border-blue-100'} mb-10`}>
+              <CardContent className="pt-6">
+                <p className="text-lg leading-relaxed">
+                  某产权交易中心作为广东省属国有资本市场的重要平台，肩负着以阳光交易、发现价格、发现价值的方式促进国有资本存量流动、优化配置的重要使命。面临数字经济发展新形势下的多重挑战：
+                </p>
+              </CardContent>
+            </Card>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                <h3 className="text-xl font-semibold mb-4">行业竞争挑战</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>沪深交易所等传统证券类交易场所加大创新力度</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>北京产权交易所等同业机构布局粤港澳大湾区</span>
-                  </li>
-                </ul>
-              </div>
+              <Card className={`border ${darkMode ? 'border-gray-700 bg-gradient-to-br from-gray-800 to-gray-800/80' : 'border-blue-200 bg-gradient-to-br from-blue-50 to-slate-50'} shadow-md overflow-hidden`}>
+                <div className={`h-2 ${darkMode ? 'bg-red-700' : 'bg-red-500'}`}></div>
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <TrendingDown size={18} className={darkMode ? 'text-red-400' : 'text-red-600'} />
+                    行业竞争挑战
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">1</Badge>
+                      <span>沪深交易所等传统证券类交易场所加大创新力度</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">2</Badge>
+                      <span>北京产权交易所等同业机构布局粤港澳大湾区</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                <h3 className="text-xl font-semibold mb-4">数据价值挑战</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>存在"信息孤岛"问题，数据共享机制不完善</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>无法充分发挥数据要素价值，难以支撑精准决策</span>
-                  </li>
-                </ul>
-              </div>
+              <Card className={`border ${darkMode ? 'border-gray-700 bg-gradient-to-br from-gray-800 to-gray-800/80' : 'border-blue-200 bg-gradient-to-br from-blue-50 to-slate-50'} shadow-md overflow-hidden`}>
+                <div className={`h-2 ${darkMode ? 'bg-yellow-700' : 'bg-yellow-500'}`}></div>
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Database size={18} className={darkMode ? 'text-yellow-400' : 'text-yellow-600'} />
+                    数据价值挑战
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">1</Badge>
+                      <span>存在"信息孤岛"问题，数据共享机制不完善</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">2</Badge>
+                      <span>无法充分发挥数据要素价值，难以支撑精准决策</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                <h3 className="text-xl font-semibold mb-4">系统协同挑战</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>核心业务系统间集成度不高，跨系统协同效率低下</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>难以提供一站式综合服务</span>
-                  </li>
-                </ul>
-              </div>
+              <Card className={`border ${darkMode ? 'border-gray-700 bg-gradient-to-br from-gray-800 to-gray-800/80' : 'border-blue-200 bg-gradient-to-br from-blue-50 to-slate-50'} shadow-md overflow-hidden`}>
+                <div className={`h-2 ${darkMode ? 'bg-indigo-700' : 'bg-indigo-500'}`}></div>
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Network size={18} className={darkMode ? 'text-indigo-400' : 'text-indigo-600'} />
+                    系统协同挑战
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">1</Badge>
+                      <span>核心业务系统间集成度不高，跨系统协同效率低下</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">2</Badge>
+                      <span>难以提供一站式综合服务</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                <h3 className="text-xl font-semibold mb-4">转型规划挑战</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>数字化建设处于"零散化探索阶段"</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>缺乏整体战略引领和科学评估体系</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                    <span>数字化专业人才队伍建设滞后，复合型人才储备不足</span>
-                  </li>
-                </ul>
-              </div>
+              <Card className={`border ${darkMode ? 'border-gray-700 bg-gradient-to-br from-gray-800 to-gray-800/80' : 'border-blue-200 bg-gradient-to-br from-blue-50 to-slate-50'} shadow-md overflow-hidden`}>
+                <div className={`h-2 ${darkMode ? 'bg-blue-700' : 'bg-blue-500'}`}></div>
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Brain size={18} className={darkMode ? 'text-blue-400' : 'text-blue-600'} />
+                    转型规划挑战
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">1</Badge>
+                      <span>数字化建设处于"零散化探索阶段"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">2</Badge>
+                      <span>缺乏整体战略引领和科学评估体系</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Badge variant="outline" className="rounded-full min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5">3</Badge>
+                      <span>数字化专业人才队伍建设滞后，复合型人才储备不足</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
+            
+            <Card className={`${darkMode ? 'bg-red-900/20 border-red-900/30' : 'bg-red-50 border-red-200'} p-4 mt-6`}>
+              <CardContent className="p-2 flex items-start gap-3">
+                <div className="mt-1">
+                  <Shield size={24} className={darkMode ? 'text-red-400' : 'text-red-600'} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium mb-1">挑战总结</h4>
+                  <p className="leading-relaxed">
+                    在此背景下，产权交易中心亟需开展系统性评估，找准定位，明晰路径，加快构建数智型交易平台，实现高质量发展。
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
         {/* 咨询方法与流程 */}
         <section id="methodology" className="mb-24">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">咨询方法与流程</h2>
-            
-            <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
-              <p>我们采用整体性、系统化的咨询方法，确保评估全面客观、规划切实可行：</p>
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${darkMode ? 'bg-blue-900/30' : 'bg-blue-100'}`}>
+                <GitBranch size={20} className={darkMode ? 'text-blue-400' : 'text-blue-600'} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">咨询方法与流程</h2>
             </div>
+            <Separator className={`mb-8 ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`} />
             
-            <div className="space-y-10">
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">1. 指标体系构建阶段</h3>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">理论研究:</span>
-                      <span>深入研究企业组织理论、流程再造理论、变革管理理论和数字化成熟度模型</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">标杆分析:</span>
-                      <span>考察行业领先机构实践，提炼数字化转型关键成功因素</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">专家研讨:</span>
-                      <span>召开多轮专家讨论会，凝聚行业共识，优化评估框架</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">指标设计:</span>
-                      <span>构建8大能力要素×19个能力域×38个能力子域三级评估框架</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">指标验证:</span>
-                      <span>通过试评估验证指标体系的科学性和可操作性，并进行优化完善</span>
-                    </li>
-                  </ul>
-                  
-                  <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">数字化治理</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">数据管理</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">数字化基础设施</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">产品和服务数字化</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">经营管理数字化</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">运营数字化</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">内控体系数字化</p>
-                    </div>
-                    <div className={`p-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                      <p className="text-sm font-medium">可持续发展基础</p>
-                    </div>
+            <Card className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-blue-50/50 border-blue-100'} mb-10`}>
+              <CardContent className="pt-6">
+                <p className="text-lg leading-relaxed">
+                  我们采用整体性、系统化的咨询方法，确保评估全面客观、规划切实可行：
+                </p>
+              </CardContent>
+            </Card>
+            
+            <div className="relative">
+              {/* 连接线 */}
+              <div className="absolute left-8 top-12 bottom-12 w-0.5 bg-gradient-to-b from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-500 dark:via-indigo-500 dark:to-purple-500 hidden md:block"></div>
+              
+              <div className="space-y-12">
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="md:w-16 flex justify-center">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold ${darkMode ? 'bg-blue-600' : 'bg-blue-600'} shadow-lg z-10`}>1</div>
                   </div>
+                  
+                  <Card className={`flex-1 border ${darkMode ? 'border-gray-700 bg-gray-800/80' : 'border-blue-200 bg-white'} shadow-md overflow-hidden`}>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-xl">
+                        <Lightbulb size={20} className={darkMode ? 'text-amber-400' : 'text-amber-500'} />
+                        指标体系构建阶段
+                      </CardTitle>
+                      <CardDescription>建立科学的评估框架和指标体系</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                          <ul className="space-y-3">
+                            <li className="flex items-start">
+                              <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-blue-900/20 border-blue-700/50' : 'bg-blue-50 border-blue-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>1</Badge>
+                              <div>
+                                <span className="font-semibold block text-sm">理论研究</span>
+                                <span className="text-sm text-muted-foreground">深入研究企业组织理论、流程再造理论、变革管理理论和数字化成熟度模型</span>
+                              </div>
+                            </li>
+                            <li className="flex items-start">
+                              <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-blue-900/20 border-blue-700/50' : 'bg-blue-50 border-blue-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>2</Badge>
+                              <div>
+                                <span className="font-semibold block text-sm">标杆分析</span>
+                                <span className="text-sm text-muted-foreground">考察行业领先机构实践，提炼数字化转型关键成功因素</span>
+                              </div>
+                            </li>
+                            <li className="flex items-start">
+                              <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-blue-900/20 border-blue-700/50' : 'bg-blue-50 border-blue-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>3</Badge>
+                              <div>
+                                <span className="font-semibold block text-sm">专家研讨</span>
+                                <span className="text-sm text-muted-foreground">召开多轮专家讨论会，凝聚行业共识，优化评估框架</span>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <ul className="space-y-3">
+                            <li className="flex items-start">
+                              <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-blue-900/20 border-blue-700/50' : 'bg-blue-50 border-blue-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>4</Badge>
+                              <div>
+                                <span className="font-semibold block text-sm">指标设计</span>
+                                <span className="text-sm text-muted-foreground">构建8大能力要素×19个能力域×38个能力子域三级评估框架</span>
+                              </div>
+                            </li>
+                            <li className="flex items-start">
+                              <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-blue-900/20 border-blue-700/50' : 'bg-blue-50 border-blue-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>5</Badge>
+                              <div>
+                                <span className="font-semibold block text-sm">指标验证</span>
+                                <span className="text-sm text-muted-foreground">通过试评估验证指标体系的科学性和可操作性，并进行优化完善</span>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6">
+                        <h4 className="text-sm font-semibold mb-3">8大评估能力要素</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            "数字化治理", "数据管理", "数字化基础设施", "产品和服务数字化",
+                            "经营管理数字化", "运营数字化", "内控体系数字化", "可持续发展基础"
+                          ].map((item, index) => (
+                            <Badge key={index} variant="secondary" className={`${darkMode ? 'bg-blue-900/30 hover:bg-blue-900/50' : 'bg-blue-50 hover:bg-blue-100'}`}>
+                              {item}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              </div>
-              
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">2. 现状评估与诊断阶段</h3>
+                
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="md:w-16 flex justify-center">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold ${darkMode ? 'bg-indigo-600' : 'bg-indigo-600'} shadow-lg z-10`}>2</div>
+                  </div>
+                  
+                  <Card className={`flex-1 border ${darkMode ? 'border-gray-700 bg-gray-800/80' : 'border-blue-200 bg-white'} shadow-md overflow-hidden`}>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-xl">
+                        <BarChart2 size={20} className={darkMode ? 'text-green-400' : 'text-green-500'} />
+                        现状评估与诊断阶段
+                      </CardTitle>
+                      <CardDescription>全面评估当前数字化成熟度状态</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3">
+                        {[
+                          { title: "资料收集", desc: "梳理分析战略规划、业务流程、系统架构、数据治理等内部文档600余份" },
+                          { title: "实地调研", desc: "对19个部门进行访谈，了解业务痛点和数字化需求" },
+                          { title: "问卷调查", desc: "开展全员数字化认知和能力调查，回收有效问卷115份" },
+                          { title: "专项测试", desc: "对核心信息系统和数据质量进行专项测试，量化评估性能和可靠性" },
+                          { title: "标杆对比", desc: "与北京产权交易所、宁夏科技与资源产权交易所等进行对标分析" },
+                          { title: "数据分析", desc: "运用定量评分与定性分析相结合的方法，形成各维度成熟度等级判定" },
+                          { title: "专家评审", desc: "组织内外部专家对评估结果进行评审验证，确保评估客观公正" }
+                        ].map((item, index) => (
+                          <div key={index} className="flex items-start">
+                            <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-indigo-900/20 border-indigo-700/50' : 'bg-indigo-50 border-indigo-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>{index+1}</Badge>
+                            <div>
+                              <span className="font-semibold block text-sm">{item.title}</span>
+                              <span className="text-sm text-muted-foreground">{item.desc}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-4 grid grid-cols-3 md:grid-cols-5 gap-2">
+                        <div className={`p-2 rounded-lg ${darkMode ? 'bg-indigo-900/30' : 'bg-indigo-50'} flex flex-col items-center justify-center text-center`}>
+                          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>600+</span>
+                          <span className="text-xs md:text-sm">文档分析</span>
+                        </div>
+                        <div className={`p-2 rounded-lg ${darkMode ? 'bg-blue-900/30' : 'bg-blue-50'} flex flex-col items-center justify-center text-center`}>
+                          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>19</span>
+                          <span className="text-xs md:text-sm">部门访谈</span>
+                        </div>
+                        <div className={`p-2 rounded-lg ${darkMode ? 'bg-green-900/30' : 'bg-green-50'} flex flex-col items-center justify-center text-center`}>
+                          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-green-300' : 'text-green-600'}`}>115</span>
+                          <span className="text-xs md:text-sm">问卷收集</span>
+                        </div>
+                        <div className={`p-2 rounded-lg ${darkMode ? 'bg-purple-900/30' : 'bg-purple-50'} flex flex-col items-center justify-center text-center`}>
+                          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>8</span>
+                          <span className="text-xs md:text-sm">能力要素</span>
+                        </div>
+                        <div className={`p-2 rounded-lg ${darkMode ? 'bg-amber-900/30' : 'bg-amber-50'} flex flex-col items-center justify-center text-center`}>
+                          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>38</span>
+                          <span className="text-xs md:text-sm">能力子域</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">资料收集:</span>
-                      <span>梳理分析战略规划、业务流程、系统架构、数据治理等内部文档600余份</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">实地调研:</span>
-                      <span>对19个部门进行访谈，了解业务痛点和数字化需求</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">问卷调查:</span>
-                      <span>开展全员数字化认知和能力调查，回收有效问卷115份</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">专项测试:</span>
-                      <span>对核心信息系统和数据质量进行专项测试，量化评估性能和可靠性</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">标杆对比:</span>
-                      <span>与北京产权交易所、宁夏科技与资源产权交易所等进行对标分析</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">数据分析:</span>
-                      <span>运用定量评分与定性分析相结合的方法，形成各维度成熟度等级判定</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">专家评审:</span>
-                      <span>组织内外部专家对评估结果进行评审验证，确保评估客观公正</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white border border-gray-200'}`}>
-                <div className={`p-4 ${darkMode ? 'bg-blue-900' : 'bg-blue-600'} text-white`}>
-                  <h3 className="text-xl font-semibold">3. 建设路径规划阶段</h3>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">战略定位:</span>
-                      <span>结合评估结果与行业趋势，明确产权数智化发展的战略定位</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">路径设计:</span>
-                      <span>针对评估发现的问题和短板，设计六大关键建设路径</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">举措细化:</span>
-                      <span>提出24项具体实施举措，并制定详细的责任分工和时间表</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">成果验证:</span>
-                      <span>通过研讨会对规划方案进行讨论完善，提高方案可行性</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-semibold mr-2">实施保障:</span>
-                      <span>设计从组织、资源、制度等多方面的配套保障措施</span>
-                    </li>
-                  </ul>
+                
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="md:w-16 flex justify-center">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold ${darkMode ? 'bg-purple-600' : 'bg-purple-600'} shadow-lg z-10`}>3</div>
+                  </div>
+                  
+                  <Card className={`flex-1 border ${darkMode ? 'border-gray-700 bg-gray-800/80' : 'border-blue-200 bg-white'} shadow-md overflow-hidden`}>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-xl">
+                        <Target size={20} className={darkMode ? 'text-purple-400' : 'text-purple-600'} />
+                        建设路径规划阶段
+                      </CardTitle>
+                      <CardDescription>制定详细的实施策略和行动方案</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div className={`p-5 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-purple-600' : 'bg-purple-50 border-purple-400'}`}>
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <Badge variant="secondary" className={`${darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-100 text-purple-800'}`}>战略规划</Badge>
+                          </h4>
+                          <ul className="space-y-2 pl-1">
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">结合评估结果与行业趋势，明确产权数智化发展的战略定位</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">制定五年数字化转型规划，明确阶段性目标</span>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                        <div className={`p-5 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-blue-600' : 'bg-blue-50 border-blue-400'}`}>
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <Badge variant="secondary" className={`${darkMode ? 'bg-blue-900/50 text-blue-300' : 'bg-blue-100 text-blue-800'}`}>路径设计</Badge>
+                          </h4>
+                          <ul className="space-y-2 pl-1">
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">针对评估发现的问题和短板，设计六大关键建设路径</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">与企业管理层共同确定重点突破方向</span>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                        <div className={`p-5 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-green-600' : 'bg-green-50 border-green-400'}`}>
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <Badge variant="secondary" className={`${darkMode ? 'bg-green-900/50 text-green-300' : 'bg-green-100 text-green-800'}`}>举措细化</Badge>
+                          </h4>
+                          <ul className="space-y-2 pl-1">
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">提出24项具体实施举措，并制定详细的责任分工和时间表</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">确定关键里程碑和成功指标，便于后续跟踪评估</span>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                        <div className={`p-5 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-amber-600' : 'bg-amber-50 border-amber-400'}`}>
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <Badge variant="secondary" className={`${darkMode ? 'bg-amber-900/50 text-amber-300' : 'bg-amber-100 text-amber-800'}`}>实施保障</Badge>
+                          </h4>
+                          <ul className="space-y-2 pl-1">
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">设计从组织、资源、制度等多方面的配套保障措施</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <ChevronRight size={16} className="mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">通过研讨会对规划方案进行讨论完善，提高方案可行性</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6 flex justify-center">
+                        <Badge variant="outline" className={`px-3 py-1 ${darkMode ? 'border-purple-500 text-purple-400' : 'border-purple-400 text-purple-700'}`}>
+                          <Star size={14} className="mr-1" /> 产出：数智型交易平台建设实施路线图
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
@@ -439,158 +696,419 @@ const SouthernPropertyPlatform = () => {
         {/* 深度评估发现 */}
         <section id="assessment" className="mb-24">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">深度评估发现</h2>
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${darkMode ? 'bg-green-900/30' : 'bg-green-100'}`}>
+                <BarChart2 size={20} className={darkMode ? 'text-green-400' : 'text-green-600'} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">深度评估发现</h2>
+            </div>
+            <Separator className={`mb-8 ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`} />
             
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold mb-4">成熟度评估整体结果</h3>
+            <div className="mb-16">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Badge className={`${darkMode ? 'bg-green-900/50 text-green-400' : 'bg-green-100 text-green-700'}`}>
+                  成熟度评估
+                </Badge>
+                <span>整体结果</span>
+              </h3>
               
-              <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-blue-50'} mb-6`}>
-                <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
-                  <div className="text-center md:text-left mb-6 md:mb-0">
-                    <div className="text-sm uppercase font-medium text-gray-500 dark:text-gray-400 mb-1">综合成熟度等级</div>
-                    <div className="text-3xl font-bold">三级（发展级）</div>
-                    <div className="mt-1 text-lg">总分：3.16分（满分5分）</div>
-                  </div>
-                  
-                  <div className="w-48 h-48 relative">
-                    <div className={`absolute inset-0 rounded-full border-8 ${darkMode ? 'border-blue-700' : 'border-blue-200'}`}></div>
-                    <div 
-                      className={`absolute top-0 left-0 bottom-0 right-0 rounded-full border-8 ${darkMode ? 'border-blue-400' : 'border-blue-600'}`}
-                      style={{ 
-                        clipPath: `polygon(50% 50%, 50% 0%, ${50 + 50 * Math.cos(3.16/5 * 2 * Math.PI)}% ${50 - 50 * Math.sin(3.16/5 * 2 * Math.PI)}%, 50% 50%)`,
-                        transform: 'rotate(-90deg)'
-                      }}
-                    ></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-3xl font-bold">3.16</span>
+              <Card className={`${darkMode ? 'bg-gray-800/70 border-gray-700' : 'bg-white border-blue-100'} mb-8 overflow-hidden`}>
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div className="lg:col-span-2">
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-sm uppercase font-medium text-muted-foreground mb-1">综合成熟度等级</h4>
+                          <div className="text-3xl font-bold">三级（发展级）</div>
+                          <div className="mt-1 text-lg"><span className="font-semibold text-green-500 dark:text-green-400">3.16</span> 分（满分5分）</div>
+                        </div>
+                        
+                        <div className="pt-4">
+                          <blockquote className={`pl-4 border-l-4 ${darkMode ? 'border-green-500' : 'border-green-500'} italic text-muted-foreground`}>
+                            "形成系统的中长期规划，数字化体系日趋完善，应用场景不断拓展，开始形成规模效应。"
+                          </blockquote>
+                        </div>
+                        
+                        <div className="pt-2">
+                          <Badge variant="outline" className={`${darkMode ? 'border-green-500 text-green-400' : 'border-green-500 text-green-700'} px-3 py-1`}>
+                            整体处于行业中上水平
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="lg:col-span-3 flex justify-center items-center">
+                      <div className="w-64 h-64 relative">
+                        {/* 绘制仪表盘背景 */}
+                        <div className={`absolute inset-0 rounded-full border-[16px] ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}></div>
+                        
+                        {/* 绘制五个等级区域 */}
+                        {[...Array(5)].map((_, index) => (
+                          <div 
+                            key={index}
+                            className={`absolute top-0 left-0 bottom-0 right-0 rounded-full border-[16px] ${
+                              index === 2 ? (darkMode ? 'border-green-500' : 'border-green-500') :
+                              (darkMode ? 'border-gray-700/50' : 'border-gray-100')
+                            } opacity-${index === 2 ? '100' : '30'}`}
+                            style={{
+                              clipPath: `polygon(50% 50%, 50% 0%, ${50 + 50 * Math.cos((index+1)/5 * 2 * Math.PI)}% ${50 - 50 * Math.sin((index+1)/5 * 2 * Math.PI)}%, 50% 50%)`,
+                              transform: 'rotate(-90deg)'
+                            }}
+                          ></div>
+                        ))}
+                        
+                        {/* 绘制当前分数的指针 */}
+                        <div 
+                          className={`absolute top-0 left-0 bottom-0 right-0 rounded-full border-[16px] ${darkMode ? 'border-blue-500' : 'border-blue-600'} border-t-transparent border-l-transparent border-r-transparent`}
+                          style={{
+                            transform: `rotate(${-90 + (3.16/5) * 180}deg)`
+                          }}
+                        ></div>
+                        
+                        {/* 中心文字 */}
+                        <div className="absolute inset-0 flex items-center justify-center flex-col">
+                          <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-green-500 to-blue-500">3.16</span>
+                          <span className="text-sm text-muted-foreground">发展级</span>
+                        </div>
+                        
+                        {/* 刻度标记 */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-medium">5</div>
+                        <div className="absolute right-0 top-1/2 translate-x-2 -translate-y-1/2 text-xs font-medium">3.75</div>
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2 text-xs font-medium">2.5</div>
+                        <div className="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 text-xs font-medium">1.25</div>
+                        
+                        {/* 等级标签 */}
+                        <div className="absolute -bottom-6 w-full text-center">
+                          <div className="flex justify-between px-2">
+                            <span className="text-xs">初始级</span>
+                            <span className="text-xs">管理级</span>
+                            <span className="text-xs font-semibold text-green-500">发展级</span>
+                            <span className="text-xs">量化级</span>
+                            <span className="text-xs">优化级</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </CardContent>
+              </Card>
+              
+              <Tabs defaultValue="table" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-4">
+                  <TabsTrigger value="table">详细评分表格</TabsTrigger>
+                  <TabsTrigger value="chart">能力维度分析</TabsTrigger>
+                </TabsList>
                 
-                <div className="mt-6">
-                  <blockquote className={`pl-4 border-l-4 ${darkMode ? 'border-blue-400' : 'border-blue-600'} italic`}>
-                    "形成系统的中长期规划，数字化体系日趋完善，应用场景不断拓展，开始形成规模效应。"
-                  </blockquote>
-                </div>
+                <TabsContent value="table" className="mt-0">
+                  <Card className={`${darkMode ? 'bg-gray-800/70 border-gray-700' : 'bg-white border-gray-200'}`}>
+                    <CardContent className="p-0 sm:p-2">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className={`${darkMode ? 'bg-gray-800' : 'bg-gray-50'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                            <tr>
+                              <th className="py-3 px-4 text-left font-medium text-xs sm:text-sm">能力要素</th>
+                              <th className="py-3 px-4 text-left font-medium text-xs sm:text-sm">权重</th>
+                              <th className="py-3 px-4 text-left font-medium text-xs sm:text-sm">得分</th>
+                              <th className="py-3 px-2 text-left font-medium text-xs sm:text-sm hidden md:table-cell">能力域</th>
+                              <th className="py-3 px-2 text-left font-medium text-xs sm:text-sm hidden lg:table-cell">典型问题</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {[
+                              {
+                                name: "数字化治理",
+                                weight: "15%",
+                                score: 3.85,
+                                domains: "战略规划(4.0)、组织管理(3.75)",
+                                issues: "战略实施效果监测不足，创新文化建设有待加强",
+                                color: "blue"
+                              },
+                              {
+                                name: "数据管理",
+                                weight: "15%",
+                                score: 2.82,
+                                domains: "数据规范(2.65)、数据融合(2.70)、数据保护(2.0)",
+                                issues: "数据标准缺失，部门间数据壁垒明显，数据质量参差不齐",
+                                color: "red"
+                              },
+                              {
+                                name: "数字基础设施",
+                                weight: "15%",
+                                score: 3.21,
+                                domains: "数据中心(3.15)、通信网络(2.0)、安全防护(3.0)",
+                                issues: "设备老旧问题突出，云化率不足50%，智能运维水平较低",
+                                color: "amber"
+                              },
+                              {
+                                name: "产品服务数字化",
+                                weight: "15%",
+                                score: 3.20,
+                                domains: "线上渠道(4.0)、线下渠道(2.0)",
+                                issues: "线上业务流程优化不足，缺乏个性化智能推荐能力",
+                                color: "green"
+                              },
+                              {
+                                name: "经营管理数字化",
+                                weight: "15%",
+                                score: 3.15,
+                                domains: "数字办公(3.0)、数字经营(3.2)、敏捷创新(3.0)",
+                                issues: "业务与技术协同不足，创新项目落地机制不完善",
+                                color: "indigo"
+                              },
+                              {
+                                name: "运营数字化",
+                                weight: "10%",
+                                score: 3.00,
+                                domains: "流程标准化(3.0)、流程自动化(3.0)",
+                                issues: "流程自动化率不足60%，重复性工作占比高",
+                                color: "purple"
+                              },
+                              {
+                                name: "内控数字化",
+                                weight: "10%",
+                                score: 2.85,
+                                domains: "合规管理(2.5)、风险管理(2.9)、审计管理(3.0)",
+                                issues: "风险监测预警不及时，合规管理平台有待升级",
+                                color: "pink"
+                              },
+                              {
+                                name: "可持续发展基础",
+                                weight: "5%",
+                                score: 3.00,
+                                domains: "标准体系建设(3.0)",
+                                issues: "标准制修订参与广度不够，标准应用深度不足",
+                                color: "emerald"
+                              }
+                            ].map((item, index) => (
+                              <tr key={index} className={`border-b ${darkMode ? 'border-gray-700 hover:bg-gray-700/30' : 'border-gray-200 hover:bg-gray-50'} transition-colors`}>
+                                <td className="py-3 px-4 font-medium text-xs sm:text-sm">
+                                  <div className="flex items-center">
+                                    <div className={`w-2 h-2 rounded-full bg-${item.color}-500 mr-2`}></div>
+                                    {item.name}
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4 text-xs sm:text-sm">{item.weight}</td>
+                                <td className="py-3 px-4 text-xs sm:text-sm">
+                                  <div className="flex items-center gap-2">
+                                    <span className={`font-medium ${
+                                      item.score >= 4 ? 'text-green-500 dark:text-green-400' :
+                                      item.score >= 3 ? 'text-blue-500 dark:text-blue-400' :
+                                      'text-amber-500 dark:text-amber-400'
+                                    }`}>{item.score}</span>
+                                    <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                      <div 
+                                        className={`h-full rounded-full ${
+                                          item.score >= 4 ? 'bg-green-500' :
+                                          item.score >= 3 ? 'bg-blue-500' :
+                                          'bg-amber-500'
+                                        }`}
+                                        style={{ width: `${(item.score / 5) * 100}%` }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-2 text-xs sm:text-sm hidden md:table-cell">{item.domains}</td>
+                                <td className="py-3 px-2 text-xs sm:text-sm hidden lg:table-cell text-muted-foreground">{item.issues}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="chart" className="mt-0">
+                  <Card className={`${darkMode ? 'bg-gray-800/70 border-gray-700' : 'bg-white border-gray-200'}`}>
+                    <CardContent className="p-6">
+                      <div className="h-80 flex items-center justify-center">
+                        <div className="w-full max-w-lg">
+                          {/* 绘制雷达图 */}
+                          <div className="relative h-72 w-72 mx-auto">
+                            {/* 背景网格 - 5个层级 */}
+                            {[1, 2, 3, 4, 5].map((level) => (
+                              <div 
+                                key={level}
+                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border ${darkMode ? 'border-gray-700' : 'border-gray-200'} rounded-full`}
+                                style={{
+                                  width: `${level * 20}%`,
+                                  height: `${level * 20}%`,
+                                }}
+                              ></div>
+                            ))}
+                            
+                            {/* 8个维度的轴线 */}
+                            {[...Array(8)].map((_, index) => {
+                              const angle = (Math.PI * 2 * index) / 8;
+                              const x2 = Math.sin(angle) * 50 + 50;
+                              const y2 = -Math.cos(angle) * 50 + 50;
+                              
+                              return (
+                                <div 
+                                  key={index}
+                                  className={`absolute top-1/2 left-1/2 ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
+                                  style={{
+                                    width: '1px',
+                                    height: '50%',
+                                    transformOrigin: 'bottom center',
+                                    transform: `rotate(${index * 45}deg)`,
+                                  }}
+                                ></div>
+                              );
+                            })}
+                            
+                            {/* 数据点和填充区域 */}
+                            <svg 
+                              viewBox="0 0 100 100" 
+                              className="absolute inset-0 w-full h-full"
+                            >
+                              <polygon 
+                                points="
+                                  ${50 + Math.sin(0) * 3.85 * 10}, ${50 - Math.cos(0) * 3.85 * 10}
+                                  ${50 + Math.sin(Math.PI/4) * 2.82 * 10}, ${50 - Math.cos(Math.PI/4) * 2.82 * 10}
+                                  ${50 + Math.sin(Math.PI/2) * 3.21 * 10}, ${50 - Math.cos(Math.PI/2) * 3.21 * 10}
+                                  ${50 + Math.sin(3*Math.PI/4) * 3.20 * 10}, ${50 - Math.cos(3*Math.PI/4) * 3.20 * 10}
+                                  ${50 + Math.sin(Math.PI) * 3.15 * 10}, ${50 - Math.cos(Math.PI) * 3.15 * 10}
+                                  ${50 + Math.sin(5*Math.PI/4) * 3.00 * 10}, ${50 - Math.cos(5*Math.PI/4) * 3.00 * 10}
+                                  ${50 + Math.sin(3*Math.PI/2) * 2.85 * 10}, ${50 - Math.cos(3*Math.PI/2) * 2.85 * 10}
+                                  ${50 + Math.sin(7*Math.PI/4) * 3.00 * 10}, ${50 - Math.cos(7*Math.PI/4) * 3.00 * 10}
+                                "
+                                fill={darkMode ? 'rgba(59, 130, 246, 0.2)' : 'rgba(59, 130, 246, 0.2)'}
+                                stroke={darkMode ? '#3b82f6' : '#3b82f6'}
+                                strokeWidth="1"
+                              />
+                              
+                              {/* 数据点 */}
+                              {[
+                                { score: 3.85, angle: 0 },
+                                { score: 2.82, angle: Math.PI/4 },
+                                { score: 3.21, angle: Math.PI/2 },
+                                { score: 3.20, angle: 3*Math.PI/4 },
+                                { score: 3.15, angle: Math.PI },
+                                { score: 3.00, angle: 5*Math.PI/4 },
+                                { score: 2.85, angle: 3*Math.PI/2 },
+                                { score: 3.00, angle: 7*Math.PI/4 }
+                              ].map((point, index) => {
+                                const x = 50 + Math.sin(point.angle) * point.score * 10;
+                                const y = 50 - Math.cos(point.angle) * point.score * 10;
+                                
+                                return (
+                                  <circle 
+                                    key={index}
+                                    cx={x} 
+                                    cy={y} 
+                                    r="2" 
+                                    fill={darkMode ? '#3b82f6' : '#3b82f6'}
+                                  />
+                                );
+                              })}
+                            </svg>
+                            
+                            {/* 标签 */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-medium">数字化治理</div>
+                            <div className="absolute top-[15%] right-[15%] text-xs font-medium translate-x-1">数据管理</div>
+                            <div className="absolute right-0 top-1/2 translate-x-2 -translate-y-1/2 text-xs font-medium">数字基础设施</div>
+                            <div className="absolute bottom-[15%] right-[15%] text-xs font-medium translate-x-1">产品服务数字化</div>
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2 text-xs font-medium">经营管理数字化</div>
+                            <div className="absolute bottom-[15%] left-[15%] text-xs font-medium -translate-x-1">运营数字化</div>
+                            <div className="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 text-xs font-medium">内控数字化</div>
+                            <div className="absolute top-[15%] left-[15%] text-xs font-medium -translate-x-1">可持续发展基础</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
+                        <div className="text-center">
+                          <div className={`text-lg font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>3.85</div>
+                          <div className="text-xs text-muted-foreground">最高分项</div>
+                          <div className="text-sm font-medium">数字化治理</div>
+                        </div>
+                        <div className="text-center">
+                          <div className={`text-lg font-bold ${darkMode ? 'text-red-400' : 'text-red-600'}`}>2.82</div>
+                          <div className="text-xs text-muted-foreground">最低分项</div>
+                          <div className="text-sm font-medium">数据管理</div>
+                        </div>
+                        <div className="text-center">
+                          <div className={`text-lg font-bold ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>1.03</div>
+                          <div className="text-xs text-muted-foreground">最大差距</div>
+                          <div className="text-sm font-medium">项目间波动</div>
+                        </div>
+                        <div className="text-center">
+                          <div className={`text-lg font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>3.16</div>
+                          <div className="text-xs text-muted-foreground">综合得分</div>
+                          <div className="text-sm font-medium">发展级</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                <Card className={`border overflow-hidden ${darkMode ? 'border-red-700/30 bg-gray-800/80' : 'border-red-200 bg-red-50/40'}`}>
+                  <div className={`h-1.5 w-full ${darkMode ? 'bg-red-700' : 'bg-red-500'}`}></div>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <TrendingDown size={18} className={darkMode ? 'text-red-400' : 'text-red-600'} />
+                      外部挑战
+                    </CardTitle>
+                    <CardDescription>来自市场和行业的竞争压力</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {[
+                        "沪深交易所等传统证券类交易场所加大创新力度",
+                        "北京产权交易所等同业机构布局粤港澳大湾区",
+                        "区域竞争日益激烈"
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-start">
+                          <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-red-900/20 border-red-700/50' : 'bg-red-50 border-red-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>{index+1}</Badge>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className={`border overflow-hidden ${darkMode ? 'border-amber-700/30 bg-gray-800/80' : 'border-amber-200 bg-amber-50/40'}`}>
+                  <div className={`h-1.5 w-full ${darkMode ? 'bg-amber-700' : 'bg-amber-500'}`}></div>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <Activity size={18} className={darkMode ? 'text-amber-400' : 'text-amber-600'} />
+                      内部痛点
+                    </CardTitle>
+                    <CardDescription>内部系统和能力的关键短板</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {[
+                        "数据价值难以发挥，存在\"信息孤岛\"问题",
+                        "业务系统割裂，跨系统协同效率低下",
+                        "转型缺乏系统规划，数字化建设处于\"零散化探索阶段\"",
+                        "人才支撑不足，复合型人才储备不足"
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-start">
+                          <Badge variant="outline" className={`rounded-full ${darkMode ? 'bg-amber-900/20 border-amber-700/50' : 'bg-amber-50 border-amber-200'} min-w-6 h-6 p-0 flex items-center justify-center mr-3 mt-0.5`}>{index+1}</Badge>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
               </div>
               
-              <div className="mb-8">
-                <h4 className="text-lg font-medium mb-4">各维度详细评分</h4>
-                <div className="overflow-x-auto">
-                  <table className={`w-full ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg`}>
-                    <thead className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                      <tr>
-                        <th className="py-3 px-4 text-left">能力要素</th>
-                        <th className="py-3 px-4 text-left">权重</th>
-                        <th className="py-3 px-4 text-left">得分</th>
-                        <th className="py-3 px-4 text-left">能力域</th>
-                        <th className="py-3 px-4 text-left">典型问题</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">数字化治理</td>
-                        <td className="py-3 px-4">15%</td>
-                        <td className="py-3 px-4">3.85</td>
-                        <td className="py-3 px-4">战略规划(4.0)、组织管理(3.75)</td>
-                        <td className="py-3 px-4">战略实施效果监测不足，创新文化建设有待加强</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">数据管理</td>
-                        <td className="py-3 px-4">15%</td>
-                        <td className="py-3 px-4">2.82</td>
-                        <td className="py-3 px-4">数据规范(2.65)、数据融合(2.70)、数据保护(2.0)</td>
-                        <td className="py-3 px-4">数据标准缺失，部门间数据壁垒明显，数据质量参差不齐</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">数字基础设施</td>
-                        <td className="py-3 px-4">15%</td>
-                        <td className="py-3 px-4">3.21</td>
-                        <td className="py-3 px-4">数据中心(3.15)、通信网络(2.0)、安全防护(3.0)</td>
-                        <td className="py-3 px-4">设备老旧问题突出，云化率不足50%，智能运维水平较低</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">产品服务数字化</td>
-                        <td className="py-3 px-4">15%</td>
-                        <td className="py-3 px-4">3.20</td>
-                        <td className="py-3 px-4">线上渠道(4.0)、线下渠道(2.0)</td>
-                        <td className="py-3 px-4">线上业务流程优化不足，缺乏个性化智能推荐能力</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">经营管理数字化</td>
-                        <td className="py-3 px-4">15%</td>
-                        <td className="py-3 px-4">3.15</td>
-                        <td className="py-3 px-4">数字办公(3.0)、数字经营(3.2)、敏捷创新(3.0)</td>
-                        <td className="py-3 px-4">业务与技术协同不足，创新项目落地机制不完善</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">运营数字化</td>
-                        <td className="py-3 px-4">10%</td>
-                        <td className="py-3 px-4">3.00</td>
-                        <td className="py-3 px-4">流程标准化(3.0)、流程自动化(3.0)</td>
-                        <td className="py-3 px-4">流程自动化率不足60%，重复性工作占比高</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">内控数字化</td>
-                        <td className="py-3 px-4">10%</td>
-                        <td className="py-3 px-4">2.85</td>
-                        <td className="py-3 px-4">合规管理(2.5)、风险管理(2.9)、审计管理(3.0)</td>
-                        <td className="py-3 px-4">风险监测预警不及时，合规管理平台有待升级</td>
-                      </tr>
-                      <tr className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="py-3 px-4 font-medium">可持续发展基础</td>
-                        <td className="py-3 px-4">5%</td>
-                        <td className="py-3 px-4">3.00</td>
-                        <td className="py-3 px-4">标准体系建设(3.0)</td>
-                        <td className="py-3 px-4">标准制修订参与广度不够，标准应用深度不足</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              <div className="mb-10">
-                <h3 className="text-xl font-semibold mb-6">典型挑战</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                    <h3 className="text-xl font-semibold mb-4">外部挑战</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>沪深交易所等传统证券类交易场所加大创新力度</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>北京产权交易所等同业机构布局粤港澳大湾区</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>区域竞争日益激烈</span>
-                      </li>
-                    </ul>
+              <div className="mt-8 flex justify-center">
+                <div className={`p-4 rounded-lg ${darkMode ? 'bg-blue-900/20 border border-blue-800/30' : 'bg-blue-50 border border-blue-200'} max-w-2xl text-center`}>
+                  <div className="flex justify-center mb-2">
+                    <ArrowUpRight size={24} className="text-blue-500" />
                   </div>
-                  
-                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-50'} p-6 rounded-lg shadow-md`}>
-                    <h3 className="text-xl font-semibold mb-4">内部痛点</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>数据价值难以发挥，存在"信息孤岛"问题</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>业务系统割裂，跨系统协同效率低下</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>转型缺乏系统规划，数字化建设处于"零散化探索阶段"</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className={`inline-block w-2 h-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} rounded-full mt-2 mr-2`}></span>
-                        <span>人才支撑不足，复合型人才储备不足</span>
-                      </li>
-                    </ul>
-                  </div>
+                  <p className="text-sm md:text-base">
+                    <span className="font-medium">关键发现：</span>
+                    产权交易中心数字化转型进入"发展级"阶段，已具备一定数字化基础，
+                    但在<span className="font-medium text-red-500 dark:text-red-400">数据管理</span>和
+                    <span className="font-medium text-amber-500 dark:text-amber-400">内控数字化</span>
+                    方面存在明显短板，亟需系统规划和重点突破。
+                  </p>
                 </div>
               </div>
             </div>

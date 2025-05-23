@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const ZhitagDemo = () => {
+const ZhitagShenranDemo = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [activeStep, setActiveStep] = useState(1);
-  const [riskScore] = useState(98);
+  const [riskScore] = useState(95);
   const [processingStatus, setProcessingStatus] = useState('completed');
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showResults, setShowResults] = useState(false);
@@ -33,7 +33,7 @@ const ZhitagDemo = () => {
             <span className="text-xl font-bold">《智标》标书智能辅助系统</span>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="px-3 py-1 bg-blue-800 rounded-full text-sm">中通南方七分公司</span>
+            <span className="px-3 py-1 bg-blue-800 rounded-full text-sm">中通信息/南方设计</span>
             <div className="w-8 h-8 bg-white text-blue-700 rounded-full flex items-center justify-center font-bold">
               洪
             </div>
@@ -116,10 +116,10 @@ const ZhitagDemo = () => {
                 
                 <div className="flex justify-between items-center mt-3 mb-1">
                   <span className="text-sm">技术方案完成度</span>
-                  <span className="text-sm font-semibold text-amber-600">75%</span>
+                  <span className="text-sm font-semibold text-amber-600">80%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div className="bg-amber-500 h-2.5 rounded-full" style={{ width: '75%' }}></div>
+                  <div className="bg-amber-500 h-2.5 rounded-full" style={{ width: '80%' }}></div>
                 </div>
                 
                 <div className="flex justify-between items-center mt-3 mb-1">
@@ -163,7 +163,7 @@ const ZhitagDemo = () => {
                       </div>
                       <div className="ml-4">
                         <h3 className="text-lg font-semibold">编制时间减少</h3>
-                        <p className="text-3xl font-bold text-green-700">70%</p>
+                        <p className="text-3xl font-bold text-green-700">85%</p>
                       </div>
                     </div>
                   </div>
@@ -200,13 +200,13 @@ const ZhitagDemo = () => {
                         time: "4小时" 
                       },
                       {
-                        title: "核心内容智能撰写",
-                        desc: "调用公司项目库匹配最佳案例、智能生成针对性技术方案",
-                        time: "24小时"
+                        title: "AI蓝图规划生成",
+                        desc: "调用最新的AI战略规划库，生成针对性的AI愿景与蓝图、技术平台规划",
+                        time: "20小时"
                       },
                       {
-                        title: "商务方案智能辅助",
-                        desc: "智能匹配最优资质组合、生成合理报价策略",
+                        title: "场景与实施路线设计",
+                        desc: "智能生成场景清单、优先级评估、速赢项目识别及实施路线",
                         time: "12小时"
                       },
                       {
@@ -243,7 +243,7 @@ const ZhitagDemo = () => {
                     ))}
                     
                     <div className="text-center text-green-600 font-medium mt-4">
-                      总耗时：54小时（传统方式需要10-15天）
+                      总耗时：50小时（传统方式需要10-15天）
                     </div>
                   </div>
                 </div>
@@ -313,38 +313,38 @@ const ZhitagDemo = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-3">
                         <p className="text-sm text-gray-500 mb-1">项目名称</p>
-                        <p className="font-medium">智慧城市社区管理平台建设项目</p>
+                        <p className="font-medium">深圳燃气人工智能战略规划项目</p>
                       </div>
                       
                       <div className="bg-white rounded-lg p-3">
                         <p className="text-sm text-gray-500 mb-1">招标单位</p>
-                        <p className="font-medium">西安市雁塔区智慧城市建设办公室</p>
+                        <p className="font-medium">深圳市燃气集团股份有限公司</p>
                       </div>
                       
                       <div className="bg-white rounded-lg p-3">
                         <p className="text-sm text-gray-500 mb-1">项目编号</p>
-                        <p className="font-medium">XAZH2023-0568</p>
+                        <p className="font-medium">KJXXBT-25-003</p>
                       </div>
                       
                       <div className="bg-white rounded-lg p-3">
                         <p className="text-sm text-gray-500 mb-1">项目预算</p>
-                        <p className="font-medium">￥680万元</p>
+                        <p className="font-medium">40万元人民币（含税）</p>
                       </div>
                       
                       <div className="bg-white rounded-lg p-3">
-                        <p className="text-sm text-gray-500 mb-1">投标截止日期</p>
-                        <p className="font-medium text-red-600">2023-06-30 10:00</p>
+                        <p className="text-sm text-gray-500 mb-1">服务期</p>
+                        <p className="font-medium">1年</p>
                       </div>
                       
                       <div className="bg-white rounded-lg p-3">
-                        <p className="text-sm text-gray-500 mb-1">投标保证金</p>
-                        <p className="font-medium">￥10万元</p>
+                        <p className="text-sm text-gray-500 mb-1">服务地点</p>
+                        <p className="font-medium">深圳市福田区梅坳一路268号</p>
                       </div>
                     </div>
                   </div>
                   
                   <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
-                    <h3 className="font-semibold text-gray-700 mb-3">时间节点</h3>
+                    <h3 className="font-semibold text-gray-700 mb-3">项目关键时间节点</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
@@ -357,7 +357,7 @@ const ZhitagDemo = () => {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
                           <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                          <span className="text-sm">资格预审</span>
+                          <span className="text-sm">投标邀请</span>
                         </div>
                         <span className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded">已完成</span>
                       </div>
@@ -392,15 +392,15 @@ const ZhitagDemo = () => {
                         <div className="text-lg font-semibold text-red-600">剩余投标时间</div>
                         <div className="flex justify-center space-x-2 mt-2">
                           <div className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center">
+                            <span className="text-xl font-bold">6</span>
+                          </div>
+                          <span className="text-xl font-bold text-gray-700">:</span>
+                          <div className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center">
                             <span className="text-xl font-bold">12</span>
                           </div>
                           <span className="text-xl font-bold text-gray-700">:</span>
                           <div className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center">
-                            <span className="text-xl font-bold">08</span>
-                          </div>
-                          <span className="text-xl font-bold text-gray-700">:</span>
-                          <div className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center">
-                            <span className="text-xl font-bold">36</span>
+                            <span className="text-xl font-bold">28</span>
                           </div>
                         </div>
                         <div className="flex justify-center text-gray-500 text-xs mt-1">
@@ -419,48 +419,40 @@ const ZhitagDemo = () => {
                     <div className="space-y-3">
                       <div className="bg-blue-50 rounded-lg p-3">
                         <div className="flex justify-between mb-1">
-                          <h4 className="font-medium text-blue-700">技术方案 (45分)</h4>
+                          <h4 className="font-medium text-blue-700">项目实施方案 (15分)</h4>
                           <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">关键评分项</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                          <li>系统架构设计合理性 (15分)</li>
-                          <li>关键技术实现方案 (10分)</li>
-                          <li>创新性和先进性 (10分)</li>
-                          <li>可扩展性设计 (10分)</li>
+                          <li>方案内容与需求匹配性、针对性和可实施性强 (11-15分)</li>
+                          <li>方案内容与需求匹配性一般，具有一定针对性 (5-10分)</li>
+                          <li>方案内容与需求匹配性差 (0-4分)</li>
+                          <li><span className="text-red-600">必要证明材料:</span> 详细实施方案(PPT、WORD、视频)</li>
                         </ul>
                       </div>
                       
                       <div className="bg-green-50 rounded-lg p-3">
                         <div className="flex justify-between mb-1">
-                          <h4 className="font-medium text-green-700">实施方案 (25分)</h4>
+                          <h4 className="font-medium text-green-700">重、难点分析及对策 (5分)</h4>
                           <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">关键评分项</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                          <li>项目进度计划 (10分)</li>
-                          <li>质量保证措施 (8分)</li>
-                          <li>风险控制措施 (7分)</li>
+                          <li>全面、准确识别规划中的重、难点问题</li>
+                          <li>清晰阐述和分析问题</li>
+                          <li>针对性解决思路，具有可操作性</li>
+                          <li><span className="text-red-600">必要证明材料:</span> 详细实施方案(PPT、WORD、视频)</li>
                         </ul>
                       </div>
                       
                       <div className="bg-amber-50 rounded-lg p-3">
                         <div className="flex justify-between mb-1">
-                          <h4 className="font-medium text-amber-700">商务部分 (20分)</h4>
+                          <h4 className="font-medium text-amber-700">驻场经理（总监）讲标 (20分)</h4>
                           <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded">关键评分项</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                          <li>投标报价 (10分)</li>
-                          <li>服务承诺 (5分)</li>
-                          <li>售后支持 (5分)</li>
-                        </ul>
-                      </div>
-                      
-                      <div className="rounded-lg p-3">
-                        <div className="flex justify-between mb-1">
-                          <h4 className="font-medium text-gray-700">公司实力 (10分)</h4>
-                        </div>
-                        <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                          <li>同类项目经验 (5分)</li>
-                          <li>公司资质 (5分)</li>
+                          <li>介绍自身优势、成功案例和业绩</li>
+                          <li>针对本项目特点制定的实施方案</li>
+                          <li>服务承诺和专家问题答辩</li>
+                          <li><span className="text-red-600">必要证明材料:</span> 讲标材料和证明文件（有效期内）</li>
                         </ul>
                       </div>
                     </div>
@@ -476,8 +468,8 @@ const ZhitagDemo = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="text-sm font-medium">招标方强调本地化服务要求</p>
-                          <p className="text-xs text-gray-500 mt-1">虽未明确要求，但招标文件多处暗示需要本地化服务团队，应在方案中突出本地服务能力</p>
+                          <p className="text-sm font-medium">必须使用成熟方法论体系</p>
+                          <p className="text-xs text-gray-500 mt-1">招标文件明确要求"必须套用成熟的方法论体系"，如CMMM、MPTR等，建议在方案中明确选用并详细阐述</p>
                         </div>
                       </div>
                       
@@ -488,8 +480,8 @@ const ZhitagDemo = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="text-sm font-medium">数据安全性要求高于一般项目</p>
-                          <p className="text-xs text-gray-500 mt-1">从需求描述中分析，数据安全是招标方重点关注领域，建议在方案中加强数据安全保障措施</p>
+                          <p className="text-sm font-medium">AI场景优先级评估框架</p>
+                          <p className="text-xs text-gray-500 mt-1">需要设计AI场景优先级评估矩阵，从多维度评估场景落地优先级，这是评分重点</p>
                         </div>
                       </div>
                       
@@ -500,8 +492,8 @@ const ZhitagDemo = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="text-sm font-medium">招标方对AI技术应用兴趣较高</p>
-                          <p className="text-xs text-gray-500 mt-1">从相关描述分析，招标方对AI技术感兴趣但缺乏专业认识，可作为方案亮点重点突出</p>
+                          <p className="text-sm font-medium">关注燃气行业AI转型标杆</p>
+                          <p className="text-xs text-gray-500 mt-1">招标方强调对标行业领先企业，应在方案中重点对标同业和非同业AI应用领先企业</p>
                         </div>
                       </div>
                       
@@ -512,8 +504,20 @@ const ZhitagDemo = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="text-sm font-medium">系统与现有政务平台对接是关键</p>
-                          <p className="text-xs text-gray-500 mt-1">招标文件中提及系统需与现有政务平台对接，应在方案中详细阐述对接方案和经验</p>
+                          <p className="text-sm font-medium">关注生成式AI技术应用</p>
+                          <p className="text-xs text-gray-500 mt-1">招标文件提及"AIGC大模型崛起"，应在方案中重点展示大模型技术在燃气行业的应用场景</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="bg-purple-100 text-purple-700 p-1 rounded mr-3 mt-0.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium">关注可行性研究分析</p>
+                          <p className="text-xs text-gray-500 mt-1">需要提供完整的可行性研究分析报告，包括建设方案、投资估算、风险管控等</p>
                         </div>
                       </div>
                     </div>
@@ -546,8 +550,8 @@ const ZhitagDemo = () => {
                         <tbody className="bg-white divide-y divide-gray-200">
                           <tr>
                             <td className="px-4 py-3 whitespace-nowrap">
-                              <div className="font-medium text-gray-900">科大讯飞</div>
-                              <div className="text-xs text-gray-500">智慧城市方向</div>
+                              <div className="font-medium text-gray-900">联想集团</div>
+                              <div className="text-xs text-gray-500">AI咨询与战略规划</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -555,31 +559,10 @@ const ZhitagDemo = () => {
                               </span>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">语音识别、AI技术领先</div>
+                              <div className="text-sm text-gray-600">AI平台经验、能源行业实践</div>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">偏高 (预计680-700万)</div>
-                            </td>
-                            <td className="px-4 py-3 whitespace-nowrap">
-                              <div className="text-sm font-medium text-blue-600">35%</div>
-                            </td>
-                          </tr>
-                          
-                          <tr>
-                            <td className="px-4 py-3 whitespace-nowrap">
-                              <div className="font-medium text-gray-900">华为技术</div>
-                              <div className="text-xs text-gray-500">智慧城市方向</div>
-                            </td>
-                            <td className="px-4 py-3 whitespace-nowrap">
-                              <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                高
-                              </span>
-                            </td>
-                            <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">云技术、IoT平台成熟</div>
-                            </td>
-                            <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">偏高 (预计670-690万)</div>
+                              <div className="text-sm text-gray-600">偏高 (预计38-40万)</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <div className="text-sm font-medium text-blue-600">40%</div>
@@ -588,8 +571,29 @@ const ZhitagDemo = () => {
                           
                           <tr>
                             <td className="px-4 py-3 whitespace-nowrap">
-                              <div className="font-medium text-gray-900">海康威视</div>
-                              <div className="text-xs text-gray-500">安防监控领域</div>
+                              <div className="font-medium text-gray-900">德勤咨询</div>
+                              <div className="text-xs text-gray-500">战略与数字化咨询</div>
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                高
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="text-sm text-gray-600">成熟方法论、国际经验</div>
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="text-sm text-gray-600">偏高 (预计39-40万)</div>
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <div className="text-sm font-medium text-blue-600">35%</div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <div className="font-medium text-gray-900">腾讯云</div>
+                              <div className="text-xs text-gray-500">AI战略咨询</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
@@ -597,10 +601,10 @@ const ZhitagDemo = () => {
                               </span>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">视频分析、安防体系完善</div>
+                              <div className="text-sm text-gray-600">AI技术实力、平台优势</div>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-gray-600">适中 (预计650-670万)</div>
+                              <div className="text-sm text-gray-600">适中 (预计35-38万)</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <div className="text-sm font-medium text-blue-600">30%</div>
@@ -609,8 +613,8 @@ const ZhitagDemo = () => {
                           
                           <tr className="bg-blue-50">
                             <td className="px-4 py-3 whitespace-nowrap">
-                              <div className="font-medium text-blue-800">中通南方（本公司）</div>
-                              <div className="text-xs text-blue-600">系统集成领域</div>
+                              <div className="font-medium text-blue-800">中通信息/南方设计（本公司）</div>
+                              <div className="text-xs text-blue-600">AI战略规划与咨询</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
@@ -618,10 +622,10 @@ const ZhitagDemo = () => {
                               </span>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-blue-700">DeepSeek大模型优势，本地化服务</div>
+                              <div className="text-sm text-blue-700">DeepSeek大模型技术、能源行业经验</div>
                             </td>
                             <td className="px-4 py-3">
-                              <div className="text-sm text-blue-700">具竞争力 (建议630-650万)</div>
+                              <div className="text-sm text-blue-700">具竞争力 (建议32-35万)</div>
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
                               <div className="text-sm font-medium text-blue-700">25% → 45%</div>
@@ -641,10 +645,11 @@ const ZhitagDemo = () => {
                         <div className="ml-3">
                           <h3 className="text-sm font-medium text-blue-800">中标策略建议</h3>
                           <div className="mt-2 text-sm text-blue-700">
-                            <p>1. 突出DeepSeek大模型应用优势和本地化服务能力</p>
-                            <p>2. 采用630-650万价格区间，在保证利润情况下形成价格优势</p>
-                            <p>3. 技术方案重点加强AI创新应用和系统集成能力</p>
-                            <p>4. 特别突出在西北地区的实施经验和成功案例</p>
+                            <p>1. 突出DeepSeek大模型在燃气行业的创新应用方案</p>
+                            <p>2. 采用32-35万价格区间，在保证利润情况下形成价格优势</p>
+                            <p>3. 强调CMMM等成熟方法论的应用经验和案例</p>
+                            <p>4. 特别突出在燃气行业的实施经验和成功案例</p>
+                            <p>5. 驻场经理讲标环节准备充分，侧重AI场景落地和技术路线</p>
                           </div>
                         </div>
                       </div>
@@ -702,31 +707,31 @@ const ZhitagDemo = () => {
                       <tbody className="bg-white divide-y divide-gray-200">
                         {[
                           { 
-                            name: "资质证明材料完整性", 
+                            name: "方法论证明材料完整性", 
                             status: "已通过", 
                             risk: "无风险",
                             riskLevel: "low" 
                           },
                           { 
-                            name: "投标报价格式规范性", 
+                            name: "驻场经理资格证明", 
                             status: "已通过", 
                             risk: "无风险",
                             riskLevel: "low" 
                           },
                           { 
-                            name: "投标文件签字盖章", 
+                            name: "响应文件签字盖章", 
                             status: "需修正", 
                             risk: "低风险",
                             riskLevel: "medium" 
                           },
                           { 
-                            name: "商务条款响应完整性", 
+                            name: "详细实施方案格式", 
                             status: "已通过", 
                             risk: "无风险",
                             riskLevel: "low" 
                           },
                           { 
-                            name: "投标保证金", 
+                            name: "AI成熟度评估模型", 
                             status: "已通过", 
                             risk: "无风险",
                             riskLevel: "low" 
@@ -768,7 +773,7 @@ const ZhitagDemo = () => {
                     <div className="ml-3">
                       <h3 className="text-sm font-medium text-amber-800">需要修正的问题</h3>
                       <div className="mt-2 text-sm text-amber-700">
-                        <p>投标文件第56页法人授权委托书缺少盖章，需要补充盖章后重新上传</p>
+                        <p>响应文件第23页"驻场经理讲标"部分缺少公司公章，需要补充盖章后重新上传</p>
                       </div>
                       <div className="mt-3">
                         <div className="-mx-2 -my-1.5 flex">
@@ -788,34 +793,34 @@ const ZhitagDemo = () => {
                   <h3 className="text-lg font-semibold mb-4">一致性检查</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="border rounded-lg p-4">
-                      <h4 className="font-medium mb-2">金额一致性</h4>
+                      <h4 className="font-medium mb-2">项目信息一致性</h4>
                       <div className="flex justify-between text-sm text-gray-600 mb-1">
-                        <span>投标总价</span>
+                        <span>项目名称</span>
                         <span className="text-green-600">✓ 一致</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-600 mb-1">
-                        <span>分项报价</span>
+                        <span>服务期限</span>
                         <span className="text-green-600">✓ 一致</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-600">
-                        <span>投标保证金金额</span>
+                        <span>服务地点</span>
                         <span className="text-green-600">✓ 一致</span>
                       </div>
                     </div>
                     
                     <div className="border rounded-lg p-4">
-                      <h4 className="font-medium mb-2">文件一致性</h4>
+                      <h4 className="font-medium mb-2">技术方案一致性</h4>
                       <div className="flex justify-between text-sm text-gray-600 mb-1">
-                        <span>技术响应与商务描述</span>
+                        <span>方法论应用</span>
                         <span className="text-green-600">✓ 一致</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-600 mb-1">
-                        <span>电子版与纸质版</span>
+                        <span>战略规划年限</span>
                         <span className="text-green-600">✓ 一致</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-600">
-                        <span>项目名称描述</span>
-                        <span className="text-green-600">✓ 一致</span>
+                        <span>业务覆盖范围</span>
+                        <span className="text-amber-600">! 需核对</span>
                       </div>
                     </div>
                   </div>
@@ -835,14 +840,14 @@ const ZhitagDemo = () => {
                 
                 <div className="mb-6 bg-gray-50 p-5 rounded-lg border border-gray-200">
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-semibold text-gray-700">技术方案撰写进度</h3>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">75% 完成</span>
+                    <h3 className="text-lg font-semibold text-gray-700">AI战略规划方案撰写进度</h3>
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">80% 完成</span>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>系统架构设计</span>
+                        <span>AI愿景与蓝图规划</span>
                         <span className="text-green-600 font-medium">100%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -852,7 +857,7 @@ const ZhitagDemo = () => {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>技术路线规划</span>
+                        <span>AI技术平台规划</span>
                         <span className="text-green-600 font-medium">100%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -862,7 +867,7 @@ const ZhitagDemo = () => {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>功能模块设计</span>
+                        <span>AI场景与实施路线图</span>
                         <span className="text-blue-600 font-medium">85%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -872,7 +877,7 @@ const ZhitagDemo = () => {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>AI技术应用方案</span>
+                        <span>AI治理机制建设</span>
                         <span className="text-blue-600 font-medium">90%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -882,7 +887,7 @@ const ZhitagDemo = () => {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>安全保障设计</span>
+                        <span>可行性研究分析</span>
                         <span className="text-amber-600 font-medium">60%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -892,7 +897,7 @@ const ZhitagDemo = () => {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>项目实施计划</span>
+                        <span>重难点分析及对策</span>
                         <span className="text-amber-600 font-medium">40%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -902,7 +907,7 @@ const ZhitagDemo = () => {
                   </div>
                   
                   <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between">
-                    <span className="text-sm text-gray-500">预计完成时间：2小时28分钟</span>
+                    <span className="text-sm text-gray-500">预计完成时间：1小时46分钟</span>
                     <button className="text-sm px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                       加速生成
                     </button>
@@ -913,7 +918,7 @@ const ZhitagDemo = () => {
                   <div className="md:col-span-2">
                     <div className="border border-gray-200 rounded-lg overflow-hidden">
                       <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                        <h3 className="font-semibold text-gray-700">系统架构设计</h3>
+                        <h3 className="font-semibold text-gray-700">AI成熟度评估模型</h3>
                         <div className="flex space-x-2">
                           <button className="text-xs px-2 py-1 bg-white border border-gray-300 rounded text-gray-600 hover:bg-gray-50">
                             全屏查看
@@ -932,58 +937,75 @@ const ZhitagDemo = () => {
                             
                             {/* 标题 */}
                             <text x="260" y="30" fontFamily="Arial" fontSize="14" textAnchor="middle" fill="#333" fontWeight="bold">
-                              智慧城市社区管理系统三层架构
+                              AI成熟度双螺旋评估模型
                             </text>
                             
-                            {/* 云端层 */}
-                            <rect x="100" y="50" width="320" height="60" rx="5" fill="#dbeafe" stroke="#93c5fd" strokeWidth="1" />
-                            <text x="260" y="70" fontFamily="Arial" fontSize="12" textAnchor="middle" fill="#1e40af" fontWeight="bold">
-                              云端服务层
-                            </text>
-                            <text x="260" y="90" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="#3b82f6">
-                              业务系统 | 数据中心 | AI智能引擎 | 集成服务
-                            </text>
+                            {/* 左侧螺旋 - CMMM模型 */}
+                            <path d="M130,50 Q100,90 130,130 Q160,170 130,210 Q100,250 130,280" 
+                                 fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4" />
+                            
+                            {/* 右侧螺旋 - AI转型模型 */}
+                            <path d="M390,50 Q420,90 390,130 Q360,170 390,210 Q420,250 390,280" 
+                                 fill="none" stroke="#10b981" strokeWidth="2" strokeDasharray="4" />
+                            
+                            {/* CMMM模型节点 */}
+                            <circle cx="130" cy="50" r="15" fill="#3b82f6" />
+                            <text x="130" y="54" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L5</text>
+                            <circle cx="130" cy="130" r="15" fill="#3b82f6" />
+                            <text x="130" y="134" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L3</text>
+                            <circle cx="130" cy="210" r="15" fill="#3b82f6" />
+                            <text x="130" y="214" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L1</text>
+                            
+                            {/* AI转型模型节点 */}
+                            <circle cx="390" cy="50" r="15" fill="#10b981" />
+                            <text x="390" y="54" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L5</text>
+                            <circle cx="390" cy="130" r="15" fill="#10b981" />
+                            <text x="390" y="134" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L3</text>
+                            <circle cx="390" cy="210" r="15" fill="#10b981" />
+                            <text x="390" y="214" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="white">L1</text>
                             
                             {/* 连接线 */}
-                            <line x1="260" y1="110" x2="260" y2="130" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4" />
+                            <line x1="145" y1="50" x2="375" y2="50" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4" />
+                            <line x1="145" y1="130" x2="375" y2="130" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4" />
+                            <line x1="145" y1="210" x2="375" y2="210" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4" />
                             
-                            {/* 边缘层 */}
-                            <rect x="100" y="130" width="320" height="60" rx="5" fill="#fef9c3" stroke="#fde047" strokeWidth="1" />
-                            <text x="260" y="150" fontFamily="Arial" fontSize="12" textAnchor="middle" fill="#854d0e" fontWeight="bold">
-                              边缘计算层
+                            {/* 模型名称 */}
+                            <text x="130" y="240" fontFamily="Arial" fontSize="12" textAnchor="middle" fill="#1e40af" fontWeight="bold">
+                              CMMM成熟度模型
                             </text>
-                            <text x="260" y="170" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="#ca8a04">
-                              社区服务器 | 边缘分析 | 本地缓存 | 数据预处理
-                            </text>
-                            
-                            {/* 连接线 */}
-                            <line x1="260" y1="190" x2="260" y2="210" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4" />
-                            
-                            {/* 终端层 */}
-                            <rect x="100" y="210" width="320" height="60" rx="5" fill="#dcfce7" stroke="#86efac" strokeWidth="1" />
-                            <text x="260" y="230" fontFamily="Arial" fontSize="12" textAnchor="middle" fill="#166534" fontWeight="bold">
-                              终端设备层
-                            </text>
-                            <text x="260" y="250" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="#22c55e">
-                              智能门禁 | 监控摄像头 | 传感器 | 用户终端设备
+                            <text x="390" y="240" fontFamily="Arial" fontSize="12" textAnchor="middle" fill="#047857" fontWeight="bold">
+                              AI转型框架
                             </text>
                             
-                            {/* 左侧技术标注 */}
-                            <text x="60" y="80" fontFamily="Arial" fontSize="9" textAnchor="end" fill="#475569">DeepSeek大模型</text>
-                            <text x="60" y="160" fontFamily="Arial" fontSize="9" textAnchor="end" fill="#475569">边缘AI推理</text>
-                            <text x="60" y="240" fontFamily="Arial" fontSize="9" textAnchor="end" fill="#475569">IoT设备接入</text>
+                            {/* 当前状态标记 */}
+                            <rect x="250" y="120" width="20" height="20" fill="#fcd34d" stroke="#f59e0b" />
+                            <text x="260" y="133" fontFamily="Arial" fontSize="10" textAnchor="middle" fill="#7c2d12" fontWeight="bold">
+                              当前
+                            </text>
                             
-                            {/* 右侧技术标注 */}
-                            <text x="460" y="80" fontFamily="Arial" fontSize="9" textAnchor="start" fill="#475569">微服务架构</text>
-                            <text x="460" y="160" fontFamily="Arial" fontSize="9" textAnchor="start" fill="#475569">实时数据处理</text>
-                            <text x="460" y="240" fontFamily="Arial" fontSize="9" textAnchor="start" fill="#475569">多协议适配</text>
+                            {/* 目标状态标记 */}
+                            <circle cx="260" cy="60" r="10" fill="#fb7185" stroke="#e11d48" />
+                            <text x="260" y="63" fontFamily="Arial" fontSize="9" textAnchor="middle" fill="white" fontWeight="bold">
+                              目标
+                            </text>
+                            
+                            {/* 成熟度等级说明 */}
+                            <text x="50" y="50" fontFamily="Arial" fontSize="10" textAnchor="end" fill="#475569">优化级 (L5)</text>
+                            <text x="50" y="130" fontFamily="Arial" fontSize="10" textAnchor="end" fill="#475569">定义级 (L3)</text>
+                            <text x="50" y="210" fontFamily="Arial" fontSize="10" textAnchor="end" fill="#475569">初始级 (L1)</text>
+                            
+                            {/* 右侧说明 */}
+                            <text x="470" y="50" fontFamily="Arial" fontSize="10" textAnchor="start" fill="#475569">持续优化</text>
+                            <text x="470" y="130" fontFamily="Arial" fontSize="10" textAnchor="start" fill="#475569">流程规范</text>
+                            <text x="470" y="210" fontFamily="Arial" fontSize="10" textAnchor="start" fill="#475569">基础应用</text>
                           </svg>
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">本系统采用"云-边-端"三层架构设计，充分利用云端算力与边缘计算能力，实现系统高效运转：</p>
+                        <p className="text-sm text-gray-600 mb-2">我们为深圳燃气设计了创新性的"AI成熟度双螺旋评估模型"，将CMMM成熟度模型与AI转型框架深度结合：</p>
                         <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
-                          <li><span className="font-medium">云端服务层</span>：部署核心业务系统、数据中心和DeepSeek大模型AI引擎，提供强大的数据分析和业务处理能力</li>
-                          <li><span className="font-medium">边缘计算层</span>：部署于社区的边缘计算单元，处理时效性要求高的业务，减轻网络传输压力</li>
-                          <li><span className="font-medium">终端设备层</span>：包括各类智能设备和用户应用，负责数据采集和交互界面呈现</li>
+                          <li><span className="font-medium">两大维度评估</span>：从流程成熟度(CMMM)和AI应用能力两个维度综合评估企业AI成熟度</li>
+                          <li><span className="font-medium">五级成熟度等级</span>：从L1(初始级)到L5(优化级)，精确定位企业AI能力现状，循序渐进规划提升路径</li>
+                          <li><span className="font-medium">全面覆盖评估要素</span>：包括技术基础设施、数据治理能力、AI模型应用水平、人才队伍建设、AI治理机制等</li>
+                          <li><span className="font-medium">量化评估指标</span>：设计50+细粒度评估指标，确保评估科学性和客观性</li>
                         </ul>
                       </div>
                     </div>
@@ -1002,9 +1024,9 @@ const ZhitagDemo = () => {
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
-                              <h4 className="font-medium text-blue-700">DeepSeek大模型赋能</h4>
+                              <h4 className="font-medium text-blue-700">双螺旋评估模型</h4>
                             </div>
-                            <p className="text-sm text-blue-600">集成DeepSeek-32B大模型，提供智能客服、舆情分析、行为预测等AI能力，远超同类方案</p>
+                            <p className="text-sm text-blue-600">融合CMMM与AI转型框架的创新评估方法，为燃气行业AI成熟度评估提供全新视角</p>
                           </div>
                           
                           <div className="p-3 bg-purple-50 rounded-lg">
@@ -1012,9 +1034,9 @@ const ZhitagDemo = () => {
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
-                              <h4 className="font-medium text-purple-700">创新智能密度分析</h4>
+                              <h4 className="font-medium text-purple-700">AI场景优先级评估矩阵</h4>
                             </div>
-                            <p className="text-sm text-purple-600">独创的智能密度分析技术，可动态调整社区安保资源配置，提高安防效率30%以上</p>
+                            <p className="text-sm text-purple-600">独创多维度评估矩阵，从业务价值、技术可行性、数据准备度、组织胜任力等维度评估AI场景</p>
                           </div>
                           
                           <div className="p-3 bg-green-50 rounded-lg">
@@ -1022,9 +1044,9 @@ const ZhitagDemo = () => {
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
-                              <h4 className="font-medium text-green-700">微服务架构设计</h4>
+                              <h4 className="font-medium text-green-700">大模型赋能标杆策略</h4>
                             </div>
-                            <p className="text-sm text-green-600">基于K8s容器化微服务架构，支持弹性扩展，可根据业务需求灵活调整系统规模</p>
+                            <p className="text-sm text-green-600">基于DeepSeek大模型，提供标杆企业AI转型策略参考库，为深圳燃气打造专属方案</p>
                           </div>
                           
                           <div className="p-3 bg-amber-50 rounded-lg">
@@ -1032,9 +1054,9 @@ const ZhitagDemo = () => {
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-amber-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
-                              <h4 className="font-medium text-amber-700">自主开发多模态感知</h4>
+                              <h4 className="font-medium text-amber-700">AI实验室建设方案</h4>
                             </div>
-                            <p className="text-sm text-amber-600">自研的多模态感知技术，结合视频、音频、环境数据，实现全方位社区感知能力</p>
+                            <p className="text-sm text-amber-600">提供完整的AI实验室组织架构、能力体系和运营机制设计，帮助企业快速搭建AI创新平台</p>
                           </div>
                           
                           <div className="p-3 bg-red-50 rounded-lg">
@@ -1042,21 +1064,21 @@ const ZhitagDemo = () => {
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
-                              <h4 className="font-medium text-red-700">智能设备适配能力</h4>
+                              <h4 className="font-medium text-red-700">全价值链AI应用图谱</h4>
                             </div>
-                            <p className="text-sm text-red-600">支持400+种主流智能设备接入，超越行业平均200种的接入能力，实现更广泛的兼容性</p>
+                            <p className="text-sm text-red-600">覆盖深圳燃气四大业务板块的全价值链AI应用场景图谱，涵盖70+潜在应用场景</p>
                           </div>
                         </div>
                         
                         <div className="mt-4 pt-4 border-t border-gray-100">
                           <div className="text-xs text-gray-500 flex justify-between mb-1">
-                            <span>技术创新指数</span>
-                            <span className="font-medium">86/100</span>
+                            <span>方法论应用指数</span>
+                            <span className="font-medium">92/100</span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-1.5">
-                            <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '86%' }}></div>
+                            <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '92%' }}></div>
                           </div>
-                          <p className="text-xs text-gray-500 mt-2">超出行业平均水平32%</p>
+                          <p className="text-xs text-gray-500 mt-2">远超同行业平均水平(75分)</p>
                         </div>
                       </div>
                     </div>
@@ -1066,7 +1088,7 @@ const ZhitagDemo = () => {
                 <div className="mb-6">
                   <div className="border border-gray-200 rounded-lg overflow-hidden">
                     <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-                      <h3 className="font-semibold text-gray-700">关键功能模块</h3>
+                      <h3 className="font-semibold text-gray-700">AI场景与实施路线图</h3>
                       <div>
                         <button className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                           展开全部
@@ -1075,21 +1097,21 @@ const ZhitagDemo = () => {
                     </div>
                     
                     <div className="p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">居民信息管理</h4>
+                            <h4 className="font-medium">安全运营场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>居民信息登记与管理</li>
-                            <li>家庭成员关联</li>
-                            <li>访客管理</li>
-                            <li>信息安全保障</li>
+                            <li>AI管网泄漏预测</li>
+                            <li>智能巡检机器人</li>
+                            <li>视觉识别安全监测</li>
+                            <li>异常用气行为分析</li>
                           </ul>
                         </div>
                         
@@ -1097,16 +1119,16 @@ const ZhitagDemo = () => {
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">智能安防监控</h4>
+                            <h4 className="font-medium">客户服务场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>AI视频监控识别</li>
-                            <li>异常行为检测</li>
-                            <li>安防预警联动</li>
-                            <li>安全态势感知</li>
+                            <li>智能客服机器人</li>
+                            <li>用气行为分析</li>
+                            <li>需求预测与定价</li>
+                            <li>个性化服务推荐</li>
                           </ul>
                         </div>
                         
@@ -1114,16 +1136,16 @@ const ZhitagDemo = () => {
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">社区活动管理</h4>
+                            <h4 className="font-medium">经营管理场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>活动发布与报名</li>
-                            <li>智能活动推荐</li>
-                            <li>场地预约管理</li>
-                            <li>活动回顾分享</li>
+                            <li>需求预测与供应链优化</li>
+                            <li>智能决策支持系统</li>
+                            <li>运营效率分析优化</li>
+                            <li>设备寿命预测与维护</li>
                           </ul>
                         </div>
                         
@@ -1131,16 +1153,16 @@ const ZhitagDemo = () => {
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">智能停车管理</h4>
+                            <h4 className="font-medium">综合能源场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>车牌自动识别</li>
-                            <li>车位管理与导航</li>
-                            <li>访客停车管理</li>
-                            <li>无感支付</li>
+                            <li>多能源协同调度</li>
+                            <li>能源使用效率优化</li>
+                            <li>碳排放监测与管理</li>
+                            <li>分布式能源管理</li>
                           </ul>
                         </div>
                         
@@ -1148,16 +1170,16 @@ const ZhitagDemo = () => {
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">物业管理系统</h4>
+                            <h4 className="font-medium">上游资源场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>物业缴费管理</li>
-                            <li>报修服务管理</li>
-                            <li>公告发布系统</li>
-                            <li>绩效考核分析</li>
+                            <li>气源采购优化</li>
+                            <li>LNG价格预测</li>
+                            <li>储配设施智能调度</li>
+                            <li>气源结构优化</li>
                           </ul>
                         </div>
                         
@@ -1165,17 +1187,66 @@ const ZhitagDemo = () => {
                           <div className="flex items-center mb-2">
                             <div className="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center mr-3">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                               </svg>
                             </div>
-                            <h4 className="font-medium">数据分析决策</h4>
+                            <h4 className="font-medium">智慧服务场景</h4>
                           </div>
                           <ul className="text-sm text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>社区运营数据分析</li>
-                            <li>资源优化配置</li>
-                            <li>趋势预测与预警</li>
-                            <li>可视化决策支持</li>
+                            <li>燃气工程智能设计</li>
+                            <li>工程质量AI监测</li>
+                            <li>设备智能诊断</li>
+                            <li>服务效率优化</li>
                           </ul>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <h4 className="font-medium text-blue-700 mb-2">实施路线图</h4>
+                        <div className="relative">
+                          <div className="absolute top-0 bottom-0 left-12 w-0.5 bg-blue-200"></div>
+                          
+                          <div className="relative mb-8">
+                            <div className="flex items-center mb-2">
+                              <div className="absolute left-0 w-24 h-8 flex items-center justify-center bg-blue-600 text-white text-sm rounded font-medium">
+                                短期(0-1年)
+                              </div>
+                              <div className="ml-28">
+                                <span className="font-medium">夯实基础，速赢示范</span>
+                              </div>
+                            </div>
+                            <div className="ml-28 text-sm text-gray-600">
+                              建立AI组织与治理体系，完成1-2个高价值速赢项目，如智能客服和管网泄漏预测
+                            </div>
+                          </div>
+                          
+                          <div className="relative mb-8">
+                            <div className="flex items-center mb-2">
+                              <div className="absolute left-0 w-24 h-8 flex items-center justify-center bg-green-600 text-white text-sm rounded font-medium">
+                                中期(1-3年)
+                              </div>
+                              <div className="ml-28">
+                                <span className="font-medium">能力拓展，全面推进</span>
+                              </div>
+                            </div>
+                            <div className="ml-28 text-sm text-gray-600">
+                              建成统一AI技术平台，拓展10+业务场景应用，覆盖四大业务板块核心流程
+                            </div>
+                          </div>
+                          
+                          <div className="relative">
+                            <div className="flex items-center mb-2">
+                              <div className="absolute left-0 w-24 h-8 flex items-center justify-center bg-purple-600 text-white text-sm rounded font-medium">
+                                长期(3-5年)
+                              </div>
+                              <div className="ml-28">
+                                <span className="font-medium">深度融合，价值创新</span>
+                              </div>
+                            </div>
+                            <div className="ml-28 text-sm text-gray-600">
+                              AI全面融入业务流程，形成数智化运营新模式，打造行业AI应用标杆
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1221,19 +1292,19 @@ const ZhitagDemo = () => {
                           <div className="flex justify-between mb-2">
                             <div>
                               <h4 className="font-medium">项目总报价</h4>
-                              <p className="text-sm text-gray-500">包含软硬件采购、实施、培训与运维</p>
+                              <p className="text-sm text-gray-500">含税总价，含所有服务内容</p>
                             </div>
                             <div className="text-right">
-                              <div className="text-2xl font-bold text-green-600">¥6,380,000</div>
-                              <div className="text-sm text-gray-500">不含税价格：¥5,646,017</div>
+                              <div className="text-2xl font-bold text-green-600">¥348,000</div>
+                              <div className="text-sm text-gray-500">不含税价格：¥308,000</div>
                             </div>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-1">
-                            <div className="bg-green-500 h-1 rounded-full" style={{ width: '94%' }}></div>
+                            <div className="bg-green-500 h-1 rounded-full" style={{ width: '87%' }}></div>
                           </div>
                           <div className="flex justify-between text-xs text-gray-500 mt-1">
-                            <span>预算下限：¥6,000,000</span>
-                            <span>预算上限：¥6,800,000</span>
+                            <span>最低安全线：¥320,000</span>
+                            <span>最高限价：¥400,000</span>
                           </div>
                         </div>
                         
@@ -1244,7 +1315,7 @@ const ZhitagDemo = () => {
                             </svg>
                             <div>
                               <p className="font-medium">报价策略分析</p>
-                              <p className="text-sm text-gray-600 mt-1">当前报价位于预算范围内94%位置，低于预算上限6.2%，高于最高竞争对手华为预计报价（670-690万）的约7%。建议维持此价格以保持合理利润，同时保证项目实施质量。</p>
+                              <p className="text-sm text-gray-600 mt-1">当前报价位于最高限价的87%位置，低于最高限价13%，比主要竞争对手(联想、德勤)低12-15%。此价格既保持价格优势，又能保证合理利润，同时消除决策者对低价导致服务质量下降的顾虑。</p>
                             </div>
                           </div>
                         </div>
@@ -1256,50 +1327,50 @@ const ZhitagDemo = () => {
                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">分项</th>
                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">金额（元）</th>
                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">占比</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">市场均价对比</th>
+                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">行业均价对比</th>
                               </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                               <tr>
                                 <td className="px-4 py-3 whitespace-nowrap">
-                                  <div className="font-medium">软件开发与定制</div>
+                                  <div className="font-medium">AI现状评估与诊断</div>
                                 </td>
-                                <td className="px-4 py-3 whitespace-nowrap">2,380,000</td>
-                                <td className="px-4 py-3 whitespace-nowrap">37.3%</td>
+                                <td className="px-4 py-3 whitespace-nowrap">80,000</td>
+                                <td className="px-4 py-3 whitespace-nowrap">23.0%</td>
                                 <td className="px-4 py-3">
                                   <div className="flex items-center">
                                     <div className="text-green-600 font-medium flex items-center">
                                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                       </svg>
-                                      低5%
+                                      低10%
                                     </div>
                                   </div>
                                 </td>
                               </tr>
                               <tr>
                                 <td className="px-4 py-3 whitespace-nowrap">
-                                  <div className="font-medium">硬件设备采购</div>
+                                  <div className="font-medium">AI用例规划和蓝图设计</div>
                                 </td>
-                                <td className="px-4 py-3 whitespace-nowrap">1,850,000</td>
-                                <td className="px-4 py-3 whitespace-nowrap">29.0%</td>
+                                <td className="px-4 py-3 whitespace-nowrap">120,000</td>
+                                <td className="px-4 py-3 whitespace-nowrap">34.5%</td>
                                 <td className="px-4 py-3">
                                   <div className="flex items-center">
                                     <div className="text-red-600 font-medium flex items-center">
                                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                       </svg>
-                                      高3%
+                                      高5%
                                     </div>
                                   </div>
                                 </td>
                               </tr>
                               <tr>
                                 <td className="px-4 py-3 whitespace-nowrap">
-                                  <div className="font-medium">系统实施与集成</div>
+                                  <div className="font-medium">AI场景落地蓝图规划</div>
                                 </td>
-                                <td className="px-4 py-3 whitespace-nowrap">1,200,000</td>
-                                <td className="px-4 py-3 whitespace-nowrap">18.8%</td>
+                                <td className="px-4 py-3 whitespace-nowrap">98,000</td>
+                                <td className="px-4 py-3 whitespace-nowrap">28.2%</td>
                                 <td className="px-4 py-3">
                                   <div className="flex items-center">
                                     <div className="text-gray-600 font-medium flex items-center">
@@ -1313,34 +1384,17 @@ const ZhitagDemo = () => {
                               </tr>
                               <tr>
                                 <td className="px-4 py-3 whitespace-nowrap">
-                                  <div className="font-medium">培训与技术转移</div>
+                                  <div className="font-medium">AI组织与运营能力规划</div>
                                 </td>
-                                <td className="px-4 py-3 whitespace-nowrap">350,000</td>
-                                <td className="px-4 py-3 whitespace-nowrap">5.5%</td>
+                                <td className="px-4 py-3 whitespace-nowrap">50,000</td>
+                                <td className="px-4 py-3 whitespace-nowrap">14.3%</td>
                                 <td className="px-4 py-3">
                                   <div className="flex items-center">
                                     <div className="text-green-600 font-medium flex items-center">
                                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                       </svg>
-                                      低8%
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="px-4 py-3 whitespace-nowrap">
-                                  <div className="font-medium">运维服务（3年）</div>
-                                </td>
-                                <td className="px-4 py-3 whitespace-nowrap">600,000</td>
-                                <td className="px-4 py-3 whitespace-nowrap">9.4%</td>
-                                <td className="px-4 py-3">
-                                  <div className="flex items-center">
-                                    <div className="text-green-600 font-medium flex items-center">
-                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                      </svg>
-                                      低2%
+                                      低15%
                                     </div>
                                   </div>
                                 </td>
@@ -1362,10 +1416,10 @@ const ZhitagDemo = () => {
                         <div className="bg-blue-50 rounded-lg p-4 mb-4">
                           <div className="flex justify-between items-center mb-1">
                             <span className="text-sm font-medium text-blue-700">预计利润率</span>
-                            <span className="text-lg font-bold text-blue-700">21.6%</span>
+                            <span className="text-lg font-bold text-blue-700">22.8%</span>
                           </div>
                           <div className="w-full bg-blue-200 rounded-full h-2">
-                            <div className="bg-blue-600 h-2 rounded-full" style={{ width: '72%' }}></div>
+                            <div className="bg-blue-600 h-2 rounded-full" style={{ width: '76%' }}></div>
                           </div>
                           <div className="flex justify-between text-xs text-blue-600 mt-1">
                             <span>目标最低：18%</span>
@@ -1377,30 +1431,31 @@ const ZhitagDemo = () => {
                           <div className="bg-gray-50 p-3 rounded-lg">
                             <div className="flex justify-between mb-1">
                               <span className="text-sm">项目总收入</span>
-                              <span className="text-sm font-medium">¥6,380,000</span>
+                              <span className="text-sm font-medium">¥348,000</span>
                             </div>
                           </div>
                           
                           <div className="bg-gray-50 p-3 rounded-lg">
                             <div className="flex justify-between mb-1">
                               <span className="text-sm">预计总成本</span>
-                              <span className="text-sm font-medium">¥5,000,000</span>
+                              <span className="text-sm font-medium">¥268,656</span>
                             </div>
-                            <div className="text-xs text-gray-500">包含人工、设备、差旅等</div>
+                            <div className="text-xs text-gray-500">包含人工、差旅、项目管理等</div>
                           </div>
                           
                           <div className="bg-gray-50 p-3 rounded-lg">
                             <div className="flex justify-between mb-1">
                               <span className="text-sm">预计毛利</span>
-                              <span className="text-sm font-medium text-green-600">¥1,380,000</span>
+                              <span className="text-sm font-medium text-green-600">¥79,344</span>
                             </div>
                           </div>
                           
                           <div className="bg-gray-50 p-3 rounded-lg">
                             <div className="flex justify-between mb-1">
                               <span className="text-sm">预计回款时间</span>
-                              <span className="text-sm font-medium">12-18个月</span>
+                              <span className="text-sm font-medium">分3次支付</span>
                             </div>
+                            <div className="text-xs text-gray-500">合同签订30%、交付50%、验收20%</div>
                           </div>
                         </div>
                         
@@ -1409,7 +1464,7 @@ const ZhitagDemo = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span className="font-medium text-amber-700">报价策略合理，建议维持当前价格</span>
+                            <span className="font-medium text-amber-700">报价策略合理，与同类项目相比性价比突出</span>
                           </div>
                         </div>
                       </div>
@@ -1462,54 +1517,54 @@ const ZhitagDemo = () => {
                               fill="none"
                               stroke="#4f46e5"
                               strokeWidth="3"
-                              strokeDasharray="85, 100"
+                              strokeDasharray="88, 100"
                             />
                           </svg>
                           <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-indigo-600">
-                            85%
+                            88%
                           </div>
                         </div>
                         <h3 className="text-lg font-semibold text-gray-800">总体竞争力评分</h3>
-                        <p className="text-sm text-gray-500 text-center mt-1">优秀 (行业平均: 76%)</p>
+                        <p className="text-sm text-gray-500 text-center mt-1">优秀 (行业平均: 78%)</p>
                         
                         <div className="w-full mt-4 space-y-2">
                           <div>
                             <div className="flex justify-between text-xs mb-1">
                               <span className="text-gray-600">技术方案</span>
-                              <span className="font-medium">88%</span>
+                              <span className="font-medium">92%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-1.5">
-                              <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '88%' }}></div>
-                            </div>
-                          </div>
-                          
-                          <div>
-                            <div className="flex justify-between text-xs mb-1">
-                              <span className="text-gray-600">商务方案</span>
-                              <span className="font-medium">82%</span>
-                            </div>
-                            <div className="w-full bg-gray-200 rounded-full h-1.5">
-                              <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '82%' }}></div>
+                              <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '92%' }}></div>
                             </div>
                           </div>
                           
                           <div>
                             <div className="flex justify-between text-xs mb-1">
                               <span className="text-gray-600">价格竞争力</span>
-                              <span className="font-medium">80%</span>
+                              <span className="font-medium">85%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-1.5">
-                              <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '80%' }}></div>
+                              <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '85%' }}></div>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <div className="flex justify-between text-xs mb-1">
+                              <span className="text-gray-600">讲标能力</span>
+                              <span className="font-medium">78%</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-1.5">
+                              <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '78%' }}></div>
                             </div>
                           </div>
                           
                           <div>
                             <div className="flex justify-between text-xs mb-1">
                               <span className="text-gray-600">企业资质</span>
-                              <span className="font-medium">93%</span>
+                              <span className="font-medium">90%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-1.5">
-                              <div className="bg-indigo-500 h-1.5 rounded-full" style={{ width: '93%' }}></div>
+                              <div className="bg-indigo-500 h-1.5 rounded-full" style={{ width: '90%' }}></div>
                             </div>
                           </div>
                         </div>
@@ -1524,8 +1579,8 @@ const ZhitagDemo = () => {
                       <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-lg p-4 mb-4">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-3xl font-bold text-green-700">78.6%</p>
-                            <p className="text-sm text-gray-600 mt-1">较上次提升14.2%</p>
+                            <p className="text-3xl font-bold text-green-700">76.5%</p>
+                            <p className="text-sm text-gray-600 mt-1">高于行业平均值22%</p>
                           </div>
                           <div className="bg-white p-2 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1540,9 +1595,9 @@ const ZhitagDemo = () => {
                         <div className="flex justify-between items-center">
                           <div className="flex items-center">
                             <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span className="text-sm">技术方案优势</span>
+                            <span className="text-sm">方法论应用优势</span>
                           </div>
-                          <span className="text-sm font-medium">+25.3%</span>
+                          <span className="text-sm font-medium">+22.3%</span>
                         </div>
                         
                         <div className="flex justify-between items-center">
@@ -1556,17 +1611,17 @@ const ZhitagDemo = () => {
                         <div className="flex justify-between items-center">
                           <div className="flex items-center">
                             <div className="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
-                            <span className="text-sm">企业资质</span>
+                            <span className="text-sm">AI技术能力</span>
                           </div>
-                          <span className="text-sm font-medium">+22.5%</span>
+                          <span className="text-sm font-medium">+25.5%</span>
                         </div>
                         
                         <div className="flex justify-between items-center">
                           <div className="flex items-center">
                             <div className="w-3 h-3 bg-amber-500 rounded-full mr-2"></div>
-                            <span className="text-sm">商务承诺</span>
+                            <span className="text-sm">燃气行业经验</span>
                           </div>
-                          <span className="text-sm font-medium">+12.1%</span>
+                          <span className="text-sm font-medium">+10.0%</span>
                         </div>
                       </div>
                     </div>
@@ -1591,8 +1646,8 @@ const ZhitagDemo = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             <div>
-                              <h4 className="text-sm font-medium text-green-700">DeepSeek大模型技术优势</h4>
-                              <p className="text-xs text-green-600 mt-1">我方独有的DeepSeek大模型技术应用，远超竞争对手的AI技术水平，在智能服务和数据分析方面具有明显优势</p>
+                              <h4 className="text-sm font-medium text-green-700">双螺旋评估模型创新</h4>
+                              <p className="text-xs text-green-600 mt-1">我方独创的"AI成熟度双螺旋评估模型"融合CMMM与AI转型框架，提供了更全面的评估方法，远超竞争对手</p>
                             </div>
                           </div>
                         </div>
@@ -1603,8 +1658,8 @@ const ZhitagDemo = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             <div>
-                              <h4 className="text-sm font-medium text-blue-700">本地化服务能力</h4>
-                              <p className="text-xs text-blue-600 mt-1">相比华为和科大讯飞，我方在西安地区拥有更强的本地化服务团队和更丰富的本地项目经验</p>
+                              <h4 className="text-sm font-medium text-blue-700">DeepSeek大模型赋能</h4>
+                              <p className="text-xs text-blue-600 mt-1">我方方案融合DeepSeek大模型技术，为燃气行业AI场景提供更智能、更精准的解决方案</p>
                             </div>
                           </div>
                         </div>
@@ -1615,8 +1670,8 @@ const ZhitagDemo = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             <div>
-                              <h4 className="text-sm font-medium text-purple-700">价格竞争力</h4>
-                              <p className="text-xs text-purple-600 mt-1">我方报价比竞争对手平均低5-8%，同时不影响服务质量，体现更高的性价比</p>
+                              <h4 className="text-sm font-medium text-purple-700">价格竞争优势</h4>
+                              <p className="text-xs text-purple-600 mt-1">我方报价与技术方案匹配度高，相比其他对手低10-15%的价格提供同等甚至更高质量服务</p>
                             </div>
                           </div>
                         </div>
@@ -1627,8 +1682,8 @@ const ZhitagDemo = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             <div>
-                              <h4 className="text-sm font-medium text-amber-700">专业技术团队</h4>
-                              <p className="text-xs text-amber-600 mt-1">我方拥有更专业的智慧城市方案设计团队，核心成员平均8年以上智慧城市建设经验</p>
+                              <h4 className="text-sm font-medium text-amber-700">AI场景优先级评估矩阵</h4>
+                              <p className="text-xs text-amber-600 mt-1">我方独创的多维度评估矩阵，能够高效识别燃气行业高价值AI场景，避免资源错配</p>
                             </div>
                           </div>
                         </div>
@@ -1637,9 +1692,9 @@ const ZhitagDemo = () => {
                       <div className="mt-4 bg-gray-50 p-3 rounded-lg">
                         <h4 className="text-sm font-medium text-gray-700 mb-2">建议进一步提升的方面</h4>
                         <ul className="text-xs text-gray-600 space-y-1 ml-5 list-disc">
-                          <li>增强系统安全保障方案的详细程度</li>
-                          <li>补充更多同类项目的成功案例</li>
-                          <li>完善项目实施计划的时间节点和风险控制措施</li>
+                          <li>补充更多燃气行业AI应用成功案例</li>
+                          <li>加强讲标环节的针对性，特别是专家问题预设</li>
+                          <li>完善可行性研究分析报告的投资收益测算</li>
                         </ul>
                       </div>
                     </div>
@@ -1664,7 +1719,7 @@ const ZhitagDemo = () => {
                           <tbody className="bg-white divide-y divide-gray-200">
                             <tr>
                               <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">系统架构设计</div>
+                                <div className="font-medium text-gray-900">项目实施方案</div>
                                 <div className="text-xs text-gray-500">技术方案</div>
                               </td>
                               <td className="px-4 py-3 whitespace-nowrap text-sm">15</td>
@@ -1680,80 +1735,32 @@ const ZhitagDemo = () => {
                             
                             <tr>
                               <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">关键技术实现</div>
+                                <div className="font-medium text-gray-900">重难点分析及对策</div>
                                 <div className="text-xs text-gray-500">技术方案</div>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm">10</td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <span className="text-sm font-medium text-green-600">9.2</span>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '92%' }}></div>
-                                </div>
-                              </td>
-                            </tr>
-                            
-                            <tr>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">创新性和先进性</div>
-                                <div className="text-xs text-gray-500">技术方案</div>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm">10</td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <span className="text-sm font-medium text-green-600">8.8</span>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '88%' }}></div>
-                                </div>
-                              </td>
-                            </tr>
-                            
-                            <tr>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">项目进度计划</div>
-                                <div className="text-xs text-gray-500">实施方案</div>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm">10</td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <span className="text-sm font-medium text-amber-600">7.5</span>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: '75%' }}></div>
-                                </div>
-                              </td>
-                            </tr>
-                            
-                            <tr>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">投标报价</div>
-                                <div className="text-xs text-gray-500">商务部分</div>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm">10</td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <span className="text-sm font-medium text-green-600">9.1</span>
-                              </td>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '91%' }}></div>
-                                </div>
-                              </td>
-                            </tr>
-                            
-                            <tr>
-                              <td className="px-4 py-3 whitespace-nowrap">
-                                <div className="font-medium text-gray-900">公司资质</div>
-                                <div className="text-xs text-gray-500">公司实力</div>
                               </td>
                               <td className="px-4 py-3 whitespace-nowrap text-sm">5</td>
                               <td className="px-4 py-3 whitespace-nowrap">
-                                <span className="text-sm font-medium text-green-600">5.0</span>
+                                <span className="text-sm font-medium text-amber-600">4.2</span>
                               </td>
                               <td className="px-4 py-3 whitespace-nowrap">
                                 <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '100%' }}></div>
+                                  <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: '84%' }}></div>
+                                </div>
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td className="px-4 py-3 whitespace-nowrap">
+                                <div className="font-medium text-gray-900">驻场经理讲标</div>
+                                <div className="text-xs text-gray-500">讲标能力</div>
+                              </td>
+                              <td className="px-4 py-3 whitespace-nowrap text-sm">20</td>
+                              <td className="px-4 py-3 whitespace-nowrap">
+                                <span className="text-sm font-medium text-amber-600">17.5</span>
+                              </td>
+                              <td className="px-4 py-3 whitespace-nowrap">
+                                <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                                  <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: '88%' }}></div>
                                 </div>
                               </td>
                             </tr>
@@ -1761,11 +1768,11 @@ const ZhitagDemo = () => {
                           <tfoot className="bg-gray-50">
                             <tr>
                               <td className="px-4 py-3 whitespace-nowrap font-medium">总计</td>
-                              <td className="px-4 py-3 whitespace-nowrap font-medium">100</td>
-                              <td className="px-4 py-3 whitespace-nowrap font-medium text-indigo-600">85.1</td>
+                              <td className="px-4 py-3 whitespace-nowrap font-medium">40</td>
+                              <td className="px-4 py-3 whitespace-nowrap font-medium text-indigo-600">35.2</td>
                               <td className="px-4 py-3 whitespace-nowrap">
                                 <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                                  <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '85%' }}></div>
+                                  <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '88%' }}></div>
                                 </div>
                               </td>
                             </tr>
@@ -1789,9 +1796,9 @@ const ZhitagDemo = () => {
                             <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
                               <span className="font-bold text-red-600">1</span>
                             </div>
-                            <h4 className="font-medium">完善项目实施计划</h4>
+                            <h4 className="font-medium">加强重难点分析</h4>
                           </div>
-                          <p className="text-sm text-gray-600">当前项目进度计划得分率仅75%，建议增加详细的时间节点、里程碑和资源分配计划，提高实施方案的可行性和说服力</p>
+                          <p className="text-sm text-gray-600">当前重难点分析得分率84%，建议补充燃气行业特有的AI应用困难点，如多源异构数据整合、安全生产要求等</p>
                         </div>
                         
                         <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
@@ -1799,9 +1806,9 @@ const ZhitagDemo = () => {
                             <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">
                               <span className="font-bold text-amber-600">2</span>
                             </div>
-                            <h4 className="font-medium">增强安全保障措施</h4>
+                            <h4 className="font-medium">强化讲标能力</h4>
                           </div>
-                          <p className="text-sm text-gray-600">安全模块设计完成度仅60%，建议完善系统安全保障措施，详细阐述数据安全、网络安全、访问控制等方面的具体实施方案</p>
+                          <p className="text-sm text-gray-600">讲标环节得分率88%，建议对驻场经理进行系统培训，特别是增强对专家问题的预判和应答能力</p>
                         </div>
                         
                         <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
@@ -1809,9 +1816,9 @@ const ZhitagDemo = () => {
                             <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
                               <span className="font-bold text-green-600">3</span>
                             </div>
-                            <h4 className="font-medium">补充项目案例</h4>
+                            <h4 className="font-medium">补充行业案例</h4>
                           </div>
-                          <p className="text-sm text-gray-600">建议补充2-3个在西安地区已成功实施的同类项目案例，并详细描述项目成效，增强经验说服力</p>
+                          <p className="text-sm text-gray-600">建议补充2-3个燃气行业AI应用成功案例，特别是与深圳燃气业务相近的应用场景</p>
                         </div>
                       </div>
                       
@@ -1822,7 +1829,7 @@ const ZhitagDemo = () => {
                           </svg>
                           <div>
                             <h4 className="font-medium text-indigo-700">AI助力优化建议</h4>
-                            <p className="text-sm text-indigo-600 mt-1">DeepSeek大模型分析发现，如果实施上述优化建议，预计总评分可提升至91分以上，中标概率将增加至85%以上，远超竞争对手</p>
+                            <p className="text-sm text-indigo-600 mt-1">DeepSeek大模型分析显示，如果实施上述优化建议，预计总评分可提升至38分以上，中标概率将增加至85%，远超竞争对手</p>
                           </div>
                         </div>
                       </div>
@@ -1862,10 +1869,10 @@ const ZhitagDemo = () => {
                 DeepSeek-32B模型已连接
               </span>
               <span>|</span>
-              <span>最后更新: 2023/06/10 15:30</span>
+              <span>最后更新: 2025/05/15 10:30</span>
             </div>
             <div className="text-sm text-gray-600">
-              智标系统 v1.0.0 | 中通南方七分公司
+              智标系统 v1.2.0 | 中通信息/南方设计
             </div>
           </div>
         </div>
@@ -1874,4 +1881,4 @@ const ZhitagDemo = () => {
   );
 };
 
-export default ZhitagDemo; 
+export default ZhitagShenranDemo;
