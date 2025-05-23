@@ -25,3 +25,8 @@ dist-ssr
 *.sh
 deploy.sh
 package-lock.json
+
+# Local Netlify folder
+.netlify
+
+**/.claude/settings.local.json

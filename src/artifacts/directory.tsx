@@ -17,11 +17,25 @@ interface DirectoryProps {
   basePath?: string;
 }
 
+interface DirectoryItem {
+  type: 'file' | 'folder';
+  path: string;
+  title: string;
+  description: string;
+  meta?: {
+    title?: string;
+    description?: string;
+    isHidden?: boolean;
+    category?: string;
+    order?: number;
+  };
+}
+
 const Directory = ({ basePath = '' }: DirectoryProps) => {
   const navigate = useNavigate();
   
   // 生成页面和文件夹信息
-  const generatePageList = (currentPath = '') => {
+  const generatePageList = (currentPath = ''): DirectoryItem[] => {
     const normalizedCurrentPath = currentPath.replace(/^\/+|\/+$/g, '');
     
     // 获取所有文件路径
@@ -30,32 +44,45 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
       module
     })).filter(({ path }) => path !== 'directory.tsx');
 
-    // 获取当前目录下的文件和子目录
-    const currentItems = allPaths.filter(({ path }) => {
-      // 如果是根目录
-      if (!normalizedCurrentPath) {
-        const firstLevel = path.split('/')[0];
-        return !path.includes('/') || (path.split('/').length === 2 && path.endsWith(firstLevel + '.tsx'));
-      }
-      
-      // 如果是子目录
-      return path.startsWith(normalizedCurrentPath + '/') && 
-             path.slice(normalizedCurrentPath.length + 1).split('/').length === 1;
-    });
-
     // 处理文件和目录
-    const processedItems = new Map();
+    const processedItems = new Map<string, DirectoryItem>();
     
-    // 获取当前目录下的直接子目录
-    allPaths.forEach(({ path }) => {
+    // 遍历所有路径，找到当前目录下的直接子项
+    allPaths.forEach(({ path, module }) => {
       if (path === 'directory.tsx') return;
       
-      const pathWithoutPrefix = normalizedCurrentPath 
-        ? path.slice(normalizedCurrentPath.length + 1)
-        : path;
+      // 计算相对于当前路径的路径
+      let relativePath: string;
       
-      const parts = pathWithoutPrefix.split('/');
-      if (parts.length > 1) {
+      if (!normalizedCurrentPath) {
+        // 在根目录
+        relativePath = path;
+      } else {
+        // 在子目录中，只处理以当前路径开头的文件
+        if (!path.startsWith(normalizedCurrentPath + '/')) {
+          return; // 跳过不属于当前目录的文件
+        }
+        relativePath = path.slice(normalizedCurrentPath.length + 1);
+      }
+      
+      const parts = relativePath.split('/');
+      
+      if (parts.length === 1) {
+        // 这是当前目录下的直接文件
+        if (path.endsWith('.tsx')) {
+          const fileName = parts[0].replace('.tsx', '');
+          if (!processedItems.has(fileName)) {
+            processedItems.set(fileName, {
+              type: 'file',
+              path: normalizedCurrentPath ? `/${normalizedCurrentPath}/${fileName}` : `/${fileName}`,
+              title: module.meta?.title || fileName,
+              description: module.meta?.description || `${fileName} 页面`,
+              meta: module.meta
+            });
+          }
+        }
+      } else {
+        // 这是当前目录下的子目录
         const dirName = parts[0];
         if (!processedItems.has(dirName)) {
           processedItems.set(dirName, {
@@ -65,26 +92,6 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
               : `/${dirName}`,
             title: dirName.charAt(0).toUpperCase() + dirName.slice(1),
             description: `${dirName} 目录`
-          });
-        }
-      }
-    });
-
-    // 处理当前目录下的文件
-    currentItems.forEach(({ path, module }) => {
-      if (path.endsWith('.tsx') && path !== 'directory.tsx') {
-        const fileName = path.split('/').pop()?.replace('.tsx', '') || '';
-        const key = normalizedCurrentPath 
-          ? `${normalizedCurrentPath}/${fileName}`
-          : fileName;
-        
-        if (!processedItems.has(fileName)) {
-          processedItems.set(fileName, {
-            type: 'file',
-            path: '/' + key,
-            title: module.meta?.title || fileName,
-            description: module.meta?.description || `${fileName} 页面`,
-            meta: module.meta
           });
         }
       }
@@ -104,7 +111,7 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
 
   const pageList = generatePageList(basePath);
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: DirectoryItem) => {
     navigate(item.type === 'folder' ? item.path : `${item.path}`);
   };
 

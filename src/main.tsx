@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { useRoutes } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
-import { Maximize2, Minimize2 } from 'lucide-react';
 import Directory from './artifacts/directory';
 import './index.css'
+
+// 只在开发模式下导入工具栏
+const StagewiseToolbar = process.env.NODE_ENV === 'development' 
+  ? React.lazy(() => import('./components/StagewiseToolbar').catch(() => ({ default: () => null })))
+  : null;
 
 // 修改 glob 模式以包含子目录
 const pages = import.meta.glob('./artifacts/**/*.tsx', { eager: true }) as Record<string, { 
@@ -20,34 +25,14 @@ const pages = import.meta.glob('./artifacts/**/*.tsx', { eager: true }) as Recor
 }>;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => {
-        setIsFullscreen(true);
-      });
-    } else {
-      document.exitFullscreen().then(() => {
-        setIsFullscreen(false);
-      });
-    }
-  };
-
   return (
     <div className="relative">
-      {/* <button
-        onClick={toggleFullscreen}
-        className="absolute top-4 right-4 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors z-50"
-        title={isFullscreen ? '退出全屏' : '进入全屏'}
-      >
-        {isFullscreen ? (
-          <Minimize2 className="w-6 h-6" />
-        ) : (
-          <Maximize2 className="w-6 h-6" />
-        )}
-      </button> */}
       {children}
+      {StagewiseToolbar && (
+        <React.Suspense fallback={null}>
+          <StagewiseToolbar />
+        </React.Suspense>
+      )}
     </div>
   );
 };
@@ -83,7 +68,6 @@ function App() {
 
     // 处理目录路由
     const pathParts = routePath.split('/');
-    let currentPath = '';
     
     // 为每一级目录添加路由
     pathParts.forEach((_, index) => {
