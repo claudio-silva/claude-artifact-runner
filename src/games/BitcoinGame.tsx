@@ -166,7 +166,7 @@ const BitcoinGame = () => {
       </div>
 
       {/* Barometer */}
-      <div className="absolute right-8 h-[400px] w-16 bg-gray-800 rounded-full overflow-hidden border-2 border-gray-700">
+      <div className="absolute right-8 w-16 bg-gray-800 rounded-full overflow-hidden border-2 border-gray-700 top-8 bottom-8">
         <div 
           className="absolute bottom-0 w-full bg-gradient-to-t from-green-500 to-yellow-400 transition-all duration-100 rounded-full"
           style={{ height: `${((price - 40000) / (TARGET_PRICE - 40000)) * 100}%` }}
