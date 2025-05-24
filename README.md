@@ -1,3 +1,5 @@
+[![Deploy to GitHub Pages](https://github.com/jonmrjr/antidojt/actions/workflows/deploy.yml/badge.svg)](https://github.com/jonmrjr/antidojt/actions/workflows/deploy.yml)
+
 # Claude Artifact Runner
 
 ## Table of Contents
