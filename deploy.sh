@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 
 # 服务器信息
 SERVER_USER="root"
-SERVER_HOST="121.37.17.227"
+SERVER_HOST="38.246.237.206"
 DEPLOY_PATH="/opt/1panel/apps/openresty/openresty/www/sites/spdi.orienthong.cn/index/"
 
 # 打印带颜色的信息
