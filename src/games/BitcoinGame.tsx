@@ -24,7 +24,7 @@ const BitcoinGame = () => {
     }
   }, []);
 
-  const TARGET_PRICE = 80000;
+  const TARGET_PRICE = 120000;
   const GRAVITY = 0.35;
   const JUMP_VELOCITY = -7;
   const BOUNCE_DAMPENING = 0.8;
@@ -171,7 +171,7 @@ const BitcoinGame = () => {
           className="absolute bottom-0 w-full bg-gradient-to-t from-green-500 to-yellow-400 transition-all duration-100 rounded-full"
           style={{ height: `${((price - 40000) / (TARGET_PRICE - 40000)) * 100}%` }}
         />
-        <div className="absolute -top-6 right-0 text-white">80K</div>
+        <div className="absolute -top-6 right-0 text-white">120K</div>
         <div className="absolute -bottom-6 right-0 text-white">40K</div>
       </div>
 
