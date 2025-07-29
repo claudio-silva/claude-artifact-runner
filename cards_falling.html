@@ -159,6 +159,7 @@ function spawn(){
   inner.style.position='absolute';
   inner.style.width='100%';
   inner.style.height='100%';
+  inner.style.transform = `rotateY(${(Math.random()-0.5)*360}deg) rotateX(${(Math.random()-0.5)*60}deg)`;
 
   const front=document.createElement('div');
   front.className='card-face card-front';
