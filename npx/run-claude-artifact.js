@@ -87,7 +87,10 @@ async function main() {
     // Start vite
     const preview = spawn('npx', ['vite', '--open'], { cwd: repoDir, stdio: 'inherit' });
 
+    let shuttingDown = false;
     process.on('SIGINT', () => {
+      if (shuttingDown) return;
+      shuttingDown = true;
       console.error(`${os.EOL}🛑 Stopping development server...`);
       preview.kill('SIGINT');
     });

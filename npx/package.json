@@ -1,7 +1,7 @@
 {
   "name": "run-claude-artifact",
-  "version": "1.0.0",
-  "description": "Run a Claude artifact without installing the full project",
+  "version": "1.0.1",
+  "description": "Previews or installs a Claude Artifact locally from a downloaded Artifact file.",
   "bin": {
     "run-claude-artifact": "./run-claude-artifact.js"
   },
@@ -9,6 +9,10 @@
     "build": "echo \"nothing to build\"",
     "test": "node run-claude-artifact.js --help"
   },
-  "author": "Cl\u00e1udio Silva",
-  "license": "MIT"
+  "author": "Cláudio Silva",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claudio-silva/claude-artifact-runner"
+  }
 }

@@ -1,8 +1,8 @@
 # run-claude-artifact
 
-This directory contains a small npm package that exposes the `run-claude-artifact` command.
-It clones the `claude-artifact-runner` project, injects your artifact and launches Vite so you
-can preview it without manually installing the project.
+This npm package exposes the `run-claude-artifact` command for use with `npx`.
+
+It clones the [claude-artifact-runner](https://github.com/claudio-silva/claude-artifact-runner) project, injects your artifact and launches Vite, so you can preview it without manually installing the project.
 
 ## Usage
 
@@ -15,12 +15,7 @@ npx run-claude-artifact <filename> [--keep]
 
 ## Developing locally
 
-1. Install dependencies (none for now) and run the test script:
-   ```bash
-   cd npx
-   npm test
-   ```
-2. To experiment with the CLI before publishing, link it globally:
+To experiment with the CLI before publishing, link it globally:
    ```bash
    npm link
    run-claude-artifact path/to/file.tsx
@@ -46,3 +41,5 @@ After publishing, anyone can run an artifact with:
 ```bash
 npx run-claude-artifact my-artifact.tsx
 ```
+
+> Of course the name `run-claude-artifact` is already taken by the author of this project, so you'll need to change the package name on your fork if you want to publish your own version.
