@@ -21,30 +21,38 @@ A template project for easily converting Claude AI’s Artifacts into React appl
 
 ## Table of Contents
 
-- [Why is this needed?](#why-is-this-needed)
-- [What this project is not](#what-this-project-is-not)
-- [What this project actually is](#what-this-project-actually-is)
-- [Limitations](#limitations)
-- [What's included?](#whats-included)
-- [Prerequisites](#prerequisites)
-- [Getting started](#getting-started)
-- [Running a single Artifact](#running-a-single-artifact)
-- [Creating a multi-page application](#creating-a-multi-page-application)
-- [Developing a more complex application](#developing-a-more-complex-application)
-- [Project structure](#project-structure)
-- [Building for production](#building-for-production)
-- [Deploying your application](#deploying-your-application)
-  - [Local test deployment](#local-test-deployment)
-  - [Traditional web hosting](#traditional-web-hosting)
-  - [Cloud hosting platforms](#cloud-hosting-platforms)
-     - [Netlify](#netlify)
-     - [Vercel](#vercel)
-     - [GitHub Pages](#github-pages)
-     - [Cloudflare Pages](#cloudflare-pages)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+- [Claude Artifact Runner](#claude-artifact-runner)
+  - [TL/DR](#tldr)
+  - [Use Cases](#use-cases)
+  - [Table of Contents](#table-of-contents)
+  - [Why is this needed?](#why-is-this-needed)
+  - [What this project is not](#what-this-project-is-not)
+  - [What this project actually is](#what-this-project-actually-is)
+  - [Limitations](#limitations)
+  - [What's included?](#whats-included)
+  - [Prerequisites](#prerequisites)
+  - [Getting started](#getting-started)
+  - [Running a single Artifact](#running-a-single-artifact)
+  - [Creating a multi-page application](#creating-a-multi-page-application)
+  - [Developing a more complex application](#developing-a-more-complex-application)
+    - [Customization](#customization)
+    - [Removing unneeded components / libraries](#removing-unneeded-components--libraries)
+      - [Unneeded Shadcn UI components:](#unneeded-shadcn-ui-components)
+      - [Unneeded packages (ex: Recharts):](#unneeded-packages-ex-recharts)
+  - [Project structure](#project-structure)
+  - [Building for production](#building-for-production)
+  - [Deploying your application](#deploying-your-application)
+    - [Local test deployment](#local-test-deployment)
+    - [Traditional web hosting](#traditional-web-hosting)
+    - [Cloud hosting platforms](#cloud-hosting-platforms)
+      - [Netlify](#netlify)
+      - [Vercel](#vercel)
+      - [GitHub Pages](#github-pages)
+      - [Cloudflare Pages](#cloudflare-pages)
+  - [Troubleshooting](#troubleshooting)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Acknowledgements](#acknowledgements)
 
 ## Why is this needed?
 
@@ -115,7 +123,7 @@ These are the libraries and frameworks this project provides, identical* to thos
 
 Before you begin, ensure you have the following installed:
 - Node.js
-  minimum supported version is 16 (lts/gallium), tested up to version 23.2, version 22.11 is recommended
+  minimum supported version is 20 (lts/iron), tested up to version 23.2, version 22.11 is recommended
 - npm (usually comes with Node.js)
 
 ## Getting started
