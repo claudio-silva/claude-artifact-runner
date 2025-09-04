@@ -12,6 +12,16 @@ A template project for easily converting Claude AI’s Artifacts into React appl
 6. Optional step: continue developing your project into a full-fledged web application.
 7. Optional step: generate a release build and publish your finished application to a web server or cloud service.
 
+## Run an Artifact without installing this project
+
+If you just want to preview a single Artifact without cloning this repository, you can run it directly with npx:
+
+```bash
+npx run-claude-artifact <filename> [--keep]
+```
+
+Use `--keep` to preserve the project; without it the temporary folder is removed when the preview server exits.
+
 ## Use Cases
 
 1. Run Artifacts on your local machine, on a web server or on a cloud service.
