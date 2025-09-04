@@ -1,0 +1,14 @@
+{
+  "name": "run-claude-artifact",
+  "version": "1.0.0",
+  "description": "Run a Claude artifact without installing the full project",
+  "bin": {
+    "run-claude-artifact": "./run-claude-artifact.js"
+  },
+  "scripts": {
+    "build": "echo \"nothing to build\"",
+    "test": "node run-claude-artifact.js --help"
+  },
+  "author": "Cl\u00e1udio Silva",
+  "license": "MIT"
+}
