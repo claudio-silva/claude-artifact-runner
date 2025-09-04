@@ -4,23 +4,30 @@ A template project for easily converting Claude AI’s Artifacts into React appl
 
 ## TL/DR
 
-1. You created a fancy web app using Claude's Artifacts feature.
+1. You created a fancy web app or UI component using Claude's Artifacts feature.
 2. You want to run it outside of Claude's website, or use it as a base for a larger project.
-3. Clone, install and run this project.
-4. Save your artifact(s) to the correct folder.
+
+### The fast way (1 command)
+3. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
+4. Run `npx run-claude-artifact <path-to-file>` to run the Artifact locally and preview it in your browser.
 5. Done!
-6. Optional step: continue developing your project into a full-fledged web application.
-7. Optional step: generate a release build and publish your finished application to a web server or cloud service.
+6. When done viewing the Artifact, press `Ctrl+C` on the terminal to stop the development server and discard the temporary project.
 
-## Run an Artifact without installing this project
+> **Note:** If you just want to try out the project and don’t have an Artifact yet, you can just run `npx run-claude-artifact` to see the default demo Artifacts (created with Claude).
 
-If you just want to preview a single Artifact without cloning this repository, you can run it directly with npx:
+### Alternatively
+1. Clone, install and run this project.
+2. Save your artifact to the correct folder.
+3. Run `npm run dev` to start the development server.
+4. Open your browser and visit `http://localhost:5173`.
+5. Done!
+6. When done viewing the Artifact, press `Ctrl+C` on the terminal to stop the development server, or leave it running to continue developing your project and see your changes immediately reflected in the browser.
 
-```bash
-npx run-claude-artifact <filename> [--keep]
-```
+> See detailed installation and development instructions further below.
 
-Use `--keep` to preserve the project; without it the temporary folder is removed when the preview server exits.
+### Optional steps
+1. Continue developing your project into a full-fledged web application.
+2. Generate a release build and publish your finished application to a web server or cloud service.
 
 ## Use Cases
 
@@ -31,30 +38,43 @@ Use `--keep` to preserve the project; without it the temporary folder is removed
 
 ## Table of Contents
 
-- [Why is this needed?](#why-is-this-needed)
-- [What this project is not](#what-this-project-is-not)
-- [What this project actually is](#what-this-project-actually-is)
-- [Limitations](#limitations)
-- [What's included?](#whats-included)
-- [Prerequisites](#prerequisites)
-- [Getting started](#getting-started)
-- [Running a single Artifact](#running-a-single-artifact)
-- [Creating a multi-page application](#creating-a-multi-page-application)
-- [Developing a more complex application](#developing-a-more-complex-application)
-- [Project structure](#project-structure)
-- [Building for production](#building-for-production)
-- [Deploying your application](#deploying-your-application)
-  - [Local test deployment](#local-test-deployment)
-  - [Traditional web hosting](#traditional-web-hosting)
-  - [Cloud hosting platforms](#cloud-hosting-platforms)
-     - [Netlify](#netlify)
-     - [Vercel](#vercel)
-     - [GitHub Pages](#github-pages)
-     - [Cloudflare Pages](#cloudflare-pages)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+- [Claude Artifact Runner](#claude-artifact-runner)
+  - [TL/DR](#tldr)
+    - [The fast way (1 command)](#the-fast-way-1-command)
+    - [Alternatively](#alternatively)
+    - [Optional steps](#optional-steps)
+  - [Use Cases](#use-cases)
+  - [Table of Contents](#table-of-contents)
+  - [Why is this needed?](#why-is-this-needed)
+  - [What this project is not](#what-this-project-is-not)
+  - [What this project actually is](#what-this-project-actually-is)
+  - [Limitations](#limitations)
+  - [What's included?](#whats-included)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+    - [Option 1: Use npx - Fast and easy](#option-1-use-npx---fast-and-easy)
+    - [Option 2: Clone the repository](#option-2-clone-the-repository)
+  - [Installing a single Artifact](#installing-a-single-artifact)
+  - [Creating a multi-page application](#creating-a-multi-page-application)
+  - [Developing a more complex application](#developing-a-more-complex-application)
+    - [Customization](#customization)
+    - [Removing unneeded components / libraries](#removing-unneeded-components--libraries)
+      - [Unneeded Shadcn UI components:](#unneeded-shadcn-ui-components)
+      - [Unneeded packages (ex: Recharts):](#unneeded-packages-ex-recharts)
+  - [Project structure](#project-structure)
+  - [Building for production](#building-for-production)
+  - [Deploying your application](#deploying-your-application)
+    - [Local test deployment](#local-test-deployment)
+    - [Traditional web hosting](#traditional-web-hosting)
+    - [Cloud hosting platforms](#cloud-hosting-platforms)
+      - [Netlify](#netlify)
+      - [Vercel](#vercel)
+      - [GitHub Pages](#github-pages)
+      - [Cloudflare Pages](#cloudflare-pages)
+  - [Troubleshooting](#troubleshooting)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Acknowledgements](#acknowledgements)
 
 ## Why is this needed?
 
@@ -128,12 +148,36 @@ Before you begin, ensure you have the following installed:
   minimum supported version is 16 (lts/gallium), tested up to version 23.2, version 22.11 is recommended
 - npm (usually comes with Node.js)
 
-## Getting started
+## Installation
 
-1. Clone the repository:
+Start by downloading your Artifact to your local machine, as a `.tsx` or `.jsx` file.
+
+Then you have 2 ways to install your Artifacts into a local project.
+
+### Option 1: Use npx - Fast and easy
+
+```bash
+npx run-claude-artifact [<filename>] [--keep]
+```
+
+A browser window will open and you'll see your Artifact running.
+
+> **Note:** If no filename is provided, the default demo components will be displayed.
+
+> **Note:** Use `--keep` to install the project, in the current directory, as a folder named after the file (without extension).  
+> Without `--keep`, the project is installed in a temporary folder and removed when the preview server exits.
+
+If you used the `--keep` option, you'll be able to continue developing the project.
+
+In that case, continue reading from the [Installing a single Artifact](#installing-a-single-artifact) section.
+
+### Option 2: Clone the repository
+
+1. Clone and degit the repository:
    ```
    git clone https://github.com/claudio-silva/claude-artifact-runner.git
    cd claude-artifact-runner
+   rm -rf .git  # Disassociate from the original repository - RECOMMENDED - it's your local project now
    ```
 
 2. Install dependencies:
@@ -148,22 +192,23 @@ Before you begin, ensure you have the following installed:
 
 4. Open your browser and visit `http://localhost:5173` to see the default app running.
 
-The default app is composed of two demo components: a login form and a signup form. You can navigate between them by clicking on the link at the bottom of the form.
+The default app is composed of two demo components: a **login form** and a **signup form**. You can navigate between them by clicking on the link at the bottom of the form.
 
 > These demo pages/components are just for demonstration purposes and can be easily replaced with your own components, either generated by Claude or created by yourself.  
 > **This will NOT be the UI of your application.**
 
-## Running a single Artifact
+## Installing a single Artifact
 
-If you just want to run a single Artifact, you can follow these simple steps:
+If you just want to install a single Artifact on the local project, you can follow these simple steps:
 
-1. Follow the "Getting started" steps. Leave the browser open at the initial page.
-2. Delete the files in the `src/artifacts/` directory.
-3. Download your Artifact from Claude.ai
-4. Move the file to the `src/artifacts/` directory and rename it to `index.tsx`.
-5. You'll immediately see your Artifact running on the open browser tab.
+1. Follow the [Installation](#installation) steps (option 1 with `--keep` or option 2).
+2. Leave the browser open at the initial page and leave the development server running.
+3. Delete the files in the `src/artifacts/` directory.
+4. Download your Artifact from Claude.ai
+5. Move the file to the `src/artifacts/` directory and rename it to `index.tsx`.
+6. You'll immediately see your Artifact running on the open browser tab.
 
-Note that you'll be viewing the app in development mode. To generate the final app, ready for production, you'll need to build it first. See the instructions further below.
+> **Note:** You'll be viewing the app in development mode. To generate the final app, ready for production, you'll need to build it first. See the instructions further below.
 
 ## Creating a multi-page application
 
