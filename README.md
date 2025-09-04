@@ -145,7 +145,7 @@ These are the libraries and frameworks this project provides, identical* to thos
 
 Before you begin, ensure you have the following installed:
 - Node.js
-  minimum supported version is 16 (lts/gallium), tested up to version 23.2, version 22.11 is recommended
+  minimum supported version is 20 (lts/iron), tested up to version 23.2, version 22.11 is recommended
 - npm (usually comes with Node.js)
 
 ## Installation
