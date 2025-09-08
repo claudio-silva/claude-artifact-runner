@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:single": "tsc -b && VITE_SINGLE_FILE=true vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -61,6 +62,7 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1",
+    "vite-plugin-singlefile": "^2.3.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
