@@ -2,16 +2,31 @@
 
 This npm package exposes the `run-claude-artifact` command for use with `npx`.
 
-It clones the [claude-artifact-runner](https://github.com/claudio-silva/claude-artifact-runner) project, injects your artifact and launches Vite, so you can preview it without manually installing the project.
+It clones the [claude-artifact-runner](https://github.com/claudio-silva/claude-artifact-runner) project, injects your artifact and launches Vite for preview or creates a permanent project.
 
 ## Usage
 
 ```bash
-npx run-claude-artifact <filename> [--keep]
+npx run-claude-artifact [filename] [--keep]
 ```
 
-- `<filename>`: Path to a `.tsx` or `.jsx` component file.
-- `--keep`: If provided, the cloned project is moved to a folder named after the file (without extension).
+- `[filename]`: Path to a `.tsx` or `.jsx` component file (optional - uses demo if not provided).
+- `--keep`: Create a permanent project with fresh git history, named after the file (without extension).
+
+## Examples
+
+```bash
+# Preview demo artifacts temporarily
+npx run-claude-artifact
+
+# Preview your artifact temporarily  
+npx run-claude-artifact my-app.tsx
+
+# Create permanent project with clean git history
+npx run-claude-artifact my-app.tsx --keep
+```
+
+The `--keep` option creates a clean, independent project ready for development with a fresh git repository and optional initial commit.
 
 ## Developing locally
 

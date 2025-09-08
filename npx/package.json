@@ -1,7 +1,7 @@
 {
   "name": "run-claude-artifact",
-  "version": "1.0.1",
-  "description": "Previews or installs a Claude Artifact locally from a downloaded Artifact file.",
+  "version": "1.1.0",
+  "description": "Run Claude AI Artifacts locally - preview temporarily or create clean standalone projects.",
   "bin": {
     "run-claude-artifact": "./run-claude-artifact.js"
   },

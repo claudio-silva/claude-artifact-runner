@@ -7,27 +7,35 @@ A template project for easily converting Claude AI’s Artifacts into React appl
 1. You created a fancy web app or UI component using Claude's Artifacts feature.
 2. You want to run it outside of Claude's website, or use it as a base for a larger project.
 
-### The fast way (1 command)
-3. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
-4. Run `npx run-claude-artifact <path-to-file>` to run the Artifact locally and preview it in your browser.
-5. Done!
-6. When done viewing the Artifact, press `Ctrl+C` on the terminal to stop the development server and discard the temporary project.
+### Quick Preview (Temporary)
+1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
+2. Run `npx run-claude-artifact <path-to-file>` to preview it in your browser.
+3. Done! When finished, press `Ctrl+C` to stop and cleanup.
 
-> **Note:** If you just want to try out the project and don’t have an Artifact yet, you can just run `npx run-claude-artifact` to see the default demo Artifacts (created with Claude).
+> **Note:** If you just want to try the project without an Artifact, run `npx run-claude-artifact` to see demo Artifacts.
 
-### Alternatively
-1. Clone, install and run this project.
-2. Save your artifact to the correct folder.
-3. Run `npm run dev` to start the development server.
-4. Open your browser and visit `http://localhost:5173`.
-5. Done!
-6. When done viewing the Artifact, press `Ctrl+C` on the terminal to stop the development server, or leave it running to continue developing your project and see your changes immediately reflected in the browser.
+### Create Your Own Project (Recommended)
+1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
+2. Run `npx run-claude-artifact <path-to-file> --keep` to create a new project.
+3. A clean, independent project will be created and opened in your browser.
+4. The project starts with a fresh git repository with an initial commit, ready for development.
+5. To connect it to GitHub:
+   - Create a new empty repository on GitHub (don't initialize with a README or any other files)
+   - Copy the repository URL (HTTPS or SSH)
+   - In your project directory, run:
+     ```bash
+     git remote add origin <repository-url>
+     git push -u origin main
+     ```
+   This registers the GitHub repository as the `origin` remote and pushes your initial commit.
 
-> See detailed installation and development instructions further below.
+> **Alternative:** Use the GitHub template feature or `gh repo create` command for instant GitHub integration.
 
-### Optional steps
-1. Continue developing your project into a full-fledged web application.
-2. Generate a release build and publish your finished application to a web server or cloud service.
+### Continue Development
+1. Develop your project into a full-fledged web application.
+2. Generate a release build and publish to your preferred hosting platform.
+
+See instructions further below.
 
 ## Use Cases
 
@@ -40,9 +48,9 @@ A template project for easily converting Claude AI’s Artifacts into React appl
 
 - [Claude Artifact Runner](#claude-artifact-runner)
   - [TL/DR](#tldr)
-    - [The fast way (1 command)](#the-fast-way-1-command)
-    - [Alternatively](#alternatively)
-    - [Optional steps](#optional-steps)
+    - [Quick Preview (Temporary)](#quick-preview-temporary)
+    - [Create Your Own Project (Recommended)](#create-your-own-project-recommended)
+    - [Continue Development](#continue-development)
   - [Use Cases](#use-cases)
   - [Table of Contents](#table-of-contents)
   - [Why is this needed?](#why-is-this-needed)
@@ -52,8 +60,11 @@ A template project for easily converting Claude AI’s Artifacts into React appl
   - [What's included?](#whats-included)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-    - [Option 1: Use npx - Fast and easy](#option-1-use-npx---fast-and-easy)
-    - [Option 2: Clone the repository](#option-2-clone-the-repository)
+    - [Method 1: Quick Preview (Temporary)](#method-1-quick-preview-temporary)
+    - [Method 2: Create a New Project (Recommended)](#method-2-create-a-new-project-recommended)
+    - [Method 3: Use as GitHub Template](#method-3-use-as-github-template)
+    - [Method 4: Fork and Clone (Not Recommended)](#method-4-fork-and-clone-not-recommended)
+  - [After installation](#after-installation)
   - [Installing a single Artifact](#installing-a-single-artifact)
   - [Creating a multi-page application](#creating-a-multi-page-application)
   - [Developing a more complex application](#developing-a-more-complex-application)
@@ -147,50 +158,76 @@ Before you begin, ensure you have the following installed:
 - Node.js
   minimum supported version is 20 (lts/iron), tested up to version 23.2, version 22.11 is recommended
 - npm (usually comes with Node.js)
+- npx (comes with npm 5.2+ and higher)
+- git (required for project creation and version control)
 
 ## Installation
 
 Start by downloading your Artifact to your local machine, as a `.tsx` or `.jsx` file.
 
-Then you have 2 ways to install your Artifacts into a local project.
+Choose one of the following methods based on your needs:
 
-### Option 1: Use npx - Fast and easy
+### Method 1: Quick Preview (Temporary)
+
+**Best for:** Just trying out an Artifact quickly without keeping the project.
 
 ```bash
-npx run-claude-artifact [<filename>] [--keep]
+npx run-claude-artifact [<filename>]
 ```
 
-A browser window will open and you'll see your Artifact running.
+This creates a temporary project, opens it in your browser, and removes everything when you're done.
 
 > **Note:** If no filename is provided, the default demo components will be displayed.
 
-> **Note:** Use `--keep` to install the project, in the current directory, as a folder named after the file (without extension).  
-> Without `--keep`, the project is installed in a temporary folder and removed when the preview server exits.
+### Method 2: Create a New Project (Recommended)
 
-If you used the `--keep` option, you'll be able to continue developing the project.
+**Best for:** Starting a new project that you want to develop and potentially publish.
 
-In that case, continue reading from the [Installing a single Artifact](#installing-a-single-artifact) section.
+```bash
+npx run-claude-artifact <filename> --keep
+```
 
-### Option 2: Clone the repository
+This creates a clean, independent project in a folder named after your file (without extension). The project starts with a fresh git repository initialized. After development, you'll be prompted to create an initial commit and optionally connect to a remote repository.
 
-1. Clone and degit the repository:
-   ```
-   git clone https://github.com/claudio-silva/claude-artifact-runner.git
-   cd claude-artifact-runner
-   rm -rf .git  # Disassociate from the original repository - RECOMMENDED - it's your local project now
-   ```
+**Alternative using GitHub CLI:**
+```bash
+gh repo create my-project-name --template claudio-silva/claude-artifact-runner --private --clone
+cd my-project-name
+# Replace the demo artifact with your own
+cp path/to/your-artifact.tsx src/artifacts/index.tsx
+npm run dev
+```
 
-2. Install dependencies:
-   ```
+### Method 3: Use as GitHub Template
+
+**Best for:** Creating a GitHub repository for your project from the start.
+
+1. Go to [github.com/claudio-silva/claude-artifact-runner](https://github.com/claudio-silva/claude-artifact-runner)
+2. Click the green "Use this template" button
+3. Choose "Create a new repository"
+4. Name your repository and choose visibility settings
+5. Clone your new repository:
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
    npm install
-   ```
-
-3. Start the development server:
-   ```
    npm run dev
    ```
 
-4. Open your browser and visit `http://localhost:5173` to see the default app running.
+### Method 4: Fork and Clone (Not Recommended)
+
+**Note:** Forking is generally not recommended unless you plan to contribute back to the original project, as it maintains a connection to the upstream repository.
+
+If you do fork:
+1. Fork the repository on GitHub
+2. Clone your fork
+3. Consider unlinking from upstream if you don't plan to contribute back:
+   ```bash
+   git remote remove upstream  # Remove connection to original repo
+   ```
+
+
+## After installation
 
 The default app is composed of two demo components: a **login form** and a **signup form**. You can navigate between them by clicking on the link at the bottom of the form.
 
@@ -201,7 +238,7 @@ The default app is composed of two demo components: a **login form** and a **sig
 
 If you just want to install a single Artifact on the local project, you can follow these simple steps:
 
-1. Follow the [Installation](#installation) steps (option 1 with `--keep` or option 2).
+1. Follow the [Installation](#installation) steps (Method 2 with `--keep` or Method 3/4).
 2. Leave the browser open at the initial page and leave the development server running.
 3. Delete the files in the `src/artifacts/` directory.
 4. Download your Artifact from Claude.ai
