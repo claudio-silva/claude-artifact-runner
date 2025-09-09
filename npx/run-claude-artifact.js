@@ -14,37 +14,9 @@ function run(cmd, args, options = {}) {
   });
 }
 
-// Build using a temporary Vite config that always enables single-file output
+// Build using the template's single-file config
 async function buildWithSingleFileConfig(repoDir) {
-  const configFileName = 'vite.single.config.ts';
-  const configPath = path.join(repoDir, configFileName);
-  const configContents = `import { defineConfig, mergeConfig } from 'vite';
-import baseConfig from './vite.config';
-import { viteSingleFile } from 'vite-plugin-singlefile';
-
-export default defineConfig((env) => {
-  const base = typeof baseConfig === 'function' ? (baseConfig)(env) : baseConfig;
-  return mergeConfig(base, {
-    plugins: [...(base.plugins || []), viteSingleFile()]
-  });
-});
-`;
-
-  await fs.promises.writeFile(configPath, configContents, 'utf8');
-  // Ensure vite-plugin-singlefile is available in the cloned template
-  const pluginPath = path.join(repoDir, 'node_modules', 'vite-plugin-singlefile');
-  if (!fs.existsSync(pluginPath)) {
-    await run('npm', ['install', 'vite-plugin-singlefile@^2.3.0'], { cwd: repoDir });
-  }
-  try {
-    await run('node_modules/.bin/vite', ['build', '-c', configFileName], { cwd: repoDir });
-  } finally {
-    try {
-      await fs.promises.unlink(configPath);
-    } catch (_) {
-      // ignore cleanup errors
-    }
-  }
+  await run('node_modules/.bin/vite', ['build', '-c', 'vite.single.config.ts'], { cwd: repoDir });
 }
 
 // Deploy build output to specified directory
@@ -260,41 +232,52 @@ Notes:
 
 // Function to serve files using npx serve
 async function serveFile(filePath, isSingleFile = false, fileName = null) {
-  const serveDir = filePath; // filePath is already the directory to serve
-  const displayPath = isSingleFile && fileName ? `${filePath}/${fileName}` : filePath;
-  console.log(`🌐 Serving ${isSingleFile ? 'single file' : 'directory'}: ${displayPath}`);
+  let serveDir = filePath;
+  let url = 'http://localhost:3000';
+  let tmpDir = null;
 
-  const serveArgs = ['serve', '-s', '-L', serveDir];
-  const serveProcess = spawn('npx', serveArgs, {
-    stdio: 'inherit'
-  });
+  if (isSingleFile && fileName) {
+    // Copy single-file to temp dir as index.html
+    tmpDir = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'artifact-view-'));
+    const target = path.join(tmpDir, 'index.html');
+    await fs.promises.copyFile(path.join(filePath, fileName), target);
+    serveDir = tmpDir;
+    url = 'http://localhost:3000/';
+    console.log(`🌐 Serving single file via temp dir: ${target}`);
+  } else {
+    console.log(`🌐 Serving directory: ${filePath}`);
+  }
+
+  // Drop -s so serve does not single-page rewrite; we want 404s in multipage, and index.html at / in single-file temp
+  const serveArgs = ['serve', '-L', serveDir];
+  const serveProcess = spawn('npx', serveArgs, { stdio: 'inherit' });
 
   // Wait for server to start before opening browser
-  const url = isSingleFile && fileName ? `http://localhost:3000/${fileName}` : 'http://localhost:3000';
   console.log(`🚀 Opening browser at: ${url}`);
-
-  // Give server time to start
   await new Promise(resolve => setTimeout(resolve, 3000));
 
-  // Try to open browser (cross-platform)
   try {
-    const openCmd = process.platform === 'darwin' ? 'open' :
-                   process.platform === 'win32' ? 'start' : 'xdg-open';
+    const openCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
     await run(openCmd, [url]);
-  } catch (error) {
+  } catch {
     console.log(`ℹ️  Please open your browser and navigate to: ${url}`);
   }
 
-  process.on('SIGINT', () => {
+  process.on('SIGINT', async () => {
     console.log(`${os.EOL}🛑 Stopping server...`);
     serveProcess.kill('SIGINT');
+    if (tmpDir) {
+      try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
+    }
     process.exit(0);
   });
 
-  // Wait for the process to exit
-  await new Promise((resolve) => {
-    serveProcess.on('exit', resolve);
-  });
+  await new Promise((resolve) => { serveProcess.on('exit', resolve); });
+
+  // Cleanup temp dir after server exits
+  if (tmpDir) {
+    try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
+  }
 }
 
 async function main() {
