@@ -1,69 +1,47 @@
 # Claude Artifact Runner
 
-A template project for easily converting Claude AI’s Artifacts into React applications, ready to run out of the box or extend as needed.
-
-## TL/DR
-
-1. You created a fancy web app or UI component using Claude's Artifacts feature.
-2. You want to run it outside of Claude's website, or use it as a base for a larger project.
-
-### Quick Preview (Temporary)
-1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
-2. Run `npx run-claude-artifact <path-to-file>` to preview it in your browser.
-3. Done! When finished, press `Ctrl+C` to stop and cleanup.
-
-> **Note:** If you just want to try the project without an Artifact, run `npx run-claude-artifact` to see demo Artifacts.
-
-### Create Your Own Project (Recommended)
-1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
-2. Run `npx run-claude-artifact <path-to-file> --keep` to create a new project.
-3. A clean, independent project will be created and opened in your browser.
-4. The project starts with a fresh git repository with an initial commit, ready for development.
-5. To connect it to GitHub:
-   - Create a new empty repository on GitHub (don't initialize with a README or any other files)
-   - Copy the repository URL (HTTPS or SSH)
-   - In your project directory, run:
-     ```bash
-     git remote add origin <repository-url>
-     git push -u origin main
-     ```
-   This registers the GitHub repository as the `origin` remote and pushes your initial commit.
-
-> **Alternative:** Use the GitHub template feature or `gh repo create` command for instant GitHub integration.
-
-### Continue Development
-1. Develop your project into a full-fledged web application.
-2. Generate a release build and publish to your preferred hosting platform.
-
-See instructions further below.
-
-## Use Cases
-
-1. Run Artifacts on your local machine, on a web server or on a cloud service.
-2. Use Artifacts as a starting point for a new project and then extend it with custom code.
-3. Create a new web application from scratch and add some Artifacts to it.
-4. Or forget about Claude's Artifacts and just use the project as a starting point for your manually coded web application.
+A template project and **npx** command for easily converting Claude AI’s Artifacts into complete standalone React applications, ready to run out of the box or extend as needed.
 
 ## Table of Contents
 
 - [Claude Artifact Runner](#claude-artifact-runner)
-  - [TL/DR](#tldr)
-    - [Quick Preview (Temporary)](#quick-preview-temporary)
-    - [Create Your Own Project (Recommended)](#create-your-own-project-recommended)
-    - [Continue Development](#continue-development)
-  - [Use Cases](#use-cases)
   - [Table of Contents](#table-of-contents)
-  - [Why is this needed?](#why-is-this-needed)
-  - [What this project is not](#what-this-project-is-not)
-  - [What this project actually is](#what-this-project-actually-is)
+  - [What are Artifacts and why this project?](#what-are-artifacts-and-why-this-project)
+  - [Use Cases](#use-cases)
+  - [Quick Start](#quick-start)
+    - [If you want to just run an Artifact](#if-you-want-to-just-run-an-artifact)
+    - [If you want to build an Artifact](#if-you-want-to-build-an-artifact)
+    - [If you want to view a previously built Artifact](#if-you-want-to-view-a-previously-built-artifact)
+    - [If you want to create a full project for one or more Artifacts](#if-you-want-to-create-a-full-project-for-one-or-more-artifacts)
   - [Limitations](#limitations)
   - [What's included?](#whats-included)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-    - [Method 1: Quick Preview (Temporary)](#method-1-quick-preview-temporary)
-    - [Method 2: Create a New Project (Recommended)](#method-2-create-a-new-project-recommended)
-    - [Method 3: Use as GitHub Template](#method-3-use-as-github-template)
-    - [Method 4: Fork and Clone (Not Recommended)](#method-4-fork-and-clone-not-recommended)
+    - [Command Syntax](#command-syntax)
+    - [Subcommands](#subcommands)
+    - [Basic Usage](#basic-usage)
+      - [Run Artifact (Default)](#run-artifact-default)
+      - [Build Artifact](#build-artifact)
+      - [View Built Artifact](#view-built-artifact)
+      - [Create Project](#create-project)
+    - [Options by Subcommand](#options-by-subcommand)
+      - [Run Subcommand Options](#run-subcommand-options)
+      - [Build Subcommand Options](#build-subcommand-options)
+      - [Create Subcommand Options](#create-subcommand-options)
+      - [Global Options](#global-options)
+    - [All Command Line Options](#all-command-line-options)
+    - [Execution Workflow](#execution-workflow)
+      - [`run` Subcommand (default)](#run-subcommand-default)
+      - [`build` Subcommand](#build-subcommand)
+      - [`view` Subcommand](#view-subcommand)
+      - [`create` Subcommand](#create-subcommand)
+    - [Subcommand Flow Matrix](#subcommand-flow-matrix)
+    - [Deployment Directory Logic (for `build` subcommand)](#deployment-directory-logic-for-build-subcommand)
+    - [Notes](#notes)
+  - [Alternative Methods of Installation](#alternative-methods-of-installation)
+    - [Using GitHub CLI](#using-github-cli)
+    - [Create from a GitHub Template](#create-from-a-github-template)
+    - [Fork and Clone (Not Recommended)](#fork-and-clone-not-recommended)
   - [After installation](#after-installation)
   - [Installing a single Artifact](#installing-a-single-artifact)
   - [Creating a multi-page application](#creating-a-multi-page-application)
@@ -87,43 +65,77 @@ See instructions further below.
   - [License](#license)
   - [Acknowledgements](#acknowledgements)
 
-## Why is this needed?
+## What are Artifacts and why this project?
 
-After all, doesn't Claude already provide both Copy and Download buttons for you to get the generated code?
+Artifacts are interactive web applications created by [Claude AI](https://claude.ai), and they are a great way to get started with web development.
 
-Well, if you've created a small web application or component and want to use it outside of Claude's website, you'll be disappointed to find out that Claude will only provide you with a single file containing the main logic of the app, not the full project with all necessary files to run it independently.
+They are typically created in a web browser at Claude's website, and then saved as a single file containing the main logic of the app.
 
-> Note that the code loaded by your web browser to run the Artifact is not the same as the code you copy or download from the interface; it is a transpiled, minimized and bundled version that includes all the necessary libraries (e.g., React) required to run it.
+Claude already provides both **Copy** and **Download** buttons for you to get the Artifact code, but it **does not provide** either:
+* the **final files** that are needed to run the Artifact independently,
+* or the **full project** needed to develop it further.
+
+> Note that the code loaded by your web browser to run the Artifact is not the same as the code you copy or download from the web interface; the former is a transpiled, minimized and bundled version that includes all the necessary libraries (e.g., React) required to run it (i.e. the files that result from a build process); the latter is the raw code that you can copy and paste into your own project.
 
 If you're unfamiliar with the technologies used on the project, you'll have a hard time assembling and configuring all the required libraries and tooling required to make a running standalone app.
 
 Even if you're an experienced developer, you may just want to save time and effort and get the Artifacts running as easily and as soon as possible.
 
-This template project provides the fastest and easiest way to get your Artifacts up and running on your machine. It includes all the necessary dependencies and configurations to seamlessly transition your Claude-generated Artifacts into a fully functional web application in no time.
+This template project, and the accompanying `npx` command, provide the **fastest** and **easiest** way to get your Artifacts up and running on your machine.
 
-## What this project is not
+It includes all the necessary dependencies and configurations to seamlessly transition your Claude-generated Artifacts into a fully functional web application in no time.
 
-**This is not an Artifact viewer.**
+## Use Cases
 
-"What??" - you might say.
+1. Run Artifacts on your local machine, on a web server or on a cloud service.
+2. Use Artifacts as a starting point for a new project and then extend it with custom code.
+3. Create a new web application and add some Artifacts to it.
+4. Develop an Artifact Creator web application and use the `npx` command to dynamically run or download them.
+5. Use the `npx` command as part of a CI/CD build pipeline.
+6. Or don't use Artifacts at all and just use the project as a starting point for your custom coded web application.
 
-Well, you **can** use it to view Artifacts, but it's not really intended for that.
+## Quick Start
 
-If this was just a viewer, it would most probably just display a simple interface with a text box and a panel, where you could paste the Artifact code. Then it would compile it at runtime and display it in the panel.
+### If you want to just run an Artifact
+1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
+2. **Run it:** On the terminal, run `npx run-claude-artifact <path-to-file>`
+3. Wait a few seconds. A browser window or tab will open and you'll see your Artifact running. When finished, press `Ctrl+C` on the terminal to stop the preview server.
 
-But that would not be very useful, would it?
+If you don't have an Artifact to run yet, and just want to try out the project, run `npx run-claude-artifact` with no arguments to see a demo.
 
-## What this project actually is
+### If you want to build an Artifact
+1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
+2. **Build it:** On the terminal, run `npx run-claude-artifact build <path-to-file>`
 
-This project converts Artifacts into actual, production-ready standalone web applications.
+The tool outputs an HTML file in your current directory, which contains all the code for running the application (HTML, CSS and JavaScript code).
 
-This means it has no UI of its own. Your Artifacts will be the application's UI.
+This file can be deployed to any **static** web hosting service or cloud platform.
 
-You can also blend AI-generated Artifacts with your own custom code, incorporate code generated by other AI tools, such as **v0.dev**, or even build applications without Artifacts at all.
+### If you want to view a previously built Artifact
 
-Built with modern web development essentials including TypeScript, Tailwind CSS, Shadcn UI, and file-based routing, this pre-configured setup lets you focus on development rather than configuration. As a standard React application, you have the freedom to extend it with any features you need, from backend services like Supabase to web frameworks such as Express or Fastify.
+
+**Built Artifacts require a web server to run correctly.** If you try opening them directly in a browser (by double-clicking the file), the run will **fail** due to browser security restrictions.
+
+For quick local testing without deployment setup, or to validate built Artifacts before deployment, use the `view` subcommand to launch a local web server and preview them.
+
+1. Build the Artifact first using the `build` command (see above)
+2. **View it:** On the terminal, run:
+   * `npx run-claude-artifact view artifact-file-name.html` for single-file artifacts, or
+   * `npx run-claude-artifact view artifact-directory-name` for multi-file artifacts
+   > For multi-file artifacts, specify the directory, not the HTML file.
+3. The tool launches a temporary web server to serve the Artifact, and opens it in your browser. Press `Ctrl+C` on the terminal to stop the server when you're done viewing it.
+
+### If you want to create a full project for one or more Artifacts
+
+Instead of just viewing or building an Artifact, you may create a full project for further development, and optionally push it to your own Git repository.
+
+Built with modern web development essentials including **TypeScript**, **Tailwind CSS**, **Shadcn UI**, and **file-based routing**, this pre-configured setup lets you focus on development rather than configuration. As a standard **React** application, you have the freedom to extend it with any features you need, from backend services like **Supabase** to web frameworks such as **Express**, **Fastify** or **Hono**.
+
+You can blend AI-generated Artifacts with your own custom code, incorporate code generated by other AI tools, such as **v0.dev**, or even build applications **without any Artifacts at all** and just start with a base project template to power your custom development.
 
 You'll be able to deploy your app anywhere, whether locally for your own use, in a company intranet or in a public-facing production environment, at the webhosting or cloud provider of your choice.
+
+See the [Installation](#installation) section below for detailed installation instructions and advanced options.
 
 ## Limitations
 
@@ -135,7 +147,7 @@ Also, Claude's Artifacts run client-side only (i.e. in the browser). As such, th
 
 If you need a full-stack application (with database, APIs, etc.), I'll be honest, this is not the best project for that, as it does not provide a backend.
 
-Nevertheless, it does provide a good starting point. You can still add a server-side framework to create a full-stack application, or use a cloud Backend service like Supabase or Firebase.
+Nevertheless, it does provide a good starting point. You can still add a server-side framework to create a **full-stack application**, or **use a cloud Backend service** like **Supabase** or **Firebase**.
 
 ## What's included?
 
@@ -159,37 +171,132 @@ Before you begin, ensure you have the following installed:
   minimum supported version is 20 (lts/iron), tested up to version 23.2, version 22.11 is recommended
 - npm (usually comes with Node.js)
 - npx (comes with npm 5.2+ and higher)
-- git (required for project creation and version control)
+- git (required for project creation and optional repository creation)
 
 ## Installation
 
 Start by downloading your Artifact to your local machine, as a `.tsx` or `.jsx` file.
 
-Choose one of the following methods based on your needs:
-
-### Method 1: Quick Preview (Temporary)
-
-**Best for:** Just trying out an Artifact quickly without keeping the project.
+### Command Syntax
 
 ```bash
-npx run-claude-artifact [<filename>]
+npx run-claude-artifact [run|view|build|create] <src-file> [options]
 ```
 
-This creates a temporary project, opens it in your browser, and removes everything when you're done.
+### Subcommands
 
-> **Note:** If no filename is provided, the default demo components will be displayed.
+| Subcommand | Description | Purpose |
+|------------|-------------|---------|
+| `run` (default) | Run artifact in development server | Interactive testing without building files |
+| `view <file.html>` | Serve a built HTML file | View previously built artifacts |
+| `build` | Build and output files | Generate deployment-ready files |
+| `create` | Create full editable project | Development workspace with git support |
 
-### Method 2: Create a New Project (Recommended)
+### Basic Usage
 
-**Best for:** Starting a new project that you want to develop and potentially publish.
-
+#### Run Artifact (Default)
 ```bash
-npx run-claude-artifact <filename> --keep
+npx run-claude-artifact my-app.tsx              # Run artifact (default subcommand)
+npx run-claude-artifact run my-app.tsx          # Same as above
+npx run-claude-artifact run my-app.tsx --dev    # Run with development server
 ```
 
-This creates a clean, independent project in a folder named after your file (without extension). The project starts with a fresh git repository initialized. After development, you'll be prompted to create an initial commit and optionally connect to a remote repository.
+#### Build Artifact
+```bash
+npx run-claude-artifact build my-app.tsx                    # Single HTML file
+npx run-claude-artifact build my-app.tsx --expanded        # Multi-file deployment
+npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output location
+```
 
-**Alternative using GitHub CLI:**
+#### View Built Artifact
+```bash
+npx run-claude-artifact view my-app.html        # Serve built HTML file
+```
+
+#### Create Project
+```bash
+npx run-claude-artifact create my-app.tsx                   # Create editable project
+npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git + push
+```
+
+### Options by Subcommand
+
+#### Run Subcommand Options
+- `--dev`: Use development server instead of production preview
+
+#### Build Subcommand Options
+- `--expanded, -e`: Create multi-file deployment instead of single HTML
+- `--deploy-dir <path>`: Output directory for built files
+
+#### Create Subcommand Options
+- `--project-dir <path>`: Target directory for the project
+- `--remote <url>`: Git remote repository URL
+- `--push`: Push to remote repository after creation
+
+#### Global Options
+- `--help, -h`: Show help message
+
+### All Command Line Options
+
+| Option | Applicable To | Description |
+|--------|---------------|-------------|
+| `--dev` | `run` | Use development server instead of production preview |
+| `--expanded, -e` | `build` | Create multi-file deployment instead of single HTML |
+| `--deploy-dir <path>` | `build` | Output directory for built files |
+| `--project-dir <path>` | `create` | Target directory for the project |
+| `--remote <url>` | `create` | Git remote repository URL |
+| `--push` | `create` | Push to remote repository after creation |
+| `--help, -h` | All | Show help message |
+
+### Execution Workflow
+
+The script follows different sequences based on the subcommand:
+
+#### `run` Subcommand (default)
+1. **Clone & Setup** → Clone template, remove .git/npx, copy your artifact
+2. **Run Server** → Start development server, open it in your browser and block until Ctrl+C
+3. **Cleanup** → Remove temporary directory
+
+#### `build` Subcommand
+1. **Clone & Setup** → Clone template, remove .git/npx, copy your artifact
+2. **Build** → Build project (with `--expanded` affecting build type) - abort on failure
+3. **Deploy** → Copy built files to output directory
+4. **Cleanup** → Remove temporary directory
+
+#### `view` Subcommand
+1. **Start Server** → Launch web server to serve the specified HTML file
+2. **Block** → Run until Ctrl+C
+
+#### `create` Subcommand
+1. **Clone & Setup** → Clone template, remove .git/npx, copy your artifact
+2. **Create Project** → Move full project to target directory
+3. **Git Setup** → Initialize repository, add remote, commit, push if requested
+
+### Subcommand Flow Matrix
+
+| Subcommand | Input | Output | Server | Blocks? | Purpose |
+|------------|-------|--------|--------|---------|---------|
+| `run` (default) | `.tsx`/`.jsx` | ❌ | ✅ Dev/Preview | ✅ | Interactive testing |
+| `build` | `.tsx`/`.jsx` | ✅ Files | ❌ | ❌ | Generate deployment files |
+| `view` | `.html` | ❌ | ✅ Static | ✅ | Serve built files |
+| `create` | `.tsx`/`.jsx` | ✅ Project | ❌ | ❌ | Development workspace |
+
+### Deployment Directory Logic (for `build` subcommand)
+
+| Build Type | --deploy-dir | Default Path | Output |
+|------------|-------------|--------------|--------|
+| Single file | ❌ | Current Working Directory | `CWD/my-app.html` |
+| Single file | ✅ | `/path/to/deploy` | `/path/to/deploy/my-app.html` |
+| Multi-file | ❌ | CWD + filename | `CWD/my-app/index.html` + `CWD/my-app/assets/` |
+| Multi-file | ✅ | `/path/to/deploy` | `/path/to/deploy/index.html` + `/path/to/deploy/assets/` |
+
+### Notes
+- **Git is always required** (for initially cloning the template)
+- The release build embeds the favicon as a data URL
+
+## Alternative Methods of Installation
+
+### Using GitHub CLI
 ```bash
 gh repo create my-project-name --template claudio-silva/claude-artifact-runner --private --clone
 cd my-project-name
@@ -198,9 +305,9 @@ cp path/to/your-artifact.tsx src/artifacts/index.tsx
 npm run dev
 ```
 
-### Method 3: Use as GitHub Template
+### Create from a GitHub Template
 
-**Best for:** Creating a GitHub repository for your project from the start.
+**Best for:** Creating a GitHub repository for your project without using the `npx` command.
 
 1. Go to [github.com/claudio-silva/claude-artifact-runner](https://github.com/claudio-silva/claude-artifact-runner)
 2. Click the green "Use this template" button
@@ -214,7 +321,7 @@ npm run dev
    npm run dev
    ```
 
-### Method 4: Fork and Clone (Not Recommended)
+### Fork and Clone (Not Recommended)
 
 **Note:** Forking is generally not recommended unless you plan to contribute back to the original project, as it maintains a connection to the upstream repository.
 
@@ -236,16 +343,19 @@ The default app is composed of two demo components: a **login form** and a **sig
 
 ## Installing a single Artifact
 
-If you just want to install a single Artifact on the local project, you can follow these simple steps:
+If you have created a project and you want to install or update an Artifact on it, you can follow these simple steps:
 
-1. Follow the [Installation](#installation) steps (Method 2 with `--keep` or Method 3/4).
+1. Make sure the development server is running. If not, start it by running `npm run dev`.
 2. Leave the browser open at the initial page and leave the development server running.
 3. Delete the files in the `src/artifacts/` directory.
 4. Download your Artifact from Claude.ai
 5. Move the file to the `src/artifacts/` directory and rename it to `index.tsx`.
 6. You'll immediately see your Artifact running on the open browser tab.
 
-> **Note:** You'll be viewing the app in development mode. To generate the final app, ready for production, you'll need to build it first. See the instructions further below.
+You'll be viewing the app in **development** mode. To generate the final app, ready for production, you'll need to build it first:
+* Use `npm run build` to generate the release files.
+* Or use `npm run build:single` to generate a single file containing the entire application.
+* You'll find the built files in the `dist/` directory.
 
 ## Creating a multi-page application
 
@@ -336,19 +446,14 @@ Here are several ways to deploy these files:
 
 ### Local test deployment
 
-For local testing of the production build, you can use the `serve` package:
+For local testing of the production build, you can also use the `serve` npx package:
 
-1. Install `serve` globally:
+1. Navigate to your project directory and run:
    ```
-   npm install -g serve
-   ```
-
-2. Navigate to your project directory and run:
-   ```
-   serve -s dist
+   npx serve -s dist
    ```
 
-3. Open a browser and go to `http://localhost:3000` (or the URL provided in the terminal).
+2. Open a browser and go to `http://localhost:3000` (or the URL provided in the terminal).
 
 ### Traditional web hosting
 
@@ -487,11 +592,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
-I found [Claude-React-Jumpstart](https://github.com/Bklieger/Claude-React-Jumpstart) when looking for a way to run Artifacts outside of [claude.ai](https://claude.ai).
-
-However, it did not fully meet my needs, so I decided to make my own project, as I wanted something that:
-   * was completely pre-configured (no need to install or configure additional stuff),
-   * was ready to go with a single `npm install`, and
-   * included all components and libraries needed to fully replicate the Artifacts environment.
-
-I would also like to thank [IntranetFactory](https://github.com/IntranetFactory) for contributing the routing solution for handling multiple Artifacts.
+Thanks to [IntranetFactory](https://github.com/IntranetFactory) for contributing the routing solution for handling multiple Artifacts.
