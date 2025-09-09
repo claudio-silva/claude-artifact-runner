@@ -23,7 +23,11 @@ const inlineFaviconPost = {
 export default defineConfig((env) => {
   const base = typeof baseConfig === 'function' ? (baseConfig as any)(env) : (baseConfig as any);
   return mergeConfig(base, {
-    plugins: [...(base.plugins || []), viteSingleFile(), inlineFaviconPost]
+    plugins: [...(base.plugins || []), viteSingleFile(), inlineFaviconPost],
+    build: {
+      // For single-file builds, prevent copying files from public/ (like favicon.ico)
+      copyPublicDir: false
+    }
   });
 });
 
