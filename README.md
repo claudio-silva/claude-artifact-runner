@@ -1,5 +1,7 @@
 # Claude Artifact Runner
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node >= 20](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=node.js&logoColor=white)](https://nodejs.org/) [![React 18](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/) [![Vite 7](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/) [![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Tailwind CSS 3](https://img.shields.io/badge/Tailwind-3-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/) [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-ready-000?logo=radixui&logoColor=white)](https://ui.shadcn.com/) [![npm](https://img.shields.io/npm/v/run-claude-artifact?label=npx%20run-claude-artifact)](https://www.npmjs.com/package/run-claude-artifact) [![GitHub stars](https://img.shields.io/github/stars/claudio-silva/claude-artifact-runner?style=social)](https://github.com/claudio-silva/claude-artifact-runner)
+
 **From Claude Artifact to deployable React app — in seconds!**
 
 Zero‑config `npx` tool and template to run, build, or create full projects from Claude AI Artifacts.

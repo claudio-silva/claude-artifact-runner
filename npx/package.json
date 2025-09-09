@@ -11,6 +11,15 @@
   },
   "author": "Cláudio Silva",
   "license": "MIT",
+  "keywords": [
+    "claude",
+    "artifact",
+    "react",
+    "vite",
+    "typescript",
+    "tailwindcss",
+    "shadcn-ui"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/claudio-silva/claude-artifact-runner"

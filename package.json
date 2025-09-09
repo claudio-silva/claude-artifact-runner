@@ -1,11 +1,26 @@
 {
-  "name": "artifact-viewer",
+  "name": "claude-artifact-runner",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "engines": {
     "node": ">=20.0.0"
   },
+  "author": "Cláudio Silva",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudio-silva/claude-artifact-runner.git"
+  },
+  "keywords": [
+    "claude",
+    "artifact",
+    "react",
+    "vite",
+    "typescript",
+    "tailwindcss",
+    "shadcn-ui"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -64,7 +79,6 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1",
-    "vite-plugin-singlefile": "^2.3.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -73,7 +87,7 @@
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -82,9 +96,10 @@
     "postcss": "^8.4.39",
     "rimraf": "^5.0.5",
     "tailwindcss": "^3.4.4",
-    "typescript": "~5.5.0",
-    "vite": "^5.4.19",
-    "vite-plugin-pages": "^0.32.4"
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vite-plugin-pages": "^0.33.1",
+    "vite-plugin-singlefile": "^2.3.0"
   },
   "overrides": {
     "glob": "^10.4.5",
