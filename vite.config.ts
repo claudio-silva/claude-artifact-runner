@@ -1,5 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
-import { viteSingleFile } from 'vite-plugin-singlefile';
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import fs from 'node:fs';
@@ -7,12 +6,10 @@ import Pages from 'vite-plugin-pages';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
-  const single = env.VITE_SINGLE_FILE === 'true' || process.env.VITE_SINGLE_FILE === 'true';
 
-  // Favicon inlining plugin
-  const faviconPlugin = {
-    name: 'inline-favicon',
+  // For multi-file builds, do not inline the favicon. Ensure a standard link exists (optional safeguard).
+  const ensureFaviconLinkPlugin = {
+    name: 'ensure-favicon-link',
     apply(config: any, { command }: { command: string }) {
       return command === 'build';
     },
@@ -20,34 +17,16 @@ export default defineConfig(({ mode }) => {
       order: 'pre' as const,
       handler(html: string) {
         const icoPath = path.resolve(__dirname, 'public/favicon.ico');
-
-        if (!fs.existsSync(icoPath)) {
-          return html; // Silently skip if no favicon
-        }
-
-        const icoBase64 = fs.readFileSync(icoPath).toString('base64');
-        const tag = `<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,${icoBase64}">`;
-
+        if (!fs.existsSync(icoPath)) return html;
+        const tag = `<link rel="icon" type="image/x-icon" href="/favicon.ico">`;
         return html.includes('rel="icon"')
-          ? html.replace(/<link[^>]*rel=["'](?:icon|shortcut icon)["'][^>]*>/, tag)
+          ? html
           : html.replace('</head>', `${tag}\n</head>`);
       }
     }
   };
 
-  // Cleanup plugin to remove favicon from dist after build
-  const cleanupPlugin = {
-    name: 'cleanup-favicon',
-    apply(config: any, { command }: { command: string }) {
-      return command === 'build';
-    },
-    closeBundle() {
-      const faviconPath = path.resolve('dist/favicon.ico');
-      if (fs.existsSync(faviconPath)) {
-        fs.unlinkSync(faviconPath);
-      }
-    }
-  };
+  // No cleanup for multi-file builds; keep favicon.ico in output
 
   return {
     plugins: [
@@ -56,9 +35,7 @@ export default defineConfig(({ mode }) => {
         dirs: [{ dir: 'src/artifacts', baseRoute: '' }],
         extensions: ['jsx', 'tsx'],
       }),
-      faviconPlugin, // Always include favicon plugin
-      cleanupPlugin, // Cleanup favicon from dist after build
-      single && viteSingleFile({ /* options if needed */ }),
+      ensureFaviconLinkPlugin,
     ].filter(Boolean),
     resolve: {
       alias: {

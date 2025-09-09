@@ -1,6 +1,28 @@
 # Claude Artifact Runner
 
-A template project and **npx** command for easily converting Claude AI’s Artifacts into complete standalone React applications, ready to run out of the box or extend as needed.
+**From Claude Artifact to deployable React app — in seconds!**
+
+Zero‑config `npx` tool and template to run, build, or create full projects from Claude AI Artifacts.
+
+- Run an Artifact in seconds, without having to create a project first and build it
+- Build single‑file or multi‑file outputs ready to deploy anywhere
+- Create a full React + TypeScript + Vite + Tailwind + Shadcn UI project
+- Includes additional libraries when needed: Recharts, Lucide React, and more
+- Combine multiple Artifacts into a multi‑page app (file‑based routing)
+- Run locally or deploy to any web hosting service
+
+**Quick start:**
+
+```bash
+# Run an Artifact
+npx run-claude-artifact my-app.tsx
+
+# Build for deployment (single-file by default)
+npx run-claude-artifact build my-app.tsx
+
+# Create a full editable project
+npx run-claude-artifact create my-app.tsx
+```
 
 ## Table of Contents
 
@@ -52,6 +74,11 @@ A template project and **npx** command for easily converting Claude AI’s Artif
       - [Unneeded packages (ex: Recharts):](#unneeded-packages-ex-recharts)
   - [Project structure](#project-structure)
   - [Building for production](#building-for-production)
+    - [Single file deployment](#single-file-deployment)
+    - [Building with strict checking](#building-with-strict-checking)
+    - [Multi-file deployment](#multi-file-deployment)
+      - [Why would you want to do build this way, instead of building a single file?](#why-would-you-want-to-do-build-this-way-instead-of-building-a-single-file)
+    - [Multi-file deployment with strict checking](#multi-file-deployment-with-strict-checking)
   - [Deploying your application](#deploying-your-application)
     - [Local test deployment](#local-test-deployment)
     - [Traditional web hosting](#traditional-web-hosting)
@@ -109,23 +136,23 @@ If you don't have an Artifact to run yet, and just want to try out the project, 
 1. Download the Artifact to your local machine, as a `.tsx` or `.jsx` file.
 2. **Build it:** On the terminal, run `npx run-claude-artifact build <path-to-file>`
 
-The tool outputs an HTML file in your current directory, which contains all the code for running the application (HTML, CSS and JavaScript code).
+The tool outputs an HTML file in your current directory, which contains all the code for running the application (HTML, CSS, JavaScript and a *favicon*).
 
 This file can be deployed to any **static** web hosting service or cloud platform.
 
 ### If you want to view a previously built Artifact
 
+There are two build types, with different preview methods:
 
-**Built Artifacts require a web server to run correctly.** If you try opening them directly in a browser (by double-clicking the file), the run will **fail** due to browser security restrictions.
+- Single-file builds (e.g., `npx run-claude-artifact build <file>`, as explained above):
+  - Can be opened directly from the filesystem (double-click the HTML file or open the URL `file://path/to/file.html`).
+  - Multiple pages are supported via HashRouter, so navigation works under `file://`.
 
-For quick local testing without deployment setup, or to validate built Artifacts before deployment, use the `view` subcommand to launch a local web server and preview them.
-
-1. Build the Artifact first using the `build` command (see above)
-2. **View it:** On the terminal, run:
-   * `npx run-claude-artifact view artifact-file-name.html` for single-file artifacts, or
-   * `npx run-claude-artifact view artifact-directory-name` for multi-file artifacts
-   > For multi-file artifacts, specify the directory, not the HTML file.
-3. The tool launches a temporary web server to serve the Artifact, and opens it in your browser. Press `Ctrl+C` on the terminal to stop the server when you're done viewing it.
+- Multi-file builds (e.g., `npx run-claude-artifact build <file> -e`):
+  - Require a local web server to view them because additional files (like CSS and JavaScript files) cannot be loaded from the filesystem directly (`file://` URLs) because of browser security restrictions.
+  - Use the `view` subcommand to preview locally:
+    - `npx run-claude-artifact view artifact-directory-name` (serve the directory)
+    - The tool launches a temporary web server and opens your browser. Press `Ctrl+C` to stop.
 
 ### If you want to create a full project for one or more Artifacts
 
@@ -207,11 +234,11 @@ npx run-claude-artifact [run|view|build|create] <src-file> [options]
 
 #### Run Artifact (Default)
 ```bash
-npx run-claude-artifact my-app.tsx              # Run dev server (default)
-npx run-claude-artifact run my-app.tsx          # Same as above
-npx run-claude-artifact run my-app.tsx --build  # Build single-file and run preview
+npx run-claude-artifact my-app.tsx                         # Run dev server (default)
+npx run-claude-artifact run my-app.tsx                     # Same as above
+npx run-claude-artifact run my-app.tsx --build             # Build single-file and run preview
 npx run-claude-artifact run my-app.tsx --build --expanded  # Build multi-file and run preview
-npx run-claude-artifact run my-app.tsx --build --strict  # Build with strict checking
+npx run-claude-artifact run my-app.tsx --build --strict    # Build with strict checking
 ```
 
 #### Build Artifact
@@ -224,12 +251,13 @@ npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output 
 
 #### View Built Artifact
 ```bash
-npx run-claude-artifact view my-app.html        # Serve built HTML file
+npx run-claude-artifact view my-app.html  # Serve single-file application
+npx run-claude-artifact view my-app       # Serve directory with multi-file application
 ```
 
 #### Create Project
 ```bash
-npx run-claude-artifact create my-app.tsx                   # Create editable project
+npx run-claude-artifact create my-app.tsx                        # Create editable project
 npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git + push
 ```
 
@@ -311,7 +339,7 @@ The script follows different sequences based on the subcommand:
 
 ### Notes
 - **Git is always required** (for initially cloning the template)
-- The release build embeds the favicon as a data URL
+- Single-file builds embed the favicon as a data URL; multi-file builds keep `public/favicon.ico` in the output and reference it normally
 
 ## Alternative Methods of Installation
 
@@ -449,13 +477,64 @@ To do that, you may remove the pre-installed components or libraries that are no
 
 ## Building for production
 
-To create a production build, run:
+### Single file deployment
+
+For smaller applications with one page, or just a few pages, you may build the application as a single file. Run:
+
+```
+npm run build:single
+```
+
+This will generate a single file in the `dist/` directory, ready for deployment.
+
+### Building with strict checking
+
+If you want to build a single file with rigorous code validation, run:
+```
+npm run build:single:strict
+```
+
+This will catch more errors and warnings during the build process, but sometimes, **it may also flag valid code as errors** if code is not written in a specific way.
+
+> **Disabled by default**, since many AI-generated artifacts fail strict checks, despite working fine in normal mode.
+
+You can also catch more potential errors if you run a linter before building. Run:
+```
+npm run lint
+```
+
+### Multi-file deployment
+
+To create a production build as a set of separate files for each asset and each page, run:
 
 ```
 npm run build
 ```
 
 This will generate optimized files in the `dist/` directory, ready for deployment.
+
+> Remember that you cannot run a multi-file application by opening the `dist/index.html` file directly from the filesystem to view it, as the browser will block it due to security restrictions. You need to use a local web server (e.g. run `npx serve dist`).
+
+#### Why would you want to do build this way, instead of building a single file?
+
+Because a multi-file build offers several advantages for larger applications:
+1. Faster initial load times - Only the required files for the current page are loaded
+2. Better caching - Shared resources (like common libraries) are cached separately
+3. Progressive loading - Users can interact with parts of the app while other resources load
+4. Smaller updates - When making changes, only modified files need to be redeployed
+5. Better error isolation - Issues in one page won't block the entire application
+
+### Multi-file deployment with strict checking
+
+If you want to build a multi-file application with rigorous code validation, run:
+```
+npm run build:strict
+```
+
+You can even catch more potential errors if you run a linter before building. Run:
+```
+npm run lint
+```
 
 ## Deploying your application
 

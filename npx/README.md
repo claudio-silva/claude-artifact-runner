@@ -59,9 +59,13 @@ npx run-claude-artifact build my-app.tsx --strict               # Single HTML fi
 npx run-claude-artifact build my-app.tsx --expanded             # Multi-file deployment
 npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output location
 
-# View Built Artifact
-npx run-claude-artifact view my-app.html    # Serve built HTML file
-npx run-claude-artifact view my-app         # Serve multi-file directory
+# Viewing Built Artifacts
+
+# Single-file builds (default):
+# - open the resulting HTML file directly (double-click or use navigate to file://path/to/file.html)
+
+# Multi-file builds (-e, --expanded):
+npx run-claude-artifact view my-app  # Serve directory of multi-file app via a local web server
 
 # Create Project
 npx run-claude-artifact create my-app.tsx                        # Create editable project
@@ -70,10 +74,10 @@ npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git 
 
 ## Execution Workflow
 
-- **`run` (default)**: Clone → Setup → Run Server (blocks until Ctrl+C)
-- **`build`**: Clone → Setup → Build → Deploy → Cleanup
-- **`view`**: Start Server (blocks until Ctrl+C)
-- **`create`**: Clone → Setup → Create Project → Git Setup
+- **`run` (default)**: Clone Template → Setup → Run Development Server (blocks until Ctrl+C)
+- **`build`**: Clone Template → Setup → Build → Deploy → Cleanup
+- **`view`**: Start Preview Server (blocks until Ctrl+C)
+- **`create`**: Clone Template → Setup → Git Setup → Move to target directory
 
 ## CI/CD Usage
 
