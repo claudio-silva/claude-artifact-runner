@@ -8,7 +8,7 @@ import Pages from 'vite-plugin-pages';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const single = env.VITE_SINGLE_FILE === 'true';
+  const single = env.VITE_SINGLE_FILE === 'true' || process.env.VITE_SINGLE_FILE === 'true';
 
   // Favicon inlining plugin
   const faviconPlugin = {

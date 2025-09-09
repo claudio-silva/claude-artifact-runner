@@ -60,6 +60,8 @@ A template project and **npx** command for easily converting Claude AI’s Artif
       - [Vercel](#vercel)
       - [GitHub Pages](#github-pages)
       - [Cloudflare Pages](#cloudflare-pages)
+  - [Available npm Scripts](#available-npm-scripts)
+    - [Build Types](#build-types)
   - [Troubleshooting](#troubleshooting)
   - [Contributing](#contributing)
   - [License](#license)
@@ -183,28 +185,40 @@ Start by downloading your Artifact to your local machine, as a `.tsx` or `.jsx` 
 npx run-claude-artifact [run|view|build|create] <src-file> [options]
 ```
 
+**Arguments:**
+- `<src-file>`: Path to a `.tsx`/`.jsx` file (for `run`/`build`/`create`) or `.html` file/directory (for `view`)
+
+**Subcommands:**
+- `run` (default): Run artifact in development server
+- `view`: Serve a built HTML file or directory
+- `build`: Build and output files
+- `create`: Create full editable project
+
 ### Subcommands
 
-| Subcommand | Description | Purpose |
-|------------|-------------|---------|
-| `run` (default) | Run artifact in development server | Interactive testing without building files |
-| `view <file.html>` | Serve a built HTML file | View previously built artifacts |
-| `build` | Build and output files | Generate deployment-ready files |
-| `create` | Create full editable project | Development workspace with git support |
+| Subcommand | Description |
+|------------|-------------|
+| `run` (default) | Run artifact in development server |
+| `view` | Serve a built HTML file or directory |
+| `build` | Build and output files |
+| `create` | Create full editable project |
 
 ### Basic Usage
 
 #### Run Artifact (Default)
 ```bash
-npx run-claude-artifact my-app.tsx              # Run artifact (default subcommand)
+npx run-claude-artifact my-app.tsx              # Run dev server (default)
 npx run-claude-artifact run my-app.tsx          # Same as above
-npx run-claude-artifact run my-app.tsx --dev    # Run with development server
+npx run-claude-artifact run my-app.tsx --build  # Build single-file and run preview
+npx run-claude-artifact run my-app.tsx --build --expanded  # Build multi-file and run preview
+npx run-claude-artifact run my-app.tsx --build --strict  # Build with strict checking
 ```
 
 #### Build Artifact
 ```bash
-npx run-claude-artifact build my-app.tsx                    # Single HTML file
-npx run-claude-artifact build my-app.tsx --expanded        # Multi-file deployment
+npx run-claude-artifact build my-app.tsx                        # Single HTML file (no strict checking)
+npx run-claude-artifact build my-app.tsx --strict               # Single HTML file (with strict checking)
+npx run-claude-artifact build my-app.tsx --expanded             # Multi-file deployment
 npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output location
 ```
 
@@ -222,11 +236,14 @@ npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git 
 ### Options by Subcommand
 
 #### Run Subcommand Options
-- `--dev`: Use development server instead of production preview
+- `--build`: Build project and run preview server instead of dev server
+- `--strict`: Enable strict TypeScript checking during build (requires --build)
+- `-e, --expanded`: Create multi-file build instead of single-file (requires --build)
 
 #### Build Subcommand Options
-- `--expanded, -e`: Create multi-file deployment instead of single HTML
+- `-e, --expanded`: Create multi-file deployment instead of single HTML
 - `--deploy-dir <path>`: Output directory for built files
+- `--strict`: Enable strict TypeScript checking during build
 
 #### Create Subcommand Options
 - `--project-dir <path>`: Target directory for the project
@@ -234,14 +251,15 @@ npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git 
 - `--push`: Push to remote repository after creation
 
 #### Global Options
-- `--help, -h`: Show help message
+- `-h, --help`: Show this help message
 
 ### All Command Line Options
 
 | Option | Applicable To | Description |
 |--------|---------------|-------------|
-| `--dev` | `run` | Use development server instead of production preview |
-| `--expanded, -e` | `build` | Create multi-file deployment instead of single HTML |
+| `--build` | `run` | Build project and run preview server instead of dev server |
+| `--strict` | `run`, `build` | Enable strict TypeScript checking during build |
+| `--expanded, -e` | `run`, `build` | Create multi-file build instead of single-file |
 | `--deploy-dir <path>` | `build` | Output directory for built files |
 | `--project-dir <path>` | `create` | Target directory for the project |
 | `--remote <url>` | `create` | Git remote repository URL |
@@ -254,7 +272,7 @@ The script follows different sequences based on the subcommand:
 
 #### `run` Subcommand (default)
 1. **Clone & Setup** → Clone template, remove .git/npx, copy your artifact
-2. **Run Server** → Start development server, open it in your browser and block until Ctrl+C
+2. **Run/Preview** → Start dev server (or build + preview if `--build` used), open in browser, block until Ctrl+C
 3. **Cleanup** → Remove temporary directory
 
 #### `build` Subcommand
@@ -271,6 +289,7 @@ The script follows different sequences based on the subcommand:
 1. **Clone & Setup** → Clone template, remove .git/npx, copy your artifact
 2. **Create Project** → Move full project to target directory
 3. **Git Setup** → Initialize repository, add remote, commit, push if requested
+4. **Cleanup** → Remove temporary directory
 
 ### Subcommand Flow Matrix
 
@@ -570,6 +589,27 @@ You can deploy to Cloudflare Pages either through the Cloudflare dashboard or us
 
 5. **Custom domain and production settings:**
    To use a custom domain or configure production settings, you can use the Cloudflare Pages dashboard. There, you can set up your domain, configure environment variables, and manage other deployment settings.
+
+## Available npm Scripts
+
+When working with the project directly (not using the npx command), you can use these npm scripts:
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build multi-file artifact (separate JS/CSS files) |
+| `npm run build:single` | Build single-file artifact (inlined assets) |
+| `npm run build:strict` | Build multi-file with TypeScript strict checking |
+| `npm run build:single:strict` | Build single-file with TypeScript strict checking |
+| `npm run preview` | Preview built artifacts locally |
+| `npm run lint` | Run ESLint |
+
+### Build Types
+
+- **Multi-file builds** (`build`, `build:strict`): Create separate HTML, JS, and CSS files in the `dist/` directory
+- **Single-file builds** (`build:single`, `build:single:strict`): Create a single self-contained HTML file with all assets inlined
+- **Strict builds** (`build:strict`, `build:single:strict`): Include TypeScript type checking before building
+- **Regular builds** (`build`, `build:single`): Skip TypeScript checking for faster builds
 
 ## Troubleshooting
 

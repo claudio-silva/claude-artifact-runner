@@ -8,8 +8,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:single": "tsc -b && VITE_SINGLE_FILE=true vite build",
+    "build": "vite build",
+    "build:single": "vite build -c vite.single.config.ts",
+    "build:strict": "tsc -b && vite build",
+    "build:single:strict": "tsc -b && vite build -c vite.single.config.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

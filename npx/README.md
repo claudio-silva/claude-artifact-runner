@@ -1,4 +1,4 @@
-# run-claude-artifact
+# run-claude-artifact v2.0.0
 
 This npm package exposes the `run-claude-artifact` command for use with `npx`.
 
@@ -9,53 +9,71 @@ For detailed usage instructions, workflow explanation, and complete examples, pl
 ## Quick Usage
 
 ```bash
-npx run-claude-artifact [run|build|create|view] <file> [options]
+npx run-claude-artifact [run|view|build|create] <src-file> [options]
 ```
 
-- `<file>`: Path to a `.tsx`/`.jsx` file (for `run`/`build`/`create`) or `.html` file (for `view`)
+- `<src-file>`: Path to a `.tsx`/`.jsx` file (for `run`/`build`/`create`) or `.html` file/directory (for `view`)
 
 ## Subcommands
 
 | Subcommand | Description |
 |------------|-------------|
-| `run` | Run artifact (default, optional) |
-| `build` | Build artifact |
+| `run` (default) | Run artifact in development server |
+| `view` | Serve a built HTML file or directory |
+| `build` | Build and output files |
 | `create` | Create full editable project |
-| `view` | View previously built artifact |
 
-## Options
+## Options by Subcommand
 
-| Option | Applicable To | Description |
-|--------|---------------|-------------|
-| `--dev` | `run` | Use development server instead of production preview |
-| `--expanded, -e` | `build` | Create multi-file deployment instead of single HTML |
-| `--deploy-dir <path>` | `build` | Output directory for built files |
-| `--project-dir <path>` | `create` | Target directory for the permanent project |
-| `--remote <url>` | `create` | Git remote repository URL |
-| `--push` | `create` | Push to remote repository after creation |
-| `--help, -h` | All | Show help message |
+### Run Subcommand Options
+- `--build`: Build project and run preview server instead of dev server
+- `--strict`: Enable strict TypeScript checking during build (requires --build)
+- `-e, --expanded`: Create multi-file build instead of single-file (requires --build)
+
+### Build Subcommand Options
+- `-e, --expanded`: Create multi-file deployment instead of single HTML
+- `--deploy-dir <path>`: Output directory for built files
+- `--strict`: Enable strict TypeScript checking during build
+
+### Create Subcommand Options
+- `--project-dir <path>`: Target directory for the project
+- `--remote <url>`: Git remote repository URL
+- `--push`: Push to remote repository after creation
+
+### Global Options
+- `-h, --help`: Show this help message
 
 ## Examples
 
 ```bash
-# Run artifact (default subcommand)
-npx run-claude-artifact my-app.tsx          # Run artifact (default)
+# Run Artifact (Default)
+npx run-claude-artifact my-app.tsx          # Run dev server (default)
 npx run-claude-artifact run my-app.tsx      # Same as above
-npx run-claude-artifact my-app.tsx --dev    # Run with dev server
+npx run-claude-artifact run my-app.tsx --build  # Build single-file and run preview
+npx run-claude-artifact run my-app.tsx --build --expanded  # Build multi-file and run preview
+npx run-claude-artifact run my-app.tsx --build --strict  # Build with strict checking
 
-# Build artifact
-npx run-claude-artifact build my-app.tsx              # Single HTML file
-npx run-claude-artifact build my-app.tsx --expanded   # Multi-file deployment
-npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom location
+# Build Artifact
+npx run-claude-artifact build my-app.tsx                        # Single HTML file (no strict checking)
+npx run-claude-artifact build my-app.tsx --strict               # Single HTML file (with strict checking)
+npx run-claude-artifact build my-app.tsx --expanded             # Multi-file deployment
+npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output location
 
-# View previously built artifact
-npx run-claude-artifact view my-app.html    # For single-file artifacts
-npx run-claude-artifact view my-app         # For multi-file artifacts, specify the directory, not the HTML file
+# View Built Artifact
+npx run-claude-artifact view my-app.html    # Serve built HTML file
+npx run-claude-artifact view my-app         # Serve multi-file directory
 
-# Create project
-npx run-claude-artifact create my-app.tsx                        # Create editable project, with local git repository
-npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git + push to remote repository
+# Create Project
+npx run-claude-artifact create my-app.tsx                        # Create editable project
+npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git + push
 ```
+
+## Execution Workflow
+
+- **`run` (default)**: Clone → Setup → Run Server (blocks until Ctrl+C)
+- **`build`**: Clone → Setup → Build → Deploy → Cleanup
+- **`view`**: Start Server (blocks until Ctrl+C)
+- **`create`**: Clone → Setup → Create Project → Git Setup
 
 ## CI/CD Usage
 
