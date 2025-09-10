@@ -46,6 +46,7 @@
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.1.6",
     "express": "^4.21.2",
+    "framer-motion": "^12.23.12",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.408.0",
     "mongodb": "^6.12.0",
