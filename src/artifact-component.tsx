@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoading, setIsLoading] = useState(false);
-  const [showContactForm, setShowContactForm] = useState(false);
-  const [chatMessages, setChatMessages] = useState<any[]>([]);
-  const [userInput, setUserInput] = useState('');
+  // Removed unused showContactForm state that caused TS build warnings
+  // Removed unused chat UI state
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mediumPosts, setMediumPosts] = useState<any[]>([]);
   const [isFetchingPosts, setIsFetchingPosts] = useState(false);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Mouse tracking for 3D effect
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 2 - 1,
         y: -(e.clientY / window.innerHeight) * 2 + 1
@@ -30,13 +29,33 @@ const App = () => {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let particles = [];
+    type ParticleLike = {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+      life: number;
+      update: () => void;
+      draw: () => void;
+    };
 
-    class Particle {
-      constructor(x, y) {
+    let particles: ParticleLike[] = [];
+
+    class Particle implements ParticleLike {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+      life: number;
+      constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
         this.size = Math.random() * 5 + 1;
@@ -53,10 +72,10 @@ const App = () => {
       }
 
       draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx!.fillStyle = this.color;
+        ctx!.beginPath();
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx!.fill();
       }
     }
 
@@ -172,7 +191,7 @@ const App = () => {
     fetchMediumPosts();
   }, []);
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: string) => {
     // Smooth scroll to top when switching tabs
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -188,20 +207,7 @@ const App = () => {
     }, 200); // Reduced from 300ms to 200ms for snappier feel
   };
 
-  const handleSendMessage = () => {
-    if (!userInput.trim()) return;
-    
-    const newMessages = [
-      ...chatMessages,
-      { text: userInput, sender: 'user' },
-      { 
-        text: "Hey there! 👋 I'm currently juggling quantum algorithms and neural networks, but I'll get back to you ASAP! In the meantime, check out my projects or book a meeting to discuss how I can help with your AI needs!", 
-        sender: 'ai' 
-      }
-    ];
-    setChatMessages(newMessages);
-    setUserInput('');
-  };
+  // Removed unused chat handler (chat UI no longer rendered)
 
   const bookMeeting = () => {
     window.open('https://calendly.com/abirabbasmd', '_blank');
@@ -851,7 +857,7 @@ const App = () => {
                     <label htmlFor="message" className="block text-gray-300 mb-2">Message</label>
                     <textarea 
                       id="message" 
-                      rows="5" 
+                      rows={5} 
                       className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 resize-none"
                       placeholder="Tell me about your project or idea..."
                     ></textarea>
@@ -973,7 +979,7 @@ const App = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .text-shadow-glow {
           text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
         }
