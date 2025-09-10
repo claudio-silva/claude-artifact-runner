@@ -3,8 +3,6 @@ import { useState, useEffect, useRef } from 'react';
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoading, setIsLoading] = useState(false);
-  // Removed unused showContactForm state that caused TS build warnings
-  // Removed unused chat UI state
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mediumPosts, setMediumPosts] = useState<any[]>([]);
@@ -23,7 +21,93 @@ const App = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Canvas animation
+  // Fetch Medium posts
+  const fetchMediumPosts = async () => {
+    setIsFetchingPosts(true);
+    try {
+      const mediumUsername = 'md.abir1203';
+      const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
+      
+      const response = await fetch(rssUrl);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        setMediumPosts(data.items);
+      } else {
+        setMediumPosts([
+          {
+            title: "Code complexity? We make it elegant",
+            description: "As a Multi-LLM Workflow creator and Rustace featured developer, I'm on a mission to empower 10k devs with elegant solutions to complex problems.",
+            pubDate: "2024-01-15T00:00:00.000Z",
+            link: "https://medium.com/@md.abir1203"
+          },
+          {
+            title: "The Art of Vibe Coding",
+            description: "How I combine security expertise with personality-driven development to create EU-grade websites that users actually enjoy.",
+            pubDate: "2024-02-20T00:00:00.000Z",
+            link: "https://medium.com/@md.abir1203"
+          },
+          {
+            title: "Building ShadowMap: A Rust-powered Security Framework",
+            description: "The story behind creating an open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping with vibe coding.",
+            pubDate: "2024-03-10T00:00:00.000Z",
+            link: "https://medium.com/@md.abir1203"
+          }
+        ]);
+      }
+    } catch (error) {
+      console.error('Error fetching Medium posts:', error);
+      setMediumPosts([
+        {
+          title: "Code complexity? We make it elegant",
+          description: "As a Multi-LLM Workflow creator and Rustace featured developer, I'm on a mission to empower 10k devs with elegant solutions to complex problems.",
+          pubDate: "2024-01-15T00:00:00.000Z",
+          link: "https://medium.com/@md.abir1203"
+        },
+        {
+          title: "The Art of Vibe Coding",
+          description: "How I combine security expertise with personality-driven development to create EU-grade websites that users actually enjoy.",
+          pubDate: "2024-02-20T00:00:00.000Z",
+          link: "https://medium.com/@md.abir1203"
+        },
+        {
+          title: "Building ShadowMap: A Rust-powered Security Framework",
+          description: "The story behind creating an open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping with vibe coding.",
+          pubDate: "2024-03-10T00:00:00.000Z",
+          link: "https://medium.com/@md.abir1203"
+        }
+      ]);
+    } finally {
+      setIsFetchingPosts(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMediumPosts();
+  }, []);
+
+  const handleTabClick = (tab: string) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsLoading(true);
+    setTimeout(() => {
+      setActiveTab(tab);
+      setIsLoading(false);
+      if (tab === 'blog' && mediumPosts.length === 0) {
+        fetchMediumPosts();
+      }
+    }, 200);
+  };
+
+  const bookMeeting = () => {
+    window.open('https://calendly.com/abirabbasmd', '_blank');
+  };
+
+  // Canvas animation useEffect
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -42,7 +126,7 @@ const App = () => {
       color: string;
       life: number;
       update: () => void;
-      draw: () => void;
+      draw: (ctx: CanvasRenderingContext2D) => void;
     };
 
     let particles: ParticleLike[] = [];
@@ -71,11 +155,11 @@ const App = () => {
         this.life -= 2;
       }
 
-      draw() {
-        ctx!.fillStyle = this.color;
-        ctx!.beginPath();
-        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx!.fill();
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
@@ -85,7 +169,7 @@ const App = () => {
       
       particles.forEach(p => {
         p.update();
-        p.draw();
+        p.draw(ctx);
       });
 
       requestAnimationFrame(animate);
@@ -117,102 +201,7 @@ const App = () => {
     };
   }, []);
 
-  // Fetch Medium posts
-  const fetchMediumPosts = async () => {
-    setIsFetchingPosts(true);
-    try {
-      // Using RSS2JSON API to fetch Medium posts
-      const mediumUsername = 'md.abir1203';
-      const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
-      
-      const response = await fetch(rssUrl);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.status === 'ok' && data.items && data.items.length > 0) {
-        setMediumPosts(data.items);
-      } else {
-        // Fallback to mock data if API fails or returns no items
-        setMediumPosts([
-          {
-            title: "Code complexity? We make it elegant",
-            description: "As a Multi-LLM Workflow creator and Rustace featured developer, I'm on a mission to empower 10k devs with elegant solutions to complex problems.",
-            pubDate: "2024-01-15T00:00:00.000Z",
-            link: "https://medium.com/@md.abir1203"
-          },
-          {
-            title: "The Art of Vibe Coding",
-            description: "How I combine security expertise with personality-driven development to create EU-grade websites that users actually enjoy.",
-            pubDate: "2024-02-20T00:00:00.000Z",
-            link: "https://medium.com/@md.abir1203"
-          },
-          {
-            title: "Building ShadowMap: A Rust-powered Security Framework",
-            description: "The story behind creating an open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping with vibe coding.",
-            pubDate: "2024-03-10T00:00:00.000Z",
-            link: "https://medium.com/@md.abir1203"
-          }
-        ]);
-      }
-    } catch (error) {
-      console.error('Error fetching Medium posts:', error);
-      // Fallback to mock data if API fails
-      setMediumPosts([
-        {
-          title: "Code complexity? We make it elegant",
-          description: "As a Multi-LLM Workflow creator and Rustace featured developer, I'm on a mission to empower 10k devs with elegant solutions to complex problems.",
-          pubDate: "2024-01-15T00:00:00.000Z",
-          link: "https://medium.com/@md.abir1203"
-        },
-        {
-          title: "The Art of Vibe Coding",
-          description: "How I combine security expertise with personality-driven development to create EU-grade websites that users actually enjoy.",
-          pubDate: "2024-02-20T00:00:00.000Z",
-          link: "https://medium.com/@md.abir1203"
-        },
-        {
-          title: "Building ShadowMap: A Rust-powered Security Framework",
-          description: "The story behind creating an open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping with vibe coding.",
-          pubDate: "2024-03-10T00:00:00.000Z",
-          link: "https://medium.com/@md.abir1203"
-        }
-      ]);
-    } finally {
-      setIsFetchingPosts(false);
-    }
-  };
-
-  useEffect(() => {
-    // Fetch Medium posts when component mounts
-    fetchMediumPosts();
-  }, []);
-
-  const handleTabClick = (tab: string) => {
-    // Smooth scroll to top when switching tabs
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    setIsLoading(true);
-    setTimeout(() => {
-      setActiveTab(tab);
-      setIsLoading(false);
-      
-      // If switching to blog tab, refresh posts
-      if (tab === 'blog' && mediumPosts.length === 0) {
-        fetchMediumPosts();
-      }
-    }, 200); // Reduced from 300ms to 200ms for snappier feel
-  };
-
-  // Removed unused chat handler (chat UI no longer rendered)
-
-  const bookMeeting = () => {
-    window.open('https://calendly.com/abirabbasmd', '_blank');
-  };
-
+  // Data constants
   const skills = [
     { 
       name: 'AI Development', 
@@ -264,7 +253,7 @@ const App = () => {
       description: 'A Rust-powered open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping built with vibe coding.',
       stars: '⭐ Open Source',
       link: 'https://github.com/mdabir1203/ShadowMap',
-        image: '/images/ShadowMaplogo.png'
+      image: '/images/ShadowMaplogo.png'
     },
     {
       title: 'Prompt Panda Bangla',
@@ -352,24 +341,23 @@ const App = () => {
     }
   ];
 
-  // Updated LinkedIn Recommendations from user's request
   const linkedinRecommendations = [
     {
       name: "Jun yub Kim",
       role: "Strategic Planner at General Motors | Software Developer",
-      content: "I had the pleasure of working with Abir, and during that time, I was able to see firsthand his exceptional technical abilities as well as his collaborative approach. Abir is not only a highly skilled professional but also someone who actively supports his colleagues’ growth and fosters a positive, team-oriented environment. Abir is a pioneering and passionate individual, consistently demonstrating innovative thinking in addressing challenges. Although we didn’t have a close working relationship initially, he was proactive in reaching out to offer his help whenever I encountered technical difficulties, such as debugging and analyzing complex code issues. His willingness to assist not only helped me resolve issues effectively but also created a supportive environment that allowed our professional relationship to grow. Over time, thanks to his enthusiasm and collaborative nature, we became much closer, both professionally and personally. Thanks to his broad perspective and technical insight, I was able to significantly improve my ability to architect solutions and approach problems from a strategic level. Abir’s technical talent, paired with his reliable, results-oriented mindset, makes him a perfect fit for any business-focused role. His dedication to excellence and collaborative nature would be a tremendous asset to any organization.",
+      content: "I had the pleasure of working with Abir, and during that time, I was able to see firsthand his exceptional technical abilities as well as his collaborative approach. Abir is not only a highly skilled professional but also someone who actively supports his colleagues' growth and fosters a positive, team-oriented environment.",
       avatar: "https://placehold.co/100x100/0d1321/00eaff?text=JK"
     },
     {
       name: "Sabbir Ahamed Shubho",
       role: "Embedded Software Developer | Linux Enthusiast",
-      content: "Mr. Mohammad Abir is very hard worker and talented student. I have known him since my school days. Once he made up his mind on something, he put a great effort no matter how hard that task is. I wish him good luck on his future endeavor.",
+      content: "Mr. Mohammad Abir is very hard worker and talented student. I have known him since my school days. Once he made up his mind on something, he put a great effort no matter how hard that task is.",
       avatar: "https://placehold.co/100x100/0d1321/aeff00?text=SS"
     },
     {
       name: "Martje Lott",
       role: "Wissenschaftliche Mitarbeiterin und Doktorandin an der Universität Hamburg",
-      content: "Herr Mohammad Abir Abbas ist ehrenamtlich bei AIESEC e.V tätig. Er ist Vorsitzender für das Team Praktikanten im Unternehmen zu vermitteln und das interkulturelle Verständnis zu fördern. Herr Abbas zeichnet sich durch seine Offenheit, Zielstrebigkeit und professionelle Arbeitsweise im Team aus. Er erledigt seine Aufgaben völlig selbstständig und sorgfältig. Mit seiner Teamfähigkeit ist es stets eine Freude mit ihm zu arbeiten.",
+      content: "Herr Mohammad Abir Abbas ist ehrenamtlich bei AIESEC e.V tätig. Er ist Vorsitzender für das Team Praktikanten im Unternehmen zu vermitteln und das interkulturelle Verständnis zu fördern.",
       avatar: "https://placehold.co/100x100/0d1321/ff6b6b?text=ML"
     }
   ];
@@ -474,34 +462,18 @@ const App = () => {
           </div>
         )}
 
-    {/* Home Section */}
-    {activeTab === 'home' && (
+        {/* Home Section */}
+        {activeTab === 'home' && (
           <section className="mb-12 md:mb-16 animate-fadeIn">
             <div className="profile-section mb-8 md:mb-12 backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 shadow-lg shadow-cyan-500/20 relative overflow-hidden">
-              <div className="absolute top-4 right-4 opacity-30">
-                <div className="w-2 h-2 md:w-3 md:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-              </div>
-              <div className="absolute bottom-4 left-4 opacity-30">
-                <div className="w-1 h-1 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse animation-delay-1000"></div>
-              </div>
-              
               <div className="flex flex-col lg:flex-row items-center gap-8">
-  <div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 group">
-    
-          {/* Profile Image */}
-
-    {/* Profile Image with Circular Glassmorphism */}
-        <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 group">
-
-              <img
-                src="/images/profile.jpg"
-                alt="Mohammad Abir Abbas"
-                className="w-full h-full rounded-full object-cover border-4 border-cyan-400/50 shadow-2xl shadow-cyan-400/30 transition-transform duration-500 group-hover:scale-105"
-              />
-            </div> 
-
-          </div> 
-        
+                <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 group">
+                  <img
+                    src="/images/profile.jpg"
+                    alt="Mohammad Abir Abbas"
+                    className="w-full h-full rounded-full object-cover border-4 border-cyan-400/50 shadow-2xl shadow-cyan-400/30 transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
 
                 <div className="profile-info text-center lg:text-left flex-1">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent text-shadow-glow mb-3 md:mb-4">
@@ -530,7 +502,6 @@ const App = () => {
               </div>
             </div>
           
-          
             {/* LinkedIn Recommendations */}
             <section className="mb-16">
               <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">LinkedIn Recommendations</h2>
@@ -557,16 +528,6 @@ const App = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className="text-center mt-8">
-                <a 
-                  href="https://www.linkedin.com/in/abir-abbas" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-600 hover:to-green-600 text-black font-bold py-3 px-6 rounded-lg border-2 border-transparent transition-all duration-300 text-shadow-glow transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30"
-                >
-                  View More on LinkedIn →
-                </a>
               </div>
             </section>
           </section>
@@ -676,14 +637,12 @@ const App = () => {
             ) : mediumPosts.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {mediumPosts.map((post, index) => {
-                  // Format the date
                   const date = new Date(post.pubDate).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                   });
                   
-                  // Create a short excerpt
                   let excerpt = post.description || post.content || '';
                   if (excerpt.length > 150) {
                     excerpt = excerpt.substring(0, 150) + '...';
@@ -947,36 +906,6 @@ const App = () => {
             <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Cookie Settings</a>
           </div>
         </footer>
-      </div>
-
-      {/* Cookie Consent Banner */}
-      <div 
-        id="cookieConsent" 
-        className="fixed bottom-0 left-0 right-0 bg-gray-800/90 text-white p-4 text-center z-50 hidden"
-      >
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>This website uses cookies to ensure you get the best experience.</p>
-          <div className="flex gap-4">
-            <button 
-              id="acceptCookies" 
-              className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded transition-colors duration-300"
-            >
-              Accept All Cookies
-            </button>
-            <button 
-              id="rejectCookies" 
-              className="bg-red-500 hover:bg-red-600 text-black font-bold py-2 px-4 rounded transition-colors duration-300"
-            >
-              Reject All Cookies
-            </button>
-            <button 
-              id="cookieSettings" 
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded transition-colors duration-300"
-            >
-              Cookie Settings
-            </button>
-          </div>
-        </div>
       </div>
 
       <style>{`
