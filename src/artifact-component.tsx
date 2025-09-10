@@ -4,11 +4,11 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoading, setIsLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [userInput, setUserInput] = useState('');
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [mediumPosts, setMediumPosts] = useState([]);
+  const [mediumPosts, setMediumPosts] = useState<any[]>([]);
   const [isFetchingPosts, setIsFetchingPosts] = useState(false);
   const canvasRef = useRef(null);
 
@@ -103,16 +103,21 @@ const App = () => {
     setIsFetchingPosts(true);
     try {
       // Using RSS2JSON API to fetch Medium posts
-      const mediumUsername = '@md.abir1203';
+      const mediumUsername = 'md.abir1203';
       const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
       
       const response = await fetch(rssUrl);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
-      if (data.status === 'ok') {
-        setMediumPosts(data.items || []);
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        setMediumPosts(data.items);
       } else {
-        // Fallback to mock data if API fails
+        // Fallback to mock data if API fails or returns no items
         setMediumPosts([
           {
             title: "Code complexity? We make it elegant",
@@ -168,6 +173,9 @@ const App = () => {
   }, []);
 
   const handleTabClick = (tab) => {
+    // Smooth scroll to top when switching tabs
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     setIsLoading(true);
     setTimeout(() => {
       setActiveTab(tab);
@@ -177,7 +185,7 @@ const App = () => {
       if (tab === 'blog' && mediumPosts.length === 0) {
         fetchMediumPosts();
       }
-    }, 300);
+    }, 200); // Reduced from 300ms to 200ms for snappier feel
   };
 
   const handleSendMessage = () => {
@@ -196,7 +204,7 @@ const App = () => {
   };
 
   const bookMeeting = () => {
-    window.open('https://calendly.com/md-abir1203', '_blank');
+    window.open('https://calendly.com/abirabbasmd', '_blank');
   };
 
   const skills = [
@@ -204,7 +212,7 @@ const App = () => {
       name: 'AI Development', 
       level: 95, 
       badge: 'advanced',
-      description: "I don't just use AI, I make it dance. From GPT-4 to Claude, I engineer prompts that make models sing.",
+      description: "From GPT-4 to Claude, I engineer prompts that make models sing and turn AI into collaborators, not just tools.",
       specializations: ['GPT-4', 'Claude', 'Prompt Engineering', 'LLM Fine-tuning']
     },
     { 
@@ -219,21 +227,21 @@ const App = () => {
       level: 90, 
       badge: 'advanced',
       description: "The Swiss Army knife of my toolkit. From data science to web apps, Python does it all.",
-      specializations: ['uv', 'RESTful API', 'Django', 'FastAPI', 'Data Science']
+      specializations: ['uv', 'RESTful API', 'FastAPI', 'Webcrawlers']
     },
     { 
       name: 'JavaScript', 
       level: 70, 
       badge: 'rookie',
-      description: "I'm on a journey with JS. Every day I learn something new and push my boundaries.",
-      specializations: ['vanilla js', 'nodejs', 'react', 'next.js', 'three.js']
+      description: "We are on a journey with JS. Every day I learn something new and push my boundaries.",
+      specializations: ['vanilla js', 'nodejs', 'react', 'next.js']
     },
     { 
       name: 'Startup Ventures', 
       level: 85, 
       badge: 'intermediate',
-      description: "Turning ideas into reality. I've been in the trenches of startup life and lived to tell the tale.",
-      specializations: ['Deep Blue Digital', 'VisaNav', 'Product Strategy', 'Growth Hacking']
+      description: "Turning ideas into reality. We've been in the trenches of startup life and lived to tell the tale.",
+      specializations: ['Deep Blue Digital', 'Product Strategy', 'Growth Hacking']
     },
     {
       name: 'Security & Vibe Coding',
@@ -250,28 +258,28 @@ const App = () => {
       description: 'A Rust-powered open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping built with vibe coding.',
       stars: '⭐ Open Source',
       link: 'https://github.com/mdabir1203/ShadowMap',
-      image: 'https://placehold.co/600x400/0d1321/ff6b6b?text=ShadowMap'
+        image: '/images/ShadowMaplogo.png'
     },
     {
       title: 'Prompt Panda Bangla',
       description: 'Showcasing prompt engineering in Bangla - making AI accessible to Bengali speakers with a lovable, friendly interface.',
       stars: '🐼 Vibe Coding',
       link: 'https://prompt-panda-bangla.lovable.app/',
-      image: 'https://placehold.co/600x400/0d1321/aeff00?text=Prompt+Panda'
+      image: '/images/1.png'
     },
     {
       title: 'Deep Blue Digital 2.0',
-      description: 'Revolutionizing digital experiences with AI-powered solutions that actually understand human needs.',
-      stars: '🚀 Launching Soon',
+      description: 'A Digital Marketplace for easy access to Creator tools',
+      stars: '🚀 Learning Journey',
       link: 'https://www.thedeepbluedigital.com',
       image: 'https://placehold.co/600x400/0d1321/00eaff?text=Deep+Blue+Digital'
     },
     {
-      title: 'VisaNav',
-      description: 'Your personal visa assistant that cuts through bureaucracy with AI precision and a human touch.',
-      stars: '⭐ 4.8/5 User Rating',
-      link: 'https://visanav.netlify.app/',
-      image: 'https://placehold.co/600x400/0d1321/ff9e00?text=VisaNav'
+      title: 'RedAGPT',
+      description: 'A Redis side quest hackathon winner - a cutting-edge security testing toolkit using AutoGPT and Langchain for network vulnerability assessment in homes and offices.',
+      stars: '🏆 Hackathon Winner',
+      link: 'https://github.com/mdabir1203/RedAGPT',
+      image: '/images/asd.png'
     }
   ];
 
@@ -452,17 +460,17 @@ const App = () => {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
             <div className="text-center">
               <div className="spinner border-4 border-gray-300 border-t-cyan-400 rounded-full w-12 h-12 animate-spin mx-auto mb-4"></div>
-              <p className="text-white text-lg">Loading next dimension...</p>
+              <p className="text-white text-lg animate-pulse">Loading next dimension...</p>
             </div>
           </div>
         )}
 
     {/* Home Section */}
     {activeTab === 'home' && (
-          <section className="mb-12 md:mb-16">
+          <section className="mb-12 md:mb-16 animate-fadeIn">
             <div className="profile-section mb-8 md:mb-12 backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 shadow-lg shadow-cyan-500/20 relative overflow-hidden">
               <div className="absolute top-4 right-4 opacity-30">
                 <div className="w-2 h-2 md:w-3 md:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
@@ -473,35 +481,29 @@ const App = () => {
               
               <div className="flex flex-col lg:flex-row items-center gap-8">
   <div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 group">
-    {/* Profile Image */}
+    
+          {/* Profile Image */}
+
+    {/* Profile Image with Circular Glassmorphism */}
+        <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 group">
+
               <img
                 src="/images/profile.jpg"
                 alt="Mohammad Abir Abbas"
                 className="w-full h-full rounded-full object-cover border-4 border-cyan-400/50 shadow-2xl shadow-cyan-400/30 transition-transform duration-500 group-hover:scale-105"
               />
+            </div> 
 
-    {/* Halo Glow */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-green-400 to-purple-400 opacity-30 blur-2xl animate-pulse pointer-events-none"></div>
-
-    {/* Rotating Points */}
-              <div className="absolute inset-0"></div>
-              </div>
+          </div> 
+        
 
                 <div className="profile-info text-center lg:text-left flex-1">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent text-shadow-glow mb-3 md:mb-4">
                     Mohammad Abir Abbas
                   </h1>
-                  <p className="alias text-xl md:text-2xl text-cyan-400 mt-1 md:mt-2 text-shadow-glow mb-2">The AI Alchemist & Vibe Coder</p>
-                  <p className="role text-2xl md:text-3xl text-green-400 mt-1 text-shadow-glow mb-4 md:mb-6">
-                    Turning Code into Gold ✨
-                  </p>
-                  
                   <div className="mb-6 md:mb-8">
                     <p className="text-gray-300 leading-relaxed text-sm md:text-base max-w-2xl mx-auto lg:mx-0">
-                      I'm not just another developer. I'm a digital wizard who specializes in making AI do the impossible. 
-                      From prompt engineering that makes LLMs sing to Rust systems that fly, I build solutions that don't 
-                      just work—they delight. As a lovable vibe coder and security specialist, I create EU-grade secure 
-                      websites with personality that users actually enjoy.
+                    We craft AI-powered, secure, and scalable solutions that drive impact. From multi-LLM workflows to Rust systems, every decision is data-driven, every product human-focused, and every line of code aimed at breaking barriers and shaping the impossible.
                     </p>
                   </div>
 
@@ -521,6 +523,7 @@ const App = () => {
                 </div>
               </div>
             </div>
+          
           
             {/* LinkedIn Recommendations */}
             <section className="mb-16">
@@ -565,7 +568,7 @@ const App = () => {
 
         {/* Skills Section */}
         {activeTab === 'skills' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">My Digital Arsenal</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {skills.map((skill, index) => (
@@ -612,7 +615,7 @@ const App = () => {
 
         {/* Projects Section */}
         {activeTab === 'projects' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">My Digital Creations</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {projects.map((project, index) => (
@@ -653,10 +656,10 @@ const App = () => {
 
         {/* Blog Section */}
         {activeTab === 'blog' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">My Medium Blog Posts</h2>
             <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
-              Sharing my thoughts on AI, Rust, security, and vibe coding. Code complexity? We make it elegant.
+              Sharing my thoughts on AI, Rust, security, and vibe coding.
             </p>
             
             {isFetchingPosts ? (
@@ -664,7 +667,7 @@ const App = () => {
                 <div className="spinner border-4 border-gray-300 border-t-cyan-400 rounded-full w-12 h-12 animate-spin mx-auto mb-4"></div>
                 <p className="text-white text-lg">Loading my latest thoughts...</p>
               </div>
-            ) : (
+            ) : mediumPosts.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {mediumPosts.map((post, index) => {
                   // Format the date
@@ -706,6 +709,16 @@ const App = () => {
                   );
                 })}
               </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-400 text-lg">No blog posts available at the moment.</p>
+                <button 
+                  onClick={fetchMediumPosts}
+                  className="mt-4 bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-600 hover:to-green-600 text-black font-bold py-2 px-4 rounded-lg transition-all duration-300"
+                >
+                  Try Again
+                </button>
+              </div>
             )}
             
             <div className="text-center mt-8">
@@ -724,7 +737,7 @@ const App = () => {
 
         {/* Services Section */}
         {activeTab === 'services' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">AI Development Services</h2>
             <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
               I provide expert AI development services to bring your ideas to life. Here's a breakdown of my offerings:
@@ -769,7 +782,7 @@ const App = () => {
 
         {/* Journey Section */}
         {activeTab === 'journey' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">My Digital Journey</h2>
             
             <div className="max-w-4xl mx-auto">
@@ -799,13 +812,9 @@ const App = () => {
             </div>
             
             <div className="text-center mt-16 p-8 bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-bold text-cyan-400 mb-4">My Philosophy</h3>
+              <h3 className="text-2xl font-bold text-cyan-400 mb-4">Builder Philosophy</h3>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                "I believe technology should serve humanity, not the other way around. 
-                My mission is to build AI systems that enhance human creativity, 
-                solve real problems, and make the digital world more accessible and enjoyable for everyone.
-                As a lovable vibe coder, I infuse personality and joy into every project while maintaining EU-grade security standards.
-                Code complexity? We make it elegant. Multi-LLM Workflow creator. On a mission to empower 10k devs!"
+                "We build boldly, break fearlessly, and aim for horizons yet unseen"
               </p>
             </div>
           </section>
@@ -813,7 +822,7 @@ const App = () => {
 
         {/* Contact Section */}
         {activeTab === 'contact' && (
-          <section className="mb-16">
+          <section className="mb-16 animate-fadeIn">
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Let's Create Magic Together</h2>
             
             <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
@@ -915,40 +924,6 @@ const App = () => {
                   >
                     Book a Meeting with Calendly
                   </button>
-                </div>
-                
-                <div>
-                  <h4 className="text-lg font-bold text-cyan-400 mb-4">AI Chat Assistant</h4>
-                  <div className="bg-black/30 rounded-lg p-4 h-64 overflow-y-auto mb-4">
-                    {chatMessages.map((msg, index) => (
-                      <div 
-                        key={index} 
-                        className={`mb-2 p-3 rounded-lg ${
-                          msg.sender === 'user' 
-                            ? 'bg-cyan-500/20 ml-auto text-right' 
-                            : 'bg-white/10 text-left'
-                        } max-w-[80%]`}
-                      >
-                        {msg.text}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <input 
-                      type="text" 
-                      value={userInput}
-                      onChange={(e) => setUserInput(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      placeholder="Ask me anything about AI..."
-                      className="flex-1 p-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
-                    />
-                    <button 
-                      onClick={handleSendMessage}
-                      className="bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-600 hover:to-green-600 text-black font-bold py-3 px-6 rounded-lg border-2 border-transparent transition-all duration-300 text-shadow-glow transform hover:scale-105"
-                    >
-                      Send
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1174,6 +1149,21 @@ const App = () => {
         
         .blog-link:hover {
           background: rgba(165, 180, 252, 0.2);
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.4s ease-out;
         }
       `}</style>
     </div>
