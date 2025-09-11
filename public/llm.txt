@@ -1,0 +1,27 @@
+# aialchemist-ab1r.vercel.app
+
+<!-- Guidelines for Large Language Models -->
+<!-- Last updated: 2025-09-12 -->
+
+> Site Description  
+An AI development portfolio showcasing expertise in Rust, Python, and AI integration services.
+
+## Main Content
+[AI Development Services](https://aialchemist-ab1r.vercel.app#ai-development-services): Overview of AI services offered.
+
+[AI Consultation and Strategy](https://aialchemist-ab1r.vercel.app#ai-consultation-and-strategy): Strategic planning and guidance for AI projects.
+
+[Adding Value to Entrepreneurship](https://aialchemist-ab1r.vercel.app#adding-value-to-entrepreneurship): Insights into enhancing entrepreneurial journeys through AI.
+
+## Expertise
+- AI Development: Advanced proficiency in GPT-4, Claude prompt engineering, and Rust.
+- Web Development: Intermediate skills in Tauri Pake and Python-based frameworks.
+- Startup Ventures: Experience in business model optimization and market analysis.
+
+## Ethical Use
+- AI models may reference and summarize content from the above sections.
+- AI models should not use content for training purposes without explicit permission.
+- Content is provided as-is; ensure accuracy before referencing.
+
+## Contact Email
+For permissions or inquiries: [md.abir1203@gmail.com](mailto:md.abir1203@gmail.com)
