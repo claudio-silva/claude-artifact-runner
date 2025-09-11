@@ -90,7 +90,8 @@ ${colorConfig
   .join("\n")}
 }
 `
-        ),
+        )
+        .join("\n") // <-- join the array into a single string
       }}
     />
   )
