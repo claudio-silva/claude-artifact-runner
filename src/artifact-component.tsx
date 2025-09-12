@@ -19,7 +19,6 @@ import { MediumPost } from './types';
 
 const ArtifactComponent = () => {
   const [activeTab, setActiveTab] = useState('home');
-  const [isLoading, setIsLoading] = useState(false);
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mediumPosts, setMediumPosts] = useState<MediumPost[]>([]);
@@ -27,14 +26,18 @@ const ArtifactComponent = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    let rafId = 0;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1
-      });
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setMousePosition({ x, y }));
     };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -141,21 +144,13 @@ const ArtifactComponent = () => {
 
   // Medium posts are fetched lazily when the blog tab becomes active
 
-  useEffect(() => {
-    fetchMediumPosts();
-  }, [fetchMediumPosts]);
-
   const handleTabClick = useCallback(
     (tab: string) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setIsLoading(true);
-      setTimeout(() => {
-        setActiveTab(tab);
-        setIsLoading(false);
-        if (tab === 'blog' && mediumPosts.length === 0) {
-          fetchMediumPosts();
-        }
-      }, 200);
+      setActiveTab(tab);
+      if (tab === 'blog' && mediumPosts.length === 0) {
+        fetchMediumPosts();
+      }
     },
     [mediumPosts, fetchMediumPosts]
   );
@@ -167,7 +162,7 @@ const ArtifactComponent = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-x-hidden">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gray-900 text-cyan-400 px-4 py-2 rounded z-50"
@@ -181,14 +176,6 @@ const ArtifactComponent = () => {
         className="container mx-auto px-6 py-12 relative z-20"
       >
         <Navigation activeTab={activeTab} onTabClick={handleTabClick} />
-        {isLoading && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-            <div className="text-center">
-              <div className="spinner border-4 border-gray-300 border-t-cyan-400 rounded-full w-12 h-12 animate-spin mx-auto mb-4"></div>
-              <p className="text-white text-lg animate-pulse">Loading next dimension...</p>
-            </div>
-          </div>
-        )}
         {activeTab === 'home' && (
           <HomeSection
             onHireClick={handleHireNavigate}
