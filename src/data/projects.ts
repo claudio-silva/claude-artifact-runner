@@ -12,14 +12,14 @@ export const projects: Project[] = [
     description: 'A Rust-powered open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping built with vibe coding.',
     stars: '⭐ Open Source',
     link: 'https://github.com/mdabir1203/ShadowMap',
-    image: '/images/ShadowMaplogo.png'
+    image: '/images/ShadowMaplogo.webp'
   },
   {
     title: 'Prompt Panda Bangla',
     description: 'Showcasing prompt engineering in Bangla - making AI accessible to Bengali speakers with a lovable, friendly interface.',
     stars: '🐼 Vibe Coding',
     link: 'https://prompt-panda-bangla.lovable.app/',
-    image: '/images/1.png'
+    image: '/images/1.webp'
   },
   {
     title: 'Deep Blue Digital 2.0',
@@ -33,6 +33,6 @@ export const projects: Project[] = [
     description: 'A Redis side quest hackathon winner - a cutting-edge security testing toolkit using AutoGPT and Langchain for network vulnerability assessment in homes and offices.',
     stars: '🏆 Hackathon Winner',
     link: 'https://github.com/mdabir1203/RedAGPT',
-    image: '/images/asd.png'
+    image: '/images/asd.webp'
   }
 ];
