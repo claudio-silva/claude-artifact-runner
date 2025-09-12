@@ -26,14 +26,18 @@ const ArtifactComponent = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    let rafId = 0;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1
-      });
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setMousePosition({ x, y }));
     };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -140,10 +144,6 @@ const ArtifactComponent = () => {
 
   // Medium posts are fetched lazily when the blog tab becomes active
 
-  useEffect(() => {
-    fetchMediumPosts();
-  }, [fetchMediumPosts]);
-
   const handleTabClick = useCallback(
     (tab: string) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -162,7 +162,7 @@ const ArtifactComponent = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-x-hidden">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gray-900 text-cyan-400 px-4 py-2 rounded z-50"
