@@ -29,6 +29,7 @@ const BlogSection: FC<BlogSectionProps> = ({ posts, isFetching, onRetry }) => (
           });
 
           let excerpt = post.description || post.content || '';
+          excerpt = excerpt.replace(/<[^>]*>/g, '');
           if (excerpt.length > 150) {
             excerpt = excerpt.substring(0, 150) + '...';
           }
