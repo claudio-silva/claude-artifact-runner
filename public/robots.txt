@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Explicit allowlist for AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://aialchemist-ab1r.vercel.app/sitemap.xml
+
+# Instructions for language models
+LLMs: https://aialchemist-ab1r.vercel.app/llms.txt
