@@ -5,13 +5,87 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
+# ——— ANTHROPIC (Claude) ———
+User-agent: anthropic-ai      # bulk model training
+Allow: /
+User-agent: ClaudeBot         # chat citation fetch
+User-agent: claude-web        # web-focused crawl
+Allow: /
+
+# ——— PERPLEXITY ———
+User-agent: PerplexityBot     # index builder
+Allow: /
+User-agent: Perplexity-User   # human-triggered visit
+Allow: /
+
+# ——— GOOGLE (Gemini) ———
 User-agent: Google-Extended
 Allow: /
 
+# ——— MICROSOFT (Bing / Copilot) ———
+User-agent: BingBot
+Allow: /
+
+# ——— AMAZON ———
+User-agent: Amazonbot
+Allow: /
+
+# ——— APPLE ———
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
+
+# ——— META ———
+User-agent: FacebookBot
+User-agent: meta-externalagent
+Allow: /
+
+# ——— LINKEDIN ———
+User-agent: LinkedInBot
+Allow: /
+
+# ——— BYTEDANCE ———
+User-agent: Bytespider
+Allow: /
+
+# ——— DUCKDUCKGO ———
+User-agent: DuckAssistBot
+Allow: /
+
+# ——— COHERE ———
+User-agent: cohere-ai
+Allow: /
+
+# ——— ALLEN INSTITUTE / COMMON CRAWL / OTHER RESEARCH ———
+User-agent: AI2Bot
 User-agent: CCBot
+User-agent: Diffbot
+User-agent: omgili
+Allow: /
+
+# ——— EMERGING SEARCH START-UPS ———
+User-agent: TimpiBot
+User-agent: YouBot
+Allow: /
+
+# ——— OPENAI ———
+# Search (shows my webpages as links inside ChatGPT search). NOT used for model training.
+User-agent: OAI-SearchBot
+Allow: /
+
+# User-driven browsing from ChatGPT and Custom GPTs. Acts after a human click.
+User-agent: ChatGPT-User
+User-agent: ChatGPT-User/2.0
 Allow: /
 
 Sitemap: https://aialchemist-ab1r.vercel.app/sitemap.xml
 
 # Instructions for language models
 LLMs: https://aialchemist-ab1r.vercel.app/llms.txt
+
+
+
+
