@@ -1,13 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
 
-const App = () => {
+type MediumPost = {
+  title: string;
+  description: string;
+  pubDate: string;
+  link: string;
+};
+
+const ArtifactComponent = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoading, setIsLoading] = useState(false);
   // Removed unused showContactForm state that caused TS build warnings
   // Removed unused chat UI state
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [mediumPosts, setMediumPosts] = useState<any[]>([]);
+  const [mediumPosts, setMediumPosts] = useState<MediumPost[]>([]);
   const [isFetchingPosts, setIsFetchingPosts] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -118,7 +125,7 @@ const App = () => {
   }, []);
 
   // Fetch Medium posts
-  const fetchMediumPosts = async () => {
+  const fetchMediumPosts = useCallback(async () => {
     setIsFetchingPosts(true);
     try {
       // Using RSS2JSON API to fetch Medium posts
@@ -184,14 +191,14 @@ const App = () => {
     } finally {
       setIsFetchingPosts(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Fetch Medium posts when component mounts
     fetchMediumPosts();
-  }, []);
+  }, [fetchMediumPosts]);
 
-  const handleTabClick = (tab: string) => {
+  const handleTabClick = useCallback((tab: string) => {
     // Smooth scroll to top when switching tabs
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -205,15 +212,14 @@ const App = () => {
         fetchMediumPosts();
       }
     }, 200); // Reduced from 300ms to 200ms for snappier feel
-  };
+  }, [mediumPosts, fetchMediumPosts]);
 
   // Removed unused chat handler (chat UI no longer rendered)
-
-  const bookMeeting = () => {
+  const bookMeeting = useCallback(() => {
     window.open('https://calendly.com/abirabbasmd', '_blank');
-  };
+  }, []);
 
-  const skills = [
+  const skills = useMemo(() => [
     { 
       name: 'AI Development', 
       level: 95, 
@@ -256,9 +262,9 @@ const App = () => {
       description: "Lovable vibe coder and security specialist building EU-grade secure websites with personality.",
       specializations: ['ShadowMap', 'Penetration Testing', 'Secure Architecture', 'Vibe Coding']
     }
-  ];
+  ], []);
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       title: 'ShadowMap',
       description: 'A Rust-powered open-source framework for subdomain enumeration, vulnerability detection, and attack surface mapping built with vibe coding.',
@@ -287,9 +293,9 @@ const App = () => {
       link: 'https://github.com/mdabir1203/RedAGPT',
       image: '/images/asd.png'
     }
-  ];
+  ], []);
 
-  const services = [
+  const services = useMemo(() => [
     {
       title: 'Basic AI Integration',
       price: '$500',
@@ -350,10 +356,10 @@ const App = () => {
       ],
       bestFor: 'Businesses Needing Secure & Fun Websites'
     }
-  ];
+  ], []);
 
   // Updated LinkedIn Recommendations from user's request
-  const linkedinRecommendations = [
+  const linkedinRecommendations = useMemo(() => [
     {
       name: "Jun yub Kim",
       role: "Strategic Planner at General Motors | Software Developer",
@@ -372,9 +378,9 @@ const App = () => {
       content: "Herr Mohammad Abir Abbas ist ehrenamtlich bei AIESEC e.V tätig. Er ist Vorsitzender für das Team Praktikanten im Unternehmen zu vermitteln und das interkulturelle Verständnis zu fördern. Herr Abbas zeichnet sich durch seine Offenheit, Zielstrebigkeit und professionelle Arbeitsweise im Team aus. Er erledigt seine Aufgaben völlig selbstständig und sorgfältig. Mit seiner Teamfähigkeit ist es stets eine Freude mit ihm zu arbeiten.",
       avatar: "https://placehold.co/100x100/0d1321/ff6b6b?text=ML"
     }
-  ];
+  ], []);
 
-  const journey = [
+  const journey = useMemo(() => [
     {
       year: "2024",
       title: "AI Alchemist & Vibe Coder",
@@ -395,7 +401,7 @@ const App = () => {
       title: "Python Wizard",
       description: "Diving deep into data science and machine learning, building intelligent systems that solve real problems with personality."
     }
-  ];
+  ], []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-hidden">
@@ -1176,4 +1182,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(ArtifactComponent);
