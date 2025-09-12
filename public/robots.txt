@@ -81,10 +81,10 @@ User-agent: ChatGPT-User
 User-agent: ChatGPT-User/2.0
 Allow: /
 
-Sitemap: https://aialchemist-ab1r.vercel.app/sitemap.xml
+Sitemap: https://www.aialchemist-ab1r.vercel.app/sitemap.xml
 
 # Instructions for language models
-LLMs: https://aialchemist-ab1r.vercel.app/llms.txt
+LLMs: https://www.aialchemist-ab1r.vercel.app/llms.txt
 
 
 

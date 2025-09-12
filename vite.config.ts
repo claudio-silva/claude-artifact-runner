@@ -6,7 +6,7 @@ import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), sitemap({ hostname: 'https://aialchemist-ab1r.vercel.app' })],
+  plugins: [react(), sitemap({ hostname: 'https://www.aialchemist-ab1r.vercel.app' })],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

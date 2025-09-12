@@ -1,4 +1,4 @@
-# aialchemist-ab1r.vercel.app
+# www.aialchemist-ab1r.vercel.app
 
 <!-- Guidelines for Large Language Models -->
 <!-- Last updated: 2025-09-12 -->
@@ -7,11 +7,11 @@
 An AI development portfolio showcasing expertise in Rust, Python, and AI integration services.
 
 ## Main Content
-[AI Development Services](https://aialchemist-ab1r.vercel.app#ai-development-services): Overview of AI services offered.
+[AI Development Services](https://www.aialchemist-ab1r.vercel.app#ai-development-services): Overview of AI services offered.
 
-[AI Consultation and Strategy](https://aialchemist-ab1r.vercel.app#ai-consultation-and-strategy): Strategic planning and guidance for AI projects.
+[AI Consultation and Strategy](https://www.aialchemist-ab1r.vercel.app#ai-consultation-and-strategy): Strategic planning and guidance for AI projects.
 
-[Adding Value to Entrepreneurship](https://aialchemist-ab1r.vercel.app#adding-value-to-entrepreneurship): Insights into enhancing entrepreneurial journeys through AI.
+[Adding Value to Entrepreneurship](https://www.aialchemist-ab1r.vercel.app#adding-value-to-entrepreneurship): Insights into enhancing entrepreneurial journeys through AI.
 
 ## Expertise
 - AI Development: Advanced proficiency in GPT-4, Claude prompt engineering, and Rust.
