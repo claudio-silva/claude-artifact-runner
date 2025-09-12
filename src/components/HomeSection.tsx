@@ -21,7 +21,7 @@ const HomeSection: FC<HomeSectionProps> = ({ onHireClick, isHired, linkedinRecom
         <div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 group">
           <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 group">
             <img
-              src="/images/profile.jpg"
+              src="/images/profile.webp"
               alt="Mohammad Abir Abbas"
               className="w-full h-full rounded-full object-cover border-4 border-cyan-400/50 shadow-2xl shadow-cyan-400/30 transition-transform duration-500 group-hover:scale-105"
             />
