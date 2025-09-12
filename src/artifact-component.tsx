@@ -121,6 +121,7 @@ const ArtifactComponent = () => {
     setIsFetchingPosts(true);
     try {
       const mediumUsername = 'md.abir1203';
+      const feedUrl = `https://medium.com/feed/@${mediumUsername}`;
       const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
       const response = await fetch(rssUrl);
       if (!response.ok) {
