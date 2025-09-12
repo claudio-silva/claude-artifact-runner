@@ -19,7 +19,6 @@ import { MediumPost } from './types';
 
 const ArtifactComponent = () => {
   const [activeTab, setActiveTab] = useState('home');
-  const [isLoading, setIsLoading] = useState(false);
   const [isHired, setIsHired] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mediumPosts, setMediumPosts] = useState<MediumPost[]>([]);
@@ -148,14 +147,10 @@ const ArtifactComponent = () => {
   const handleTabClick = useCallback(
     (tab: string) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setIsLoading(true);
-      setTimeout(() => {
-        setActiveTab(tab);
-        setIsLoading(false);
-        if (tab === 'blog' && mediumPosts.length === 0) {
-          fetchMediumPosts();
-        }
-      }, 200);
+      setActiveTab(tab);
+      if (tab === 'blog' && mediumPosts.length === 0) {
+        fetchMediumPosts();
+      }
     },
     [mediumPosts, fetchMediumPosts]
   );
@@ -181,14 +176,6 @@ const ArtifactComponent = () => {
         className="container mx-auto px-6 py-12 relative z-20"
       >
         <Navigation activeTab={activeTab} onTabClick={handleTabClick} />
-        {isLoading && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-            <div className="text-center">
-              <div className="spinner border-4 border-gray-300 border-t-cyan-400 rounded-full w-12 h-12 animate-spin mx-auto mb-4"></div>
-              <p className="text-white text-lg animate-pulse">Loading next dimension...</p>
-            </div>
-          </div>
-        )}
         {activeTab === 'home' && (
           <HomeSection
             onHireClick={handleHireNavigate}
