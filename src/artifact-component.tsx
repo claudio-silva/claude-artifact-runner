@@ -141,6 +141,10 @@ const ArtifactComponent = () => {
 
   // Medium posts are fetched lazily when the blog tab becomes active
 
+  useEffect(() => {
+    fetchMediumPosts();
+  }, [fetchMediumPosts]);
+
   const handleTabClick = useCallback(
     (tab: string) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });

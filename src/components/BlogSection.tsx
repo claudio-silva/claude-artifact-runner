@@ -73,6 +73,7 @@ const BlogSection: FC<BlogSectionProps> = ({ posts, isFetching, onRetry }) => (
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-600 hover:to-green-600 text-black font-bold py-3 px-6 rounded-lg border-2 border-transparent transition-all duration-300 text-shadow-glow transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30"
+        onClick={onRetry}
       >
         View All Posts on Medium →
       </a>
