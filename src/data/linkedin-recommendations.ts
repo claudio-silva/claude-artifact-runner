@@ -1,11 +1,11 @@
-export interface Recommendation {
+export interface LinkedInRecommendation {
   name: string;
   role: string;
   content: string;
   avatar: string;
 }
 
-export const recommendations: Recommendation[] = [
+export const linkedinRecommendations: LinkedInRecommendation[] = [
   {
     name: "Jun yub Kim",
     role: "Strategic Planner at General Motors | Software Developer",

@@ -13,7 +13,7 @@ import ContactSection from './components/ContactSection';
 import { skills } from './data/skills';
 import { projects } from './data/projects';
 import { services } from './data/services';
-import { recommendations } from './data/recommendations';
+import { linkedinRecommendations } from './data/linkedin-recommendations';
 import { journey } from './data/journey';
 import { MediumPost } from './types';
 
@@ -175,7 +175,11 @@ const ArtifactComponent = () => {
           </div>
         )}
         {activeTab === 'home' && (
-          <HomeSection onHireClick={handleHireNavigate} isHired={isHired} recommendations={recommendations} />
+          <HomeSection
+            onHireClick={handleHireNavigate}
+            isHired={isHired}
+            linkedinRecommendations={linkedinRecommendations}
+          />
         )}
         {activeTab === 'skills' && <SkillsSection skills={skills} />}
         {activeTab === 'projects' && <ProjectsSection projects={projects} />}

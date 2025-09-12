@@ -1,13 +1,13 @@
 import { FC, memo } from 'react';
-import { Recommendation } from '../data/recommendations';
+import { LinkedInRecommendation } from '../data/linkedin-recommendations';
 
 interface HomeSectionProps {
   onHireClick: () => void;
   isHired: boolean;
-  recommendations: Recommendation[];
+  linkedinRecommendations: LinkedInRecommendation[];
 }
 
-const HomeSection: FC<HomeSectionProps> = ({ onHireClick, isHired, recommendations }) => (
+const HomeSection: FC<HomeSectionProps> = ({ onHireClick, isHired, linkedinRecommendations }) => (
   <section className="mb-12 md:mb-16 animate-fadeIn">
     <div className="profile-section mb-8 md:mb-12 backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 shadow-lg shadow-cyan-500/20 relative overflow-hidden">
       <div className="absolute top-4 right-4 opacity-30">
@@ -56,9 +56,9 @@ const HomeSection: FC<HomeSectionProps> = ({ onHireClick, isHired, recommendatio
     </div>
 
     <section className="mb-16">
-      <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">LinkedIn Recommendations</h2>
-      <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-        {recommendations.map((recommendation, index) => (
+        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">LinkedIn Recommendations</h2>
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+          {linkedinRecommendations.map((recommendation, index) => (
           <div
             key={index}
             className="bg-white/5 border border-white/10 rounded-xl p-6 hover:transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/30"
