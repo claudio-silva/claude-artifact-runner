@@ -168,8 +168,18 @@ const ArtifactComponent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0d1321] to-[#1c273c] text-white font-mono relative overflow-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gray-900 text-cyan-400 px-4 py-2 rounded z-50"
+      >
+        Skip to main content
+      </a>
       <BackgroundEffects mousePosition={mousePosition} canvasRef={canvasRef} />
-      <div className="container mx-auto px-6 py-12 relative z-20">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="container mx-auto px-6 py-12 relative z-20"
+      >
         <Navigation activeTab={activeTab} onTabClick={handleTabClick} />
         {isLoading && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
@@ -206,7 +216,7 @@ const ArtifactComponent = () => {
             <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Cookie Settings</a>
           </div>
         </footer>
-      </div>
+      </main>
 
       <div
         id="cookieConsent"
