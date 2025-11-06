@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Database, Target, TrendingUp, CheckCircle, FileText, Building, Network } from 'lucide-react';
-
 const DataPlatformPPT = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -1594,7 +1593,6 @@ const DataPlatformPPT = () => {
         <div className="h-full">
           {slides[currentSlide].content}
         </div>
-
       </div>
     </div>
   );

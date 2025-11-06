@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { complete } from '@/lib/openrouter';
 
 const ZhihuaSVGDemo = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -8,293 +9,84 @@ const ZhihuaSVGDemo = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
   const [generatedSVG, setGeneratedSVG] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleTextSubmit = (e) => {
+  const generateSVGFromText = async (description, type) => {
+    const prompt = `你是一个专业的 SVG 图形生成助手。请根据以下描述生成一个专业的 ${type || 'SVG 图形'}：
+
+描述：${description}
+
+要求：
+1. 生成的 SVG 代码必须是完整的、可直接显示的
+2. SVG 宽度应为 600px，高度根据内容自适应，但不超过 500px
+3. 使用专业的配色方案，确保视觉效果清晰美观
+4. 包含合适的标题和标注
+5. 对于网络拓扑图，使用矩形表示设备，线条表示连接
+6. 对于流程图，使用标准的流程图符号（矩形表示处理，菱形表示判断，椭圆表示开始/结束）
+7. 对于系统架构图，使用分层结构
+8. 对于泳道图，使用水平或垂直泳道分隔不同角色或部门
+
+请直接返回 SVG 代码，不要包含任何解释或其他内容。SVG 代码应该以 <svg 开始，以 </svg> 结束。`;
+
+    try {
+      const response = await complete(prompt);
+      
+      // 提取 SVG 代码
+      const svgMatch = response.match(/<svg[^>]*>[\s\S]*?<\/svg>/i);
+      if (svgMatch) {
+        return svgMatch[0];
+      } else {
+        throw new Error('AI 返回的内容中没有找到有效的 SVG 代码');
+      }
+    } catch (error) {
+      console.error('生成 SVG 时出错:', error);
+      throw error;
+    }
+  };
+
+  const handleTextSubmit = async (e) => {
     e.preventDefault();
     if (textInput.trim() === '') return;
     
-    // 模拟处理过程
+    setError(null);
     setProcessingStatus('processing');
-    setTimeout(() => {
+    setShowResult(false);
+    
+    try {
+      // 从描述中提取图形类型
+      let graphType = null;
+      const typeKeywords = {
+        '网络拓扑图': ['网络', '拓扑', '交换机', '路由器', '防火墙'],
+        '系统架构图': ['系统', '架构', '层级', '服务', '应用层', '数据层'],
+        '流程图': ['流程', '步骤', '处理', '判断', '开始', '结束'],
+        '泳道图': ['泳道', '角色', '部门', '职责'],
+        '数据图表': ['数据', '图表', '统计', '比例', '趋势'],
+        '组织架构图': ['组织', '架构', '部门', '层级', '管理']
+      };
+      
+      for (const [type, keywords] of Object.entries(typeKeywords)) {
+        if (keywords.some(keyword => textInput.includes(keyword))) {
+          graphType = type;
+          break;
+        }
+      }
+      
+      const generatedSvg = await generateSVGFromText(textInput, graphType);
+      
+      setGeneratedSVG({
+        type: graphType || '自定义图形',
+        complexity: '高',
+        elements: Math.floor(Math.random() * 20) + 10,
+        svg: generatedSvg
+      });
+      
       setProcessingStatus('completed');
       setShowResult(true);
-      setGeneratedSVG(getRandomSVG());
-    }, 2000);
-  };
-  
-  const getRandomSVG = () => {
-    // 模拟生成的SVG - 这里使用随机选择的预设SVG
-    const svgs = [
-      // 网络拓扑图
-      {
-        type: "网络拓扑图",
-        complexity: "中等",
-        elements: 12,
-        svg: `<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
-          <rect width="600" height="400" fill="#f8f9fa" rx="10" ry="10"/>
-          <text x="300" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#333" font-weight="bold">核心交换网络拓扑图</text>
-          
-          <!-- 核心交换机 -->
-          <rect x="270" y="80" width="60" height="30" rx="5" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
-          <text x="300" y="100" font-family="Arial" font-size="12" text-anchor="middle" fill="white">核心交换机 A</text>
-          
-          <rect x="270" y="130" width="60" height="30" rx="5" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
-          <text x="300" y="150" font-family="Arial" font-size="12" text-anchor="middle" fill="white">核心交换机 B</text>
-          
-          <!-- 汇聚交换机 -->
-          <rect x="150" y="200" width="60" height="30" rx="5" fill="#10b981" stroke="#059669" stroke-width="2"/>
-          <text x="180" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="white">汇聚交换机 1</text>
-          
-          <rect x="390" y="200" width="60" height="30" rx="5" fill="#10b981" stroke="#059669" stroke-width="2"/>
-          <text x="420" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="white">汇聚交换机 2</text>
-          
-          <!-- 接入交换机 -->
-          <rect x="90" y="280" width="60" height="30" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="120" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="white">接入交换机 1</text>
-          
-          <rect x="210" y="280" width="60" height="30" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="240" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="white">接入交换机 2</text>
-          
-          <rect x="330" y="280" width="60" height="30" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="360" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="white">接入交换机 3</text>
-          
-          <rect x="450" y="280" width="60" height="30" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="480" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="white">接入交换机 4</text>
-          
-          <!-- 防火墙 -->
-          <rect x="270" y="30" width="60" height="30" rx="5" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-          <text x="300" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="white">防火墙</text>
-          
-          <!-- 连接线 -->
-          <line x1="300" y1="60" x2="300" y2="80" stroke="#6b7280" stroke-width="2"/>
-          <line x1="300" y1="110" x2="300" y2="130" stroke="#6b7280" stroke-width="2"/>
-          
-          <line x1="270" y1="145" x2="180" y2="200" stroke="#6b7280" stroke-width="2"/>
-          <line x1="330" y1="145" x2="420" y2="200" stroke="#6b7280" stroke-width="2"/>
-          
-          <line x1="180" y1="230" x2="120" y2="280" stroke="#6b7280" stroke-width="2"/>
-          <line x1="180" y1="230" x2="240" y2="280" stroke="#6b7280" stroke-width="2"/>
-          <line x1="420" y1="230" x2="360" y2="280" stroke="#6b7280" stroke-width="2"/>
-          <line x1="420" y1="230" x2="480" y2="280" stroke="#6b7280" stroke-width="2"/>
-          
-          <!-- 图例 -->
-          <rect x="480" y="30" width="15" height="15" fill="#3b82f6" stroke="#2563eb" stroke-width="1"/>
-          <text x="500" y="42" font-family="Arial" font-size="10" fill="#333">核心层</text>
-          
-          <rect x="480" y="50" width="15" height="15" fill="#10b981" stroke="#059669" stroke-width="1"/>
-          <text x="500" y="62" font-family="Arial" font-size="10" fill="#333">汇聚层</text>
-          
-          <rect x="480" y="70" width="15" height="15" fill="#f59e0b" stroke="#d97706" stroke-width="1"/>
-          <text x="500" y="82" font-family="Arial" font-size="10" fill="#333">接入层</text>
-          
-          <rect x="480" y="90" width="15" height="15" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
-          <text x="500" y="102" font-family="Arial" font-size="10" fill="#333">安全设备</text>
-        </svg>`
-      },
-      // 系统架构图
-      {
-        type: "系统架构图",
-        complexity: "高",
-        elements: 18,
-        svg: `<svg width="600" height="450" xmlns="http://www.w3.org/2000/svg">
-          <rect width="600" height="450" fill="#f8f9fa" rx="10" ry="10"/>
-          <text x="300" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#333" font-weight="bold">智慧城市平台系统架构</text>
-          
-          <!-- 系统层级框架 -->
-          <rect x="50" y="60" width="500" height="70" rx="5" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
-          <text x="300" y="85" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" font-weight="bold">应用层</text>
-          <text x="300" y="110" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">城市大脑 | 指挥中心 | 治理平台 | 公众服务 | 产业应用</text>
-          
-          <rect x="50" y="140" width="500" height="70" rx="5" fill="#e0f2fe" stroke="#3b82f6" stroke-width="1"/>
-          <text x="300" y="165" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" font-weight="bold">平台层</text>
-          <text x="300" y="190" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">数据中台 | 业务中台 | AI中台 | 开放平台 | 安全体系</text>
-          
-          <rect x="50" y="220" width="500" height="70" rx="5" fill="#d1fae5" stroke="#10b981" stroke-width="1"/>
-          <text x="300" y="245" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" font-weight="bold">数据层</text>
-          <text x="300" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">数据采集 | 数据治理 | 数据处理 | 数据存储 | 数据共享</text>
-          
-          <rect x="50" y="300" width="500" height="70" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-          <text x="300" y="325" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" font-weight="bold">基础设施层</text>
-          <text x="300" y="350" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">云计算 | 边缘计算 | 物联网 | 网络通信 | 数据中心</text>
-          
-          <!-- 垂直贯穿的安全体系 -->
-          <rect x="560" y="60" width="25" height="310" rx="5" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="572" y="215" font-family="Arial" font-size="14" text-anchor="middle" fill="#8b5cf6" font-weight="bold" transform="rotate(90, 572, 215)">安全体系</text>
-          
-          <!-- 垂直贯穿的标准规范 -->
-          <rect x="15" y="60" width="25" height="310" rx="5" fill="#fce7f3" stroke="#ec4899" stroke-width="1"/>
-          <text x="27" y="215" font-family="Arial" font-size="14" text-anchor="middle" fill="#ec4899" font-weight="bold" transform="rotate(-90, 27, 215)">标准规范</text>
-          
-          <!-- 连接线 -->
-          <path d="M300,130 L300,140" stroke="#6b7280" stroke-width="2"/>
-          <path d="M300,210 L300,220" stroke="#6b7280" stroke-width="2"/>
-          <path d="M300,290 L300,300" stroke="#6b7280" stroke-width="2"/>
-          
-          <!-- 图例 -->
-          <rect x="150" y="390" width="15" height="15" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
-          <text x="170" y="402" font-family="Arial" font-size="10" fill="#333">应用层</text>
-          
-          <rect x="230" y="390" width="15" height="15" fill="#e0f2fe" stroke="#3b82f6" stroke-width="1"/>
-          <text x="250" y="402" font-family="Arial" font-size="10" fill="#333">平台层</text>
-          
-          <rect x="310" y="390" width="15" height="15" fill="#d1fae5" stroke="#10b981" stroke-width="1"/>
-          <text x="330" y="402" font-family="Arial" font-size="10" fill="#333">数据层</text>
-          
-          <rect x="390" y="390" width="15" height="15" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-          <text x="410" y="402" font-family="Arial" font-size="10" fill="#333">基础设施层</text>
-        </svg>`
-      },
-      // 流程图
-      {
-        type: "流程图",
-        complexity: "中等",
-        elements: 10,
-        svg: `<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
-          <rect width="600" height="400" fill="#f8f9fa" rx="10" ry="10"/>
-          <text x="300" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#333" font-weight="bold">客户服务流程图</text>
-          
-          <!-- 开始节点 -->
-          <ellipse cx="300" cy="70" rx="50" ry="25" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
-          <text x="300" y="75" font-family="Arial" font-size="12" text-anchor="middle" fill="white">开始</text>
-          
-          <!-- 流程节点 -->
-          <rect x="250" y="120" width="100" height="40" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="300" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="white">客户请求</text>
-          
-          <rect x="250" y="190" width="100" height="40" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="300" y="215" font-family="Arial" font-size="12" text-anchor="middle" fill="white">需求分析</text>
-          
-          <polygon points="300,260 330,290 300,320 270,290" fill="#10b981" stroke="#059669" stroke-width="2"/>
-          <text x="300" y="295" font-family="Arial" font-size="12" text-anchor="middle" fill="white">是否可行</text>
-          
-          <rect x="150" y="270" width="100" height="40" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="200" y="295" font-family="Arial" font-size="12" text-anchor="middle" fill="white">提供替代方案</text>
-          
-          <rect x="250" y="340" width="100" height="40" rx="5" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="300" y="365" font-family="Arial" font-size="12" text-anchor="middle" fill="white">执行服务</text>
-          
-          <!-- 连接线和箭头 -->
-          <path d="M300,95 L300,120" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="300,120 295,110 305,110" fill="#6b7280"/>
-          
-          <path d="M300,160 L300,190" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="300,190 295,180 305,180" fill="#6b7280"/>
-          
-          <path d="M300,230 L300,260" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="300,260 295,250 305,250" fill="#6b7280"/>
-          
-          <path d="M270,290 L250,290" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="250,290 260,285 260,295" fill="#6b7280"/>
-          <text x="260" y="280" font-family="Arial" font-size="10" fill="#6b7280">否</text>
-          
-          <path d="M300,320 L300,340" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="300,340 295,330 305,330" fill="#6b7280"/>
-          <text x="310" y="330" font-family="Arial" font-size="10" fill="#6b7280">是</text>
-          
-          <path d="M150,290 L130,290 L130,365 L250,365" stroke="#6b7280" stroke-width="2"/>
-          <polygon points="250,365 240,360 240,370" fill="#6b7280"/>
-          
-          <!-- 图例 -->
-          <ellipse cx="430" cy="70" rx="15" ry="10" fill="#3b82f6" stroke="#2563eb" stroke-width="1"/>
-          <text x="460" y="73" font-family="Arial" font-size="10" fill="#333">开始/结束</text>
-          
-          <rect x="430" y="90" width="20" height="15" rx="2" fill="#f59e0b" stroke="#d97706" stroke-width="1"/>
-          <text x="465" y="102" font-family="Arial" font-size="10" fill="#333">处理步骤</text>
-          
-          <polygon points="440,120 450,130 440,140 430,130" fill="#10b981" stroke="#059669" stroke-width="1"/>
-          <text x="465" y="130" font-family="Arial" font-size="10" fill="#333">判断</text>
-        </svg>`
-      },
-      // 泳道图
-      {
-        type: "泳道图",
-        complexity: "高",
-        elements: 15,
-        svg: `<svg width="600" height="500" xmlns="http://www.w3.org/2000/svg">
-          <rect width="600" height="500" fill="#f8f9fa" rx="10" ry="10"/>
-          <text x="300" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#333" font-weight="bold">订单处理泳道图</text>
-          
-          <!-- 泳道标题 -->
-          <rect x="50" y="50" width="100" height="30" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
-          <text x="100" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#1e40af">客户</text>
-          
-          <rect x="50" y="180" width="100" height="30" fill="#c7d2fe" stroke="#6366f1" stroke-width="1"/>
-          <text x="100" y="200" font-family="Arial" font-size="12" text-anchor="middle" fill="#3730a3">销售</text>
-          
-          <rect x="50" y="310" width="100" height="30" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="100" y="330" font-family="Arial" font-size="12" text-anchor="middle" fill="#5b21b6">仓库</text>
-          
-          <rect x="50" y="440" width="100" height="30" fill="#fbcfe8" stroke="#ec4899" stroke-width="1"/>
-          <text x="100" y="460" font-family="Arial" font-size="12" text-anchor="middle" fill="#9d174d">物流</text>
-          
-          <!-- 泳道分隔线 -->
-          <line x1="50" y1="80" x2="550" y2="80" stroke="#3b82f6" stroke-width="1"/>
-          <line x1="50" y1="210" x2="550" y2="210" stroke="#6366f1" stroke-width="1"/>
-          <line x1="50" y1="340" x2="550" y2="340" stroke="#8b5cf6" stroke-width="1"/>
-          <line x1="50" y1="470" x2="550" y2="470" stroke="#ec4899" stroke-width="1"/>
-          
-          <line x1="50" y1="50" x2="50" y2="470" stroke="#6b7280" stroke-width="1"/>
-          <line x1="150" y1="50" x2="150" y2="470" stroke="#6b7280" stroke-width="1"/>
-          <line x1="550" y1="50" x2="550" y2="470" stroke="#6b7280" stroke-width="1"/>
-          
-          <!-- 客户泳道流程 -->
-          <ellipse cx="200" cy="70" rx="30" ry="15" fill="#3b82f6" stroke="#2563eb" stroke-width="1"/>
-          <text x="200" y="74" font-family="Arial" font-size="10" text-anchor="middle" fill="white">开始</text>
-          
-          <rect x="170" y="100" width="60" height="30" rx="3" fill="#93c5fd" stroke="#3b82f6" stroke-width="1"/>
-          <text x="200" y="120" font-family="Arial" font-size="10" text-anchor="middle" fill="#1e3a8a">提交订单</text>
-          
-          <rect x="170" y="140" width="60" height="30" rx="3" fill="#93c5fd" stroke="#3b82f6" stroke-width="1"/>
-          <text x="200" y="160" font-family="Arial" font-size="10" text-anchor="middle" fill="#1e3a8a">确认支付</text>
-          
-          <!-- 销售泳道流程 -->
-          <rect x="250" y="160" width="60" height="30" rx="3" fill="#a5b4fc" stroke="#6366f1" stroke-width="1"/>
-          <text x="280" y="180" font-family="Arial" font-size="10" text-anchor="middle" fill="#312e81">接收订单</text>
-          
-          <rect x="250" y="220" width="60" height="30" rx="3" fill="#a5b4fc" stroke="#6366f1" stroke-width="1"/>
-          <text x="280" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#312e81">处理订单</text>
-          
-          <polygon points="280,270 295,290 280,310 265,290" fill="#818cf8" stroke="#6366f1" stroke-width="1"/>
-          <text x="280" y="290" font-family="Arial" font-size="8" text-anchor="middle" fill="#312e81">库存?</text>
-          
-          <!-- 仓库泳道流程 -->
-          <rect x="330" y="275" width="60" height="30" rx="3" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="360" y="295" font-family="Arial" font-size="10" text-anchor="middle" fill="#4c1d95">查询库存</text>
-          
-          <rect x="330" y="350" width="60" height="30" rx="3" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="360" y="370" font-family="Arial" font-size="10" text-anchor="middle" fill="#4c1d95">打包订单</text>
-          
-          <!-- 物流泳道流程 -->
-          <rect x="410" y="390" width="60" height="30" rx="3" fill="#f9a8d4" stroke="#ec4899" stroke-width="1"/>
-          <text x="440" y="410" font-family="Arial" font-size="10" text-anchor="middle" fill="#831843">安排配送</text>
-          
-          <rect x="410" y="430" width="60" height="30" rx="3" fill="#f9a8d4" stroke="#ec4899" stroke-width="1"/>
-          <text x="440" y="450" font-family="Arial" font-size="10" text-anchor="middle" fill="#831843">发货</text>
-          
-          <ellipse cx="500" cy="450" rx="30" ry="15" fill="#ec4899" stroke="#be185d" stroke-width="1"/>
-          <text x="500" y="454" font-family="Arial" font-size="10" text-anchor="middle" fill="white">结束</text>
-          
-          <!-- 箭头连接 -->
-          <path d="M200,85 L200,100" stroke="#6b7280" stroke-width="1"/>
-          <path d="M200,130 L200,140" stroke="#6b7280" stroke-width="1"/>
-          <path d="M230,155 L250,160" stroke="#6b7280" stroke-width="1"/>
-          <path d="M280,190 L280,220" stroke="#6b7280" stroke-width="1"/>
-          <path d="M280,250 L280,270" stroke="#6b7280" stroke-width="1"/>
-          <path d="M295,290 L330,290" stroke="#6b7280" stroke-width="1"/>
-          <path d="M390,290 L410,290 L410,390" stroke="#6b7280" stroke-width="1"/>
-          <path d="M280,310 L280,360 L330,360" stroke="#6b7280" stroke-width="1"/>
-          <path d="M390,360 L400,360 L400,390" stroke="#6b7280" stroke-width="1"/>
-          <path d="M440,420 L440,430" stroke="#6b7280" stroke-width="1"/>
-          <path d="M470,450 L500,450" stroke="#6b7280" stroke-width="1"/>
-          
-          <!-- 文字标注 -->
-          <text x="315" y="270" font-family="Arial" font-size="8" fill="#6b7280">是</text>
-          <text x="280" y="330" font-family="Arial" font-size="8" fill="#6b7280">否</text>
-        </svg>`
-      }
-    ];
-    
-    return svgs[Math.floor(Math.random() * svgs.length)];
+    } catch (error) {
+      setProcessingStatus('error');
+      setError(error.message || '生成图形时发生错误，请重试');
+      console.error('处理错误:', error);
+    }
   };
 
   return (
@@ -720,6 +512,29 @@ const ZhihuaSVGDemo = () => {
                             <span className="text-xs">优化与导出</span>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {error && (
+                    <div className="mt-6">
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div className="flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="font-medium text-red-700">生成失败</span>
+                        </div>
+                        <p className="text-sm text-red-600 mt-2">{error}</p>
+                        <button 
+                          onClick={() => {
+                            setError(null);
+                            setProcessingStatus('idle');
+                          }}
+                          className="mt-3 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg transition"
+                        >
+                          重试
+                        </button>
                       </div>
                     </div>
                   )}

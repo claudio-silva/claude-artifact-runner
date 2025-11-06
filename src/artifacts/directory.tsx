@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Grid, Folder, ChevronLeft, FileText } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Grid, Folder, ChevronLeft, FileText, Search } from 'lucide-react';
 
 const pages = import.meta.glob('./**/*.tsx', { eager: true }) as Record<string, { 
   default: React.ComponentType;
@@ -33,6 +35,7 @@ interface DirectoryItem {
 
 const Directory = ({ basePath = '' }: DirectoryProps) => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
   
   // 生成页面和文件夹信息
   const generatePageList = (currentPath = ''): DirectoryItem[] => {
@@ -110,6 +113,16 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
   };
 
   const pageList = generatePageList(basePath);
+  
+  // 过滤页面列表
+  const filteredPageList = pageList.filter(item => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query)
+    );
+  });
 
   const handleItemClick = (item: DirectoryItem) => {
     navigate(item.type === 'folder' ? item.path : `${item.path}`);
@@ -132,8 +145,29 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
         </h1>
       </div>
       
+      <div className="mb-6">
+        <Input
+          icon={<Search className="w-4 h-4 text-gray-500" />}
+          placeholder="搜索页面..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="max-w-md"
+        />
+      </div>
+      
+      {searchQuery && (
+        <div className="mb-4 text-sm text-gray-600">
+          找到 {filteredPageList.length} 个结果
+        </div>
+      )}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {pageList.map((item) => (
+        {filteredPageList.length === 0 && searchQuery ? (
+          <div className="col-span-full text-center py-8 text-gray-500">
+            没有找到匹配 "{searchQuery}" 的页面
+          </div>
+        ) : (
+          filteredPageList.map((item) => (
           <Card 
             key={item.path}
             className="cursor-pointer transition-all hover:shadow-md hover:-translate-y-1"
@@ -153,7 +187,8 @@ const Directory = ({ basePath = '' }: DirectoryProps) => {
               </div>
             </CardHeader>
           </Card>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

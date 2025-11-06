@@ -6,11 +6,7 @@ import { useRoutes } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
 import Directory from './artifacts/directory';
 import './index.css'
-
-// 只在开发模式下导入工具栏
-const StagewiseToolbar = process.env.NODE_ENV === 'development' 
-  ? React.lazy(() => import('./components/StagewiseToolbar').catch(() => ({ default: () => null })))
-  : null;
+import './lib/openrouter'; // 初始化 window.claude
 
 // 修改 glob 模式以包含子目录
 const pages = import.meta.glob('./artifacts/**/*.tsx', { eager: true }) as Record<string, { 
@@ -25,16 +21,7 @@ const pages = import.meta.glob('./artifacts/**/*.tsx', { eager: true }) as Recor
 }>;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="relative">
-      {children}
-      {StagewiseToolbar && (
-        <React.Suspense fallback={null}>
-          <StagewiseToolbar />
-        </React.Suspense>
-      )}
-    </div>
-  );
+  return <>{children}</>;
 };
 
 function App() {

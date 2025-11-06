@@ -17,20 +17,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       'src': path.resolve(__dirname, './src'),
     },
-  },
-  define: {
-    // 确保在生产环境中NODE_ENV为production
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-  },
-  build: {
-    rollupOptions: {
-      external: (id) => {
-        // 在生产构建中排除stagewise相关模块
-        if (process.env.NODE_ENV === 'production' && id.includes('@stagewise')) {
-          return true;
-        }
-        return false;
-      }
-    }
   }
 })

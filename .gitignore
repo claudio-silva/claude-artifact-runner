@@ -30,3 +30,9 @@ package-lock.json
 .netlify
 
 **/.claude/settings.local.json
+
+.env
+
+package-lock.json
+
+.yarn/*

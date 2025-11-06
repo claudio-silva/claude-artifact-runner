@@ -1,0 +1,1744 @@
+{
+  "ai": [
+    {
+      "id": "ai_1",
+      "type": "AI知识",
+      "question": "人工智能+是哪一年被中国政府工作报告列为国家战略？",
+      "options": {
+        "A": "2023",
+        "B": "2025",
+        "C": "2022",
+        "D": "2024"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_2",
+      "type": "AI知识",
+      "question": "1950年，哪位科学家在其论文《计算机器与智能》中提出了用于判断机器是否具备人类智能的经典测试？",
+      "options": {
+        "A": "马文·明斯基",
+        "B": "约翰·麦卡锡",
+        "C": "艾伦·图灵",
+        "D": "杰弗里·辛顿"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_3",
+      "type": "AI知识",
+      "question": "Transformer模型的核心机制是？",
+      "options": {
+        "A": "残差连接（Residual Connection）",
+        "B": "自注意力机制（Self-Attention）",
+        "C": "循环神经网络（RNN）",
+        "D": "卷积操作（CNN）"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_4",
+      "type": "AI知识",
+      "question": "以下哪项属于2025年AI技术重大突破？",
+      "options": {
+        "A": "GPT-3发布",
+        "B": "BERT模型提出",
+        "C": "AlphaGo击败李世石",
+        "D": "Sora 2视频生成技术"
+      },
+      "answer": "D",
+      "explanation": ""
+    },
+    {
+      "id": "ai_5",
+      "type": "AI知识",
+      "question": "欧盟《人工智能法案》2025年8月实施的核心要求是？",
+      "options": {
+        "A": "完全开放模型权重",
+        "B": "统一全球AI标准",
+        "C": "通用AI模型需披露训练数据",
+        "D": "禁止所有生成式AI"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_6",
+      "type": "AI知识",
+      "question": "中国\"东数西算\"工程的主要目的是？",
+      "options": {
+        "A": "限制AI芯片出口",
+        "B": "实现算力资源优化配置",
+        "C": "促进西部经济发展",
+        "D": "提升东部算力价格"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_7",
+      "type": "AI知识",
+      "question": "以下哪项不属于人工智能的核心研究领域？",
+      "options": {
+        "A": "自然语言处理（NLP）",
+        "B": "机器人学",
+        "C": "量子计算",
+        "D": "计算机视觉（CV）"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_8",
+      "type": "AI知识",
+      "question": "强化学习中\"奖励函数\"的作用是？",
+      "options": {
+        "A": "优化数据输入",
+        "B": "减少模型参数",
+        "C": "加速梯度计算",
+        "D": "定义智能体目标"
+      },
+      "answer": "D",
+      "explanation": ""
+    },
+    {
+      "id": "ai_9",
+      "type": "AI知识",
+      "question": "2025年中国《人脸识别技术应用安全管理办法》规定，多少人脸信息需备案？",
+      "options": {
+        "A": "10万人",
+        "B": "1万人",
+        "C": "100万人",
+        "D": "1000人"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_10",
+      "type": "AI知识",
+      "question": "生成对抗网络（GAN）由哪两个模块组成？",
+      "options": {
+        "A": "编码器+注意力层",
+        "B": "卷积层+池化层",
+        "C": "生成器+判别器",
+        "D": "编码器+解码器"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_11",
+      "type": "AI知识",
+      "question": "美国2025年\"星际之门\"项目的投资规模是？",
+      "options": {
+        "A": "100亿美元",
+        "B": "5000亿美元",
+        "C": "500亿美元",
+        "D": "1000亿美元"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_12",
+      "type": "AI知识",
+      "question": "以下哪种算法属于无监督学习？",
+      "options": {
+        "A": "支持向量机（SVM）",
+        "B": "K-means聚类",
+        "C": "逻辑回归",
+        "D": "随机森林"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_13",
+      "type": "AI知识",
+      "question": "中国《生成式人工智能服务管理暂行办法》要求生成内容需标注？",
+      "options": {
+        "A": "模型名称",
+        "B": "生成时间",
+        "C": "\"AI生成\"标识",
+        "D": "开发者信息"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_14",
+      "type": "AI知识",
+      "question": "自动驾驶L4级的定义是？",
+      "options": {
+        "A": "任何场景完全自动驾驶",
+        "B": "特定条件下无人干预",
+        "C": "仅支持高速路辅助",
+        "D": "完全人类驾驶"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_15",
+      "type": "AI知识",
+      "question": "2025年全球AI芯片市场份额最高的企业是？",
+      "options": {
+        "A": "AMD",
+        "B": "华为",
+        "C": "英伟达",
+        "D": "英特尔"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_16",
+      "type": "AI知识",
+      "question": "以下哪项是多模态大模型的典型特征？",
+      "options": {
+        "A": "需专用硬件运行",
+        "B": "同时理解文本、图像、语音",
+        "C": "训练数据仅来自书籍",
+        "D": "仅处理文本数据"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_17",
+      "type": "AI知识",
+      "question": "欧盟《人工智能法案》禁止的实践是？",
+      "options": {
+        "A": "智能客服系统",
+        "B": "医疗AI辅助诊断",
+        "C": "无差别人脸识别",
+        "D": "AI气象预测"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_18",
+      "type": "AI知识",
+      "question": "深度学习中\"激活函数\"的作用是？",
+      "options": {
+        "A": "优化数据输入",
+        "B": "引入非线性特征",
+        "C": "减少过拟合",
+        "D": "加速梯度下降"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_19",
+      "type": "AI知识",
+      "question": "2025年中国\"人工智能+\"行动重点覆盖的领域不包括？",
+      "options": {
+        "A": "科学技术",
+        "B": "军事武器研发",
+        "C": "产业发展",
+        "D": "民生福祉"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_20",
+      "type": "AI知识",
+      "question": "AlphaFold 3的主要应用领域是？",
+      "options": {
+        "A": "蛋白质结构预测",
+        "B": "自动驾驶决策",
+        "C": "量子计算模拟",
+        "D": "天气预报"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_21",
+      "type": "AI知识",
+      "question": "以下哪项属于AI伦理中的\"公平性\"原则？",
+      "options": {
+        "A": "模型决策过程透明",
+        "B": "确保系统稳定性",
+        "C": "保护用户隐私数据",
+        "D": "避免因种族/性别产生偏见"
+      },
+      "answer": "D",
+      "explanation": ""
+    },
+    {
+      "id": "ai_22",
+      "type": "AI知识",
+      "question": "美国2025年撤销拜登政府AI行政令的影响是？",
+      "options": {
+        "A": "提高算法透明度",
+        "B": "减少企业合规成本",
+        "C": "加强AI安全监管",
+        "D": "禁止大模型研发"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_23",
+      "type": "AI知识",
+      "question": "计算机视觉中\"目标检测\"与\"图像分类\"的区别是？",
+      "options": {
+        "A": "图像分类支持视频输入",
+        "B": "目标检测仅用CNN",
+        "C": "图像分类精度更高",
+        "D": "目标检测需定位物体位置"
+      },
+      "answer": "D",
+      "explanation": ""
+    },
+    {
+      "id": "ai_24",
+      "type": "AI知识",
+      "question": "中国\"天枢-5\"芯片的能效比是？",
+      "options": {
+        "A": "200 TOPS/W",
+        "B": "300 TOPS/W",
+        "C": "400 TOPS/W",
+        "D": "100 TOPS/W"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "ai_25",
+      "type": "AI知识",
+      "question": "以下哪项不属于生成式AI的应用？",
+      "options": {
+        "A": "Sora视频生成",
+        "B": "DALL-E图像创作",
+        "C": "垃圾邮件分类",
+        "D": "ChatGPT文本生成"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_26",
+      "type": "AI知识",
+      "question": "2025年世界人工智能大会上发布的\"妈祖\"系统用于？",
+      "options": {
+        "A": "自动驾驶决策",
+        "B": "大模型训练",
+        "C": "量子计算",
+        "D": "多灾种早期预警"
+      },
+      "answer": "D",
+      "explanation": ""
+    },
+    {
+      "id": "ai_27",
+      "type": "AI知识",
+      "question": "2025年美国AI行动计划的核心举措包括？",
+      "options": {
+        "A": "撤销拜登时期AI监管令",
+        "B": "建设高安全性数据中心",
+        "C": "推动半导体制造业回流",
+        "D": "禁止开源模型发布"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_28",
+      "type": "AI知识",
+      "question": "多模态大模型的典型能力有？",
+      "options": {
+        "A": "文本生成图像",
+        "B": "视频内容理解",
+        "C": "跨模态推理",
+        "D": "量子计算加速"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_29",
+      "type": "AI知识",
+      "question": "AI伦理治理的三大支柱是？",
+      "options": {
+        "A": "技术安全",
+        "B": "透明度",
+        "C": "版权合规",
+        "D": "经济效益"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_30",
+      "type": "AI知识",
+      "question": "以下哪些属于2025年中国AI政策？",
+      "options": {
+        "A": "《人工智能生成合成内容标识办法》",
+        "B": "《人脸识别技术应用安全管理办法》",
+        "C": "《生成式人工智能服务管理暂行办法》",
+        "D": "《欧盟人工智能法案》"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_31",
+      "type": "AI知识",
+      "question": "强化学习中的\"探索-利用权衡\"指？",
+      "options": {
+        "A": "在已知高奖励和未知潜在奖励间平衡",
+        "B": "加速模型收敛",
+        "C": "优化模型参数",
+        "D": "减少训练数据量"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_32",
+      "type": "AI知识",
+      "question": "以下哪些属于生成式AI的风险？",
+      "options": {
+        "A": "深度伪造诈骗",
+        "B": "版权侵权",
+        "C": "算法偏见",
+        "D": "提升生产效率"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_33",
+      "type": "AI知识",
+      "question": "中国\"东数西算\"工程的枢纽节点包括？",
+      "options": {
+        "A": "张家口",
+        "B": "贵州",
+        "C": "内蒙古",
+        "D": "深圳"
+      },
+      "answer": "ABCD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_34",
+      "type": "AI知识",
+      "question": "Transformer相比RNN的优势是？",
+      "options": {
+        "A": "无需训练数据",
+        "B": "模型参数更少",
+        "C": "支持并行计算",
+        "D": "处理序列数据更快"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "ai_35",
+      "type": "AI知识",
+      "question": "欧盟《人工智能法案》对高风险AI系统的要求包括？",
+      "options": {
+        "A": "全生命周期追溯",
+        "B": "人类监督机制",
+        "C": "公开训练数据",
+        "D": "安全评估备案"
+      },
+      "answer": "ABD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_36",
+      "type": "AI知识",
+      "question": "以下哪些属于AI在医疗领域的应用？",
+      "options": {
+        "A": "肺结节智能诊断",
+        "B": "个性化治疗方案",
+        "C": "药物分子设计",
+        "D": "自动驾驶手术机器人"
+      },
+      "answer": "ABCD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_37",
+      "type": "AI知识",
+      "question": "2025年AI芯片的发展趋势包括？",
+      "options": {
+        "A": "存算一体架构",
+        "B": "量子芯片商用",
+        "C": "能效比提升",
+        "D": "通用CPU替代"
+      },
+      "answer": "AC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_38",
+      "type": "AI知识",
+      "question": "以下哪项不属于无监督学习算法？",
+      "options": {
+        "A": "线性回归",
+        "B": "DBSCAN聚类",
+        "C": "PCA降维",
+        "D": "关联规则挖掘"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_39",
+      "type": "AI知识",
+      "question": "中国《数据安全法》对AI企业的要求是？",
+      "options": {
+        "A": "数据分类分级",
+        "B": "重要数据出境安全评估",
+        "C": "数据全生命周期安全",
+        "D": "完全开放数据资源"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_40",
+      "type": "AI知识",
+      "question": "GPT-4o的\"多模态\"能力体现在？",
+      "options": {
+        "A": "文本生成",
+        "B": "图像理解",
+        "C": "语音交互",
+        "D": "物理世界操控"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_41",
+      "type": "AI知识",
+      "question": "以下哪些属于AI安全治理措施？",
+      "options": {
+        "A": "算法备案",
+        "B": "生成内容标识",
+        "C": "模型开源",
+        "D": "安全评估"
+      },
+      "answer": "ABD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_42",
+      "type": "AI知识",
+      "question": "2025年美国\"能源紧急状态\"政策的影响包括？",
+      "options": {
+        "A": "加速AI电厂建设",
+        "B": "允许使用煤炭能源",
+        "C": "降低电费成本",
+        "D": "增加温室气体排放"
+      },
+      "answer": "ABD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_43",
+      "type": "AI知识",
+      "question": "卷积神经网络（CNN）的核心层包括？",
+      "options": {
+        "A": "卷积层",
+        "B": "池化层",
+        "C": "全连接层",
+        "D": "自注意力层"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_44",
+      "type": "AI知识",
+      "question": "中国\"人工智能+\"行动中\"科学技术\"领域的举措包括？",
+      "options": {
+        "A": "加速科学发现",
+        "B": "驱动技术研发",
+        "C": "创新社科研究方法",
+        "D": "发展军事AI"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_45",
+      "type": "AI知识",
+      "question": "以下哪些属于AI伦理争议事件？",
+      "options": {
+        "A": "ChatGPT教唆自杀诉讼",
+        "B": "深度伪造政治人物视频",
+        "C": "AI医疗诊断准确率98%",
+        "D": "算法歧视导致招聘不公"
+      },
+      "answer": "ABD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_46",
+      "type": "AI知识",
+      "question": "强化学习算法Q-Learning的核心是学习？",
+      "options": {
+        "A": "状态-动作价值函数",
+        "B": "奖励函数梯度",
+        "C": "训练数据分布",
+        "D": "模型参数"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_47",
+      "type": "AI知识",
+      "question": "以下哪些属于2025年中国\"人工智能+\"行动的重点任务？",
+      "options": {
+        "A": "建设国家新一代人工智能创新发展试验区",
+        "B": "实施制造业智能化改造升级工程",
+        "C": "开展人工智能社会实验",
+        "D": "禁止生成式AI技术研发"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_48",
+      "type": "AI知识",
+      "question": "多模态大模型训练中面临的技术挑战包括？",
+      "options": {
+        "A": "模态间语义鸿沟",
+        "B": "数据异构性处理",
+        "C": "计算资源消耗",
+        "D": "跨模态注意力机制设计"
+      },
+      "answer": "ABCD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_49",
+      "type": "AI知识",
+      "question": "欧盟《人工智能法案》将AI系统风险等级划分为？",
+      "options": {
+        "A": "不可接受风险",
+        "B": "高风险",
+        "C": "有限风险",
+        "D": "低风险"
+      },
+      "answer": "ABCD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_50",
+      "type": "AI知识",
+      "question": "以下哪些属于AI在城市治理中的典型应用？",
+      "options": {
+        "A": "智能交通信号优化",
+        "B": "城市安防视频分析",
+        "C": "政务服务智能问答",
+        "D": "蛋白质结构预测"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_51",
+      "type": "AI知识",
+      "question": "生成式AI内容的标识要求包括？",
+      "options": {
+        "A": "显式可见标识",
+        "B": "隐式元数据嵌入",
+        "C": "生成时间戳",
+        "D": "开发者联系方式"
+      },
+      "answer": "AB",
+      "explanation": ""
+    },
+    {
+      "id": "ai_52",
+      "type": "AI知识",
+      "question": "以下哪些算法属于深度学习模型？",
+      "options": {
+        "A": "Transformer",
+        "B": "ResNet",
+        "C": "LSTM",
+        "D": "决策树"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_53",
+      "type": "AI知识",
+      "question": "2025年全球AI芯片市场的主要趋势是？",
+      "options": {
+        "A": "存算一体架构普及",
+        "B": "3D堆叠技术应用",
+        "C": "通用GPU主导地位巩固",
+        "D": "光量子芯片商用化"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_54",
+      "type": "AI知识",
+      "question": "AI伦理审查的核心评估维度包括？",
+      "options": {
+        "A": "公平性",
+        "B": "可解释性",
+        "C": "安全性",
+        "D": "经济效益"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_55",
+      "type": "AI知识",
+      "question": "以下哪些属于联邦学习的优势？",
+      "options": {
+        "A": "数据隐私保护",
+        "B": "降低数据传输成本",
+        "C": "实现跨机构协作",
+        "D": "提升模型训练速度"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_56",
+      "type": "AI知识",
+      "question": "中国《数据安全法》规定的数据处理活动包括？",
+      "options": {
+        "A": "数据收集",
+        "B": "数据存储",
+        "C": "数据传输",
+        "D": "数据销毁"
+      },
+      "answer": "ABCD",
+      "explanation": ""
+    },
+    {
+      "id": "ai_57",
+      "type": "AI知识",
+      "question": "以下哪些属于自动驾驶传感器配置方案？",
+      "options": {
+        "A": "纯视觉方案",
+        "B": "激光雷达+视觉融合",
+        "C": "毫米波雷达主导",
+        "D": "超声波传感器单一方案"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_58",
+      "type": "AI知识",
+      "question": "AI技术在农业领域的应用包括？",
+      "options": {
+        "A": "病虫害智能识别",
+        "B": "精准灌溉控制",
+        "C": "农产品质量检测",
+        "D": "农业劳动力替代"
+      },
+      "answer": "ABC",
+      "explanation": ""
+    },
+    {
+      "id": "ai_59",
+      "type": "AI知识",
+      "question": "中国《人工智能生成合成内容标识办法》要求所有AI生成内容必须同时添加显式和隐式标识。（ ）",
+      "options": {},
+      "answer": "√",
+      "explanation": ""
+    },
+    {
+      "id": "ai_60",
+      "type": "AI知识",
+      "question": "2025年中国\"人工智能+\"行动提出的智能终端普及率目标是？",
+      "options": {
+        "A": "70%",
+        "B": "50%",
+        "C": "90%",
+        "D": "80%"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "ai_61",
+      "type": "AI知识",
+      "question": "欧盟《人工智能法案》对通用AI模型（GPAI）的合规要求包括？（多选）",
+      "options": {
+        "A": "训练数据版权合规",
+        "B": "技术文档公开",
+        "C": "系统性风险评估",
+        "D": "用户使用日志保存"
+      },
+      "answer": "ACD",
+      "explanation": ""
+    }
+  ],
+  "party": [
+    {
+      "id": "party_1",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员连续",
+      "options": {
+        "A": "6个月",
+        "B": "12个月",
+        "C": "3个月"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_2",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的根本组织原则是",
+      "options": {
+        "A": "分工负责制",
+        "B": "民主集中制",
+        "C": "集体领导制"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_3",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的纪律处分不包括",
+      "options": {
+        "A": "开除党籍",
+        "B": "降级",
+        "C": "留党察看"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_4",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "发展党员必须坚持",
+      "options": {
+        "A": "批量发展",
+        "B": "公开选拔",
+        "C": "个别吸收"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_5",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员有权在党的会议上批评党的任何组织和任何党员，是党员的",
+      "options": {
+        "A": "建议权",
+        "B": "监督权",
+        "C": "选举权"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_6",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的根本宗旨是",
+      "options": {
+        "A": "全心全意为人民服务",
+        "B": "发展生产力",
+        "C": "加强党的建设"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_7",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员对党的决议有不同意见时，正确的做法是",
+      "options": {
+        "A": "公开发表反对意见",
+        "B": "拒绝执行",
+        "C": "坚决执行前提下保留意见"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_8",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的全国代表大会每",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "3"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_9",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "留党察看最长不超过",
+      "options": {
+        "A": "2",
+        "B": "1",
+        "C": "3"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_10",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "《中国共产党章程》的修改权属于",
+      "options": {
+        "A": "中央政治局",
+        "B": "党的全国代表大会",
+        "C": "中央纪律检查委员会"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_11",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中国共产党第一次全国代表大会在",
+      "options": {
+        "A": "北京",
+        "B": "浙江嘉兴南湖",
+        "C": "上海"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_12",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": ""枪杆子里出政权"的著名论断提出于",
+      "options": {
+        "A": "遵义会议",
+        "B": "八七会议",
+        "C": "古田会议"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_13",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中华人民共和国开国大典的时间是",
+      "options": {
+        "A": "1949年10月1日",
+        "B": "1950年1月1日",
+        "C": "1949年9月1日"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_14",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "标志着中国进入改革开放新时期的是",
+      "options": {
+        "A": "中共八大",
+        "B": "南方谈话",
+        "C": "十一届三中全会"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_15",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "香港回归祖国的时间是",
+      "options": {
+        "A": "2001年7月1日",
+        "B": "1999年12月20日",
+        "C": "1997年7月1日"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_16",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": ""中国梦"的核心目标是",
+      "options": {
+        "A": "中华民族伟大复兴",
+        "B": "全面依法治国",
+        "C": "全面建设小康社会"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_17",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "抗日战争胜利纪念日是",
+      "options": {
+        "A": "8月15日",
+        "B": "7月7日",
+        "C": "9月3日"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_18",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "首次提出"习近平新时代中国特色社会主义思想"的会议是",
+      "options": {
+        "A": "中共十八大",
+        "B": "中共二十大",
+        "C": "中共十九大"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_19",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "我国第一颗人造地球卫星发射成功的时间是",
+      "options": {
+        "A": "1964年",
+        "B": "1970年",
+        "C": "1967年"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_20",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "抗美援朝战争开始于",
+      "options": {
+        "A": "1953",
+        "B": "1951",
+        "C": "1950"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_21",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "邓小平理论被确立为党的指导思想是在",
+      "options": {
+        "A": "中共十六大",
+        "B": "中共十五大",
+        "C": "中共十四大"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_22",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "红军长征结束的标志是",
+      "options": {
+        "A": "三大主力会宁会师",
+        "B": "遵义会议",
+        "C": "飞夺泸定桥"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_23",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "新中国第一部宪法颁布于",
+      "options": {
+        "A": "1949",
+        "B": "1954",
+        "C": "1978"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_24",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": ""科学发展观"的核心是",
+      "options": {
+        "A": "全面协调",
+        "B": "以人为本",
+        "C": "发展经济"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_25",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "脱贫攻坚战取得全面胜利的年份是",
+      "options": {
+        "A": "2020",
+        "B": "2021",
+        "C": "2019"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_26",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中国加入世界贸易组织（WTO）的时间是",
+      "options": {
+        "A": "2002年",
+        "B": "2001年",
+        "C": "2000年"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_27",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": ""一带一路"倡议提出的年份是",
+      "options": {
+        "A": "2015年",
+        "B": "2013年",
+        "C": "2017年"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_28",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中华人民共和国恢复联合国合法席位的时间是",
+      "options": {
+        "A": "1971年",
+        "B": "1965年",
+        "C": "1968年"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_29",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "被誉为"改革开放第一村"的是",
+      "options": {
+        "A": "南街村",
+        "B": "小岗村",
+        "C": "华西村"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_30",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "首次提出"构建人类命运共同体"的会议是",
+      "options": {
+        "A": "中共十九大",
+        "B": "联合国日内瓦总部演讲",
+        "C": "中共十八大"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_31",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的纪律主要包括政治纪律、",
+      "options": {
+        "A": "财经纪律",
+        "B": "组织纪律",
+        "C": "生活纪律"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_32",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "对党员的纪律处分最轻的是",
+      "options": {
+        "A": "警告",
+        "B": "撤销党内职务",
+        "C": "严重警告"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_33",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员受留党察看处分期间，没有",
+      "options": {
+        "A": "建议权",
+        "B": "申诉权",
+        "C": "表决权、选举权和被选举权"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_34",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "《中国共产党廉洁自律准则》要求党员",
+      "options": {
+        "A": "廉洁修身",
+        "B": "公私分明",
+        "C": "艰苦奋斗"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_35",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党纪处分决定生效后，应在",
+      "options": {
+        "A": "3个月",
+        "B": "15日",
+        "C": "1个月"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_36",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员领导干部违规收受礼品礼金，违反的是",
+      "options": {
+        "A": "廉洁纪律",
+        "B": "组织纪律",
+        "C": "政治纪律"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_37",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "对严重违纪的党组织的处理方式是",
+      "options": {
+        "A": "改组或解散",
+        "B": "诫勉谈话",
+        "C": "通报批评"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_38",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员受到开除党籍处分，",
+      "options": {
+        "A": "6",
+        "B": "3",
+        "C": "5"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_39",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "下列行为中违反群众纪律的是",
+      "options": {
+        "A": "对抗组织审查",
+        "B": "克扣群众财物",
+        "C": "跑官要官"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_40",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员犯罪被判处有期徒刑以上刑罚，应当给予",
+      "options": {
+        "A": "开除党籍",
+        "B": "撤销党内职务",
+        "C": "留党察看"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_41",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党纪处分决定的生效日期是",
+      "options": {
+        "A": "向党员宣布日",
+        "B": "处分决定批准日",
+        "C": "处分决定起草日"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_42",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "《中国共产党纪律处分条例》的制定机关是",
+      "options": {
+        "A": "全国人大",
+        "B": "中共中央",
+        "C": "国务院"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_43",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员在宗教场所进行无神论宣传，违反的是",
+      "options": {
+        "A": "工作纪律",
+        "B": "生活纪律",
+        "C": "政治纪律"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_44",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "对违纪党员免予处分的情形是",
+      "options": {
+        "A": "情节轻微且认错态度好",
+        "B": "配合组织调查",
+        "C": "主动退赃"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_45",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党员在社交平台转发错误政治言论，违反",
+      "options": {
+        "A": "政治纪律",
+        "B": "组织纪律",
+        "C": "生活纪律"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_46",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的最高理想和最终目标是什么？",
+      "options": {
+        "A": "实现社会主义现代化",
+        "B": "实现共产主义",
+        "C": "实现共同富裕"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_47",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中国共产党的宗旨是？",
+      "options": {
+        "A": "全心全意为少数人民服务",
+        "B": "全心全意为人民服务",
+        "C": "全心全意为部分人民服务"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_48",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "党的根本组织原则是？",
+      "options": {
+        "A": "个人服从组织",
+        "B": "民主集中制",
+        "C": "少数服从多数"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_49",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "中国共产党诞生于哪一年？",
+      "options": {
+        "A": "1919 年",
+        "B": "1922 年",
+        "C": "1921 年"
+      },
+      "answer": "C",
+      "explanation": ""
+    },
+    {
+      "id": "party_50",
+      "type": "党建知识",
+      "questionType": "选择题",
+      "question": "把毛泽东思想确立为党的指导思想的是哪次会议？",
+      "options": {
+        "A": "中共六大",
+        "B": "中共七大",
+        "C": "中共七大"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_51",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的基层委员会每届任期5年。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_52",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "对严重违纪的党组织，应予以改组或解散。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_53",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "入党宣誓誓词由党的中央委员会制定。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_54",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党员有权要求罢免不称职的干部。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_55",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党徽由镰刀和锤头组成。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_56",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的全国代表大会每4年举行一次。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_57",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "预备党员的义务与正式党员相同。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_58",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党员可以信仰宗教。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_59",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "留党察看最长不超过2年。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_60",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的根本宗旨是全心全意为人民服务。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_61",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "中共一大代表共有13人。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_62",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "长征胜利结束的标志是三大主力会师甘肃会宁。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_63",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "邓小平理论被确立为党的指导思想是在中共十四大。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_64",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": ""两个一百年"奋斗目标中的第二个百年是全面建成社会主义现代化强国。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_65",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党员受警告处分后，一年内不得提拔。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_66",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的基层委员会每届任期5年。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_67",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "对严重违纪的党组织应予以改组或解散。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_68",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "入党宣誓誓词由党的中央委员会制定。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_69",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党员有权要求罢免不称职的干部。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_70",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党徽由镰刀和锤头组成。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_71",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的纪律检查机关是司法机关。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_72",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党员有权在党内提出申辩和控告。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": "party_73",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "党的最高理想是实现共同富裕。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_74",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "预备党员有表决权。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "B",
+      "explanation": ""
+    },
+    {
+      "id": "party_75",
+      "type": "党建知识",
+      "questionType": "判断题",
+      "question": "脱贫攻坚精神被概括为"上下同心、尽锐出战"。",
+      "options": {
+        "A": "正确",
+        "B": "错误"
+      },
+      "answer": "A",
+      "explanation": ""
+    }
+  ]
+};
