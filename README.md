@@ -4,7 +4,7 @@
 
 **From Claude Artifact to deployable React app — in seconds!**
 
-Zero‑config `npx` tool and template to run, build, or create full projects from Claude AI Artifacts.
+Zero‑config `npx` tool, project template, and optional Docker image, to **run**, **build**, or **create** full projects from Claude AI Artifacts.
 
 - Run an Artifact in seconds, without having to create a project first and build it
 - Build single‑file or multi‑file outputs ready to deploy anywhere
