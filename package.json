@@ -21,6 +21,9 @@
     "tailwindcss",
     "shadcn-ui"
   ],
+  "bin": {
+    "claude-artifact-runner": "./npx/run-claude-artifact.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
