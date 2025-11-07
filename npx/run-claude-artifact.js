@@ -4,6 +4,17 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
+// Get version from package.json
+let version = 'unknown';
+try {
+  const packageJsonPath = path.join(__dirname, 'package.json');
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  version = packageJson.version || 'unknown';
+} catch (err) {
+  // Fallback if package.json can't be read
+  version = 'unknown';
+}
+
 function run(cmd, args, options = {}) {
   return new Promise((resolve, reject) => {
     const p = spawn(cmd, args, { stdio: 'inherit', ...options });
@@ -63,7 +74,7 @@ async function parseArgs() {
 
   // Handle help request
   if (args.includes('--help') || args.includes('-h')) {
-    console.log(`Claude Artifact Runner v2.0.0 - Run Claude AI Artifacts locally
+    console.log(`Claude Artifact Runner v${version} - Run Claude AI Artifacts locally
 
 Usage: npx run-claude-artifact [run|view|build|create] <src-file> [options]
 
