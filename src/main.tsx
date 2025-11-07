@@ -39,7 +39,7 @@ function getBasePath(): string {
             return path;
           }
         }
-      } catch (e) {
+      } catch {
         // Invalid base URL, fall through to pathname detection
       }
     }
