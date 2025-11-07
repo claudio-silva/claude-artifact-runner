@@ -37,8 +37,8 @@ The script will:
 The Docker image works exactly like `npx run-claude-artifact`, but you need to mount your workspace directory:
 
 ```bash
-# Run an artifact
-docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
+# Run an artifact (with port mapping for dev server)
+docker run --rm -p 5173:5173 -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
 
 # Build an artifact
 docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner build my-app.tsx
@@ -51,6 +51,8 @@ docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner create 
 - Read your artifact files (`.tsx`/`.jsx`) from the host
 - Write output files back to your host machine (built HTML files, created projects)
 
+For the `run` subcommand, use `-p 5173:5173` to map the Vite dev server port to your host, so you can access it at `http://localhost:5173/`.
+
 The tool clones the template repository to a temporary directory inside the container, so git operations happen entirely within the container and don't require host filesystem access.
 
-The container will exit automatically when the `npx` command completes (or is interrupted with Ctrl+C).
+The container automatically passes `--no-open` to prevent browser opening attempts inside the container. When the server starts, you'll see a message with the URL to open in your browser.

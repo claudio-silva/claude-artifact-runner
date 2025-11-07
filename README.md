@@ -26,7 +26,7 @@ npx run-claude-artifact build my-app.tsx
 npx run-claude-artifact create my-app.tsx
 
 # Run an artifact using Docker instead of npx
-docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
+docker run --rm -p 5173:5173 -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
 ```
 
 ## Table of Contents
@@ -182,7 +182,7 @@ Instead of using `npx run-claude-artifact`, you can use the Docker image:
 
 ```bash
 # Run an artifact (mount current directory as workspace)
-docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
+docker run --rm -p 5173:5173 -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
 
 # Build an artifact
 docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner build my-app.tsx
@@ -195,7 +195,11 @@ docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner create 
 - Read your artifact files (`.tsx`/`.jsx`) from your local directory
 - Write output files back to your local directory (built HTML files, created projects)
 
+For the `run` subcommand, use `-p 5173:5173` to map the Vite dev server port to your host, so you can access it at `http://localhost:5173/`.
+
 The tool clones the template repository to a temporary directory inside the container, so you also don't need git installed on the host.
+
+The container automatically passes `--no-open` to prevent browser opening attempts inside the container. When the server starts, you'll see a message with the URL to open in your browser.
 
 For more details on building and publishing the Docker image, see the [npx/README.md](npx/README.md#docker) documentation.
 

@@ -11,7 +11,7 @@ RUN npm install -g run-claude-artifact@latest
 
 # Create entrypoint script that forwards arguments to npx
 RUN echo '#!/bin/sh' > /entrypoint.sh && \
-    echo 'exec npx run-claude-artifact "$@"' >> /entrypoint.sh && \
+    echo 'exec npx run-claude-artifact --no-open "$@"' >> /entrypoint.sh && \
     chmod +x /entrypoint.sh
 
 # Set entrypoint

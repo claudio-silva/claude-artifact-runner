@@ -1,4 +1,4 @@
-# run-claude-artifact v2.0.0
+# run-claude-artifact v2.1.0
 
 This npm package exposes the `run-claude-artifact` command for use with `npx`.
 

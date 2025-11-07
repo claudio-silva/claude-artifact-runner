@@ -39,11 +39,26 @@ if ! docker images | grep -q "${IMAGE_NAME}.*${VERSION}"; then
 fi
 
 # Check if user is logged in to Docker Hub
-if ! docker info | grep -q "Username:"; then
+DOCKER_CONFIG="${HOME}/.docker/config.json"
+
+if [ ! -f "$DOCKER_CONFIG" ]; then
     echo -e "${YELLOW}⚠️  Not logged in to Docker Hub. Please login first:${NC}"
     echo -e "  docker login"
     exit 1
 fi
+
+# Check if Docker Hub credentials exist in config
+# Docker Hub can be stored as "https://index.docker.io/v1/" or "docker.io"
+if ! grep -qE "(https://index\.docker\.io/v1/|docker\.io)" "$DOCKER_CONFIG" 2>/dev/null; then
+    echo -e "${YELLOW}⚠️  Not logged in to Docker Hub. Please login first:${NC}"
+    echo -e "  docker login"
+    exit 1
+fi
+
+# Prompt for confirmation
+echo -e "${BLUE}✓ Docker Hub login detected${NC}"
+read -p "Make sure you are logged in as claudiombsilva and press Enter to continue: "
+echo ""
 
 # Push the image
 echo -e "${BLUE}📤 Pushing Docker image to Docker Hub...${NC}"

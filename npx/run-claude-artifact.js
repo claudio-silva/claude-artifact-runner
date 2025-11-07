@@ -69,7 +69,8 @@ async function parseArgs() {
     deployDir: null, // For build subcommand
     projectDir: null, // For create subcommand
     remote: null, // For create subcommand
-    push: false // For create subcommand
+    push: false, // For create subcommand
+    noOpen: false // Don't open browser automatically
   };
 
   // Handle help request
@@ -105,6 +106,7 @@ Options by Subcommand:
 
   Global Options:
     -h, --help           Show this help message
+    --no-open            Don't open browser automatically (useful for Docker/CI)
 
 Examples:
   # Run Artifact (Default)
@@ -212,6 +214,8 @@ Notes:
         process.exit(1);
       }
       options.push = true;
+    } else if (arg === '--no-open') {
+      options.noOpen = true;
     } else {
       console.error(`❌ Unknown option: ${arg}`);
       process.exit(1);
@@ -242,7 +246,7 @@ Notes:
 }
 
 // Function to serve files using npx serve
-async function serveFile(filePath, isSingleFile = false, fileName = null) {
+async function serveFile(filePath, isSingleFile = false, fileName = null, noOpen = false) {
   let serveDir = filePath;
   let url = 'http://localhost:3000';
   let tmpDir = null;
@@ -264,13 +268,18 @@ async function serveFile(filePath, isSingleFile = false, fileName = null) {
   const serveProcess = spawn('npx', serveArgs, { stdio: 'inherit' });
 
   // Wait for server to start before opening browser
-  console.log(`🚀 Opening browser at: ${url}`);
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  if (!noOpen) {
+    console.log(`🚀 Opening browser at: ${url}`);
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
-  try {
-    const openCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
-    await run(openCmd, [url]);
-  } catch {
+    try {
+      const openCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
+      await run(openCmd, [url]);
+    } catch {
+      console.log(`ℹ️  Please open your browser and navigate to: ${url}`);
+    }
+  } else {
+    console.log(`🌐 Server running at: ${url}`);
     console.log(`ℹ️  Please open your browser and navigate to: ${url}`);
   }
 
@@ -325,12 +334,12 @@ async function main() {
     const stat = await fs.promises.stat(absPath);
     if (stat.isDirectory()) {
       // Serve directory (multi-file artifact)
-      await serveFile(absPath, false);
+      await serveFile(absPath, false, null, options.noOpen);
     } else if (path.extname(absPath) === '.html') {
       // Serve single HTML file
       const parentDir = path.dirname(absPath);
       const fileName = path.basename(absPath);
-      await serveFile(parentDir, true, fileName);
+      await serveFile(parentDir, true, fileName, options.noOpen);
     } else {
       console.error('❌ For view subcommand, file must be .html or a directory');
       process.exit(1);
@@ -456,7 +465,11 @@ async function main() {
         }
 
         console.log(`${os.EOL}🎬 Running artifact in preview mode...`);
-        const runProcess = spawn('node_modules/.bin/vite', ['preview', '--open'], {
+        const viteArgs = ['preview'];
+        if (!options.noOpen) {
+          viteArgs.push('--open');
+        }
+        const runProcess = spawn('node_modules/.bin/vite', viteArgs, {
           cwd: repoDir,
           stdio: 'inherit'
         });
@@ -464,6 +477,9 @@ async function main() {
         // Show helpful message after server starts
         setTimeout(() => {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the preview server`);
+          if (options.noOpen) {
+            console.log(`🌐 Open your browser at: http://localhost:5173/`);
+          }
         }, 5000);
 
         let signalHandled = false;
@@ -496,7 +512,11 @@ async function main() {
         }
       } else {
         console.log(`${os.EOL}🎬 Running artifact in development mode...`);
-        const runProcess = spawn('node_modules/.bin/vite', ['--open'], {
+        const viteArgs = [];
+        if (!options.noOpen) {
+          viteArgs.push('--open');
+        }
+        const runProcess = spawn('node_modules/.bin/vite', viteArgs, {
           cwd: repoDir,
           stdio: 'inherit'
         });
@@ -504,6 +524,9 @@ async function main() {
         // Show helpful message after server starts
         setTimeout(() => {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the development server`);
+          if (options.noOpen) {
+            console.log(`🌐 Open your browser at: http://localhost:5173/`);
+          }
         }, 5000);
 
         let signalHandled = false;
