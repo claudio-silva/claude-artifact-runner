@@ -1,4 +1,4 @@
-import { defineConfig, mergeConfig } from 'vite';
+import { defineConfig, mergeConfig, type UserConfig } from 'vite';
 import baseConfig from './vite.config';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import fs from 'node:fs';
@@ -12,7 +12,7 @@ const inlineFaviconPost = {
       const icoPath = path.resolve(__dirname, 'public/favicon.ico');
       if (!fs.existsSync(icoPath)) return html;
       const icoBase64 = fs.readFileSync(icoPath).toString('base64');
-      const tag = `<link rel=\"icon\" type=\"image/x-icon\" href=\"data:image/x-icon;base64,${icoBase64}\">`;
+      const tag = `<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,${icoBase64}">`;
       return html.includes('rel="icon"')
         ? html.replace(/<link[^>]*rel=["'](?:icon|shortcut icon)["'][^>]*>/, tag)
         : html.replace('</head>', `${tag}\n</head>`);
@@ -21,7 +21,9 @@ const inlineFaviconPost = {
 };
 
 export default defineConfig((env) => {
-  const base = typeof baseConfig === 'function' ? (baseConfig as any)(env) : (baseConfig as any);
+  const base: UserConfig = typeof baseConfig === 'function' 
+    ? (baseConfig as (env: typeof env) => UserConfig)(env) 
+    : (baseConfig as UserConfig);
   return mergeConfig(base, {
     plugins: [...(base.plugins || []), viteSingleFile(), inlineFaviconPost],
     build: {

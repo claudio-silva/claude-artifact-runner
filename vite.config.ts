@@ -5,12 +5,12 @@ import fs from 'node:fs';
 import Pages from 'vite-plugin-pages';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
 
   // For multi-file builds, do not inline the favicon. Ensure a standard link exists (optional safeguard).
   const ensureFaviconLinkPlugin = {
     name: 'ensure-favicon-link',
-    apply(config: any, { command }: { command: string }) {
+    apply(_config: unknown, { command }: { command: string }) {
       return command === 'build';
     },
     transformIndexHtml: {
