@@ -31,7 +31,8 @@
     "build:strict": "tsc -b && vite build",
     "build:single:strict": "tsc -b && vite build -c vite.single.config.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish:npx": "node npx/publish.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.27.0",

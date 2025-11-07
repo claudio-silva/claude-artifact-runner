@@ -99,11 +99,61 @@ To experiment with the CLI before publishing, link it globally:
 
 ## Publishing
 
+The package includes an automated publish script that handles version management, git commits, and npm publishing.
+
+### Prerequisites
+
 1. Sign in to npm if needed:
    ```bash
    npm login
    ```
-2. Publish the package from this directory:
+
+### Publishing Workflow
+
+Run the publish script from either the project root or the `npx/` directory:
+
+**From project root:**
+```bash
+npm run publish:npx
+```
+
+**From npx directory:**
+```bash
+cd npx
+npm run publish
+```
+
+Or run directly:
+```bash
+node npx/publish.js
+```
+
+### What the publish script does:
+
+1. **Version Management**: 
+   - Displays current version from `package.json`
+   - Prompts you to confirm or change the version
+   - Updates `package.json` if version changed
+   - Updates `README.md` version if it differs
+
+2. **Git Integration**:
+   - Checks for uncommitted changes
+   - Shows changed files
+   - Prompts to commit changes
+   - Suggests commit message: `"npx package updated to vX.Y.Z"`
+   - Commits and optionally pushes to remote
+
+3. **npm Publishing**:
+   - Runs `npm publish --access public` from the `npx/` directory
+
+### Manual Publishing
+
+If you prefer to publish manually:
+
+1. Update version in `npx/package.json`
+2. Update version in `npx/README.md` (first line)
+3. Commit and push changes
+4. From `npx/` directory, run:
    ```bash
    npm publish --access public
    ```
