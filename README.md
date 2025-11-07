@@ -84,6 +84,8 @@ npx run-claude-artifact create my-app.tsx
   - [Deploying your application](#deploying-your-application)
     - [Local test deployment](#local-test-deployment)
     - [Traditional web hosting](#traditional-web-hosting)
+      - [Deploying to the root directory](#deploying-to-the-root-directory)
+      - [Deploying to a subdirectory](#deploying-to-a-subdirectory)
     - [Cloud hosting platforms](#cloud-hosting-platforms)
       - [Netlify](#netlify)
       - [Vercel](#vercel)
@@ -560,17 +562,57 @@ For local testing of the production build, you can also use the `serve` npx pack
 
 If you want to deploy to a shared or dedicated web server:
 
-1. Upload the contents of the `dist` folder to your web server's public HTML directory (often called `public_html`, `www`, or `htdocs`).
+#### Deploying to the root directory
 
-Remember to update any necessary configuration files (like `vite.config.ts`) before building your app if it is not being served from the root of your domain.
+1. Build your application:
+   ```
+   npm run build:single
+   ```
+   or
+   ```
+   npm run build
+   ```
 
-For example, for `vite.config.ts`, you may configure it like this:
-```javascript
-export default {
-  base: '/subdirectory/', // Set this to the path your app is served from
-  // other configurations
-};
-```
+2. Upload the contents of the `dist` folder to your web server's public HTML directory (often called `public_html`, `www`, or `htdocs`).
+
+#### Deploying to a subdirectory
+
+If your app will be served from a subdirectory (e.g., `https://mydomain.com/a/b/c/`), you need to configure the base path **before building**:
+
+1. **Configure the base path** in `vite.config.ts`:
+   ```typescript
+   export default defineConfig(() => {
+     return {
+       base: '/a/b/c/', // Set this to match your deployment path
+       plugins: [
+         // ... your plugins
+       ],
+       // ... other configurations
+     }
+   })
+   ```
+   
+   > **Important:** The base path must:
+   > - Start with `/`
+   > - End with `/`
+   > - Match exactly where your files will be deployed (e.g., if deploying to `/a/b/c/`, use `base: '/a/b/c/'`)
+
+2. **Build your application**:
+   ```
+   npm run build:single
+   ```
+   or
+   ```
+   npm run build
+   ```
+
+3. **Upload the contents** of the `dist` folder to the corresponding subdirectory on your web server.
+
+   For example, if `base: '/a/b/c/'` is configured:
+   - Upload `dist/index.html` to `public_html/a/b/c/index.html`
+   - Upload any other files from `dist/` to `public_html/a/b/c/` accordingly
+
+> **Note:** If you forget to configure the `base` path, the app will attempt to auto-detect it from the URL. However, **configuring it explicitly is recommended** for proper asset loading and optimal performance. The auto-detection is a fallback that may not work in all scenarios.
 
 ### Cloud hosting platforms
 
