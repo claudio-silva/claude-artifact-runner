@@ -70,7 +70,8 @@ async function parseArgs() {
     projectDir: null, // For create subcommand
     remote: null, // For create subcommand
     push: false, // For create subcommand
-    noOpen: false // Don't open browser automatically
+    noOpen: false, // Don't open browser automatically
+    public: false // Bind to 0.0.0.0 instead of localhost (useful for Docker)
   };
 
   // Handle help request
@@ -107,6 +108,7 @@ Options by Subcommand:
   Global Options:
     -h, --help           Show this help message
     --no-open            Don't open browser automatically (useful for Docker/CI)
+    --public             Bind to 0.0.0.0 instead of localhost (useful for Docker)
 
 Examples:
   # Run Artifact (Default)
@@ -216,6 +218,8 @@ Notes:
       options.push = true;
     } else if (arg === '--no-open') {
       options.noOpen = true;
+    } else if (arg === '--public') {
+      options.public = true;
     } else {
       console.error(`❌ Unknown option: ${arg}`);
       process.exit(1);
@@ -469,6 +473,9 @@ async function main() {
         if (!options.noOpen) {
           viteArgs.push('--open');
         }
+        if (options.public) {
+          viteArgs.push('--host');
+        }
         const runProcess = spawn('node_modules/.bin/vite', viteArgs, {
           cwd: repoDir,
           stdio: 'inherit'
@@ -480,7 +487,7 @@ async function main() {
           if (options.noOpen) {
             console.log(`🌐 Open your browser at: http://localhost:5173/`);
           }
-        }, 5000);
+        }, 2500);
 
         let signalHandled = false;
         const handleRunSignal = (signal) => {
@@ -516,6 +523,9 @@ async function main() {
         if (!options.noOpen) {
           viteArgs.push('--open');
         }
+        if (options.public) {
+          viteArgs.push('--host');
+        }
         const runProcess = spawn('node_modules/.bin/vite', viteArgs, {
           cwd: repoDir,
           stdio: 'inherit'
@@ -527,7 +537,7 @@ async function main() {
           if (options.noOpen) {
             console.log(`🌐 Open your browser at: http://localhost:5173/`);
           }
-        }, 5000);
+        }, 2500);
 
         let signalHandled = false;
         const handleRunSignal = (signal) => {

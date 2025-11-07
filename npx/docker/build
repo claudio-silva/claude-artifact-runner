@@ -26,9 +26,29 @@ if ! docker info > /dev/null 2>&1; then
     exit 1
 fi
 
-# Build the Docker image with version and latest tags
-echo -e "${BLUE}📦 Building Docker image...${NC}"
-docker build -t "${IMAGE_NAME}:${VERSION}" -t "${IMAGE_NAME}:latest" .
+# Check if buildx is available
+if ! docker buildx version > /dev/null 2>&1; then
+    echo -e "${YELLOW}⚠️  Docker buildx not available. Building for current platform only.${NC}"
+    echo -e "${BLUE}📦 Building Docker image...${NC}"
+    docker build -t "${IMAGE_NAME}:${VERSION}" -t "${IMAGE_NAME}:latest" .
+else
+    # Create builder instance if it doesn't exist
+    if ! docker buildx ls | grep -q "claude-artifact-builder"; then
+        echo -e "${BLUE}🔧 Creating buildx builder instance...${NC}"
+        docker buildx create --name claude-artifact-builder --use
+    else
+        docker buildx use claude-artifact-builder
+    fi
+    
+    # Build for multiple architectures
+    echo -e "${BLUE}📦 Building Docker image for amd64 and arm64...${NC}"
+    docker buildx build \
+        --platform linux/amd64,linux/arm64 \
+        --tag "${IMAGE_NAME}:${VERSION}" \
+        --tag "${IMAGE_NAME}:latest" \
+        --load \
+        .
+fi
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ Docker image built successfully!${NC}"

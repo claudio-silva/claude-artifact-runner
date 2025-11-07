@@ -4,7 +4,7 @@ The project includes a Docker image that can be used as an alternative to `npx r
 
 ### Building the Docker Image
 
-Run the build script:
+Run the build script for **local testing**:
 
 ```bash
 npx/docker/build
@@ -14,6 +14,9 @@ The script will:
 - Build the Docker image with both version and `latest` tags
 - Read the version from `npx/package.json`
 - Display the created tags
+- Build for your current platform (useful for local testing)
+
+**Note:** The build script is for local testing only. When publishing, the publish script will rebuild the image anyway, so you don't need to run build first.
 
 The Dockerfile installs Node.js v23.11.0 (which includes npx) and the `run-claude-artifact` npm package globally.
 
@@ -26,11 +29,14 @@ npx/docker/publish
 ```
 
 The script will:
-- Check if the image exists (builds it if not found)
+- **Always rebuild** the image using Docker buildx (even if a local image exists)
+- Build for both `linux/amd64` and `linux/arm64` architectures
 - Verify Docker Hub login
 - Push both version and `latest` tags to Docker Hub
 
-**Note:** Make sure to run `docker login` before publishing.
+**Note:** The publish script always rebuilds the image to ensure both architectures are built and pushed. Running the build script first is not necessary and won't speed up the publishing process.
+
+**Prerequisites:** Make sure to run `docker login` before publishing.
 
 ### Using the Docker Image
 
@@ -55,4 +61,4 @@ For the `run` subcommand, use `-p 5173:5173` to map the Vite dev server port to 
 
 The tool clones the template repository to a temporary directory inside the container, so git operations happen entirely within the container and don't require host filesystem access.
 
-The container automatically passes `--no-open` to prevent browser opening attempts inside the container. When the server starts, you'll see a message with the URL to open in your browser.
+The container automatically passes `--no-open --public` flags to prevent browser opening attempts and bind to 0.0.0.0 (making it accessible from outside the container). When the server starts, you'll see a message with the URL to open in your browser.
