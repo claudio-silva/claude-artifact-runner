@@ -263,17 +263,13 @@ async function serveFile(filePath, isSingleFile = false, fileName = null) {
     console.log(`ℹ️  Please open your browser and navigate to: ${url}`);
   }
 
-  let sigintHandled = false;
-  process.on('SIGINT', async () => {
-    if (!sigintHandled) {
-      sigintHandled = true;
-      console.log(`${os.EOL}🛑 Stopping server...`);
-      serveProcess.kill('SIGINT');
-      if (tmpDir) {
-        try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
-      }
-      process.exit(0);
+  process.once('SIGINT', async () => {
+    console.log(`${os.EOL}🛑 Stopping server...`);
+    serveProcess.kill('SIGINT');
+    if (tmpDir) {
+      try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
     }
+    process.exit(0);
   });
 
   await new Promise((resolve) => { serveProcess.on('exit', resolve); });
@@ -427,13 +423,9 @@ async function main() {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the preview server`);
         }, 5000);
 
-        let sigintHandled = false;
-        process.on('SIGINT', () => {
-          if (!sigintHandled) {
-            sigintHandled = true;
-            console.log(`${os.EOL}🛑 Stopping artifact...`);
-            runProcess.kill('SIGINT');
-          }
+        process.once('SIGINT', () => {
+          console.log(`${os.EOL}🛑 Stopping artifact...`);
+          runProcess.kill('SIGINT');
         });
 
         await new Promise((resolve) => {
@@ -455,13 +447,9 @@ async function main() {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the development server`);
         }, 5000);
 
-        let sigintHandled = false;
-        process.on('SIGINT', () => {
-          if (!sigintHandled) {
-            sigintHandled = true;
-            console.log(`${os.EOL}🛑 Stopping artifact...`);
-            runProcess.kill('SIGINT');
-          }
+        process.once('SIGINT', () => {
+          console.log(`${os.EOL}🛑 Stopping artifact...`);
+          runProcess.kill('SIGINT');
         });
 
         await new Promise((resolve) => {
