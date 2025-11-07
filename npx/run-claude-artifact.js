@@ -263,20 +263,31 @@ async function serveFile(filePath, isSingleFile = false, fileName = null) {
     console.log(`ℹ️  Please open your browser and navigate to: ${url}`);
   }
 
-  process.once('SIGINT', async () => {
-    console.log(`${os.EOL}🛑 Stopping server...`);
-    serveProcess.kill('SIGINT');
+  let sigintHandled = false;
+  const cleanup = async () => {
     if (tmpDir) {
       try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
     }
+  };
+
+  const handleSignal = async (signal) => {
+    if (sigintHandled) return;
+    sigintHandled = true;
+    console.log(`${os.EOL}🛑 Stopping server...`);
+    serveProcess.kill(signal);
+    await new Promise((resolve) => { serveProcess.on('exit', resolve); });
+    await cleanup();
     process.exit(0);
-  });
+  };
+
+  process.once('SIGINT', () => handleSignal('SIGINT'));
+  process.once('SIGTERM', () => handleSignal('SIGTERM'));
 
   await new Promise((resolve) => { serveProcess.on('exit', resolve); });
 
-  // Cleanup temp dir after server exits
-  if (tmpDir) {
-    try { await fs.promises.rm(tmpDir, { recursive: true, force: true }); } catch {}
+  // Cleanup temp dir after server exits (if not already handled by signal)
+  if (!sigintHandled) {
+    await cleanup();
   }
 }
 
@@ -336,9 +347,27 @@ async function main() {
 
   console.log(`🏗️  Processing artifact: ${path.basename(options.filename)}`);
 
-  const tmpBase = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'claude-artifact-'));
+  let tmpBase = null;
+  try {
+    tmpBase = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'claude-artifact-'));
+  } catch (err) {
+    console.error('❌ Failed to create temporary directory:', err.message);
+    process.exit(1);
+  }
+
   const repoDir = path.join(tmpBase, 'repo');
   const repoUrl = 'https://github.com/claudio-silva/claude-artifact-runner';
+
+  // Cleanup function
+  const cleanup = async () => {
+    if (tmpBase) {
+      try {
+        await fs.promises.rm(tmpBase, { recursive: true, force: true });
+      } catch (err) {
+        // Ignore cleanup errors
+      }
+    }
+  };
 
   try {
     console.log(`
@@ -423,18 +452,35 @@ async function main() {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the preview server`);
         }, 5000);
 
-        process.once('SIGINT', () => {
+        let signalHandled = false;
+        const handleRunSignal = async (signal) => {
+          if (signalHandled) return;
+          signalHandled = true;
           console.log(`${os.EOL}🛑 Stopping artifact...`);
-          runProcess.kill('SIGINT');
-        });
+          runProcess.kill(signal);
+          // Wait for child process to exit
+          await new Promise((resolve) => {
+            runProcess.on('exit', resolve);
+          });
+          // Cleanup temp directory after process ends
+          console.log('🧹 Cleaning up...');
+          await cleanup();
+          process.exit(0);
+        };
+
+        process.once('SIGINT', () => handleRunSignal('SIGINT'));
+        process.once('SIGTERM', () => handleRunSignal('SIGTERM'));
 
         await new Promise((resolve) => {
           runProcess.on('exit', resolve);
         });
 
-        // Cleanup temp directory after process ends
-        console.log('🧹 Cleaning up...');
-        await fs.promises.rm(tmpBase, { recursive: true, force: true });
+        // Cleanup temp directory after process ends (if child exited normally, not via signal)
+        if (!signalHandled) {
+          console.log('🧹 Cleaning up...');
+          await cleanup();
+          process.exit(0);
+        }
       } else {
         console.log(`${os.EOL}🎬 Running artifact in development mode...`);
         const runProcess = spawn('node_modules/.bin/vite', ['--open'], {
@@ -447,18 +493,35 @@ async function main() {
           console.log(`${os.EOL}💡 Press Ctrl+C to stop the development server`);
         }, 5000);
 
-        process.once('SIGINT', () => {
+        let signalHandled = false;
+        const handleRunSignal = async (signal) => {
+          if (signalHandled) return;
+          signalHandled = true;
           console.log(`${os.EOL}🛑 Stopping artifact...`);
-          runProcess.kill('SIGINT');
-        });
+          runProcess.kill(signal);
+          // Wait for child process to exit
+          await new Promise((resolve) => {
+            runProcess.on('exit', resolve);
+          });
+          // Cleanup temp directory after process ends
+          console.log('🧹 Cleaning up...');
+          await cleanup();
+          process.exit(0);
+        };
+
+        process.once('SIGINT', () => handleRunSignal('SIGINT'));
+        process.once('SIGTERM', () => handleRunSignal('SIGTERM'));
 
         await new Promise((resolve) => {
           runProcess.on('exit', resolve);
         });
 
-        // Cleanup temp directory after process ends
-        console.log('🧹 Cleaning up...');
-        await fs.promises.rm(tmpBase, { recursive: true, force: true });
+        // Cleanup temp directory after process ends (if child exited normally, not via signal)
+        if (!signalHandled) {
+          console.log('🧹 Cleaning up...');
+          await cleanup();
+          process.exit(0);
+        }
       }
 
     } else if (options.subcommand === 'build') {
@@ -524,7 +587,7 @@ async function main() {
 
       // Cleanup temp directory for build command
       console.log('🧹 Cleaning up...');
-      await fs.promises.rm(tmpBase, { recursive: true, force: true });
+      await cleanup();
 
     } else if (options.subcommand === 'create') {
       console.log(`📁 Creating project at ${projectDir}...`);
@@ -586,21 +649,15 @@ export default defineConfig((env) => {
 
       // Cleanup temp directory for create command
       console.log('🧹 Cleaning up...');
-      await fs.promises.rm(tmpBase, { recursive: true, force: true });
+      await cleanup();
     }
 
   } catch (err) {
     console.error('❌ Error:', err.message);
 
     // Cleanup temp directory on error (if it exists)
-    try {
-      if (tmpBase && fs.existsSync(tmpBase)) {
-        console.log('🧹 Cleaning up after error...');
-        await fs.promises.rm(tmpBase, { recursive: true, force: true });
-      }
-    } catch (cleanupError) {
-      console.error('⚠️  Failed to cleanup temporary directory:', cleanupError.message);
-    }
+    console.log('🧹 Cleaning up after error...');
+    await cleanup();
 
     process.exit(1);
   }
