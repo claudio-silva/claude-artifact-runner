@@ -270,14 +270,17 @@ async function serveFile(filePath, isSingleFile = false, fileName = null) {
     }
   };
 
-  const handleSignal = async (signal) => {
+  const handleSignal = (signal) => {
     if (sigintHandled) return;
     sigintHandled = true;
     console.log(`${os.EOL}🛑 Stopping server...`);
     serveProcess.kill(signal);
-    await new Promise((resolve) => { serveProcess.on('exit', resolve); });
-    await cleanup();
-    process.exit(0);
+    
+    // Wait for child process to exit before cleanup
+    serveProcess.once('exit', async () => {
+      await cleanup();
+      process.exit(0);
+    });
   };
 
   process.once('SIGINT', () => handleSignal('SIGINT'));
@@ -453,19 +456,18 @@ async function main() {
         }, 5000);
 
         let signalHandled = false;
-        const handleRunSignal = async (signal) => {
+        const handleRunSignal = (signal) => {
           if (signalHandled) return;
           signalHandled = true;
           console.log(`${os.EOL}🛑 Stopping artifact...`);
           runProcess.kill(signal);
-          // Wait for child process to exit
-          await new Promise((resolve) => {
-            runProcess.on('exit', resolve);
+          
+          // Wait for child process to exit before cleanup
+          runProcess.once('exit', async () => {
+            console.log('🧹 Cleaning up...');
+            await cleanup();
+            process.exit(0);
           });
-          // Cleanup temp directory after process ends
-          console.log('🧹 Cleaning up...');
-          await cleanup();
-          process.exit(0);
         };
 
         process.once('SIGINT', () => handleRunSignal('SIGINT'));
@@ -494,19 +496,18 @@ async function main() {
         }, 5000);
 
         let signalHandled = false;
-        const handleRunSignal = async (signal) => {
+        const handleRunSignal = (signal) => {
           if (signalHandled) return;
           signalHandled = true;
           console.log(`${os.EOL}🛑 Stopping artifact...`);
           runProcess.kill(signal);
-          // Wait for child process to exit
-          await new Promise((resolve) => {
-            runProcess.on('exit', resolve);
+          
+          // Wait for child process to exit before cleanup
+          runProcess.once('exit', async () => {
+            console.log('🧹 Cleaning up...');
+            await cleanup();
+            process.exit(0);
           });
-          // Cleanup temp directory after process ends
-          console.log('🧹 Cleaning up...');
-          await cleanup();
-          process.exit(0);
         };
 
         process.once('SIGINT', () => handleRunSignal('SIGINT'));

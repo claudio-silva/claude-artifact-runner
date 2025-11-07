@@ -1,6 +1,6 @@
 {
   "name": "run-claude-artifact",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Run Claude AI Artifacts locally - quick preview, or create projects, build, deploy, and push to a Git repository.",
   "bin": {
     "run-claude-artifact": "./run-claude-artifact.js"
