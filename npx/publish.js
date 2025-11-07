@@ -116,10 +116,32 @@ async function main() {
       }
     }
 
-    // Step 6: Run npm publish
+    // Step 6: Check if version already exists on npm
+    console.log('\n🔍 Checking if version already exists on npm...');
+    try {
+      const npmViewOutput = execSync(`npm view ${require('./package.json').name}@${newVersion} version`, { 
+        encoding: 'utf8', 
+        stdio: 'pipe',
+        cwd: __dirname 
+      });
+      if (npmViewOutput.trim() === newVersion) {
+        console.log(`⚠️  Version ${newVersion} already exists on npm.`);
+        const continueAnswer = await question('Do you want to publish anyway? (y/n): ');
+        if (continueAnswer.toLowerCase() !== 'y' && continueAnswer.toLowerCase() !== 'yes') {
+          console.log('❌ Publishing cancelled.');
+          process.exit(0);
+        }
+      }
+    } catch (err) {
+      // Version doesn't exist, which is fine - we can proceed
+      console.log(`✅ Version ${newVersion} is available for publishing.`);
+    }
+
+    // Step 7: Run npm publish
     console.log('\n🚀 Publishing to npm...');
     process.chdir(__dirname);
-    execSync('npm publish --access public', { stdio: 'inherit' });
+    // Use --ignore-scripts to prevent npm from running lifecycle hooks that might cause loops
+    execSync('npm publish --access public --ignore-scripts', { stdio: 'inherit' });
     console.log('\n✅ Published successfully!');
 
   } catch (error) {

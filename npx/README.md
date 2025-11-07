@@ -120,7 +120,7 @@ npm run publish:npx
 **From npx directory:**
 ```bash
 cd npx
-npm run publish
+npm run publish:package
 ```
 
 Or run directly:

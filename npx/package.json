@@ -1,6 +1,6 @@
 {
   "name": "run-claude-artifact",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Run Claude AI Artifacts locally - quick preview, or create projects, build, deploy, and push to a Git repository.",
   "bin": {
     "run-claude-artifact": "./run-claude-artifact.js"
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "echo \"nothing to build\"",
     "test": "node run-claude-artifact.js --help",
-    "publish": "node publish.js"
+    "publish:package": "node publish.js"
   },
   "author": "Cláudio Silva",
   "license": "MIT",
