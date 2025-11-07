@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Docker Hub image name
+IMAGE_NAME="claudiombsilva/claude-artifact-runner"
+
+# Navigate to docker directory first
+cd "$(dirname "$0")"
+
+# Get version from npx/package.json (one level up from docker/)
+VERSION=$(node -p "require('../package.json').version" 2>/dev/null || echo "latest")
+
+# Colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}🐳 Building Docker image for claude-artifact-runner${NC}"
+echo -e "${BLUE}Image: ${IMAGE_NAME}${NC}"
+echo -e "${BLUE}Version: ${VERSION}${NC}"
+echo ""
+
+# Check if Docker is running
+if ! docker info > /dev/null 2>&1; then
+    echo -e "${YELLOW}❌ Docker is not running. Please start Docker and try again.${NC}"
+    exit 1
+fi
+
+# Build the Docker image with version and latest tags
+echo -e "${BLUE}📦 Building Docker image...${NC}"
+docker build -t "${IMAGE_NAME}:${VERSION}" -t "${IMAGE_NAME}:latest" .
+
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}✅ Docker image built successfully!${NC}"
+    echo ""
+    echo -e "${BLUE}Tags created:${NC}"
+    echo -e "  - ${IMAGE_NAME}:${VERSION}"
+    echo -e "  - ${IMAGE_NAME}:latest"
+    echo ""
+    echo -e "${BLUE}To publish, run:${NC}"
+    echo -e "  ./publish"
+else
+    echo -e "${YELLOW}❌ Docker build failed.${NC}"
+    exit 1
+fi

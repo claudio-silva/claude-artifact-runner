@@ -24,6 +24,9 @@ npx run-claude-artifact build my-app.tsx
 
 # Create a full editable project
 npx run-claude-artifact create my-app.tsx
+
+# Run an artifact using Docker instead of npx
+docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
 ```
 
 ## Table of Contents
@@ -37,6 +40,7 @@ npx run-claude-artifact create my-app.tsx
     - [If you want to build an Artifact](#if-you-want-to-build-an-artifact)
     - [If you want to view a previously built Artifact](#if-you-want-to-view-a-previously-built-artifact)
     - [If you want to create a full project for one or more Artifacts](#if-you-want-to-create-a-full-project-for-one-or-more-artifacts)
+    - [Using Docker instead of npx](#using-docker-instead-of-npx)
   - [Limitations](#limitations)
   - [What's included?](#whats-included)
   - [Prerequisites](#prerequisites)
@@ -169,6 +173,31 @@ You can blend AI-generated Artifacts with your own custom code, incorporate code
 You'll be able to deploy your app anywhere, whether locally for your own use, in a company intranet or in a public-facing production environment, at the webhosting or cloud provider of your choice.
 
 See the [Installation](#installation) section below for detailed installation instructions and advanced options.
+
+### Using Docker instead of npx
+
+**Best for:** Running artifacts without installing Node.js locally, or in CI/CD pipelines.
+
+Instead of using `npx run-claude-artifact`, you can use the Docker image:
+
+```bash
+# Run an artifact (mount current directory as workspace)
+docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner my-app.tsx
+
+# Build an artifact
+docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner build my-app.tsx
+
+# Create a project
+docker run --rm -v $(pwd):/w -w /w claudiombsilva/claude-artifact-runner create my-app.tsx
+```
+
+**Note:** The `-v $(pwd):/w -w /w` flags mount your current directory into the container so the tool can:
+- Read your artifact files (`.tsx`/`.jsx`) from your local directory
+- Write output files back to your local directory (built HTML files, created projects)
+
+The tool clones the template repository to a temporary directory inside the container, so you also don't need git installed on the host.
+
+For more details on building and publishing the Docker image, see the [npx/README.md](npx/README.md#docker) documentation.
 
 ## Limitations
 
