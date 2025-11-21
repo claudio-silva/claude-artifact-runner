@@ -39,6 +39,7 @@ docker run --rm -p 5173:5173 -v $(pwd):/w -w /w claudiombsilva/claude-artifact-r
     - [If you want to just run an Artifact](#if-you-want-to-just-run-an-artifact)
     - [If you want to build an Artifact](#if-you-want-to-build-an-artifact)
     - [If you want to view a previously built Artifact](#if-you-want-to-view-a-previously-built-artifact)
+      - [Caveats for opening a single-file build directly from the filesystem](#caveats-for-opening-a-single-file-build-directly-from-the-filesystem)
     - [If you want to create a full project for one or more Artifacts](#if-you-want-to-create-a-full-project-for-one-or-more-artifacts)
     - [Using Docker instead of npx](#using-docker-instead-of-npx)
   - [Limitations](#limitations)
@@ -146,7 +147,7 @@ If you don't have an Artifact to run yet, and just want to try out the project, 
 
 The tool outputs an HTML file in your current directory, which contains all the code for running the application (HTML, CSS, JavaScript and a *favicon*).
 
-This file can be deployed to any **static** web hosting service or cloud platform.
+This file can be deployed to any **static** web hosting service or cloud platform, and **sometimes** it can even be opened directly from the filesystem (double-click the HTML file or open the URL `file://path/to/file.html`), but with some caveats (see below).
 
 ### If you want to view a previously built Artifact
 
@@ -161,6 +162,25 @@ There are two build types, with different preview methods:
   - Use the `view` subcommand to preview locally:
     - `npx run-claude-artifact view artifact-directory-name` (serve the directory)
     - The tool launches a temporary web server and opens your browser. Press `Ctrl+C` to stop.
+
+#### Caveats for opening a single-file build directly from the filesystem
+
+There are always going to be some artifacts that won't be able to run correctly (or at all) when opened directly from the file system, but that is a fundamental browser restriction, not something the tool can solve.
+
+A page opened as `file://` isn’t treated like a normal website. Browsers put it in a kind of sandbox, because a local file could otherwise snoop around your machine.
+
+Succintly:
+
+- Remote resource loading? **Often allowed.**
+- Remote API calls? **Allowed only if CORS says yes.**
+- Local-file cross-access? **Blocked.**
+
+> Please make sure your artifact isn't being **blocked** by the browser's security policy, **before submitting a bug report**.
+
+The best way to avoid issues and view a file locally is to place your `index.html` in a blank directory and run either:
+
+* `npx run-claude-artifact view <your-directory>`, or
+* `npx serve <your-directory>`
 
 ### If you want to create a full project for one or more Artifacts
 

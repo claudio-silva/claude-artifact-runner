@@ -133,7 +133,8 @@ npx run-claude-artifact build my-app.tsx --deploy-dir /var/www  # Custom output 
   npx run-claude-artifact create my-app.tsx --remote <url> --push  # Create + git + push
 
 Notes:
-  - Built artifacts require a web server to run correctly
+  - Built artifacts may require a web server to run correctly, depending on what the artifact does and
+    the browser's security policy. See the GitHub repo's README.md for more details.
   - For multi-file artifacts, specify the directory, not the HTML file
   - --remote and --push require 'create' subcommand
   - Default deployment: single file to CWD, multi-file to CWD/filename/dist
